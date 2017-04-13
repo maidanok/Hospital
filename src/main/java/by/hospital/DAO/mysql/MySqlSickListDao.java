@@ -57,12 +57,12 @@ public class MySqlSickListDao extends AbstractJDBCDao<SickList, Integer> {
     protected String getUpdateQuery() {
         return "UPDATE hospital.sick_list \n" +
                 "SET patient_id = ?, date_in = ?, date_out = ?, room = ?, symptoms = ?, discharge = ?\n" +
-                "WHERE sick_list_id = ?";
+                "WHERE sick_list_id = ? ;";
     }
 
     @Override
     protected String getDeleteQuery() {
-        return "DELETE FROM sick_list WHERE sick_list_id = ?";
+        return "DELETE FROM sick_list WHERE sick_list_id = ? ;";
     }
 
     @Override
@@ -89,7 +89,7 @@ public class MySqlSickListDao extends AbstractJDBCDao<SickList, Integer> {
     @Override
     protected void prepareStatementForInsert(PreparedStatement statement, SickList object) throws PersistentException {
         try {
-            int patientID = (object.getPatient() == null || object.getPatient().getPrimaryKey() == null) ? 1
+            int patientID = (object.getPatient() == null || object.getPatient().getPrimaryKey() == null) ? -1
                     : object.getPatient().getPrimaryKey();
             statement.setInt(1, patientID);
             statement.setDate(2, convert(object.getDateIN()));

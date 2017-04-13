@@ -7,10 +7,8 @@ package by.hospital.DAO.mysql;
 
 import by.hospital.DAO.DaoFactory;
 import by.hospital.DAO.GenericDAO;
-import by.hospital.DAO.DaoFactory.DaoCreator;
-import by.hospital.domain.Patient;
-import by.hospital.domain.Post;
-import by.hospital.domain.SickList;
+import by.hospital.DAO.mysql.interfaces.GenericDAOForStaff;
+import by.hospital.domain.*;
 import by.hospital.exception.PersistentException;
 import by.hospital.pool.ConnectionPool;
 
@@ -65,6 +63,21 @@ public class MySqlDaoFactory implements DaoFactory<Connection> {
             }
         });
 
+        //Diagnose
+        this.creators.put(Diagnose.class, new DaoCreator<Connection>() {
+            @Override
+            public GenericDAO create(Connection connection) {
+                return new MySqlDiagnoseDao(MySqlDaoFactory.this, connection);
+            }
+        });
+
+        //Staff
+        this.creators.put(Staff.class, new DaoCreator<Connection>() {
+            @Override
+            public GenericDAOForStaff create(Connection connection) {
+                return new MySqlStaffDao(MySqlDaoFactory.this, connection);
+            }
+        });
 
     }
 }

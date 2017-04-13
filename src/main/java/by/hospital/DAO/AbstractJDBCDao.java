@@ -14,7 +14,7 @@ import java.util.Set;
 public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKey extends Integer> implements GenericDAO<Type, PrimaryKey> {
 
     private DaoFactory<Connection> parentFactory;
-    private Connection connection;
+    protected Connection connection;
     //таблица зависимостей (вложенных объектов)
     private Set<ManyToOne> relations = new HashSet<ManyToOne>();
 
