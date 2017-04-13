@@ -128,7 +128,7 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
     public Type getByPrimaryKey(Integer primaryKey) throws PersistentException {
         List<Type> list;
         String sql = getSelectedQuery();
-        sql += " WHERE " + getPrimaryKeyQuery() + " = ?";
+        sql += " WHERE " + getPrimaryKeyQuery() + " = ? ;";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, primaryKey);
@@ -149,7 +149,7 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
     @Override
     public List<Type> getAll() throws PersistentException {
         List<Type> list;
-        String sql = getSelectedQuery();
+        String sql = getSelectedQuery()+" ;";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();

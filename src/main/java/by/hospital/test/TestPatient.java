@@ -7,6 +7,7 @@ import by.hospital.DAO.mysql.MySqlStaffDao;
 import by.hospital.domain.*;
 import by.hospital.exception.PersistentException;
 import by.hospital.pool.ConnectionPool;
+import javafx.geometry.Pos;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -22,11 +23,13 @@ public class TestPatient {
     public static void main(String [] args) throws SQLException, PersistentException, NoSuchFieldException {
         ConnectionPool connectionPool = ConnectionPool.getInstance();
         MySqlDaoFactory mySqlDaoFactory = new MySqlDaoFactory();
-
         Connection connection = connectionPool.getConnection();
-        List<Staff> staff = new ArrayList<>();
-        MySqlStaffDao mySqlStaffDao = new MySqlStaffDao(mySqlDaoFactory,connection);
-        staff= mySqlStaffDao.getAllForField(false);
+
+
+        List<Post> staff = new ArrayList<>();
+        staff = mySqlDaoFactory.getDao(connection,Post.class).getAll();
+        System.out.println(staff);
+
 
     }
 }

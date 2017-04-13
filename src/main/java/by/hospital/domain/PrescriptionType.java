@@ -5,7 +5,7 @@ import by.hospital.domain.enumeration.TypePrescription;
 /**
  * Created by Pasha on 12.04.2017.
  */
-public class PrescriptionType implements Entity <Integer> {
+public class PrescriptionType implements Entity<Integer> {
     private int prescriptionTypeID;
     private TypePrescription typePrescription;
 
@@ -24,10 +24,10 @@ public class PrescriptionType implements Entity <Integer> {
 
     @Override
     public void setPrimaryKey(int primaryKey) {
-        prescriptionTypeID=primaryKey;
+        prescriptionTypeID = primaryKey;
     }
 
-    public String toString(){
+    public String toString() {
         return typePrescription.getName();
     }
 }

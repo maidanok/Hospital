@@ -69,14 +69,14 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
 
     @Override
     public List<Staff> getAllForField(Boolean field) throws PersistentException {
-        List <Staff> list;
+        List<Staff> list;
         String sql = getSelectedQuery();
-        sql+= " WHERE fired = "+field;
+        sql += " WHERE fired = " + field;
         try {
             PreparedStatement statement = super.connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             list = parseResultSet(resultSet);
-        }catch (Exception e) {
+        } catch (Exception e) {
             throw new PersistentException(e);
         }
         return list;
@@ -106,11 +106,6 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
         return result;
     }
 
-    /*
-                     "INSERT INTO staff\n" +
-                    "(post_id, first_name, last_name, middle_name, birthday, sex, login, password, fired)\n" +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
-     */
     @Override
     protected void prepareStatementForInsert(PreparedStatement statement, Staff object) throws PersistentException {
         try {
