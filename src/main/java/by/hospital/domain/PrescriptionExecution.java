@@ -7,9 +7,31 @@ import java.util.Date;
  */
 public class PrescriptionExecution implements Entity<Integer> {
     private int prescriptionExecutionID;
-    private Prescription prescription;
+    private Staff staff;
     private Date prescriptionExecutionDate;
     private boolean done;
+    private int prescriptionID;
+
+    public PrescriptionExecution(int prescriptionID){
+        this.prescriptionID=prescriptionID;
+    }
+
+    public void setPrescriptionID(int prescriptionID) {
+        this.prescriptionID = prescriptionID;
+    }
+
+    public int getPrescriptionID() {
+        return prescriptionID;
+    }
+
+    public Staff getStaff() {
+        return staff;
+    }
+
+    public void setStaff(Staff staff) {
+        this.staff = staff;
+    }
+
     @Override
     public Integer getPrimaryKey() {
         return prescriptionExecutionID;
@@ -17,15 +39,7 @@ public class PrescriptionExecution implements Entity<Integer> {
 
     @Override
     public void setPrimaryKey(int primaryKey) {
-        prescriptionExecutionID=primaryKey;
-    }
-
-    public Prescription getPrescription() {
-        return prescription;
-    }
-
-    public void setPrescription(Prescription prescription) {
-        this.prescription = prescription;
+        prescriptionExecutionID = primaryKey;
     }
 
     public Date getPrescriptionExecutionDate() {

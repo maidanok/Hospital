@@ -1,20 +1,13 @@
 package by.hospital.domain;
 
-import by.hospital.domain.enumeration.Gender;
-
-import java.util.Date;
+import by.hospital.domain.enumeration.Post;
 
 /**
  * Created by Pasha on 12.04.2017.
  */
-public class Staff implements Entity<Integer> {
+public class Staff extends Person implements Entity<Integer> {
     private int staffID;
     private Post post;
-    private String firstName;
-    private String lastName;
-    private String middleName;
-    private Date birthday;
-    private Gender sex;
     private String login;
     private String password;
     private boolean fired;
@@ -33,48 +26,8 @@ public class Staff implements Entity<Integer> {
         return post;
     }
 
-    public void setPost(Post post) {
-        this.post = post;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    public Gender getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = Gender.valueOf(sex);
+    public void setPost(String post) {
+        this.post =Post.valueOf(post);
     }
 
     public String getLogin() {
@@ -105,12 +58,12 @@ public class Staff implements Entity<Integer> {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Staff[").append(staffID).append("]").append("\n");
-        stringBuilder.append("First Name ").append(firstName).append("\n");
-        stringBuilder.append("Last Name ").append(lastName).append("\n");
-        stringBuilder.append("Middle Name ").append(middleName).append("\n");
-        stringBuilder.append("Birthday ").append(birthday).append("\n");
-        stringBuilder.append("Gender ").append(sex.getName()).append("\n");
-        stringBuilder.append("Fired ").append(fired ? "уволен" : "не уволен").append("\n");
+        stringBuilder.append("First Name ").append(getFirstName()).append("\n");
+        stringBuilder.append("Last Name ").append(getLastName()).append("\n");
+        stringBuilder.append("Middle Name ").append(getMiddleName()).append("\n");
+        stringBuilder.append("Birthday ").append(getBirthday()).append("\n");
+        stringBuilder.append("Gender ").append(getSex().getName()).append("\n");
+        stringBuilder.append("Fired ").append(isFired() ? "уволен" : "не уволен").append("\n");
         return stringBuilder.toString();
     }
 }

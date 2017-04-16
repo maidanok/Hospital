@@ -1,0 +1,15 @@
+Вставка новой записи врача
+
+INSERT INTO person (first_name, last_name, middle_name, birthday, sex, address, passport_number)
+VALUE ('Форман', 'Эрик', '', '1967-08-12', 'MALE','не известно','61536bg');
+INSERT INTO staff (post_id, login, password, person_id)
+VALUE ((SELECT post_id FROM posts WHERE post_name = 'DOCTOR'),
+'ErForm', '123', (SELECT person_id FROM person WHERE person_id = last_insert_id()));
+------------------------------------------------------------------------------------------------
+выборка
+SELECT  person.person_id, person.first_name, person.last_name, person.middle_name, person.birthday,
+person.sex, person.address, person.passport_number,
+posts.post_name, staff.login, staff.password, staff.fired
+FROM staff JOIN posts ON posts.post_id=staff.post_id
+JOIN person on person.person_id=staff.person_id
+---------------------------------------------------------------------------------------------------

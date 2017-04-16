@@ -121,7 +121,6 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
         } catch (Exception e) {
             throw new PersistentException(e);
         }
-
     }
 
     @Override

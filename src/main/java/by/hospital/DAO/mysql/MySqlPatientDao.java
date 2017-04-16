@@ -34,31 +34,31 @@ public class MySqlPatientDao extends AbstractJDBCDao<Patient, Integer> {
 
     @Override
     protected String getPrimaryKeyQuery() {
-        return "patient_id";
+        return "person_id";
     }
 
     @Override
     protected String getSelectedQuery() {
-        return "SELECT patient_id, first_name, last_name, middle_name, birthday, sex, address, passport_number \n" +
-                "FROM patients";
+        return "SELECT person_id, first_name, last_name, middle_name, birthday, sex, address, passport_number \n" +
+                "FROM person";
     }
 
     @Override
     protected String getCreateQuery() {
-        return "INSERT INTO patients (first_name, last_name, middle_name, birthday, sex, address, passport_number)\n" +
+        return "INSERT INTO person (first_name, last_name, middle_name, birthday, sex, address, passport_number)\n" +
                 "VALUES (?, ?, ?, ?, ?, ?, ?);";
     }
 
     @Override
     protected String getUpdateQuery() {
-        return "UPDATE patients SET first_name = ?, last_name = ?, middle_name = ?, birthday = ?, sex = ?, " +
+        return "UPDATE person SET first_name = ?, last_name = ?, middle_name = ?, birthday = ?, sex = ?, " +
                 "address = ?, passport_number = ? \n" +
-                "WHERE patient_id = ?;";
+                "WHERE person_id = ?;";
     }
 
     @Override
     protected String getDeleteQuery() {
-        return "DELETE FROM patients WHERE patient_id = ?;";
+        return "DELETE FROM person WHERE person_id = ?;";
     }
 
     @Override

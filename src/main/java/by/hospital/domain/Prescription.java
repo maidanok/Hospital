@@ -1,5 +1,8 @@
 package by.hospital.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Pasha on 12.04.2017.
  */
@@ -8,6 +11,15 @@ public class Prescription implements Entity<Integer> {
     private PrescriptionType prescriptionType;
     private SurveyHistory surveyHistory;
     private String description;
+    private List<PrescriptionExecution> executions = new ArrayList<>();
+
+    public List<PrescriptionExecution> getExecutions() {
+        return executions;
+    }
+
+    public void setExecutions(List<PrescriptionExecution> executions) {
+        this.executions = executions;
+    }
 
     @Override
     public Integer getPrimaryKey() {
