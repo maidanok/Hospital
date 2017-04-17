@@ -1,0 +1,6 @@
+SELECT sick_list_id, date_in, date_out, room, symptoms,
+person.person_id, first_name, last_name, middle_name, birthday, sex, address, passport_number,
+diagnose_id, diagnose_name, therapy
+FROM sick_list JOIN person on person.person_id=sick_list.person_id
+JOIN diagnose on diagnose_id=final_diagnose_id
+------------------------------------------------------------------

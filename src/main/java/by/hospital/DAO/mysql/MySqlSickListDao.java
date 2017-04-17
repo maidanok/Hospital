@@ -2,12 +2,10 @@ package by.hospital.DAO.mysql;
 
 import by.hospital.DAO.AbstractJDBCDao;
 import by.hospital.DAO.DaoFactory;
-import by.hospital.domain.Patient;
 import by.hospital.domain.SickList;
 import by.hospital.exception.PersistentException;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -27,6 +25,7 @@ public class MySqlSickListDao extends AbstractJDBCDao<SickList, Integer> {
     public MySqlSickListDao(DaoFactory<Connection> parentFactory, Connection connection) {
         super(parentFactory, connection);
         addRelation(SickList.class, "patient");
+        addRelation(SickList.class, "finalDiagnose");
     }
 
     @Override
@@ -42,21 +41,24 @@ public class MySqlSickListDao extends AbstractJDBCDao<SickList, Integer> {
 
     @Override
     protected String getSelectedQuery() {
-        return "SELECT sick_list_id, patient_id, date_in, date_out, room, symptoms, discharge\n" +
-                "FROM hospital.sick_list ";
+        return "SELECT sick_list_id, date_in, date_out, room, symptoms, \n" +
+                "person.person_id, first_name, last_name, middle_name, birthday, sex, address, passport_number,\n" +
+                "diagnose_id, diagnose_name, therapy\n" +
+                "FROM sick_list JOIN person on person.person_id=sick_list.person_id\n" +
+                "JOIN diagnose on diagnose_id=final_diagnose_id";
     }
 
     @Override
     protected String getCreateQuery() {
         return "INSERT INTO hospital.sick_list\n" +
-                "(patient_id, date_in, date_out, room, symptoms, discharge)\n" +
+                "(patient_id, date_in, date_out, room, symptoms, final_diagnose_id)\n" +
                 "VALUES (?, ?, ?, ?, ?, ?);";
     }
 
     @Override
     protected String getUpdateQuery() {
         return "UPDATE hospital.sick_list \n" +
-                "SET patient_id = ?, date_in = ?, date_out = ?, room = ?, symptoms = ?, discharge = ?\n" +
+                "SET patient_id = ?, date_in = ?, date_out = ?, room = ?, symptoms = ?, final_diagnose_id = ?\n" +
                 "WHERE sick_list_id = ? ;";
     }
 
@@ -72,12 +74,22 @@ public class MySqlSickListDao extends AbstractJDBCDao<SickList, Integer> {
             while (resultSet.next()) {
                 PersistSickList sickList = new PersistSickList();
                 sickList.setPrimaryKey(resultSet.getInt("sick_list_id"));
-                sickList.setPatient((Patient) getDependence(Patient.class, resultSet.getInt("patient_id")));
                 sickList.setDateIN(resultSet.getDate("date_in"));
                 sickList.setDateOUT(resultSet.getDate("date_out"));
                 sickList.setRoom(resultSet.getString("room"));
                 sickList.setSymptoms(resultSet.getString("symptoms"));
-                sickList.setDischarge(resultSet.getBoolean("discharge"));
+
+                sickList.getPatient().setPrimaryKey(resultSet.getInt("person.person_id"));
+                sickList.getPatient().setFirstName(resultSet.getString("first_name"));
+                sickList.getPatient().setLastName(resultSet.getString("last_name"));
+                sickList.getPatient().setMiddleName(resultSet.getString("middle_name"));
+                sickList.getPatient().setBirthday(resultSet.getDate("birthday"));
+                sickList.getPatient().setSex(resultSet.getString("sex"));
+                sickList.getPatient().setAddress(resultSet.getString("address"));
+
+                sickList.getFinalDiagnose().setPrimaryKey(resultSet.getInt("diagnose_id"));
+                sickList.getFinalDiagnose().setDiagnoseName(resultSet.getString("diagnose_name"));
+                sickList.getFinalDiagnose().setTherapy(resultSet.getString("therapy"));
                 result.add(sickList);
             }
         } catch (Exception e) {
@@ -96,11 +108,10 @@ public class MySqlSickListDao extends AbstractJDBCDao<SickList, Integer> {
             statement.setDate(3, convert(object.getDateOUT()));
             statement.setString(4, object.getRoom());
             statement.setString(5, object.getSymptoms());
-            statement.setBoolean(6, object.isDischarge());
+            statement.setInt(6, object.getFinalDiagnose().getPrimaryKey());
         } catch (Exception e) {
             throw new PersistentException(e);
         }
-
     }
 
     @Override
@@ -113,10 +124,12 @@ public class MySqlSickListDao extends AbstractJDBCDao<SickList, Integer> {
             statement.setDate(3, convert(object.getDateOUT()));
             statement.setString(4, object.getRoom());
             statement.setString(5, object.getSymptoms());
-            statement.setBoolean(6, object.isDischarge());
-            statement.setInt(7, object.getPrimaryKey());
+            statement.setInt(6, object.getFinalDiagnose().getPrimaryKey());
+            statement.setInt(7,object.getPrimaryKey());
         } catch (Exception e) {
             throw new PersistentException(e);
         }
     }
+
+
 }

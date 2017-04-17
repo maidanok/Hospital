@@ -38,7 +38,7 @@ public class Diagnose implements Entity <Integer> {
 
     public String toString(){
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Diagnose [").append(getDiagnoseName()).append("]\n");
+        stringBuilder.append("Diagnose [№").append(getPrimaryKey()).append(" ").append(getDiagnoseName()).append("]\n");
         stringBuilder.append("Therapy: ").append(getTherapy()).append("\n");
         return stringBuilder.toString();
     }

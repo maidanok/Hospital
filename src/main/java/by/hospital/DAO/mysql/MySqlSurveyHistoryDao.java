@@ -2,9 +2,7 @@ package by.hospital.DAO.mysql;
 
 import by.hospital.DAO.AbstractJDBCDao;
 import by.hospital.DAO.DaoFactory;
-import by.hospital.domain.Diagnose;
 import by.hospital.domain.SickList;
-import by.hospital.domain.Staff;
 import by.hospital.domain.SurveyHistory;
 import by.hospital.exception.PersistentException;
 
@@ -45,7 +43,15 @@ public class MySqlSurveyHistoryDao extends AbstractJDBCDao<SurveyHistory, Intege
 
     @Override
     protected String getSelectedQuery() {
-        return "SELECT survey_history_id, sick_list_id, diagnose_id, staff_id, survey_date, survey_description FROM survey_history";
+        return "SELECT\n" +
+                "sick_list_id,\n" +
+                "survey_history_id, survey_date, survey_description,\n" +
+                "survey_history.diagnose_id, diagnose_name, therapy, \n" +
+                "staff.person_id, posts.post_name, staff.login, staff.password, staff.fired, person.first_name, person.last_name, person.middle_name, person.birthday, person.sex, person.address, person.passport_number\n" +
+                "FROM survey_history join diagnose on survey_history.diagnose_id=diagnose.diagnose_id\n" +
+                "join staff on survey_history.staff_id=staff.person_id\n" +
+                "join person on staff.person_id=person.person_id\n" +
+                "join posts on staff.post_id=posts.post_id";
     }
 
     @Override
@@ -75,11 +81,27 @@ public class MySqlSurveyHistoryDao extends AbstractJDBCDao<SurveyHistory, Intege
                 PersistSurveyHistory sh = new PersistSurveyHistory();
                 sh.setPrimaryKey(resultSet.getInt("survey_history_id"));
                 sh.setSickList((SickList) getDependence(SickList.class, resultSet.getInt("sick_list_id")));
-                sh.setDiagnose((Diagnose) getDependence(Diagnose.class, resultSet.getInt("diagnose_id")));
-                sh.setStaff((Staff) getDependence(Staff.class, resultSet.getInt("staff_id")));
                 sh.setSurveyDate(resultSet.getDate("survey_date"));
                 sh.setDescription(resultSet.getString("survey_description"));
+
+                sh.getDiagnose().setPrimaryKey(resultSet.getInt("diagnose_id"));
+                sh.getDiagnose().setDiagnoseName(resultSet.getString("diagnose_name"));
+                sh.getDiagnose().setTherapy(resultSet.getString("therapy"));
+
+                sh.getStaff().setPrimaryKey(resultSet.getInt("person_id"));
+                sh.getStaff().setPost(resultSet.getString("post_name"));
+                sh.getStaff().setLogin(resultSet.getString("login"));
+                sh.getStaff().setPassword(resultSet.getString("password"));
+                sh.getStaff().setFired(resultSet.getBoolean("fired"));
+                sh.getStaff().setFirstName(resultSet.getString("first_name"));
+                sh.getStaff().setLastName(resultSet.getString("last_name"));
+                sh.getStaff().setMiddleName(resultSet.getString("middle_name"));
+                sh.getStaff().setBirthday(resultSet.getDate("birthday"));
+                sh.getStaff().setSex(resultSet.getString("sex"));
+                sh.getStaff().setAddress(resultSet.getString("address"));
+                sh.getStaff().setPassportNumber(resultSet.getString("passport_number"));
                 result.add(sh);
+
             }
         } catch (Exception e) {
             throw new PersistentException(e);

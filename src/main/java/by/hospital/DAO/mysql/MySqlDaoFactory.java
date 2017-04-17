@@ -55,14 +55,6 @@ public class MySqlDaoFactory implements DaoFactory<Connection> {
             }
         });
 
-        //Post
-        this.creators.put(Post.class, new DaoCreator<Connection>() {
-            @Override
-            public GenericDAO create(Connection connection) {
-                return new MySqlPostDao(MySqlDaoFactory.this, connection);
-            }
-        });
-
         //Diagnose
         this.creators.put(Diagnose.class, new DaoCreator<Connection>() {
             @Override

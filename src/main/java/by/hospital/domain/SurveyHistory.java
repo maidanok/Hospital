@@ -13,6 +13,11 @@ public class SurveyHistory implements Entity <Integer>{
     private Date surveyDate;
     private String description;
 
+    public SurveyHistory(){
+        sickList = new SickList();
+        diagnose = new Diagnose();
+        staff=new Staff();
+    }
     @Override
     public Integer getPrimaryKey() {
         return surveyHistoryID;

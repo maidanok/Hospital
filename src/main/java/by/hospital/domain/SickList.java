@@ -12,8 +12,20 @@ public class SickList implements Entity<Integer> {
     private Date dateOUT;
     private String room;
     private String symptoms;
-    private boolean discharge;
+    private Diagnose finalDiagnose;
 
+    public SickList() {
+        patient = new Patient();
+        finalDiagnose = new Diagnose();
+    }
+
+    public Diagnose getFinalDiagnose() {
+        return finalDiagnose;
+    }
+
+    public void setFinalDiagnose(Diagnose finalDiagnose) {
+        this.finalDiagnose = finalDiagnose;
+    }
 
     @Override
     public Integer getPrimaryKey() {
@@ -64,23 +76,17 @@ public class SickList implements Entity<Integer> {
         this.symptoms = symptoms;
     }
 
-    public boolean isDischarge() {
-        return discharge;
-    }
-
-    public void setDischarge(boolean discharge) {
-        this.discharge = discharge;
-    }
 
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Sick List [").append(sickListID).append("]\n");
-        stringBuilder.append(patient.toString());
-        stringBuilder.append("Date in ").append(dateIN).append("\n");
-        stringBuilder.append("Date out ").append(dateOUT).append("\n");
-        stringBuilder.append("Room ").append(room).append("\n");
-        stringBuilder.append("Symptoms ").append(symptoms).append("\n");
-        stringBuilder.append("Discharge ").append(discharge ? "выписан" : "не выписан").append("\n");
+        stringBuilder.append("Sick List [").append(getPrimaryKey()).append("]\n");
+        stringBuilder.append(getPatient().toString());
+        stringBuilder.append("Date in ").append(getDateIN()).append("\n");
+        stringBuilder.append("Date out ").append(getDateOUT()).append("\n");
+        stringBuilder.append("Room ").append(getRoom()).append("\n");
+        stringBuilder.append("Symptoms ").append(getSymptoms()).append("\n");
+        stringBuilder.append("Discharge ").append(getDateOUT()==null ? "выписан" : "не выписан").append("\n");
+        stringBuilder.append("Diagnose ").append(getFinalDiagnose()).append("\n");
         return stringBuilder.toString();
     }
 }

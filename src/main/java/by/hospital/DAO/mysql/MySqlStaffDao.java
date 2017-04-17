@@ -51,27 +51,33 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
     @Override
     protected String getCreateQuery() {
         return
-                "INSERT INTO person (first_name, last_name, middle_name, birthday, sex, address, passport_number)\n " +
-                        "VALUE (?, ?, ?, ?, ?, ?, ?);\n" +
-                        "INSERT INTO staff (post_id, login, password, person_id)\n" +
-                        "VALUE ((SELECT post_id FROM posts WHERE post_name = ?), ?, ?, " +
-                        "(SELECT person_id FROM person WHERE person_id = last_insert_id()));";
+                "START TRANSACTION;" +
+                 "INSERT INTO person (first_name, last_name, middle_name, birthday, sex, address, passport_number)\n " +
+                 "VALUE (?, ?, ?, ?, ?, ?, ?);\n" +
+                 "INSERT INTO staff (post_id, login, password, person_id)\n" +
+                 "VALUE ((SELECT post_id FROM posts WHERE post_name = ?), ?, ?, " +
+                 "(SELECT person_id FROM person WHERE person_id = last_insert_id()));\n" +
+                 "COMMIT;";
     }
 
     @Override
     protected String getUpdateQuery() {
-        return "UPDATE staff \n" +
-                "SET post_id = (SELECT post_id FROM posts WHERE post_name = ?), login = ?, password = ?, fired = ?\n" +
-                "WHERE staff.person_id = ?;" +
+        return "START TRANSACTION;" +
+                "UPDATE staff\n" +
+                "SET login = ?, password = ?, fired = ?\n" +
+                "WHERE person_id = ?;" +
                 "UPDATE person \n" +
                 "SET first_name = ?, last_name = ?, middle_name = ?, birthday = ?, sex = ?, address = ?, passport_number = ?\n" +
-                "WHERE person.person_id = ?;";
+                "WHERE person_id = ?;\n" +
+                "COMMIT;";
     }
 
     @Override
     protected String getDeleteQuery() {
-        return "DELETE FROM staff WHERE staff.person_id = ? ;" +
-                "DELETE FROM person WHERE person.person_id = ? ;";
+        return "START TRANSACTION;" +
+                "DELETE FROM staff WHERE staff.person_id = ? ;" +
+                "DELETE FROM person WHERE person.person_id = ? ;" +
+                "COMMIT;";
     }
 
 
@@ -112,17 +118,17 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
         try {
             while (resultSet.next()) {
                 PersistStaff staff = new PersistStaff();
-                staff.setPrimaryKey(resultSet.getInt("person.person_id"));
-                staff.setFirstName(resultSet.getString("person.first_name"));
-                staff.setLastName(resultSet.getString("person.last_name"));
-                staff.setMiddleName(resultSet.getString("person.middle_name"));
-                staff.setSex(resultSet.getString("person.sex"));
-                staff.setAddress(resultSet.getString("person.address"));
-                staff.setPassportNumber(resultSet.getString("person.passport_number"));
-                staff.setPost(resultSet.getString("posts.post_name"));
-                staff.setLogin(resultSet.getString("staff.login"));
-                staff.setPassword(resultSet.getString("staff.password"));
-                staff.setFired(resultSet.getBoolean("staff.fired"));
+                staff.setPrimaryKey(resultSet.getInt("person_id"));
+                staff.setFirstName(resultSet.getString("first_name"));
+                staff.setLastName(resultSet.getString("last_name"));
+                staff.setMiddleName(resultSet.getString("middle_name"));
+                staff.setSex(resultSet.getString("sex"));
+                staff.setAddress(resultSet.getString("address"));
+                staff.setPassportNumber(resultSet.getString("passport_number"));
+                staff.setPost(resultSet.getString("post_name"));
+                staff.setLogin(resultSet.getString("login"));
+                staff.setPassword(resultSet.getString("password"));
+                staff.setFired(resultSet.getBoolean("fired"));
                 result.add(staff);
             }
         } catch (Exception e) {
@@ -149,20 +155,20 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
         }
     }
 
-
     @Override
     protected void prepareStatementForUpdate(PreparedStatement statement, Staff object) throws PersistentException {
         try {
-            statement.setString(1, object.getPost().toString());
-            statement.setString(2, object.getLogin());
-            statement.setString(3, object.getPassword());
-            statement.setBoolean(4, object.isFired());
-            statement.setInt(5, object.getPrimaryKey());
-            statement.setString(6, object.getFirstName());
-            statement.setString(7, object.getLastName());
-            statement.setString(8, object.getMiddleName());
-            statement.setDate(9, convert(object.getBirthday()));
-            statement.setString(10, object.getSex().toString());
+
+            statement.setString(1, object.getLogin());
+            statement.setString(2, object.getPassword());
+            statement.setBoolean(3, object.isFired());
+            statement.setInt(4, object.getPrimaryKey());
+            statement.setString(5, object.getFirstName());
+            statement.setString(6, object.getLastName());
+            statement.setString(7, object.getMiddleName());
+            statement.setDate(8, convert(object.getBirthday()));
+            statement.setString(9, object.getSex().toString());
+            statement.setString(10,object.getAddress());
             statement.setString(11, object.getPassportNumber());
             statement.setInt(12, object.getPrimaryKey());
         } catch (Exception e) {
