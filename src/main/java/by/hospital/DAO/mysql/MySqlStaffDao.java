@@ -120,6 +120,7 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
                 staff.setLogin(resultSet.getString("login"));
                 staff.setPassword(resultSet.getString("password"));
                 staff.setFired(resultSet.getBoolean("fired"));
+                staff.setBirthday(resultSet.getDate("birthday"));
                 result.add(staff);
             }
         } catch (Exception e) {

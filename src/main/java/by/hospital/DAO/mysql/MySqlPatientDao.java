@@ -67,7 +67,7 @@ public class MySqlPatientDao extends AbstractJDBCDao<Patient, Integer> {
         try {
             while (resultSet.next()) {
                 PersistPatient patient = new PersistPatient();
-                patient.setPrimaryKey(resultSet.getInt("patient_id"));
+                patient.setPrimaryKey(resultSet.getInt("person_id"));
                 patient.setFirstName(resultSet.getString("first_name"));
                 patient.setLastName(resultSet.getString("last_name"));
                 patient.setMiddleName(resultSet.getString("middle_name"));

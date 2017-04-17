@@ -86,6 +86,7 @@ public class MySqlSickListDao extends AbstractJDBCDao<SickList, Integer> {
                 sickList.getPatient().setBirthday(resultSet.getDate("birthday"));
                 sickList.getPatient().setSex(resultSet.getString("sex"));
                 sickList.getPatient().setAddress(resultSet.getString("address"));
+                sickList.getPatient().setPassportNumber(resultSet.getString("passport_number"));
 
                 sickList.getFinalDiagnose().setPrimaryKey(resultSet.getInt("diagnose_id"));
                 sickList.getFinalDiagnose().setDiagnoseName(resultSet.getString("diagnose_name"));

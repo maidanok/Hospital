@@ -80,12 +80,12 @@ public class SickList implements Entity<Integer> {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Sick List [").append(getPrimaryKey()).append("]\n");
-        stringBuilder.append(getPatient().toString());
+        stringBuilder.append(getPatient().toString()).append("\n");
         stringBuilder.append("Date in ").append(getDateIN()).append("\n");
         stringBuilder.append("Date out ").append(getDateOUT()).append("\n");
         stringBuilder.append("Room ").append(getRoom()).append("\n");
         stringBuilder.append("Symptoms ").append(getSymptoms()).append("\n");
-        stringBuilder.append("Discharge ").append(getDateOUT()==null ? "выписан" : "не выписан").append("\n");
+        stringBuilder.append("Discharge ").append(getDateOUT()==null ? "не выписан" : "выписан").append("\n");
         stringBuilder.append("Diagnose ").append(getFinalDiagnose()).append("\n");
         return stringBuilder.toString();
     }

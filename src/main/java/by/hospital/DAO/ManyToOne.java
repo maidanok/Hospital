@@ -51,7 +51,6 @@ public class ManyToOne<Owner extends Entity, Dependence extends Entity> {
         hash = ownerClass.hashCode() & field.hashCode();
         //что бы hash был уникальным сы его получаем из сложения hash owner и вложеного поля если вложенных полей несколько то hash будет для каждого уникальный
     }
-
 }
 /**
  * В частности реализация методов getDependence и setDependence очевидно требуют

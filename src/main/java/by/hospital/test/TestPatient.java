@@ -1,10 +1,10 @@
 package by.hospital.test;
 
 import by.hospital.DAO.mysql.MySqlDaoFactory;
-import by.hospital.domain.Diagnose;
-import by.hospital.domain.SickList;
-import by.hospital.domain.Staff;
-import by.hospital.domain.SurveyHistory;
+import by.hospital.DAO.mysql.MySqlDiagnoseDao;
+import by.hospital.DAO.mysql.MySqlSickListDao;
+import by.hospital.DAO.mysql.MySqlStaffDao;
+import by.hospital.domain.*;
 import by.hospital.exception.PersistentException;
 import by.hospital.pool.ConnectionPool;
 
@@ -20,31 +20,23 @@ public class TestPatient {
     public static void main(String [] args) throws SQLException, PersistentException, NoSuchFieldException {
         ConnectionPool connectionPool = ConnectionPool.getInstance();
         MySqlDaoFactory mySqlDaoFactory = new MySqlDaoFactory();
+
         Connection connection = connectionPool.getConnection();
+        MySqlSickListDao mySqlSickListDao = (MySqlSickListDao) mySqlDaoFactory.getDao(connection,SickList.class);
+        MySqlStaffDao mySqlStaffDao = (MySqlStaffDao) mySqlDaoFactory.getDao(connection, Staff.class);
+        MySqlDiagnoseDao mySqlDiagnoseDao = (MySqlDiagnoseDao) mySqlDaoFactory.getDao(connection,Diagnose.class);
+        Diagnose diagnose = mySqlDiagnoseDao.getByPrimaryKey(5);
+        SickList sickList = mySqlSickListDao.getByPrimaryKey(7);
+        Staff staff = mySqlStaffDao.getByPrimaryKey(23);
+        Patient patient = sickList.getPatient();
 
-        Staff staff = (Staff) mySqlDaoFactory.getDao(connection,Staff.class).getByPrimaryKey(Integer.valueOf(25));
-        System.out.println(staff);
+        sickList.setFinalDiagnose(diagnose);
+        sickList.setDateOUT(Date.valueOf("2017-04-17"));
 
-        staff.setLogin("Lissss");
-        staff.setPost("DOCTOR");
-        mySqlDaoFactory.getDao(connection,Staff.class).update(staff);
-        /*SickList sickList = (SickList) mySqlDaoFactory.getDao(connection,SickList.class).getByPrimaryKey(Integer.valueOf(14));
+
         System.out.println(sickList);
 
+        mySqlSickListDao.update(sickList);
 
-        Diagnose diagnose = (Diagnose) mySqlDaoFactory.getDao(connection,Diagnose.class).getByPrimaryKey(Integer.valueOf(2));
-
-
-        System.out.println(diagnose);
-
-
-        SurveyHistory surveyHistory= (SurveyHistory) mySqlDaoFactory.getDao(connection,SurveyHistory.class).getByPrimaryKey(Integer.valueOf(1));
-
-        surveyHistory.setStaff(staff);
-        surveyHistory.setSurveyDate(Date.valueOf(LocalDate.now()));
-        surveyHistory.setDescription("проверочка");
-        surveyHistory.setPrimaryKey(0);
-
-        surveyHistory = (SurveyHistory) mySqlDaoFactory.getDao(connection,SurveyHistory.class).persist(surveyHistory);*/
     }
 }

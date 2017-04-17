@@ -59,12 +59,17 @@ public class Staff extends Person implements Entity<Integer> {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Staff[").append(staffID).append("]").append("\n");
+        stringBuilder.append("Post ").append(getPost().toString()).append("\n");
         stringBuilder.append("First Name ").append(getFirstName()).append("\n");
         stringBuilder.append("Last Name ").append(getLastName()).append("\n");
         stringBuilder.append("Middle Name ").append(getMiddleName()).append("\n");
         stringBuilder.append("Birthday ").append(getBirthday()).append("\n");
         stringBuilder.append("Gender ").append(getSex().getName()).append("\n");
+        stringBuilder.append("Address ").append(getAddress()).append("\n");
+        stringBuilder.append("Passport ").append(getPassportNumber()).append("\n");
         stringBuilder.append("Fired ").append(isFired() ? "уволен" : "не уволен").append("\n");
+        stringBuilder.append("Login ").append(getLogin()).append("\n");
+        stringBuilder.append("Passw ").append(getPassword()).append("\n");
         return stringBuilder.toString();
     }
 }
