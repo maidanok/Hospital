@@ -76,7 +76,6 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
     }
 
 
-    @Override
     public List<Staff> getAllForField(Boolean field) throws PersistentException {
         List<Staff> list;
         String sql = getSelectedQuery();

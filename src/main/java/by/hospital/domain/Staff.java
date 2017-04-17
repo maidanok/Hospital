@@ -69,7 +69,7 @@ public class Staff extends Person implements Entity<Integer> {
         stringBuilder.append("Passport ").append(getPassportNumber()).append("\n");
         stringBuilder.append("Fired ").append(isFired() ? "уволен" : "не уволен").append("\n");
         stringBuilder.append("Login ").append(getLogin()).append("\n");
-        stringBuilder.append("Passw ").append(getPassword()).append("\n");
+        stringBuilder.append("Password ").append(getPassword()).append("\n");
         return stringBuilder.toString();
     }
 }

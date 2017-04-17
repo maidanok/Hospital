@@ -14,6 +14,7 @@ public class PrescriptionExecution implements Entity<Integer> {
 
     public PrescriptionExecution(int prescriptionID){
         this.prescriptionID=prescriptionID;
+        staff = new Staff();
     }
 
     public void setPrescriptionID(int prescriptionID) {

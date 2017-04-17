@@ -1,0 +1,15 @@
+Prescription
+
+SELECT prescription_id, prescription_type_name, survey_history_id, description, prescription_dyte, quantity
+FROM prescription JOIN prescription_type on prescription.prescription_type_id=prescription_type.prescription_type_id;
+------------------------------------------------------------------------------------------------
+Prescription_execution
+
+SELECT prescription_execution_id, prescription_id, prescription_execution_date,
+person.person_id, person.first_name, person.last_name, person.middle_name, person.birthday,
+person.sex, person.address, person.passport_number,
+posts.post_name, staff.login, staff.password, staff.fired
+FROM prescription_execution join person on staff_id=person.person_id
+join staff on staff.person_id=staff_id
+join posts on staff.post_id=posts.post_id;
+-----------------------------------------------------------------------------------------------

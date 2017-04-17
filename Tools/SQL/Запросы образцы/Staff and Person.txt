@@ -14,3 +14,12 @@ posts.post_name, staff.login, staff.password, staff.fired
 FROM staff JOIN posts ON posts.post_id=staff.post_id
 JOIN person on person.person_id=staff.person_id
 ---------------------------------------------------------------------------------------------------
+изменение
+UPDATE staff, person
+SET post_id = ?, login = ?, password = ?, fired = ?,
+first_name = ?, last_name = ?, middle_name = ?, birthday = ?, sex = ?, address = ?, passport_number = ?
+WHERE staff.person_id = person.person_id and staff.person_id = ? ;
+---------------------------------------------------------------------------------------------------
+удаление
+DELETE FROM staff, person WHERE staff.person_id = person.person_id AND  person.person_id = ? ;
+-----------------------------------------------------------------------------------------------------
