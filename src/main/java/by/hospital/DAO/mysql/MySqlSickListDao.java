@@ -51,14 +51,14 @@ public class MySqlSickListDao extends AbstractJDBCDao<SickList, Integer> {
     @Override
     protected String getCreateQuery() {
         return "INSERT INTO hospital.sick_list\n" +
-                "(patient_id, date_in, date_out, room, symptoms, final_diagnose_id)\n" +
+                "(person_id, date_in, date_out, room, symptoms, final_diagnose_id)\n" +
                 "VALUES (?, ?, ?, ?, ?, ?);";
     }
 
     @Override
     protected String getUpdateQuery() {
         return "UPDATE hospital.sick_list \n" +
-                "SET patient_id = ?, date_in = ?, date_out = ?, room = ?, symptoms = ?, final_diagnose_id = ?\n" +
+                "SET person_id = ?, date_in = ?, date_out = ?, room = ?, symptoms = ?, final_diagnose_id = ?\n" +
                 "WHERE sick_list_id = ? ;";
     }
 

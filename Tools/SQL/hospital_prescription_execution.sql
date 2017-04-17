@@ -28,7 +28,11 @@ CREATE TABLE `prescription_execution` (
   `staff_id` int(11) DEFAULT NULL,
   `prescription_execution_date` date DEFAULT NULL,
   `done` tinyint(4) DEFAULT '0',
-  PRIMARY KEY (`prescription_execution_id`)
+  PRIMARY KEY (`prescription_execution_id`),
+  KEY `staff_idx` (`staff_id`),
+  KEY `p_idx` (`prescription_id`),
+  CONSTRAINT `prescription` FOREIGN KEY (`prescription_id`) REFERENCES `prescription` (`prescription_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `staff_id` FOREIGN KEY (`staff_id`) REFERENCES `staff` (`person_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -50,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-12 10:22:57
+-- Dump completed on 2017-04-17 12:11:46

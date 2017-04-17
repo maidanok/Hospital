@@ -12,6 +12,7 @@ public class Staff extends Person implements Entity<Integer> {
     private String password;
     private boolean fired;
 
+
     @Override
     public Integer getPrimaryKey() {
         return staffID;

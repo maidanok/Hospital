@@ -62,22 +62,17 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
 
     @Override
     protected String getUpdateQuery() {
-        return "START TRANSACTION;" +
-                "UPDATE staff\n" +
-                "SET login = ?, password = ?, fired = ?\n" +
-                "WHERE person_id = ?;" +
-                "UPDATE person \n" +
-                "SET first_name = ?, last_name = ?, middle_name = ?, birthday = ?, sex = ?, address = ?, passport_number = ?\n" +
-                "WHERE person_id = ?;\n" +
-                "COMMIT;";
+        return
+                "UPDATE staff, person \n" +
+                "SET post_id = ?, login = ?, password = ?, fired = ?,\n" +
+                "first_name = ?, last_name = ?, middle_name = ?, birthday = ?, sex = ?, address = ?, passport_number = ?\n" +
+                "WHERE staff.person_id = person.person_id and staff.person_id = ? ;";
     }
 
     @Override
     protected String getDeleteQuery() {
-        return "START TRANSACTION;" +
-                "DELETE FROM staff WHERE staff.person_id = ? ;" +
-                "DELETE FROM person WHERE person.person_id = ? ;" +
-                "COMMIT;";
+        return
+                "DELETE FROM staff, person WHERE staff.person_id = person.person_id AND  person.person_id = ? ;";
     }
 
 
@@ -96,17 +91,13 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
         return list;
     }
 
-    public void delete(Staff entity) throws PersistentException {
-        String sql = getDeleteQuery();
+    public void update(Staff entity) throws PersistentException {
+
+        String sql = getUpdateQuery();
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setObject(1, entity.getPrimaryKey());
-            statement.setObject(2, entity.getPrimaryKey());
-            int cont = statement.executeUpdate();
-            if (cont != 1) {
-                throw new PersistentException("On delete modify more then 1 record: " + cont);
-            }
-            statement.close();
+            prepareStatementForUpdate(statement, entity);
+            int count = statement.executeUpdate();
         } catch (Exception e) {
             throw new PersistentException(e);
         }
@@ -154,15 +145,22 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
             throw new PersistentException(e);
         }
     }
-
+/*"START TRANSACTION;" +
+        "UPDATE staff\n" +
+        "SET login = ?, password = ?, fired = ?\n" +
+        "WHERE person_id = ?;" +
+        "UPDATE person \n" +
+        "SET first_name = ?, last_name = ?, middle_name = ?, birthday = ?, sex = ?, address = ?, passport_number = ?\n" +
+        "WHERE person_id = ?;\n" +
+        "COMMIT;";*/
     @Override
     protected void prepareStatementForUpdate(PreparedStatement statement, Staff object) throws PersistentException {
         try {
+            statement.setInt(1,object.getPost().getID());
+            statement.setString(2, object.getLogin());
+            statement.setString(3, object.getPassword());
+            statement.setBoolean(4, object.isFired());
 
-            statement.setString(1, object.getLogin());
-            statement.setString(2, object.getPassword());
-            statement.setBoolean(3, object.isFired());
-            statement.setInt(4, object.getPrimaryKey());
             statement.setString(5, object.getFirstName());
             statement.setString(6, object.getLastName());
             statement.setString(7, object.getMiddleName());

@@ -1,5 +1,7 @@
 package by.hospital.domain;
 
+import by.hospital.domain.enumeration.PrescriptionType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +13,7 @@ public class Prescription implements Entity<Integer> {
     private PrescriptionType prescriptionType;
     private SurveyHistory surveyHistory;
     private String description;
+    private int quantity;
     private List<PrescriptionExecution> executions = new ArrayList<>();
 
     public List<PrescriptionExecution> getExecutions() {
@@ -35,8 +38,8 @@ public class Prescription implements Entity<Integer> {
         return prescriptionType;
     }
 
-    public void setPrescriptionType(PrescriptionType prescriptionType) {
-        this.prescriptionType = prescriptionType;
+    public void setPrescriptionType(String prescriptionType) {
+        this.prescriptionType = PrescriptionType.valueOf(prescriptionType);
     }
 
     public SurveyHistory getSurveyHistory() {

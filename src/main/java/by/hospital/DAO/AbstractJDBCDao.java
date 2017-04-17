@@ -95,8 +95,10 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
         saveDependence(entity);
 
         String sql = getUpdateQuery();
+
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
+
             prepareStatementForUpdate(statement, entity);
             int count = statement.executeUpdate();
             if (count != 1) {

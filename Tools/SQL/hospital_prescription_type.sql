@@ -23,10 +23,10 @@ DROP TABLE IF EXISTS `prescription_type`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `prescription_type` (
-  `prescription_type` int(11) NOT NULL AUTO_INCREMENT,
+  `prescription_type_id` int(11) NOT NULL AUTO_INCREMENT,
   `prescription_type_name` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`prescription_type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`prescription_type_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,6 +35,7 @@ CREATE TABLE `prescription_type` (
 
 LOCK TABLES `prescription_type` WRITE;
 /*!40000 ALTER TABLE `prescription_type` DISABLE KEYS */;
+INSERT INTO `prescription_type` VALUES (1,'PROCEDURE'),(2,'MEDICATION'),(3,'SURGERY'),(4,'DISCHARGE');
 /*!40000 ALTER TABLE `prescription_type` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -47,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-12 10:22:57
+-- Dump completed on 2017-04-17 12:11:46

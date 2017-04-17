@@ -23,18 +23,16 @@ DROP TABLE IF EXISTS `staff`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `staff` (
-  `staff_id` int(11) NOT NULL AUTO_INCREMENT,
+  `person_id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
-  `first_name` varchar(25) DEFAULT NULL,
-  `last_name` varchar(25) DEFAULT NULL,
-  `middle_name` varchar(25) DEFAULT NULL,
-  `staffcol` varchar(45) DEFAULT NULL,
-  `birthday` date DEFAULT NULL,
-  `sex` varchar(10) DEFAULT NULL,
   `login` varchar(15) DEFAULT NULL,
   `password` varchar(200) DEFAULT NULL,
-  `field` tinyint(4) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`staff_id`)
+  `fired` tinyint(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`person_id`),
+  KEY `person_id_idx` (`person_id`),
+  KEY `post_id_idx` (`post_id`),
+  CONSTRAINT `person_id` FOREIGN KEY (`person_id`) REFERENCES `person` (`person_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `post_id` FOREIGN KEY (`post_id`) REFERENCES `posts` (`post_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -44,6 +42,7 @@ CREATE TABLE `staff` (
 
 LOCK TABLES `staff` WRITE;
 /*!40000 ALTER TABLE `staff` DISABLE KEYS */;
+INSERT INTO `staff` VALUES (23,8,'GregHous','111',0),(24,8,'ErForm','123',0),(25,8,'Lissss','123',0);
 /*!40000 ALTER TABLE `staff` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-12 10:22:58
+-- Dump completed on 2017-04-17 12:11:47

@@ -27,7 +27,10 @@ CREATE TABLE `prescription` (
   `prescription_type_id` int(11) DEFAULT NULL,
   `survey_history_id` int(11) DEFAULT NULL,
   `description` varchar(400) DEFAULT NULL,
-  PRIMARY KEY (`prescription_id`)
+  PRIMARY KEY (`prescription_id`),
+  KEY `d_idx` (`survey_history_id`),
+  CONSTRAINT `prescription_type` FOREIGN KEY (`prescription_id`) REFERENCES `prescription_type` (`prescription_type_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `survey_history` FOREIGN KEY (`survey_history_id`) REFERENCES `survey_history` (`survey_history_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -49,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-12 10:22:57
+-- Dump completed on 2017-04-17 12:11:45

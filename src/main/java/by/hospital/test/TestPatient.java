@@ -25,10 +25,15 @@ public class TestPatient {
         Staff staff = (Staff) mySqlDaoFactory.getDao(connection,Staff.class).getByPrimaryKey(Integer.valueOf(25));
         System.out.println(staff);
 
-        SickList sickList = (SickList) mySqlDaoFactory.getDao(connection,SickList.class).getByPrimaryKey(Integer.valueOf(14));
+        staff.setLogin("Lissss");
+        staff.setPost("DOCTOR");
+        mySqlDaoFactory.getDao(connection,Staff.class).update(staff);
+        /*SickList sickList = (SickList) mySqlDaoFactory.getDao(connection,SickList.class).getByPrimaryKey(Integer.valueOf(14));
         System.out.println(sickList);
 
+
         Diagnose diagnose = (Diagnose) mySqlDaoFactory.getDao(connection,Diagnose.class).getByPrimaryKey(Integer.valueOf(2));
+
 
         System.out.println(diagnose);
 
@@ -40,6 +45,6 @@ public class TestPatient {
         surveyHistory.setDescription("проверочка");
         surveyHistory.setPrimaryKey(0);
 
-        surveyHistory = (SurveyHistory) mySqlDaoFactory.getDao(connection,SurveyHistory.class).persist(surveyHistory);
+        surveyHistory = (SurveyHistory) mySqlDaoFactory.getDao(connection,SurveyHistory.class).persist(surveyHistory);*/
     }
 }
