@@ -76,6 +76,7 @@ public class SurveyHistory implements Entity <Integer>{
         stringBuilder.append("Осмотрел пациента").append(getSickList().getPatient()).append("\n");
         stringBuilder.append(getDiagnose()).append("\n");
         stringBuilder.append("Description: ").append(getDescription()).append("\n");
+        stringBuilder.append("\n").append(getSickList());
 
         return stringBuilder.toString();
     }

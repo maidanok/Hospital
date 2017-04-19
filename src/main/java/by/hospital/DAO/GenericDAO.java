@@ -3,7 +3,7 @@ package by.hospital.DAO;
 import by.hospital.domain.Entity;
 import by.hospital.exception.PersistentException;
 
-import java.io.Serializable;
+
 import java.util.List;
 
 /**

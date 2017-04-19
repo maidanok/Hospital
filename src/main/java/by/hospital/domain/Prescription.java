@@ -2,9 +2,6 @@ package by.hospital.domain;
 
 import by.hospital.domain.enumeration.PrescriptionType;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Pasha on 12.04.2017.
  */
@@ -14,14 +11,22 @@ public class Prescription implements Entity<Integer> {
     private SurveyHistory surveyHistory;
     private String description;
     private int quantity;
-    private List<PrescriptionExecution> executions = new ArrayList<>();
+    private int completed;
 
-    public List<PrescriptionExecution> getExecutions() {
-        return executions;
+    public int getCompleted() {
+        return completed;
     }
 
-    public void setExecutions(List<PrescriptionExecution> executions) {
-        this.executions = executions;
+    public void setCompleted(int completed) {
+        this.completed = completed;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     @Override

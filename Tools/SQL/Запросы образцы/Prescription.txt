@@ -13,3 +13,10 @@ FROM prescription_execution join person on staff_id=person.person_id
 join staff on staff.person_id=staff_id
 join posts on staff.post_id=posts.post_id;
 -----------------------------------------------------------------------------------------------
+
+SELECT
+    prescription_id, survey_history_id, description, quantity,
+    prescription_type_name
+FROM
+    prescription
+join prescription_type on prescription_type.prescription_type_id=prescription.prescription_type_id

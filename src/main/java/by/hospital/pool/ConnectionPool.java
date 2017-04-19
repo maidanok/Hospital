@@ -2,7 +2,6 @@ package by.hospital.pool;
 
 import by.hospital.prop_managers.ConnectionManager;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -93,7 +92,7 @@ public class ConnectionPool {
         PooledConnection pcon = null;
 
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName(DB_DRIVER);
 
             con = DriverManager.getConnection(url, user, password);
             pcon = new PooledConnection(this, con);

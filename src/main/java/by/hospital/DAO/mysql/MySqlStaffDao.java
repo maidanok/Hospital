@@ -172,8 +172,6 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
         } catch (Exception e) {
             throw new PersistentException(e);
         }
-
     }
-
 
 }

@@ -55,8 +55,8 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
         if (!entity.getPrimaryKey().equals(0)) {
             throw new PersistentException("Object is already persist.");
         }
-        //сохраняем зависимости
-        saveDependence(entity);
+/*        //сохраняем зависимости
+        saveDependence(entity);*/
 
         //добавляем запись
         Type persistInstanse;
@@ -91,8 +91,8 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
 
     @Override
     public void update(Type entity) throws PersistentException {
-        //сохраняем зависимости
-        saveDependence(entity);
+/*        //сохраняем зависимости
+        saveDependence(entity);*/
 
         String sql = getUpdateQuery();
 
