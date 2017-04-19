@@ -2,32 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1ff7ae1-725d-4ad5-b9e2-aa4eb2f969bb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tools/SQL/addtrigger.sql" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/DAO/mysql/MySqlPrescriptionDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/DAO/mysql/interfaces/GenericDaoForPrescription.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Tools/SQL/hosp.sql" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tools/SQL/model.mwb" afterPath="$PROJECT_DIR$/Tools/SQL/model.mwb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tools/SQL/model.mwb.bak" afterPath="$PROJECT_DIR$/Tools/SQL/model.mwb.bak" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/by/hospital/DAO/AbstractJDBCDao.class" afterPath="$PROJECT_DIR$/build/classes/main/by/hospital/DAO/AbstractJDBCDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/by/hospital/DAO/mysql/MySqlStaffDao.class" afterPath="$PROJECT_DIR$/build/classes/main/by/hospital/DAO/mysql/MySqlStaffDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/by/hospital/DAO/mysql/MySqlSurveyHistoryDao$PersistSurveyHistory.class" afterPath="$PROJECT_DIR$/build/classes/main/by/hospital/DAO/mysql/MySqlSurveyHistoryDao$PersistSurveyHistory.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/by/hospital/DAO/mysql/MySqlSurveyHistoryDao.class" afterPath="$PROJECT_DIR$/build/classes/main/by/hospital/DAO/mysql/MySqlSurveyHistoryDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/by/hospital/domain/Prescription.class" afterPath="$PROJECT_DIR$/build/classes/main/by/hospital/domain/Prescription.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/by/hospital/domain/SurveyHistory.class" afterPath="$PROJECT_DIR$/build/classes/main/by/hospital/domain/SurveyHistory.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/by/hospital/pool/ConnectionPool.class" afterPath="$PROJECT_DIR$/build/classes/main/by/hospital/pool/ConnectionPool.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/by/hospital/test/TestPatient.class" afterPath="$PROJECT_DIR$/build/classes/main/by/hospital/test/TestPatient.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tools/SQL/hospital_diagnose.sql" afterPath="$PROJECT_DIR$/Tools/SQL/hospital_diagnose.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tools/SQL/Запросы образцы/Prescription.txt" afterPath="$PROJECT_DIR$/Tools/SQL/Запросы образцы/Prescription.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tools/SQL/Запросы образцы/осмотры.txt" afterPath="$PROJECT_DIR$/Tools/SQL/Запросы образцы/осмотры.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/DAO/AbstractJDBCDao.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/DAO/AbstractJDBCDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/DAO/GenericDAO.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/DAO/GenericDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/DAO/mysql/MySqlStaffDao.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/DAO/mysql/MySqlStaffDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/DAO/mysql/MySqlSurveyHistoryDao.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/DAO/mysql/MySqlSurveyHistoryDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/domain/Prescription.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/domain/Prescription.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/domain/SurveyHistory.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/domain/SurveyHistory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/pool/ConnectionPool.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/pool/ConnectionPool.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/test/TestPatient.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/test/TestPatient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/DAO/mysql/MySqlDaoFactory.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/DAO/mysql/MySqlDaoFactory.java" />
     </list>
     <ignored path="Hospital.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,48 +18,6 @@
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
-  </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="MySqlPrescriptionDao.java" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/DAO/mysql/MySqlPrescriptionDao.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="706">
-                    <caret line="131" column="20" lean-forward="true" selection-start-line="131" selection-start-column="20" selection-end-line="131" selection-end-column="20" />
-                    <folding>
-                      <element signature="imports" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="SickList.java" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/domain/SickList.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="272">
-                    <caret line="16" column="23" lean-forward="false" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="осмотры.txt" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/Tools/SQL/Запросы образцы/осмотры.txt">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="85">
-                    <caret line="5" column="130" lean-forward="false" selection-start-line="5" selection-start-column="112" selection-end-line="5" selection-end-column="130" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="ExternalProjectsData">
@@ -165,12 +98,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SurveyHistory.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SurveyHistory.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/domain/SurveyHistory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="78" column="57" lean-forward="false" selection-start-line="78" selection-start-column="57" selection-end-line="78" selection-end-column="57" />
+            <state relative-caret-position="647">
+              <caret line="79" column="0" lean-forward="true" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MySqlDaoFactory.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/DAO/mysql/MySqlDaoFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1477">
+              <caret line="94" column="11" lean-forward="false" selection-start-line="94" selection-start-column="11" selection-end-line="94" selection-end-column="11" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -942,7 +887,6 @@
         <option value="$PROJECT_DIR$/src/main/java/by/hospital/pool/ConnectionPool.java" />
         <option value="$PROJECT_DIR$/Tools/SQL/hospital_diagnose.sql" />
         <option value="$PROJECT_DIR$/Tools/SQL/Запросы образцы/Prescription.txt" />
-        <option value="$PROJECT_DIR$/src/main/java/by/hospital/DAO/mysql/MySqlDaoFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/hospital/DAO/GenericDAO.java" />
         <option value="$PROJECT_DIR$/Tools/SQL/addtrigger.sql" />
         <option value="$PROJECT_DIR$/src/main/java/by/hospital/domain/Prescription.java" />
@@ -954,6 +898,7 @@
         <option value="$PROJECT_DIR$/src/main/java/by/hospital/DAO/mysql/MySqlSurveyHistoryDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/hospital/test/TestPatient.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/hospital/domain/SurveyHistory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/hospital/DAO/mysql/MySqlDaoFactory.java" />
       </list>
     </option>
   </component>
@@ -1856,16 +1801,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/DAO/mysql/MySqlDaoFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="35" column="30" lean-forward="false" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/domain/enumeration/PrescriptionType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -2081,9 +2016,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/domain/SurveyHistory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="78" column="57" lean-forward="false" selection-start-line="78" selection-start-column="57" selection-end-line="78" selection-end-column="57" />
+        <state relative-caret-position="647">
+          <caret line="79" column="0" lean-forward="true" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/DAO/mysql/MySqlDaoFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1477">
+          <caret line="94" column="11" lean-forward="false" selection-start-line="94" selection-start-column="11" selection-end-line="94" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

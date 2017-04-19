@@ -77,5 +77,21 @@ public class MySqlDaoFactory implements DaoFactory<Connection> {
                 return new MySqlSurveyHistoryDao(MySqlDaoFactory.this, connection);
             }
         });
+
+        //Prescription
+        this.creators.put(Prescription.class, new DaoCreator<Connection>() {
+            @Override
+            public GenericDAO create(Connection connection) {
+                return new MySqlPrescriptionDao(MySqlDaoFactory.this, connection);
+            }
+        });
+
+        //PrescriptionExecution
+        this.creators.put(PrescriptionExecution.class, new DaoCreator<Connection>() {
+            @Override
+            public GenericDAO create(Connection connection) {
+                return new MySqlPrescriptionExecutionDao(MySqlDaoFactory.this,connection);
+            }
+        });
     }
 }
