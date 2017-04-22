@@ -4,7 +4,7 @@ package by.hospital.domain;
  * Created by Pasha on 12.04.2017.
  */
 public class Diagnose implements Entity <Integer> {
-    private int diagnoseID;
+    private int diagnoseID=0;
     private String diagnoseName;
     private String therapy;
 

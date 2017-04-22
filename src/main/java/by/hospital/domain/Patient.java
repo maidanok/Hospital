@@ -4,7 +4,7 @@ package by.hospital.domain;
  * Created by Pasha on 10.04.2017.
  */
 public class Patient extends Person implements Entity<Integer> {
-    private int patientID;
+    private int patientID=0;
 
 
     @Override

@@ -7,7 +7,7 @@ package by.hospital.DAO.mysql;
 
 import by.hospital.DAO.DaoFactory;
 import by.hospital.DAO.GenericDAO;
-import by.hospital.DAO.mysql.interfaces.GenericDAOForStaff;
+import by.hospital.DAO.mysql.interfaces.*;
 import by.hospital.domain.*;
 import by.hospital.exception.PersistentException;
 import by.hospital.pool.ConnectionPool;
@@ -42,7 +42,7 @@ public class MySqlDaoFactory implements DaoFactory<Connection> {
         //Patient
         this.creators.put(Patient.class, new DaoCreator<Connection>() {
             @Override
-            public GenericDAO create(Connection connection) {
+            public GenericDAOForPatient create(Connection connection) {
                 return new MySqlPatientDao(MySqlDaoFactory.this, connection);
             }
         });
@@ -50,7 +50,7 @@ public class MySqlDaoFactory implements DaoFactory<Connection> {
         //SickList
         this.creators.put(SickList.class, new DaoCreator<Connection>() {
             @Override
-            public GenericDAO create(Connection connection) {
+            public GenericDaoForSickList create(Connection connection) {
                 return new MySqlSickListDao(MySqlDaoFactory.this, connection);
             }
         });
@@ -81,7 +81,7 @@ public class MySqlDaoFactory implements DaoFactory<Connection> {
         //Prescription
         this.creators.put(Prescription.class, new DaoCreator<Connection>() {
             @Override
-            public GenericDAO create(Connection connection) {
+            public GenericDaoForPrescription create(Connection connection) {
                 return new MySqlPrescriptionDao(MySqlDaoFactory.this, connection);
             }
         });
@@ -89,7 +89,7 @@ public class MySqlDaoFactory implements DaoFactory<Connection> {
         //PrescriptionExecution
         this.creators.put(PrescriptionExecution.class, new DaoCreator<Connection>() {
             @Override
-            public GenericDAO create(Connection connection) {
+            public GenericDAOForPrescriptionExecutionDate create(Connection connection) {
                 return new MySqlPrescriptionExecutionDao(MySqlDaoFactory.this,connection);
             }
         });

@@ -2,6 +2,7 @@ package by.hospital.DAO.mysql;
 
 import by.hospital.DAO.AbstractJDBCDao;
 import by.hospital.DAO.DaoFactory;
+import by.hospital.DAO.mysql.interfaces.GenericDAOForPatient;
 import by.hospital.domain.Patient;
 import by.hospital.exception.PersistentException;
 
@@ -14,7 +15,21 @@ import java.util.List;
 /**
  * Created by Pasha on 10.04.2017.
  */
-public class MySqlPatientDao extends AbstractJDBCDao<Patient, Integer> {
+public class MySqlPatientDao extends AbstractJDBCDao<Patient, Integer> implements GenericDAOForPatient{
+
+    @Override
+    public List<Patient> FindLastName(String lastName) throws PersistentException {
+        List<Patient> list;
+        String sql = getSelectedQuery()+" WHERE last_name="+lastName+";";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            list = parseResultSet(resultSet);
+        } catch (Exception e) {
+            throw new PersistentException(e);
+        }
+        return list;
+    }
 
     private class PersistPatient extends Patient {
         public void setPrimaryKey(int id) {
