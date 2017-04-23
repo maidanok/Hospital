@@ -18,4 +18,6 @@ public interface SurveyHistoryService {
     SurveyHistory createNewSurveyHistory(int sickID, int diagnoseID, int staffID, Date date, String description) throws PersistentException;
 
     boolean deleteSurveyHistory(int id);
+
+    List<SurveyHistory>findByDiagnoseID(int id);
 }

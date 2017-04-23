@@ -5,6 +5,8 @@ import by.hospital.DAO.mysql.MySqlDiagnoseDao;
 import by.hospital.domain.Diagnose;
 import by.hospital.exception.PersistentException;
 import by.hospital.service.api.DiagnoseService;
+import by.hospital.service.api.SickListService;
+import by.hospital.service.api.SurveyHistoryService;
 
 import java.util.List;
 
@@ -43,6 +45,16 @@ public class DiagnoseServiceImpl implements DiagnoseService {
 
     @Override
     public boolean deleteDiagnose(int id) {
+        try {
+            SurveyHistoryService surveyHistoryService = new SurveyHistoryServiceImpl();
+            SickListService sickListService = new SickListServiceImpl();
+            if (surveyHistoryService.findByDiagnoseID(id).isEmpty()&&sickListService.findByDiagnoseID(id).isEmpty()){
+                diagnoseDao.delete(diagnoseDao.getByPrimaryKey(id));
+                return true;
+            }
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
         return false;
-    }//TODO
+    }
 }

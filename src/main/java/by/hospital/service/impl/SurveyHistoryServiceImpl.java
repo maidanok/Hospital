@@ -7,6 +7,7 @@ import by.hospital.exception.PersistentException;
 import by.hospital.service.api.SurveyHistoryService;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,7 +22,7 @@ public class SurveyHistoryServiceImpl implements SurveyHistoryService {
 
     @Override
     public List<SurveyHistory> getAllbySickList(int sickListID) throws PersistentException {
-        return surveyHistoryDao.FindByCondition("WHERE sick_list.sick_list_id = "+sickListID+";");
+        return surveyHistoryDao.FindByCondition( "WHERE sick_list.sick_list_id = "+sickListID+";");
     }
 
     @Override
@@ -44,6 +45,17 @@ public class SurveyHistoryServiceImpl implements SurveyHistoryService {
     @Override
     public boolean deleteSurveyHistory(int id) {
         return false;
+    }
+
+    @Override
+    public List<SurveyHistory> findByDiagnoseID(int id) {
+        List<SurveyHistory> list = new ArrayList<>();
+        try {
+            list = surveyHistoryDao.FindByCondition(" WHERE s_diagnose_id = "+id+";");
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
     //TODO
 }

@@ -9,7 +9,6 @@ public class PrescriptionExecution implements Entity<Integer> {
     private int prescriptionExecutionID;
     private Staff staff;
     private Date prescriptionExecutionDate;
-    private boolean done;
     private int prescriptionID;
 
     public PrescriptionExecution(int prescriptionID){
@@ -51,11 +50,4 @@ public class PrescriptionExecution implements Entity<Integer> {
         this.prescriptionExecutionDate = prescriptionExecutionDate;
     }
 
-    public boolean isDone() {
-        return done;
-    }
-
-    public void setDone(boolean done) {
-        this.done = done;
-    }
 }
