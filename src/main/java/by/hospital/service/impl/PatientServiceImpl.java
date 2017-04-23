@@ -14,8 +14,8 @@ import java.util.List;
  * Created by Admin on 22.04.2017.
  */
 public class PatientServiceImpl implements PatientService {
-    MySqlDaoFactory mySqlDaoFactory = new MySqlDaoFactory();
-    MySqlPatientDao patientDao = (MySqlPatientDao) mySqlDaoFactory.getDao(mySqlDaoFactory.getContext(),Patient.class);
+    private MySqlDaoFactory mySqlDaoFactory = new MySqlDaoFactory();
+    private MySqlPatientDao patientDao = (MySqlPatientDao) mySqlDaoFactory.getDao(mySqlDaoFactory.getContext(),Patient.class);
 
     public PatientServiceImpl() throws PersistentException {
     }

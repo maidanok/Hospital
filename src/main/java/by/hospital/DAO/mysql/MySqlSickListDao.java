@@ -18,21 +18,6 @@ import java.util.List;
 public class MySqlSickListDao extends AbstractJDBCDao<SickList, Integer> implements GenericDaoForSickList {
 
 
-    @Override
-    public List<SickList> FindByCondition(String condition) throws PersistentException {
-        List<SickList> list;
-        String sql = getSelectedQuery();
-        sql += condition;
-        try {
-            PreparedStatement statement = super.connection.prepareStatement(sql);
-            ResultSet resultSet = statement.executeQuery();
-            list = parseResultSet(resultSet);
-        } catch (Exception e) {
-            throw new PersistentException(e);
-        }
-        return list;
-    }
-
     private class PersistSickList extends SickList {
         public void setPrimaryKey(int id) {
             super.setPrimaryKey(id);

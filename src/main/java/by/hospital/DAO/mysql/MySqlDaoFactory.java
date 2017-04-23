@@ -55,7 +55,7 @@ public class MySqlDaoFactory implements DaoFactory<Connection> {
             }
         });
 
-        //Diagnose
+        //DiagnoseService
         this.creators.put(Diagnose.class, new DaoCreator<Connection>() {
             @Override
             public GenericDAO create(Connection connection) {
@@ -73,7 +73,7 @@ public class MySqlDaoFactory implements DaoFactory<Connection> {
         //SurveyHistory
         this.creators.put(SurveyHistory.class, new DaoCreator<Connection>() {
             @Override
-            public GenericDAO create(Connection connection) {
+            public GenericDAOForSurveyHistory create(Connection connection) {
                 return new MySqlSurveyHistoryDao(MySqlDaoFactory.this, connection);
             }
         });

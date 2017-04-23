@@ -1,13 +1,17 @@
 SELECT
-
+person.person_id, person.first_name, person.last_name, person.middle_name, person.birthday, person.sex, person.address, person.passport_number,
+sick_list.sick_list_id, date_in, date_out, room, symptoms,
+final_diagnose_id, findiagn.diagnose_name as findiagn_name, findiagn.therapy as findiagn_therapy,
 survey_history_id, survey_date, survey_description,
-survey_history.diagnose_id, diagnose_name, therapy,
-staff.person_id, staff.post_id, posts.post_name, staff.login, staff.password, staff.fired, person.first_name, person.last_name, person.middle_name, person.birthday, person.sex, person.address, person.passport_number
-FROM survey_history join diagnose on survey_history.diagnose_id=diagnose.diagnose_id
-join staff on survey_history.staff_id=staff.person_id
-join person on staff.person_id=person.person_id
-join posts on staff.post_id=posts.post_id
-Where sick_list_id = 1;
+survey_history.diagnose_id as s_diagnose_id, s_diagnose.diagnose_name as s_diagnose_name, s_diagnose.therapy as s_diagnose_therapy,
+staff_id, staff.first_name as staff_fn, staff.last_name as staff_ln, staff.middle_name as staff_mn, staff.birthday as staff_bd, staff.sex as staff_sex, staff.address as staff_addr, staff.passport_number as staff_passport
+FROM person
+join sick_list  on sick_list.person_id=person.person_id
+join diagnose as findiagn on final_diagnose_id = diagnose_id
+join survey_history on survey_history.sick_list_id=sick_list.sick_list_id
+join diagnose as s_diagnose on survey_history.diagnose_id = s_diagnose.diagnose_id
+join person as staff on staff_id=staff.person_id
+WHERE sick_list.sick_list_id = 4;
 ----------------------------------------------------------------------------------------------------------------------------------------
 SELECT
 

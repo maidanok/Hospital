@@ -1,4 +1,4 @@
-package by.hospital.console;
+package by.hospital.console.command;
 
 import by.hospital.exception.PersistentException;
 import by.hospital.service.api.SickListService;
@@ -14,7 +14,7 @@ public class ShowAllSickList extends AbstractCommandFactory {
     }
 
     @Override
-    void runComand() {
+    public void runComand() {
         System.out.println(sickListService.findAllActive());
     }
 }

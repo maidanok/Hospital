@@ -107,6 +107,7 @@ CREATE TABLE `prescription` (
   `survey_history_id` int(11) DEFAULT NULL,
   `description` varchar(400) DEFAULT NULL,
   `quantity` int(11) NOT NULL DEFAULT '1',
+  `completed` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`prescription_id`,`prescription_type_id`),
   KEY `d_idx` (`survey_history_id`),
   KEY `prescription_type` (`prescription_type_id`),

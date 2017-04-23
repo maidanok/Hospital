@@ -1,5 +1,6 @@
 package by.hospital.console;
 
+import by.hospital.console.command.*;
 import by.hospital.exception.PersistentException;
 
 import java.sql.SQLException;
@@ -12,7 +13,9 @@ public class Runner {
     AbstractCommandFactory[] commandFactory = {
             new NewPatientCommand(),
             new ShowAllPatients(),
-            new ShowAllSickList()
+            new ShowAllSickList(),
+            new NewSickList(),
+            new NewSurveyHistory()
     };
     private Scanner scanner = new Scanner(System.in);
 
@@ -21,7 +24,7 @@ public class Runner {
     }
 
 
-    private void menu() {
+    private void menu() throws PersistentException {
         int i = 1;
         for (AbstractCommandFactory factory : commandFactory) {
             System.out.printf("%2d. %s\n", i++, factory.getMenuItem());

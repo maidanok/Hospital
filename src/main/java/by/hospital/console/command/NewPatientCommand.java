@@ -1,4 +1,4 @@
-package by.hospital.console;
+package by.hospital.console.command;
 import by.hospital.exception.PersistentException;
 import by.hospital.service.api.PatientService;
 import by.hospital.service.impl.PatientServiceImpl;
@@ -12,13 +12,13 @@ import static java.lang.System.out;
  * Created by Admin on 22.04.2017.
  */
 public class NewPatientCommand extends AbstractCommandFactory{
-    PatientService patientService = new PatientServiceImpl();
+   private PatientService patientService = new PatientServiceImpl();
     public NewPatientCommand() throws PersistentException, SQLException {
         super("Добавить нового пациента");
     }
 
     @Override
-    void runComand() {
+    public void runComand() {
         out.println("Ведите данные о пациенте");
         out.println("Фамилия");
         String ln = scanner.nextLine();

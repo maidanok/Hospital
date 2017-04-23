@@ -161,6 +161,20 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
         return list;
     }
 
+    public  List<Type> FindByCondition(String condition) throws PersistentException {
+        List<Type> list;
+        String sql = getSelectedQuery();
+        sql += condition;
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            list = parseResultSet(resultSet);
+        } catch (Exception e) {
+            throw new PersistentException(e);
+        }
+        return list;
+    }
+
 
     //создаем новое вложение
     protected boolean addRelation(Class<? extends Entity> ownerClass, String field) {

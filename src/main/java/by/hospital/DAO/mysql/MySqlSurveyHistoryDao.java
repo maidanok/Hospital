@@ -2,7 +2,7 @@ package by.hospital.DAO.mysql;
 
 import by.hospital.DAO.AbstractJDBCDao;
 import by.hospital.DAO.DaoFactory;
-import by.hospital.domain.Patient;
+import by.hospital.DAO.mysql.interfaces.GenericDAOForSurveyHistory;
 import by.hospital.domain.SickList;
 import by.hospital.domain.Staff;
 import by.hospital.domain.SurveyHistory;
@@ -17,13 +17,28 @@ import java.util.List;
 /**
  * Created by Pasha on 13.04.2017.
  */
-public class MySqlSurveyHistoryDao extends AbstractJDBCDao<SurveyHistory, Integer> {
+public class MySqlSurveyHistoryDao extends AbstractJDBCDao<SurveyHistory, Integer> implements GenericDAOForSurveyHistory {
 
     public MySqlSurveyHistoryDao(DaoFactory<Connection> parentFactory, Connection connection) {
         super(parentFactory, connection);
         addRelation(SurveyHistory.class, "sickList");
         addRelation(SurveyHistory.class, "staff");
         addRelation(SurveyHistory.class, "diagnose");
+    }
+
+    @Override
+    public List<SurveyHistory> FindByCondition(String condition) throws PersistentException {
+        List<SurveyHistory> list;
+        String sql = getSelectedQuery();
+        sql += condition;
+        try {
+            PreparedStatement statement = super.connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            list = parseResultSet(resultSet);
+        } catch (Exception e) {
+            throw new PersistentException(e);
+        }
+        return list;
     }
 
     private class PersistSurveyHistory extends SurveyHistory {

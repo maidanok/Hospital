@@ -12,4 +12,5 @@ import java.util.List;
 public interface GenericDAOForStaff extends GenericDAO<Staff,Integer>{
 
     List<Staff> getAllForField(Boolean field) throws PersistentException;
+
 }

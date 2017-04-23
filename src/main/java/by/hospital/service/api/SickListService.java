@@ -18,4 +18,6 @@ public interface SickListService {
     List<SickList> findByPatientAndDAte(String patientFirstName, Date dateIn);
 
     SickList createNewSickIst(int patientID, Date dateIn, String roon, String symt, int diagnId) throws PersistentException;
+
+    boolean deleteSickList(int id) throws PersistentException;
 }

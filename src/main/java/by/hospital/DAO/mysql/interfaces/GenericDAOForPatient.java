@@ -10,5 +10,6 @@ import java.util.List;
  * Created by Admin on 22.04.2017.
  */
 public interface GenericDAOForPatient extends GenericDAO<Patient, Integer> {
+
     List<Patient> FindLastName(String lastName) throws PersistentException;
 }

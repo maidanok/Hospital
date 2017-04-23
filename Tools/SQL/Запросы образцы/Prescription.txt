@@ -1,7 +1,21 @@
 Prescription
-
-SELECT prescription_id, prescription_type_name, survey_history_id, description, prescription_dyte, quantity
-FROM prescription JOIN prescription_type on prescription.prescription_type_id=prescription_type.prescription_type_id;
+SELECT
+person.person_id, person.first_name, person.last_name, person.middle_name, person.birthday, person.sex, person.address, person.passport_number,
+sick_list.sick_list_id, date_in, date_out, room, symptoms,
+final_diagnose_id, findiagn.diagnose_name as findiagn_name, findiagn.therapy as findiagn_therapy,
+survey_history.survey_history_id, survey_date, survey_description,
+survey_history.diagnose_id as s_diagnose_id, s_diagnose.diagnose_name as s_diagnose_name, s_diagnose.therapy as s_diagnose_therapy,
+staff_id, staff.first_name as staff_fn, staff.last_name as staff_ln, staff.middle_name as staff_mn, staff.birthday as staff_bd, staff.sex as staff_sex, staff.address as staff_addr, staff.passport_number as staff_passport,
+prescription_id, description, quantity, completed
+prescription_type_name
+FROM person
+join sick_list  on sick_list.person_id=person.person_id
+join diagnose as findiagn on final_diagnose_id = diagnose_id
+join survey_history on survey_history.sick_list_id=sick_list.sick_list_id
+join diagnose as s_diagnose on survey_history.diagnose_id = s_diagnose.diagnose_id
+join person as staff on staff_id=staff.person_id
+join prescription on prescription.survey_history_id=survey_history.survey_history_id
+join prescription_type on prescription.prescription_type_id=prescription_type.prescription_type_id
 ------------------------------------------------------------------------------------------------
 Prescription_execution
 

@@ -1,6 +1,7 @@
-package by.hospital.console;
+package by.hospital.console.command;
 
 import by.hospital.DAO.mysql.MySqlDaoFactory;
+import by.hospital.exception.PersistentException;
 import by.hospital.pool.ConnectionPool;
 
 import java.util.Scanner;
@@ -23,5 +24,5 @@ public abstract class AbstractCommandFactory {
         return menuItem;
     }
 
-    abstract void runComand();
+    public abstract void runComand() throws PersistentException;
 }

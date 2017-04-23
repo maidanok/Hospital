@@ -3,8 +3,10 @@ package by.hospital.service.impl;
 import by.hospital.DAO.mysql.MySqlDaoFactory;
 import by.hospital.DAO.mysql.MySqlSickListDao;
 import by.hospital.domain.SickList;
+import by.hospital.domain.SurveyHistory;
 import by.hospital.exception.PersistentException;
 import by.hospital.service.api.SickListService;
+import by.hospital.service.api.SurveyHistoryService;
 
 import java.util.Date;
 import java.util.List;
@@ -13,8 +15,8 @@ import java.util.List;
  * Created by Admin on 22.04.2017.
  */
 public class SickListServiceImpl implements SickListService {
-    MySqlDaoFactory mySqlDaoFactory = new MySqlDaoFactory();
-    MySqlSickListDao sickListDao = (MySqlSickListDao) mySqlDaoFactory.getDao(mySqlDaoFactory.getContext(), SickList.class);
+    private MySqlDaoFactory mySqlDaoFactory = new MySqlDaoFactory();
+    private MySqlSickListDao sickListDao = (MySqlSickListDao) mySqlDaoFactory.getDao(mySqlDaoFactory.getContext(), SickList.class);
 
     public SickListServiceImpl() throws PersistentException {
     }
@@ -73,5 +75,16 @@ public class SickListServiceImpl implements SickListService {
         sickList.setSymptoms(symt);
         sickList.getFinalDiagnose().setPrimaryKey(diagnId);
         return sickListDao.persist(sickList);
+    }
+
+    @Override
+    public boolean deleteSickList(int id) throws PersistentException {
+        SurveyHistoryService surveyHistoryService = new SurveyHistoryServiceImpl();
+        List<SurveyHistory> list = surveyHistoryService.getAllbySickList(id);
+        if (list.isEmpty()){
+            sickListDao.delete(sickListDao.getByPrimaryKey(id));
+            return true;
+        } else
+        return false;
     }
 }

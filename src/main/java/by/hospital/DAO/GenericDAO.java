@@ -12,9 +12,9 @@ import java.util.List;
 public interface GenericDAO<Type extends Entity<PrimaryKey>, PrimaryKey extends Integer> {
 
 
-    public Type create() throws PersistentException;
+    Type create() throws PersistentException;
 
-    public Type persist(Type entity) throws PersistentException;
+    Type persist(Type entity) throws PersistentException;
 
     void update(Type entity) throws PersistentException;
 
@@ -23,6 +23,8 @@ public interface GenericDAO<Type extends Entity<PrimaryKey>, PrimaryKey extends 
     Type getByPrimaryKey(PrimaryKey primaryKey) throws PersistentException;
 
     List<Type> getAll() throws PersistentException;
+
+    List<Type> FindByCondition(String condition) throws PersistentException;
 
 
 }

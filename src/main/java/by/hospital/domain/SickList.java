@@ -86,7 +86,7 @@ public class SickList implements Entity<Integer> {
         stringBuilder.append("Room ").append(getRoom()).append("\n");
         stringBuilder.append("Symptoms ").append(getSymptoms()).append("\n");
         stringBuilder.append("Discharge ").append(getDateOUT()==null ? "не выписан" : "выписан").append("\n");
-        stringBuilder.append("Diagnose ").append(getFinalDiagnose()).append("\n");
+        stringBuilder.append("DiagnoseService ").append(getFinalDiagnose()).append("\n");
         return stringBuilder.toString();
     }
 }

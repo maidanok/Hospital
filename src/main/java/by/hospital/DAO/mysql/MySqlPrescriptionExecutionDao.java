@@ -3,9 +3,7 @@ package by.hospital.DAO.mysql;
 import by.hospital.DAO.AbstractJDBCDao;
 import by.hospital.DAO.DaoFactory;
 import by.hospital.DAO.mysql.interfaces.GenericDAOForPrescriptionExecutionDate;
-import by.hospital.domain.Prescription;
 import by.hospital.domain.PrescriptionExecution;
-import by.hospital.domain.Staff;
 import by.hospital.exception.PersistentException;
 
 import java.sql.Connection;
@@ -104,7 +102,6 @@ public class MySqlPrescriptionExecutionDao extends AbstractJDBCDao<PrescriptionE
                 pPE.getStaff().setFired(resultSet.getBoolean("fired"));
                 pPE.getStaff().setLogin(resultSet.getString("login"));
                 pPE.getStaff().setPassword(resultSet.getString("password"));
-
             }
         } catch (Exception e) {
             throw new PersistentException(e);
