@@ -26,8 +26,7 @@ public class MySqlSickListDao extends AbstractJDBCDao<SickList, Integer> impleme
 
     public MySqlSickListDao(DaoFactory<Connection> parentFactory, Connection connection) {
         super(parentFactory, connection);
-        addRelation(SickList.class, "patient");
-        addRelation(SickList.class, "finalDiagnose");
+
     }
 
     @Override

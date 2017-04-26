@@ -20,7 +20,7 @@ public class MySqlPatientDao extends AbstractJDBCDao<Patient, Integer> implement
     @Override
     public List<Patient> FindLastName(String lastName) throws PersistentException {
         List<Patient> list;
-        String sql = getSelectedQuery()+" WHERE last_name="+lastName+";";
+        String sql = getSelectedQuery()+" where first_name like '"+lastName+"';";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();

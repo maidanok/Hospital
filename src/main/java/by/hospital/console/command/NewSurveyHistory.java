@@ -18,7 +18,7 @@ public class NewSurveyHistory extends AbstractCommandFactory {
     }
 
     @Override
-    public void runComand() throws PersistentException {
+    public void runCommand() throws PersistentException {
         SurveyHistoryService surveyHistoryService = new SurveyHistoryServiceImpl();
         out.println("Здравствуйте доктор введите свой ID");
         int staffID = Integer.valueOf(scanner.nextLine());

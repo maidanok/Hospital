@@ -17,7 +17,7 @@ public interface PatientService {
 
     Patient returnPatientShort(int id);
 
-    List <Patient> getALLPatienst();
+    List <Patient> getALLPatients();
 
     List <Patient> FindLastName(String lastName);
 

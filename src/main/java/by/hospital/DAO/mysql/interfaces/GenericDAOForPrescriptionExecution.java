@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by Pasha on 17.04.2017.
  */
-public interface GenericDAOForPrescriptionExecutionDate extends GenericDAO<PrescriptionExecution,Integer> {
+public interface GenericDAOForPrescriptionExecution extends GenericDAO<PrescriptionExecution,Integer> {
 
     List<PrescriptionExecution> getAllFromPrescription(int prescriptionPK) throws PersistentException;
 }

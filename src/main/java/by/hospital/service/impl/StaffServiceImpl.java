@@ -2,7 +2,9 @@ package by.hospital.service.impl;
 
 import by.hospital.DAO.mysql.MySqlDaoFactory;
 import by.hospital.DAO.mysql.MySqlStaffDao;
+import by.hospital.domain.PrescriptionExecution;
 import by.hospital.domain.Staff;
+import by.hospital.domain.SurveyHistory;
 import by.hospital.exception.PersistentException;
 import by.hospital.service.api.StaffService;
 
@@ -91,8 +93,16 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public boolean deleteStaff(int staffId) {
+    public boolean deleteStaff(int staffId) throws PersistentException {
+        List<PrescriptionExecution> listPE = mySqlDaoFactory.getDao(mySqlDaoFactory.getContext(),PrescriptionExecution.class).FindByCondition("" +
+                " WHERE staff_id = "+staffId+";");
+        List <SurveyHistory> listSH = mySqlDaoFactory.getDao(mySqlDaoFactory.getContext(),SurveyHistory.class)
+                .FindByCondition(" WHERE staff_id = "+staffId+";");
+        if ((listPE.isEmpty())&&(listSH.isEmpty())){
+            staffDao.delete(staffDao.getByPrimaryKey(staffId));
+            return true;
+        }
         return false;
-        //TODO доделать метод delete
+
     }
 }

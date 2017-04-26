@@ -7,16 +7,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKey extends Integer> implements GenericDAO<Type, PrimaryKey> {
 
     private DaoFactory<Connection> parentFactory;
     protected Connection connection;
-    //таблица зависимостей (вложенных объектов)
-    private Set<ManyToOne> relations = new HashSet<ManyToOne>();
 
     public AbstractJDBCDao(DaoFactory<Connection> parentFactory, Connection connection) {
         this.parentFactory = parentFactory;
@@ -79,7 +75,7 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
             ResultSet resultSet = statement.executeQuery();
             List<Type> list = parseResultSet(resultSet);
             if ((list == null) || (list.size() != 1)) {
-                throw new PersistentException("Exception on findByPrimaryKey new persist data." + list.size());
+                throw new PersistentException("Exception on findByPrimaryKey new persist data. " + list.size());
             }
             persistInstanse = list.iterator().next();
         } catch (Exception e) {
@@ -129,7 +125,7 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
     public Type getByPrimaryKey(Integer primaryKey) throws PersistentException {
         List<Type> list;
         String sql = getSelectedQuery();
-        sql += " WHERE " + getPrimaryKeyQuery() + " = ? ;";
+        sql += " WHERE " + getPrimaryKeyQuery() + " = ?;";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, primaryKey);
@@ -176,14 +172,6 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
     }
 
 
-    //создаем новое вложение
-    protected boolean addRelation(Class<? extends Entity> ownerClass, String field) {
-        try {
-            return relations.add(new ManyToOne(ownerClass, parentFactory, field));
-        } catch (NoSuchFieldException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     //получить вложенный объект получается во время реализации конкретного класса
     //когда парсируем результат sql закроса мы в данный метод подставляем класс поля которое хотим получить и
@@ -193,27 +181,6 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
         return parentFactory.getDao(connection, dtoClass).getByPrimaryKey(primaryKey);
     }
 
-    //сохраняем вложения
-    //если у owner нет вложений, то после первой проверки мы выйдем из цикла for
-    //m.getDependence выдает вложение и смотрит у него первичный ключ
-    //ключа нет сохраняем как новую запись ключ есть меняем уже существующую
-    private void saveDependence(Entity owner) throws PersistentException {
-        for (ManyToOne m : relations) {
-            try {
-                if (m.getDependence(owner) == null) {
-                    continue;
-                }
-                if (m.getDependence(owner).getPrimaryKey() == null) {
-                    Entity depend = m.persistDependence(owner, connection);
-                    m.setDependence(owner, depend);
-                } else {
-                    m.updateDependence(owner, connection);
-                }
-            } catch (Exception e) {
-                throw new PersistentException("Exception on save Dependence is relation " + m + "." + e);
-            }
-        }
-    }
 
     //с такой конвертацией не выдает NullPointerException
     //и адекватно осуществляет вставку записи где дата равна null

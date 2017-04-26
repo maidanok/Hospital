@@ -14,7 +14,7 @@ public class ShowAllPatients extends AbstractCommandFactory {
     }
 
     @Override
-    public void runComand() {
-        System.out.println(patientService.getALLPatienst());
+    public void runCommand() {
+        System.out.println(patientService.getALLPatients());
     }
 }

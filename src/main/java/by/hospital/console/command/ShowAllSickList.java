@@ -14,7 +14,7 @@ public class ShowAllSickList extends AbstractCommandFactory {
     }
 
     @Override
-    public void runComand() {
+    public void runCommand() {
         System.out.println(sickListService.findAllActive());
     }
 }

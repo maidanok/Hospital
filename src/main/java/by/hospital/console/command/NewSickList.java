@@ -19,7 +19,7 @@ public class NewSickList extends AbstractCommandFactory {
     }
 
     @Override
-    public void runComand() throws PersistentException {
+    public void runCommand() throws PersistentException {
         out.println("Введите id пациента");
         int id = Integer.valueOf(scanner.nextLine());
         Date date = Date.valueOf(LocalDate.now());

@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by Pasha on 12.04.2017.
  */
 public class SurveyHistory implements Entity <Integer>{
-    private int surveyHistoryID;
+    private int surveyHistoryID=0;
     private SickList sickList;
     private Diagnose diagnose;
     private Staff staff;

@@ -18,7 +18,7 @@ public class NewPatientCommand extends AbstractCommandFactory{
     }
 
     @Override
-    public void runComand() {
+    public void runCommand() {
         out.println("Ведите данные о пациенте");
         out.println("Фамилия");
         String ln = scanner.nextLine();

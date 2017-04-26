@@ -10,19 +10,33 @@ import java.util.Scanner;
  * Created by Admin on 22.04.2017.
  */
 public class Runner {
+    private int i=0;
     AbstractCommandFactory[] commandFactory = {
             new NewPatientCommand(),
+            new FindPatientByLastName(),
             new ShowAllPatients(),
             new ShowAllSickList(),
             new NewSickList(),
-            new NewSurveyHistory()
+            new NewSurveyHistory(),
+            new NewPrescription(),
+            new ExecutePrescription(),
+            new MenuCikle()
     };
     private Scanner scanner = new Scanner(System.in);
 
 
     public Runner() throws PersistentException, SQLException {
     }
+    private class MenuCikle extends AbstractCommandFactory {
+        public MenuCikle() {
+            super("Выход");
+        }
 
+        @Override
+        public void runCommand() throws PersistentException {
+            i=commandFactory.length;
+        }
+    }
 
     private void menu() throws PersistentException {
         int i = 1;
@@ -30,11 +44,13 @@ public class Runner {
             System.out.printf("%2d. %s\n", i++, factory.getMenuItem());
         }
         System.out.print("Ваш выбор: ");
-        commandFactory[Integer.parseInt(scanner.nextLine()) - 1].runComand(); // bad example
+        commandFactory[Integer.parseInt(scanner.nextLine()) - 1].runCommand(); // bad example
     }
 
     public static void main(String[] args) throws PersistentException, SQLException {
         Runner runner = new Runner();
-        runner.menu();
+        while (runner.i!=runner.commandFactory.length){
+            runner.menu();
+        }
     }
 }

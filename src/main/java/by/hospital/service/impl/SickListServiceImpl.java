@@ -52,12 +52,12 @@ public class SickListServiceImpl implements SickListService {
                 result = sickListDao.FindByCondition(" WHERE date_in = " + dateIn + ";");
             } else {
                 if (dateIn == null) {
-                    result = sickListDao.FindByCondition("WHERE first_name like " + patientFirstName + ";");
+                    result = sickListDao.FindByCondition("WHERE first_name like '" + patientFirstName + "';");
                 }else {
                     if (patientFirstName==null && dateIn==null){
                         result=findAllActive();
                     }else {
-                        result = sickListDao.FindByCondition("WHERE first_name like " + patientFirstName +"AND date_in = " + dateIn + ";");
+                        result = sickListDao.FindByCondition("WHERE first_name like '" + patientFirstName +"' AND date_in = " + dateIn + ";");
                     }
                 }
             }

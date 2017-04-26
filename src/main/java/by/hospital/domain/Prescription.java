@@ -13,6 +13,9 @@ public class Prescription implements Entity<Integer> {
     private int quantity;
     private int completed;
 
+    public Prescription(){
+        surveyHistory=new SurveyHistory();
+    }
     public int getCompleted() {
         return completed;
     }

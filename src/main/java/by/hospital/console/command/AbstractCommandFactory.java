@@ -24,5 +24,5 @@ public abstract class AbstractCommandFactory {
         return menuItem;
     }
 
-    public abstract void runComand() throws PersistentException;
+    public abstract void runCommand() throws PersistentException;
 }

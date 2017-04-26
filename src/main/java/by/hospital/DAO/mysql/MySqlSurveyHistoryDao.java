@@ -21,9 +21,6 @@ public class MySqlSurveyHistoryDao extends AbstractJDBCDao<SurveyHistory, Intege
 
     public MySqlSurveyHistoryDao(DaoFactory<Connection> parentFactory, Connection connection) {
         super(parentFactory, connection);
-        addRelation(SurveyHistory.class, "sickList");
-        addRelation(SurveyHistory.class, "staff");
-        addRelation(SurveyHistory.class, "diagnose");
     }
 
     @Override

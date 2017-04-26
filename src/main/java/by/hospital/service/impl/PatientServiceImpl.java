@@ -62,7 +62,7 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public List<Patient> getALLPatienst() {
+    public List<Patient> getALLPatients() {
         try {
             return patientDao.getAll();
         } catch (PersistentException e) {

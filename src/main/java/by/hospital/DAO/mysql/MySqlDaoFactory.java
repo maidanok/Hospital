@@ -89,7 +89,7 @@ public class MySqlDaoFactory implements DaoFactory<Connection> {
         //PrescriptionExecution
         this.creators.put(PrescriptionExecution.class, new DaoCreator<Connection>() {
             @Override
-            public GenericDAOForPrescriptionExecutionDate create(Connection connection) {
+            public GenericDAOForPrescriptionExecution create(Connection connection) {
                 return new MySqlPrescriptionExecutionDao(MySqlDaoFactory.this,connection);
             }
         });

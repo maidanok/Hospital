@@ -11,8 +11,7 @@ public class PrescriptionExecution implements Entity<Integer> {
     private Date prescriptionExecutionDate;
     private int prescriptionID;
 
-    public PrescriptionExecution(int prescriptionID){
-        this.prescriptionID=prescriptionID;
+    public PrescriptionExecution(){
         staff = new Staff();
     }
 
@@ -49,5 +48,10 @@ public class PrescriptionExecution implements Entity<Integer> {
     public void setPrescriptionExecutionDate(Date prescriptionExecutionDate) {
         this.prescriptionExecutionDate = prescriptionExecutionDate;
     }
+
+    public String toString(){
+        return getStaff().toString();
+    }
+
 
 }

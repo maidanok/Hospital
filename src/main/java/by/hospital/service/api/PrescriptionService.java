@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by Admin on 23.04.2017.
  */
-public interface PrescriptionServise {
+public interface PrescriptionService {
 
     List<Prescription> getAllNotDone() throws PersistentException;
 
@@ -18,8 +18,9 @@ public interface PrescriptionServise {
 
     Prescription createNewPrescription(String type, int SurvID, String description, int quantity);
 
-    boolean executePrescription(int prescriptionID, int staffID);
-
     boolean deletePrescription(int id);
+
+    boolean executePrescription(int id, int staffID) throws PersistentException;
+
 
 }

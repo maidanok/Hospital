@@ -21,7 +21,6 @@ import java.util.List;
 public class MySqlPrescriptionDao extends AbstractJDBCDao <Prescription, Integer> implements GenericDaoForPrescription {
     public MySqlPrescriptionDao(DaoFactory parentFactory, Connection connection) {
         super(parentFactory, connection);
-        addRelation(Prescription.class,"surveyHistory");
     }
 
     @Override
@@ -52,7 +51,7 @@ public class MySqlPrescriptionDao extends AbstractJDBCDao <Prescription, Integer
                 "survey_history.survey_history_id, survey_date, survey_description,\n" +
                 "survey_history.diagnose_id as s_diagnose_id, s_diagnose.diagnose_name as s_diagnose_name, s_diagnose.therapy as s_diagnose_therapy,\n" +
                 "staff_id, staff.first_name as staff_fn, staff.last_name as staff_ln, staff.middle_name as staff_mn, staff.birthday as staff_bd, staff.sex as staff_sex, staff.address as staff_addr, staff.passport_number as staff_passport,\n" +
-                "prescription_id, description, quantity, completed\n" +
+                "prescription_id, description, quantity, completed,\n" +
                 "prescription_type_name\n" +
                 "FROM person\n" +
                 "join sick_list  on sick_list.person_id=person.person_id\n" +
@@ -67,15 +66,15 @@ public class MySqlPrescriptionDao extends AbstractJDBCDao <Prescription, Integer
     @Override
     protected String getCreateQuery() {
         return "INSERT INTO prescription\n" +
-                "(prescription_type_id, survey_history_id, description,quantity)\n" +
-                "VALUES(?, ?, ?);";
+                "(prescription_type_id, survey_history_id, description, quantity)\n" +
+                "VALUES(?, ?, ?, ?);";
     }
 
     @Override
     protected String getUpdateQuery() {
         return "UPDATE prescription\n" +
                 "SET\n" +
-                "prescription_id` = ?, prescription_type_id` = ? survey_history_id = ? description = ? quantity` = ?" +
+                "prescription_type_id` = ? survey_history_id = ? description = ? quantity` = ?" +
                 "WHERE prescription_id = ?;";
     }
 

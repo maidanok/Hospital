@@ -23,5 +23,5 @@ public interface StaffService {
 
     Staff returnStaffShort(int id) throws PersistentException;
 
-    boolean deleteStaff(int staffId);
+    boolean deleteStaff(int staffId) throws PersistentException;
 }
