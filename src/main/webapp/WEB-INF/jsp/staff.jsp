@@ -1,0 +1,247 @@
+<%@page language="java" contentType="text/html; charset=UTF-8"
+        pageEncoding="UTF-8"%>
+
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<head>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/fonts-v3.css">
+  <link rel="stylesheet" href="css/base-v4.css">
+  <link rel="stylesheet" href="css/properties-79c76308-f359-4b06-866a-a6a2b435e248.css">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+
+  <div id="_474">
+    <form id="_475" role="form">
+
+      <div id="_476">
+
+        <div id="_477" class="nm-label">
+          <span id="_478">
+            Работник<br/>
+        </span>
+        </div>
+
+        <div id="_479">
+          <svg id="_480">
+            <line id="_481" x1="0" x2="438" y1="" y2="0" />
+          </svg>
+        </div>
+      </div>
+
+      <div id="_482" class="nm-label">
+        <span id="_483">
+            Фамилия<br/>
+        </span>
+      </div>
+
+      <div id="_484" class="nm-label">
+        <span id="_485">
+            Имя<br/>
+        </span>
+      </div>
+      <input type="text" id="_486" placeholder="Фамилия" class="form-control" />
+      <input type="text" id="_487" placeholder="Имя" class="form-control" />
+
+      <div id="_488" class="nm-label">
+        <span id="_489">
+            Дата рождения<br/>
+        </span>
+      </div>
+      <div id="_490">
+        <div class="form-group" id="_491">
+          <input type="text" id="_492" placeholder="Дата рождения" class="form-control" />
+
+          <i id="_493">
+        
+    </i>
+        </div>
+      </div>
+
+      <div id="_494" class="nm-label">
+        <span id="_495">
+            Адрес<br/>
+        </span>
+      </div>
+
+      <div id="_496" class="nm-label">
+        <span id="_497">
+            Пол<br/>
+        </span>
+      </div>
+
+      <div id="_498" class="nm-label">
+        <span id="_499">
+            Паспорт<br/>
+        </span>
+      </div>
+      <input type="text" id="_500" placeholder="Паспорт" class="form-control" />
+
+      <div id="_501" class="nm-label">
+        <span id="_502">
+            Отчество<br/>
+        </span>
+      </div>
+      <input type="text" id="_503" placeholder="Отчество" class="form-control" />
+
+      <div id="_504" class="nm-label">
+        <span id="_505">
+            Login<br/>
+        </span>
+      </div>
+      <input type="text" id="_506" placeholder="Login" class="form-control" />
+
+      <div id="_507" class="nm-label">
+        <span id="_508">
+            Password<br/>
+        </span>
+      </div>
+      <input type="text" id="_509" placeholder="Password" class="form-control" />
+      <input type="text" id="_510" placeholder="Адрес" class="form-control" />
+
+      <div id="_511" class="nm-label">
+        <span id="_512">
+            Должность<br/>
+        </span>
+      </div>
+
+      <div id="_513" class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="_514">
+          Должность <span class="caret"></span>
+        </button>
+        <ul id="_515" class="dropdown-menu" role="menu">
+          <li href="#">
+
+            <div id="_516" class="nm-label">
+              <a id="_517" href="#">
+            Action<br/>
+        </a>
+            </div>
+          </li>
+          <li href="#">
+
+            <div id="_518" class="nm-label">
+              <a id="_519" href="#">
+            Another action<br/>
+        </a>
+            </div>
+          </li>
+          <li href="#">
+
+            <div id="_520" class="nm-label">
+              <a id="_521" href="#">
+            Something else here<br/>
+        </a>
+            </div>
+          </li>
+          <li class="divider">
+
+          </li>
+          <li href="#">
+
+            <div id="_522" class="nm-label">
+              <a id="_523" href="#">
+            Separated link<br/>
+        </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div id="_524">
+        <div class="radio" id="_525">
+          <label id="_526">
+            <input type="radio" name=46e6dc8f-fe9f-1181-e9c5-b5fe7ffa6522 />Мужчина
+          </label>
+        </div>
+        <div class="radio" id="_527">
+          <label id="_528">
+            <input type="radio" checked name=46e6dc8f-fe9f-1181-e9c5-b5fe7ffa6522 />Женщина
+          </label>
+        </div>
+      </div>
+      <button id="_529" data-pagelink="6af47441-027e-ef99-50ee-b3de4e4cb566" class="btn btn-default">
+        Сохранить
+
+        <i id="_530">
+        
+    </i>
+      </button>
+      <button id="_531" data-pagelink="6af47441-027e-ef99-50ee-b3de4e4cb566" class="btn btn-default">
+        Отмена
+
+        <i id="_532">
+        
+    </i>
+      </button>
+
+      <a id="_533" href="#">сменить</a>
+
+    </form>
+
+    <div id="_534">
+
+      <div id="_535" class="nm-label">
+        <span id="_536">
+            Смена пароля<br/>
+        </span>
+      </div>
+
+      <div id="_537">
+        <svg id="_538">
+          <line id="_539" x1="0" x2="506" y1="" y2="0" />
+        </svg>
+      </div>
+
+      <div id="_540" class="nm-label">
+        <p id="_541">
+          Введите пароль
+          <br/>
+        </p>
+      </div>
+
+      <div id="_542" class="nm-label">
+        <p id="_543">
+          Подтвердите пароль
+          <br/>
+        </p>
+      </div>
+      <div id="_544">
+        <div class="form-group" id="_545">
+          <input type="text" id="_546" placeholder="*************" class="form-control" />
+
+          <i id="_547">
+        
+    </i>
+        </div>
+      </div>
+
+      <div id="_548">
+        <div class="form-group" id="_549">
+          <input type="text" id="_550" placeholder="*" class="form-control" />
+
+          <i id="_551">
+        
+    </i>
+        </div>
+      </div>
+
+      <button id="_552" class="btn btn-default">
+        Сохранить
+
+        <i id="_553">
+        
+    </i>
+      </button>
+      <button id="_554" class="btn btn-default">
+        Отмена
+
+        <i id="_555">
+        
+    </i>
+      </button>
+    </div>
+  </div>
+  <script type="text/javascript" src="../common-files/js/require.min.js" data-main="../scripts/startup"></script>
+</body>
