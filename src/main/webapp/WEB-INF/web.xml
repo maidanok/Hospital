@@ -30,11 +30,6 @@
     </servlet>
 
     <servlet>
-        <servlet-name>AllPrescriptionsController</servlet-name>
-        <servlet-class>by.hospital.controllers.AllPrescriptionsController</servlet-class>
-    </servlet>
-
-    <servlet>
         <servlet-name>PatientController</servlet-name>
         <servlet-class>by.hospital.controllers.PatientController</servlet-class>
     </servlet>

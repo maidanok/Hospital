@@ -40,6 +40,12 @@ public abstract class Person implements Entity<Integer>{
         this.middleName = middleName;
     }
 
+    public String getFullName(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(getFirstName()).append(" ").append(getLastName()).append(" ").append(getMiddleName());
+        return stringBuilder.toString();
+    }
+
     public Date getBirthday() {
         return birthday;
     }

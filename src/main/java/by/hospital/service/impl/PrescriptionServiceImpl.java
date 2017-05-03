@@ -30,8 +30,14 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     }
 
     @Override
-    public List<Prescription> getAllNotDone() throws PersistentException {
-        return prescriptionDao.getAllNotDone();
+    public List<Prescription> getAllNotDone(){
+        List <Prescription> result = new ArrayList<>();
+        try {
+            result = prescriptionDao.getAllNotDone();
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     @Override

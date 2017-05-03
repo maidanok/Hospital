@@ -4,9 +4,29 @@
          http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
+
     <servlet>
-        <servlet-name>AllPrescriptionsController</servlet-name>
-        <servlet-class>by.hospital.controllers.AllPrescriptionsController</servlet-class>
+        <servlet-name>DirectoriesController</servlet-name>
+        <servlet-class>by.hospital.controllers.DirectoriesController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PrescriptionController</servlet-name>
+        <servlet-class>by.hospital.controllers.PrescriptionController</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>SurveyController</servlet-name>
+        <servlet-class>by.hospital.controllers.SurveyController</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>DiagnoseController</servlet-name>
+        <servlet-class>by.hospital.controllers.DiagnoseController</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>StaffController</servlet-name>
+        <servlet-class>by.hospital.controllers.StaffController</servlet-class>
     </servlet>
 
     <servlet>
@@ -30,8 +50,8 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>SickListPage1Controller</servlet-name>
-        <servlet-class>by.hospital.controllers.SickListPage1Controller</servlet-class>
+        <servlet-name>SickListController</servlet-name>
+        <servlet-class>by.hospital.controllers.SickListController</servlet-class>
     </servlet>
 
     <servlet-mapping>

@@ -71,8 +71,14 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public List<Staff> getAllStaff() throws PersistentException {
-        return staffDao.getAll();
+    public List<Staff> getAllStaff(){
+        List<Staff> result = new ArrayList<>();
+        try {
+            result=staffDao.getAll();
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     @Override

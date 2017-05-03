@@ -4,666 +4,89 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <head>
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/fonts-v3.css">
-  <link rel="stylesheet" href="css/base-v4.css">
-  <link rel="stylesheet" href="css/properties-79c76308-f359-4b06-866a-a6a2b435e248.css">
+    <link rel="stylesheet" href="css/style.css">
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
-
-
 <body>
-
-  <div id="_24">
-
-    <table id="_25">
+<h1>Hospital</h1>
+<div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'patients')">Пациенты</button>
+  <button class="tablinks" onclick="openTab(event, 'staff')">Персонал</button>
+  <button class="tablinks" onclick="openTab(event, 'diagnoses')">Диагнозы</button>
+</div>
+<div id="patients" class="tabcontent">
+  <h3>Пациенты</h3>
+        <button>Добавить</button>
+            <input type="text" placeholder="Найти"/>
+                <button>Найти</button>
+            <table >
+            <tr>
+                <th>№</th>
+                <th>Фамилия Имя Отчество</th>
+                <th>Дата рождения</th>
+                <th>Пол</th>
+                <th>Адрес</th>
+                <th>Паспорт</th>
+                <th>Действие</th>
+            </tr>
+            <c:forEach items="${allPatient}" var="patient">
+                <tr>
+                    <td id = {"$patient.getPrimaryKey()}">${patient.getPrimaryKey()}</td>
+                    <td>${patient.getFullName()}</td>
+                    <td>${patient.getBirthday()}</td>
+                    <td>${patient.getSex().getName()}</td>
+                    <td>${patient.getAddress()}</td>
+                    <td>${patient.getPassportNumber()}</td>
+                    <td></td>
+                </tr>
+            </c:forEach>
+            </table>
+</div>
+<div id="staff" class="tabcontent">
+  <h3>Персонал</h3>
+  <button>Добавить</button>
+            <table >
+            <tr>
+                <th>№</th>
+                <th>Фамилия Имя Отчество</th>
+                <th>Дата рождения</th>
+                <th>Пол</th>
+                <th>Адрес</th>
+                <th>Паспорт</th>
+                <th>Действие</th>
+            </tr>
+                <c:forEach items="${allStaff}" var="staff">
+                <tr>
+                    <td id = {"$staff.getPrimaryKey()}">${staff.getPrimaryKey()}</td>
+                    <td>${staff.getFullName()}</td>
+                    <td>${staff.getBirthday()}</td>
+                    <td>${staff.getSex().getName()}</td>
+                    <td>${staff.getAddress()}</td>
+                    <td>${staff.getPassportNumber()}</td>
+                    <td></td>
+                </tr>
+            </c:forEach>
+            </table>
+</div>
+<div id="diagnoses" class="tabcontent">
+  <h3>Диагнозы</h3>
+  <button>Добавить</button>
+  <table >
       <tr>
-        <td id="_26">
-
-          <div id="_27" class="nm-label">
-            <span id="_28">
-            №<br/>
-        </span>
-          </div>
-        </td>
-        <td id="_29">
-
-          <div id="_30" class="nm-label">
-            <span id="_31">
-            Фамилия Имя Отчество<br/>
-        </span>
-          </div>
-        </td>
-        <td id="_32">
-
-          <div id="_33" class="nm-label">
-            <span id="_34">
-            Дата рождения<br/>
-        </span>
-          </div>
-        </td>
-        <td id="_35">
-
-          <div id="_36" class="nm-label">
-            <span id="_37">
-            Пол<br/>
-        </span>
-          </div>
-        </td>
-        <td id="_38">
-
-          <div id="_39" class="nm-label">
-            <span id="_40">
-            Адрес<br/>
-        </span>
-          </div>
-        </td>
-        <td id="_41">
-
-          <div id="_42" class="nm-label">
-            <span id="_43">
-            Паспорт<br/>
-        </span>
-          </div>
-        </td>
-        <td id="_44">
-
-          <div id="_45" class="nm-label">
-            <span id="_46">
-            <br/>
-        </span>
-          </div>
-        </td>
+          <th>№</th>
+          <th>Название</th>
+          <th>Терапия</th>
+          <th>Действие</th>
       </tr>
-      <tr>
-        <td id="_47">
-
-          <div id="_48" class="nm-label">
-            <span id="_49">
-            1<br/>
-        </span>
-          </div>
-        </td>
-        <td id="_50">
-
-          <div id="_51" class="nm-label">
-            <span id="_52">
-            Воробьёв Игорь Валерьевич<br/>
-        </span>
-          </div>
-        </td>
-        <td id="_53">
-
-          <div id="_54" class="nm-label">
-            <span id="_55">
-            1939-12-25<br/>
-        </span>
-          </div>
-        </td>
-        <td id="_56">
-
-          <div id="_57" class="nm-label">
-            <span id="_58">
-            муж<br/>
-        </span>
-          </div>
-        </td>
-        <td id="_59">
-
-          <div id="_60" class="nm-label">
-            <p id="_61">
-              601553, г. Балтийск, ул. Беговая 2-я, дом 51, квартира 256
-              <br/>
-            </p>
-          </div>
-        </td>
-        <td id="_62">
-
-          <div id="_63" class="nm-label">
-            <span id="_64">
-            PO6U4UMONE<br/>
-        </span>
-          </div>
-        </td>
-        <td id="_65">
-
-          <div id="_66" class="nm-label">
-            <span id="_67">
-            <br/>
-        </span>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td id="_68">
-
-          <div id="_69" class="nm-label">
-            <span id="_70">
-            1<br/>
-        </span>
-          </div>
-        </td>
-        <td id="_71">
-
-          <div id="_72" class="nm-label">
-            <span id="_73">
-            Федосеев, Матвей, Дамирович<br/>
-        </span>
-          </div>
-        </td>
-        <td id="_74">
-
-          <div id="_75" class="nm-label">
-            <span id="_76">
-            1986-10-11<br/>
-        </span>
-          </div>
-        </td>
-        <td id="_77">
-
-          <div id="_78" class="nm-label">
-            <span id="_79">
-            муж<br/>
-        </span>
-          </div>
-        </td>
-        <td id="_80">
-
-          <div id="_81" class="nm-label">
-            <p id="_82">
-              623271, г. Улан-Удэ, ул. Авиаторов, дом 61, квартира 162
-              <br/>
-            </p>
-          </div>
-        </td>
-        <td id="_83">
-
-          <div id="_84" class="nm-label">
-            <span id="_85">
-            MfN5Emm7vD<br/>
-        </span>
-          </div>
-        </td>
-        <td id="_86">
-
-          <div id="_87" class="nm-label">
-            <span id="_88">
-            <br/>
-        </span>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td id="_89">
-
-          <div id="_90" class="nm-label">
-            <span id="_91">
-            3<br/>
-        </span>
-          </div>
-        </td>
-        <td id="_92">
-
-          <div id="_93" class="nm-label">
-            <span id="_94">
-            Мельникова Нина Онисимовна<br/>
-        </span>
-          </div>
-        </td>
-        <td id="_95">
-
-          <div id="_96" class="nm-label">
-            <span id="_97">
-            1939-02-20<br/>
-        </span>
-          </div>
-        </td>
-        <td id="_98">
-
-          <div id="_99" class="nm-label">
-            <span id="_100">
-            жен<br/>
-        </span>
-          </div>
-        </td>
-        <td id="_101">
-
-          <div id="_102" class="nm-label">
-            <p id="_103">
-              141516, г. Луза, ул. Авиаконструктора Микояна, дом 30, квартира 241
-              <br/>
-            </p>
-          </div>
-        </td>
-        <td id="_104">
-
-          <div id="_105" class="nm-label">
-            <span id="_106">
-            ADHDA3N0OX<br/>
-        </span>
-          </div>
-        </td>
-        <td id="_107">
-
-          <div id="_108" class="nm-label">
-            <span id="_109">
-            <br/>
-        </span>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td id="_110">
-
-          <div id="_111" class="nm-label">
-            <span id="_112">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_113">
-
-          <div id="_114" class="nm-label">
-            <span id="_115">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_116">
-
-          <div id="_117" class="nm-label">
-            <span id="_118">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_119">
-
-          <div id="_120" class="nm-label">
-            <span id="_121">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_122">
-
-          <div id="_123" class="nm-label">
-            <span id="_124">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_125">
-
-          <div id="_126" class="nm-label">
-            <span id="_127">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_128">
-
-          <div id="_129" class="nm-label">
-            <span id="_130">
-            <br/>
-        </span>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td id="_131">
-
-          <div id="_132" class="nm-label">
-            <span id="_133">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_134">
-
-          <div id="_135" class="nm-label">
-            <span id="_136">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_137">
-
-          <div id="_138" class="nm-label">
-            <span id="_139">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_140">
-
-          <div id="_141" class="nm-label">
-            <span id="_142">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_143">
-
-          <div id="_144" class="nm-label">
-            <span id="_145">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_146">
-
-          <div id="_147" class="nm-label">
-            <span id="_148">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_149">
-
-          <div id="_150" class="nm-label">
-            <span id="_151">
-            <br/>
-        </span>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td id="_152">
-
-          <div id="_153" class="nm-label">
-            <span id="_154">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_155">
-
-          <div id="_156" class="nm-label">
-            <span id="_157">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_158">
-
-          <div id="_159" class="nm-label">
-            <span id="_160">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_161">
-
-          <div id="_162" class="nm-label">
-            <span id="_163">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_164">
-
-          <div id="_165" class="nm-label">
-            <span id="_166">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_167">
-
-          <div id="_168" class="nm-label">
-            <span id="_169">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_170">
-
-          <div id="_171" class="nm-label">
-            <span id="_172">
-            <br/>
-        </span>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td id="_173">
-
-          <div id="_174" class="nm-label">
-            <span id="_175">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_176">
-
-          <div id="_177" class="nm-label">
-            <span id="_178">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_179">
-
-          <div id="_180" class="nm-label">
-            <span id="_181">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_182">
-
-          <div id="_183" class="nm-label">
-            <span id="_184">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_185">
-
-          <div id="_186" class="nm-label">
-            <span id="_187">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_188">
-
-          <div id="_189" class="nm-label">
-            <span id="_190">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_191">
-
-          <div id="_192" class="nm-label">
-            <span id="_193">
-            <br/>
-        </span>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td id="_194">
-
-          <div id="_195" class="nm-label">
-            <span id="_196">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_197">
-
-          <div id="_198" class="nm-label">
-            <span id="_199">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_200">
-
-          <div id="_201" class="nm-label">
-            <span id="_202">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_203">
-
-          <div id="_204" class="nm-label">
-            <span id="_205">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_206">
-
-          <div id="_207" class="nm-label">
-            <span id="_208">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_209">
-
-          <div id="_210" class="nm-label">
-            <span id="_211">
-            <br/>
-        </span>
-          </div>
-        </td>
-        <td id="_212">
-
-          <div id="_213" class="nm-label">
-            <span id="_214">
-            <br/>
-        </span>
-          </div>
-        </td>
-      </tr>
-    </table>
-
-    <div id="_215">
-
-      <i class="placeholder" id="_216"></i>
-
-      <div id="_217" class="nm-label">
-        <span id="_218">
-            Logo<br/>
-        </span>
-      </div>
-    </div>
-
-    <div id="_219" class="nm-label">
-      <h1 id="_220">
-            Hospital<br/>
-        </h1>
-    </div>
-
-    <div id="_221">
-
-      <div id="_222">
-        <svg id="_223">
-          <path id="_224" d="M 3,3
-
-L 11,3
-
-L 7,8
-
- Z" />
-        </svg>
-      </div>
-
-      <div id="_225">
-        <svg id="_226">
-          <path id="_227" d="M 3,8
-
-L 10.999999999992724,8
-
-L 7.0000000000873115,3
-
- Z" />
-        </svg>
-      </div>
-
-      <div id="_228">
-
-        <div id="_229">
-
-        </div>
-      </div>
-    </div>
-
-    <div id="_230" class="nm-label">
-      <h3 id="_231">
-            <br/>
-        </h3>
-    </div>
-
-    <div id="_232" class="nm-label">
-      <h2 id="_233">
-            Пациенты<br/>
-        </h2>
-    </div>
-    <button id="_234" data-pagelink="20fe6171-56f9-f0c9-f81d-3630972470a4" class="btn btn-default">
-      Добавить
-
-      <i id="_235">
-        
-    </i>
-    </button>
-
-    <div id="_236">
-
-      <a id="_237" href="#">Выбрать</a>
-
-      <a id="_238" href="#">Удалить</a>
-
-    </div>
-
-    <div id="_239">
-
-      <a id="_240" href="#">Выбрать</a>
-
-      <a id="_241" href="#">Удалить</a>
-
-    </div>
-
-    <div id="_242">
-
-      <a id="_243" data-pagelink="68bb5ed2-95a6-3692-496a-2af70d247051" href="#">Выбрать</a>
-
-      <a id="_244" href="#">Удалить</a>
-
-    </div>
-
-    <nav id="_245" class="navbar navbar-default" role="navigation">
-      <div class="container-fluid">
-        <ul class="nav navbar-nav">
-          <li>
-
-            <a id="_246" data-pagelink="1f9e7bae-9a50-36c4-198f-d5e20183322e" class="navbar-brand" href="#">Пациенты</a>
-          </li>
-          <li>
-
-            <a id="_247" data-pagelink="d56debe0-63c2-dbb6-894f-c8342ce0efe5" href="#">Персонал</a>
-          </li>
-          <li>
-
-            <a id="_248" data-pagelink="be51d75a-8308-4d3b-50ac-60d628c21f5f" href="#">Диагнозы</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <div id="_249">
-      <input type="text" id="_250" placeholder="Поиск" class="form-control" />
-      <button id="_251" class="btn btn-default">
-        Поиск
-
-      </button>
-    </div>
-  </div>
-  <script type="text/javascript" src="../common-files/js/require.min.js" data-main="../scripts/startup"></script>
+                <c:forEach items="${allDiagnose}" var="diagnose">
+                <tr>
+                    <td id = {"$diagnose.getPrimaryKey()}">${diagnose.getPrimaryKey()}</td>
+                    <td>${diagnose.getDiagnoseName()}</td>
+                    <td>${diagnose.getTherapy()}</td>
+                    <td></td>
+                </tr>
+            </c:forEach>
+      </table>
+</div>
+  <script src="js/tabsHospital.js"></script>
 </body>
