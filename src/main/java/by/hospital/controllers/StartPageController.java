@@ -1,5 +1,7 @@
 package by.hospital.controllers;
 
+import by.hospital.domain.enumeration.Post;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

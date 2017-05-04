@@ -1,65 +1,68 @@
-<%@page language="java" contentType="text/html; charset=UTF-8"
-        pageEncoding="UTF-8"%>
-
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<head>
-<link rel="stylesheet" href="css/style.css">
-<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-</head>
-<body>
-<div class="tab">
-  <button class="tablinks" onclick="openTab(event, 'sicklist')">Больничный Лист</button>
-  <button class="tablinks" onclick="openTab(event, 'survey')">Осмотры</button>
-  <button class="tablinks" onclick="openTab(event, 'prescription')">Назначения</button>
+<%@taglib tagdir ="/WEB-INF/tags" prefix = "t"%>
+<t:html>
+<div style="margin:20px 0 10px 0;"></div>
+<div class="easyui-tabs" style="width:95%;">
+            <div title="Больничный лист" style="padding:10px">
+                <div class="easyui-layout" style="width:700px;height:450px;">
+                        <form id="ff" method="post">
+                          <div style="margin-bottom:20px">
+                          <input class="easyui-textbox" name="fullname" style="width:50%" data-options="label:'Фамилия Имя Отчество'">
+                          </div>
+                          <div style="margin-bottom:20px">
+                          <input class="easyui-datebox" name="datein" data-options="label:'Дата поступления', labelPosition:'top'" style="width:50%;">
+                          </div>
+                            <div style="margin-bottom:20px">
+                            <input class="easyui-datebox" name="dateout" data-options="label:'Дата выписки', labelPosition:'top'" style="width:50%;">
+                            </div>
+                          <div style="margin-bottom:20px">
+                          <input class="easyui-textbox" name="room" style="width:50%" data-options="label:'Палата:'">
+                          </div>
+                          <div style="margin-bottom:20px">
+                          <input class="easyui-textbox" name="symptoms" style="width:50%;height:80px" data-options="label:'Анамнез:', labelPosition:'top',multiline:true">
+                          </div>
+                           <div style="text-align:left;padding:5px 0">
+                                <a href="javascript:void(0)" data-options="iconCls:'icon-ok'" class="easyui-linkbutton" onclick=" " style="width:80px">ОК</a>
+                                <a href="javascript:void(0)" data-options="iconCls:'icon-cancel'" class="easyui-linkbutton" onclick=" " style="width:110px">Отменить</a>
+                            </div>
+                        </form>
+                </div>
+            </div>
+            <div title="Осмотры" style="padding:10px">
+              <h3>Осмотры</h3>
+              <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Добавить</a>
+              <table >
+                  <tr>
+                      <th>№</th>
+                      <th>Врач</th>
+                      <th>Дата</th>
+                      <th>Действие</th>
+                  </tr>
+                  </table>
+                        <div style="text-align:left;padding:5px 0">
+                        <a href="javascript:void(0)" data-options="iconCls:'icon-ok'" class="easyui-linkbutton" onclick=" " style="width:80px">ОК</a>
+                        </div>
+            </div>
+            <div title="Назначения" style="padding:10px">
+              <h3>Назначения</h3>
+              <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Добавить</a>
+              <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">Удалить выбранные</a><br>
+              <table>
+                  <tr>
+                      <th> </th>
+                      <th>Дата</th>
+                      <th>Кол-во. План.факт</th>
+                      <th>Назначение</th>
+                      <th>Описание</th>
+                      <th>Врач</th>
+                      <th>Действие</th>
+                  </tr>
+                  </table>
+                        <div style="text-align:left;padding:5px 0">
+                        <a href="javascript:void(0)" data-options="iconCls:'icon-ok'" class="easyui-linkbutton" onclick=" " style="width:80px">ОК</a>
+                        </div>
+            </div>
 </div>
-<div id="sicklist" class="tabcontent">
-  <h3>Больничный Лист</h3>
-        <h4>Фамилия Имя Отчество</h4>
-        <input type="text" placeholder="Фамилия Имя Отчество"/>
-        <h4>Дата поступления</h4>
-        <input type="text" placeholder="Дата поступления"/>
-        <h4>Дата выписки</h4>
-        <input type="text" placeholder="Дата выписки"/>
-        <h4>Палата</h4>
-        <input type="text" placeholder="Палата"/>
-        <h4>Диагноз</h4>
-        <select size="1">
-            <option disabled>Диагноз</option>
-        </select>
-        <h4>Анамнез</h4>
-        <textarea>Анамнез жалобы и прочая ерунда</textarea>
-          <button>Ok</button>
-          <button>Отмена</button>
-</div>
-<div id="survey" class="tabcontent">
-  <h3>Осмотры</h3>
-  <button>Добавить</button>
-  <table >
-      <tr>
-          <th>№</th>
-          <th>Врач</th>
-          <th>Дата</th>
-          <th>Действие</th>
-      </tr>
-      </table>
-</div>
-<div id="prescription" class="tabcontent">
-  <h3>Назначения</h3>
-  <button>Добавить</button>
-  <button>Удалить выбраные</button>
-  <table >
-      <tr>
-          <th> </th>
-          <th>Дата</th>
-          <th>Кол-во. План.факт</th>
-          <th>Назначение</th>
-          <th>Описание</th>
-          <th>Врач</th>
-          <th>Действие</th>
-      </tr>
-      </table>
-</div>
-
-<script src="js/tabsHospital.js"></script>
-</body>
+</t:html>

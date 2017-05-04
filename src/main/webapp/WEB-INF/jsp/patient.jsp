@@ -2,41 +2,38 @@
         pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<head>
-<link rel="stylesheet" href="css/style.css">
-<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-</head>
-<body>
-
-    <form>
-      <h3>Пациент</h3>
-      <h4>Фамилия</h4>
-      <input type="text" placeholder="Фамилия"/>
-      <h4>Имя</h4>
-      <input type="text" placeholder="Имя"/>
-      <h4>Отчество</h4>
-      <input type="text" placeholder="Отчество"/>
-      <h4>Дата рождения</h4>
-      <input type="text" placeholder="Дата рождения"/>
-      <h4>Адрес</h4>
-      <input type="text" placeholder="Адрес"/>
-      <h4>Пол</h4>
-        <label>
-        <input type="radio" name=c54956e6-e863-44e1-0e0e-4e186a312c47 />Мужчина
-        </label>
-        <label>
-        <input type="radio" checked name=c54956e6-e863-44e1-0e0e-4e186a312c47 />Женщина
-        </label>
-        <h4>Паспорт</h4>
-      <input type="text" placeholder="Паспорт"/>
-      <button>
-        Сохранить
-      </button>
-      <button>
-        Отмена
-      </button>
+<%@taglib tagdir ="/WEB-INF/tags" prefix = "t"%>
+<t:html>
+     <div class="easyui-panel" title="Новый пациент" style="width:100%;max-width:400px;padding:30px 60px;">
+    <form id="ff" method="post">
+      <div style="margin-bottom:20px">
+      <input class="easyui-textbox" name="firstname" style="width:100%" data-options="label:'Фамилия:',required:true">
+      </div>
+      <div style="margin-bottom:20px">
+      <input class="easyui-textbox" name="lastname" style="width:100%" data-options="label:'Имя:',required:true">
+      </div>
+      <div style="margin-bottom:20px">
+      <input class="easyui-textbox" name="middlename" style="width:100%" data-options="label:'Отчество:',required:true">
+      </div>
+      <div style="margin-bottom:20px">
+      <input class="easyui-datebox" name="birthday" data-options="label:'Дата рождения'" style="width:100%;">
+      </div>
+      <div style="margin-bottom:20px">
+      <input class="easyui-textbox" name="address" style="width:100%;height:60px" data-options="label:'Адресс:',multiline:true">
+      </div>
+      <div style="margin-bottom:20px">
+      <select class="easyui-combobox" name="gender" label="Пол" style="width:100%">
+      <option value="MALE">мужчина</option>
+      <option value="FEMALE">женщина</option>
+      </select>
+      </div>
+      <div style="margin-bottom:20px">
+      <input class="easyui-textbox" name="passport" style="width:100%" data-options="label:'Паспорт:',required:true">
+      </div>
+       <div style="text-align:center;padding:5px 0">
+            <a href="javascript:void(0)" data-options="iconCls:'icon-ok'" class="easyui-linkbutton" onclick=" " style="width:80px">ОК</a>
+            <a href="javascript:void(0)" data-options="iconCls:'icon-cancel'" class="easyui-linkbutton" onclick=" " style="width:110px">Отменить</a>
+        </div>
     </form>
-
-  <script type="text/javascript" src="../common-files/js/require.min.js" data-main="../scripts/startup"></script>
-</body>
+</t:html>
 

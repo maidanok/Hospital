@@ -1,5 +1,7 @@
 package by.hospital.controllers;
 
+import by.hospital.domain.enumeration.Post;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +21,7 @@ public class StaffController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html");
+        request.setAttribute("posts", Post.values());
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/staff.jsp").forward(request, response);
     }
 
