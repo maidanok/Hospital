@@ -10,6 +10,12 @@ h2 {
     margin:0;
     margin-bottom:15px;
 }
+h1 {
+    font-size:36px;
+    font-weight:bold;
+    margin:0;
+    margin-bottom:15px;
+}
 .demo-info{
 	padding:0 0 12px 0;
 }
