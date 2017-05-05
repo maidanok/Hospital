@@ -78,11 +78,12 @@
         <servlet-name>StaffController</servlet-name>
         <url-pattern>/staff.html</url-pattern>
     </servlet-mapping>
-
+<!--Filters-->
     <filter>
         <filter-name>EncodingFilter</filter-name>
         <filter-class>by.hospital.filters.EncodingFilter</filter-class>
     </filter>
+
     <filter-mapping>
         <filter-name>EncodingFilter</filter-name>
         <url-pattern>*.html</url-pattern>
