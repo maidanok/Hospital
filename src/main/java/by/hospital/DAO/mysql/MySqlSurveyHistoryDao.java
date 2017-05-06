@@ -1,7 +1,6 @@
 package by.hospital.DAO.mysql;
 
 import by.hospital.DAO.AbstractJDBCDao;
-import by.hospital.DAO.DaoFactory;
 import by.hospital.DAO.mysql.interfaces.GenericDAOForSurveyHistory;
 import by.hospital.domain.SickList;
 import by.hospital.domain.Staff;
@@ -19,8 +18,8 @@ import java.util.List;
  */
 public class MySqlSurveyHistoryDao extends AbstractJDBCDao<SurveyHistory, Integer> implements GenericDAOForSurveyHistory {
 
-    public MySqlSurveyHistoryDao(DaoFactory<Connection> parentFactory, Connection connection) {
-        super(parentFactory, connection);
+    public MySqlSurveyHistoryDao(Connection connection) {
+        super(connection);
     }
 
     @Override

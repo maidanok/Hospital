@@ -1,7 +1,7 @@
 package by.hospital.service.impl;
 
+import by.hospital.DAO.GenericDAO;
 import by.hospital.DAO.mysql.MySqlDaoFactory;
-import by.hospital.DAO.mysql.MySqlStaffDao;
 import by.hospital.domain.PrescriptionExecution;
 import by.hospital.domain.Staff;
 import by.hospital.domain.SurveyHistory;
@@ -16,10 +16,10 @@ import java.util.List;
  * Created by Admin on 22.04.2017.
  */
 public class StaffServiceImpl implements StaffService {
-    MySqlDaoFactory mySqlDaoFactory = new MySqlDaoFactory();
-    MySqlStaffDao staffDao = (MySqlStaffDao) mySqlDaoFactory.getDao(mySqlDaoFactory.getContext(),Staff.class);
+    private GenericDAO<Staff,Integer> staffDao;
 
-    public StaffServiceImpl() throws PersistentException {
+    public StaffServiceImpl(GenericDAO<Staff,Integer> staffDao) throws PersistentException {
+        this.staffDao=staffDao;
     }
 
     @Override
@@ -100,9 +100,10 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public boolean deleteStaff(int staffId) throws PersistentException {
-        List<PrescriptionExecution> listPE = mySqlDaoFactory.getDao(mySqlDaoFactory.getContext(),PrescriptionExecution.class).FindByCondition("" +
+
+        List<PrescriptionExecution> listPE = MySqlDaoFactory.getInstance().getDao(MySqlDaoFactory.getInstance().getContext(),PrescriptionExecution.class).FindByCondition("" +
                 " WHERE staff_id = "+staffId+";");
-        List <SurveyHistory> listSH = mySqlDaoFactory.getDao(mySqlDaoFactory.getContext(),SurveyHistory.class)
+        List <SurveyHistory> listSH = MySqlDaoFactory.getInstance().getDao(MySqlDaoFactory.getInstance().getContext(),SurveyHistory.class)
                 .FindByCondition(" WHERE staff_id = "+staffId+";");
         if ((listPE.isEmpty())&&(listSH.isEmpty())){
             staffDao.delete(staffDao.getByPrimaryKey(staffId));

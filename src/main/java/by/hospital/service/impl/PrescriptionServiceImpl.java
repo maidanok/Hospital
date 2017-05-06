@@ -1,8 +1,7 @@
 package by.hospital.service.impl;
 
-import by.hospital.DAO.mysql.MySqlDaoFactory;
-import by.hospital.DAO.mysql.MySqlPrescriptionDao;
-import by.hospital.DAO.mysql.MySqlPrescriptionExecutionDao;
+import by.hospital.DAO.GenericDAO;
+import by.hospital.DAO.conditions.QuantityMoreCompleted;
 import by.hospital.domain.Prescription;
 import by.hospital.domain.PrescriptionExecution;
 import by.hospital.exception.PersistentException;
@@ -19,21 +18,19 @@ import static by.hospital.domain.enumeration.PrescriptionType.DISCHARGE;
  * Created by Admin on 23.04.2017.
  */
 public class PrescriptionServiceImpl implements PrescriptionService {
-    private MySqlDaoFactory mySqlDaoFactory = new MySqlDaoFactory();
-    private MySqlPrescriptionDao prescriptionDao =
-            (MySqlPrescriptionDao) mySqlDaoFactory.getDao(mySqlDaoFactory.getContext(), Prescription.class);
-    private MySqlPrescriptionExecutionDao prescriptionExecutionDao =
-            (MySqlPrescriptionExecutionDao) mySqlDaoFactory.getDao
-                    (mySqlDaoFactory.getContext(), PrescriptionExecution.class);
+    private GenericDAO<Prescription,Integer> prescriptionDao;
+    private GenericDAO<PrescriptionExecution,Integer> prescriptionExecutionDao;
 
-    public PrescriptionServiceImpl() throws PersistentException {
+    public PrescriptionServiceImpl(GenericDAO<Prescription,Integer> prescriptionDao, GenericDAO<PrescriptionExecution,Integer> prescriptionExecutionDao) throws PersistentException {
+        this.prescriptionDao=prescriptionDao;
+        this.prescriptionExecutionDao=prescriptionExecutionDao;
     }
 
     @Override
     public List<Prescription> getAllNotDone(){
         List <Prescription> result = new ArrayList<>();
         try {
-            result = prescriptionDao.getAllNotDone();
+            result = prescriptionDao.FindByCondition(new QuantityMoreCompleted());
         } catch (PersistentException e) {
             e.printStackTrace();
         }
@@ -81,7 +78,7 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     public boolean deletePrescription(int id) {
         List<PrescriptionExecution> prescriptionExecutions = new ArrayList<>();
         try {
-            prescriptionExecutions = prescriptionExecutionDao.getAllFromPrescription(id);
+            prescriptionExecutions = prescriptionExecutionDao.FindByCondition("WHERE prescription_id = " + id + ";");
             if (prescriptionExecutions.isEmpty()) {
                 prescriptionDao.delete(prescriptionDao.getByPrimaryKey(id));
                 return true;

@@ -1,4 +1,5 @@
 package by.hospital.console.command;
+import by.hospital.domain.Patient;
 import by.hospital.exception.PersistentException;
 import by.hospital.service.api.PatientService;
 import by.hospital.service.impl.PatientServiceImpl;
@@ -12,7 +13,7 @@ import static java.lang.System.out;
  * Created by Admin on 22.04.2017.
  */
 public class NewPatientCommand extends AbstractCommandFactory{
-   private PatientService patientService = new PatientServiceImpl();
+   private PatientService patientService = new PatientServiceImpl(mySqlDaoFactory.getDao(mySqlDaoFactory.getContext(), Patient.class));
     public NewPatientCommand() throws PersistentException, SQLException {
         super("Добавить нового пациента");
     }

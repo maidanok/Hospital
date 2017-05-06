@@ -1,6 +1,9 @@
 package by.hospital.service.api;
 
 import by.hospital.domain.Prescription;
+import by.hospital.domain.SickList;
+import by.hospital.domain.Staff;
+import by.hospital.domain.SurveyHistory;
 import by.hospital.exception.PersistentException;
 
 import java.util.List;
@@ -12,15 +15,15 @@ public interface PrescriptionService {
 
     List<Prescription> getAllNotDone() throws PersistentException;
 
-    List<Prescription> findBySickList(int id);
+    List<Prescription> findBySickList(SickList sickList);
 
-    List<Prescription> findBySurveyHistory(int id);
+    List<Prescription> findBySurveyHistory(SurveyHistory surveyHistory);
 
     Prescription createNewPrescription(String type, int SurvID, String description, int quantity);
 
-    boolean deletePrescription(int id);
+    boolean deletePrescription(Prescription prescription);
 
-    boolean executePrescription(int id, int staffID) throws PersistentException;
+    boolean executePrescription(Prescription prescription, Staff staff) throws PersistentException;
 
 
 }

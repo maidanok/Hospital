@@ -1,5 +1,7 @@
 package by.hospital.console.command;
 
+import by.hospital.domain.Prescription;
+import by.hospital.domain.PrescriptionExecution;
 import by.hospital.exception.PersistentException;
 import by.hospital.service.api.PrescriptionService;
 import by.hospital.service.impl.PrescriptionServiceImpl;
@@ -20,7 +22,7 @@ public class ExecutePrescription extends AbstractCommandFactory {
         int id = Integer.valueOf(scanner.nextLine());
         out.println("введите id врача");
         int staffID =Integer.valueOf(scanner.nextLine());
-        PrescriptionService prescriptionService = new PrescriptionServiceImpl();
+        PrescriptionService prescriptionService = new PrescriptionServiceImpl(mySqlDaoFactory.getDao(mySqlDaoFactory.getContext(), Prescription.class),mySqlDaoFactory.getDao(mySqlDaoFactory.getContext(), PrescriptionExecution.class));
         out.println(prescriptionService.executePrescription(id,staffID)? "успешно":"неудача");
     }
 }

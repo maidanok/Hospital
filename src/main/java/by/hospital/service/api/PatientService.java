@@ -13,13 +13,13 @@ public interface PatientService {
 
     Patient createNewPatient(String fersN, String lastN, String middleN, Date birth, String sex, String addr, String passp);
 
-    Patient returnPatientFull(int id);
+    Patient returnPatientFull(Patient patient);
 
-    Patient returnPatientShort(int id);
+    Patient returnPatientShort(Patient patient);
 
     List <Patient> getALLPatients();
 
-    List <Patient> FindLastName(String lastName);
+    List <Patient> FindLastName(Patient patient);
 
-    boolean deletePatient (int patientID) throws PersistentException;
+    boolean deletePatient (Patient patient) throws PersistentException;
 }

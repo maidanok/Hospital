@@ -1,5 +1,6 @@
 package by.hospital.DAO;
 
+import by.hospital.DAO.conditions.Condition;
 import by.hospital.domain.Entity;
 import by.hospital.exception.PersistentException;
 
@@ -24,7 +25,7 @@ public interface GenericDAO<Type extends Entity<PrimaryKey>, PrimaryKey extends 
 
     List<Type> getAll() throws PersistentException;
 
-    List<Type> FindByCondition(String condition) throws PersistentException;
+    List<Type> FindByCondition(Condition condition) throws PersistentException;
 
 
 }

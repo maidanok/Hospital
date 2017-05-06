@@ -1,5 +1,7 @@
 package by.hospital.console.command;
 
+import by.hospital.domain.Prescription;
+import by.hospital.domain.PrescriptionExecution;
 import by.hospital.exception.PersistentException;
 import by.hospital.service.api.PrescriptionService;
 import by.hospital.service.impl.PrescriptionServiceImpl;
@@ -16,7 +18,7 @@ public class NewPrescription extends AbstractCommandFactory {
 
     @Override
     public void runCommand() throws PersistentException {
-        PrescriptionService prescriptionServise = new PrescriptionServiceImpl();
+        PrescriptionService prescriptionServise = new PrescriptionServiceImpl(mySqlDaoFactory.getDao(mySqlDaoFactory.getContext(), Prescription.class),mySqlDaoFactory.getDao(mySqlDaoFactory.getContext(), PrescriptionExecution.class));
         out.println("Введите данные нового назначения");
         out.println("Введите тип назначения PROCEDURE, MEDICATION, SURGERY, DISCHARGE");
         String type = scanner.nextLine();

@@ -19,6 +19,7 @@ import java.util.Map;
 public class MySqlDaoFactory implements DaoFactory<Connection> {
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
     private Map<Class, DaoCreator> creators = new HashMap();
+    private static MySqlDaoFactory instance = new MySqlDaoFactory();
 
     public Connection getContext() throws PersistentException {
         try {
@@ -37,13 +38,13 @@ public class MySqlDaoFactory implements DaoFactory<Connection> {
         }
     }
 
-    public MySqlDaoFactory() {
+    private MySqlDaoFactory() {
 
         //Patient
         this.creators.put(Patient.class, new DaoCreator<Connection>() {
             @Override
             public GenericDAOForPatient create(Connection connection) {
-                return new MySqlPatientDao(MySqlDaoFactory.this, connection);
+                return new MySqlPatientDao(connection);
             }
         });
 
@@ -51,7 +52,7 @@ public class MySqlDaoFactory implements DaoFactory<Connection> {
         this.creators.put(SickList.class, new DaoCreator<Connection>() {
             @Override
             public GenericDaoForSickList create(Connection connection) {
-                return new MySqlSickListDao(MySqlDaoFactory.this, connection);
+                return new MySqlSickListDao(connection);
             }
         });
 
@@ -59,7 +60,7 @@ public class MySqlDaoFactory implements DaoFactory<Connection> {
         this.creators.put(Diagnose.class, new DaoCreator<Connection>() {
             @Override
             public GenericDAO create(Connection connection) {
-                return new MySqlDiagnoseDao(MySqlDaoFactory.this, connection);
+                return new MySqlDiagnoseDao(connection);
             }
         });
 
@@ -67,14 +68,14 @@ public class MySqlDaoFactory implements DaoFactory<Connection> {
         this.creators.put(Staff.class, new DaoCreator<Connection>() {
             @Override
             public GenericDAOForStaff create(Connection connection) {
-                return new MySqlStaffDao(MySqlDaoFactory.this, connection);
+                return new MySqlStaffDao(connection);
             }
         });
         //SurveyHistory
         this.creators.put(SurveyHistory.class, new DaoCreator<Connection>() {
             @Override
             public GenericDAOForSurveyHistory create(Connection connection) {
-                return new MySqlSurveyHistoryDao(MySqlDaoFactory.this, connection);
+                return new MySqlSurveyHistoryDao(connection);
             }
         });
 
@@ -82,7 +83,7 @@ public class MySqlDaoFactory implements DaoFactory<Connection> {
         this.creators.put(Prescription.class, new DaoCreator<Connection>() {
             @Override
             public GenericDaoForPrescription create(Connection connection) {
-                return new MySqlPrescriptionDao(MySqlDaoFactory.this, connection);
+                return new MySqlPrescriptionDao(connection);
             }
         });
 
@@ -90,8 +91,13 @@ public class MySqlDaoFactory implements DaoFactory<Connection> {
         this.creators.put(PrescriptionExecution.class, new DaoCreator<Connection>() {
             @Override
             public GenericDAOForPrescriptionExecution create(Connection connection) {
-                return new MySqlPrescriptionExecutionDao(MySqlDaoFactory.this,connection);
+                return new MySqlPrescriptionExecutionDao(connection);
             }
         });
     }
+
+    public static MySqlDaoFactory getInstance(){
+        return instance;
+    }
 }
+

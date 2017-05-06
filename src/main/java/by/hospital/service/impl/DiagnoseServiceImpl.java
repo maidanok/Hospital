@@ -1,12 +1,13 @@
 package by.hospital.service.impl;
 
-import by.hospital.DAO.mysql.MySqlDaoFactory;
-import by.hospital.DAO.mysql.MySqlDiagnoseDao;
+import by.hospital.DAO.GenericDAO;
+import by.hospital.DAO.conditions.FindFinalDiagnoseID;
+import by.hospital.DAO.conditions.FindSdiagnoseID;
 import by.hospital.domain.Diagnose;
+import by.hospital.domain.SickList;
+import by.hospital.domain.SurveyHistory;
 import by.hospital.exception.PersistentException;
 import by.hospital.service.api.DiagnoseService;
-import by.hospital.service.api.SickListService;
-import by.hospital.service.api.SurveyHistoryService;
 
 import java.util.List;
 
@@ -14,10 +15,14 @@ import java.util.List;
  * Created by Admin on 23.04.2017.
  */
 public class DiagnoseServiceImpl implements DiagnoseService {
-   private MySqlDaoFactory mySqlDaoFactory = new MySqlDaoFactory();
-   private MySqlDiagnoseDao diagnoseDao = (MySqlDiagnoseDao) mySqlDaoFactory.getDao(mySqlDaoFactory.getContext(),Diagnose.class);
+   private GenericDAO<Diagnose, Integer> diagnoseDao;
+   private GenericDAO<SurveyHistory,Integer> surveyHistoryDao;
+   private GenericDAO<SickList,Integer> sickListDao;
 
-    public DiagnoseServiceImpl() throws PersistentException {
+    public DiagnoseServiceImpl(GenericDAO<Diagnose, Integer> diagnoseDao,GenericDAO<SurveyHistory,Integer> surveyHistoryDao,GenericDAO<SickList,Integer> sickListDao) throws PersistentException {
+        this.diagnoseDao = diagnoseDao;
+        this.sickListDao=sickListDao;
+        this.surveyHistoryDao=surveyHistoryDao;
     }
 
     @Override
@@ -34,8 +39,8 @@ public class DiagnoseServiceImpl implements DiagnoseService {
     }
 
     @Override
-    public Diagnose getDiagmose(int id) throws PersistentException {
-        return diagnoseDao.getByPrimaryKey(id);
+    public Diagnose getDiagmose(Diagnose diagnose) throws PersistentException {
+        return diagnoseDao.getByPrimaryKey(diagnose.getPrimaryKey());
     }
 
     @Override
@@ -44,12 +49,11 @@ public class DiagnoseServiceImpl implements DiagnoseService {
     }
 
     @Override
-    public boolean deleteDiagnose(int id) {
+    public boolean deleteDiagnose(Diagnose diagnose) {
         try {
-            SurveyHistoryService surveyHistoryService = new SurveyHistoryServiceImpl();
-            SickListService sickListService = new SickListServiceImpl();
-            if (surveyHistoryService.findByDiagnoseID(id).isEmpty()&&sickListService.findByDiagnoseID(id).isEmpty()){
-                diagnoseDao.delete(diagnoseDao.getByPrimaryKey(id));
+            if (surveyHistoryDao.FindByCondition(new FindSdiagnoseID(diagnose.getPrimaryKey())).isEmpty()
+                    && sickListDao.FindByCondition(new FindFinalDiagnoseID(diagnose.getPrimaryKey())).isEmpty()){
+                diagnoseDao.delete(diagnoseDao.getByPrimaryKey(diagnose.getPrimaryKey()));
                 return true;
             }
         } catch (PersistentException e) {

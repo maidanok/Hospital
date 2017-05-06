@@ -10,7 +10,7 @@ import java.util.Scanner;
  * Created by Admin on 22.04.2017.
  */
 public abstract class AbstractCommandFactory {
-    protected MySqlDaoFactory mySqlDaoFactory = new MySqlDaoFactory();
+    protected MySqlDaoFactory mySqlDaoFactory = MySqlDaoFactory.getInstance();
     protected ConnectionPool connectionPool=  ConnectionPool.getInstance();
     protected Scanner scanner = new Scanner(System.in);
 

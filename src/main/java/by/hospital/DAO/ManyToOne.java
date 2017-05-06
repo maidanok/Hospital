@@ -9,7 +9,7 @@ import java.sql.Connection;
 /**
  * Created by Admin on 09.04.2017.
  */
-//Класс отвечает за работу с полем, ссылающимся на хранимый объект
+//Класс отвечает за работу с полем, ссылающимся на хранимый объект нигде не используется
 // @param <Owner>      класс объекта, чье поле ссылается на зависимый объект.
 // @param <Dependence> класс зависимого объекта.
 public class ManyToOne<Owner extends Entity, Dependence extends Entity> {

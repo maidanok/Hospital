@@ -1,5 +1,6 @@
 package by.hospital.console.command;
 
+import by.hospital.domain.SurveyHistory;
 import by.hospital.exception.PersistentException;
 import by.hospital.service.api.SurveyHistoryService;
 import by.hospital.service.impl.SurveyHistoryServiceImpl;
@@ -19,7 +20,7 @@ public class NewSurveyHistory extends AbstractCommandFactory {
 
     @Override
     public void runCommand() throws PersistentException {
-        SurveyHistoryService surveyHistoryService = new SurveyHistoryServiceImpl();
+        SurveyHistoryService surveyHistoryService = new SurveyHistoryServiceImpl(mySqlDaoFactory.getDao(mySqlDaoFactory.getContext(), SurveyHistory.class));
         out.println("Здравствуйте доктор введите свой ID");
         int staffID = Integer.valueOf(scanner.nextLine());
         out.println("введите номер больничного листа");

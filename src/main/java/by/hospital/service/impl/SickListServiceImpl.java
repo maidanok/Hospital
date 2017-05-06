@@ -1,12 +1,10 @@
 package by.hospital.service.impl;
 
-import by.hospital.DAO.mysql.MySqlDaoFactory;
-import by.hospital.DAO.mysql.MySqlSickListDao;
+import by.hospital.DAO.GenericDAO;
 import by.hospital.domain.SickList;
 import by.hospital.domain.SurveyHistory;
 import by.hospital.exception.PersistentException;
 import by.hospital.service.api.SickListService;
-import by.hospital.service.api.SurveyHistoryService;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,10 +14,12 @@ import java.util.List;
  * Created by Admin on 22.04.2017.
  */
 public class SickListServiceImpl implements SickListService {
-    private MySqlDaoFactory mySqlDaoFactory = new MySqlDaoFactory();
-    private MySqlSickListDao sickListDao = (MySqlSickListDao) mySqlDaoFactory.getDao(mySqlDaoFactory.getContext(), SickList.class);
+    private GenericDAO<SurveyHistory,Integer> surveyHistoryDao;
+    private GenericDAO<SickList,Integer> sickListDao;
 
-    public SickListServiceImpl() throws PersistentException {
+    public SickListServiceImpl(GenericDAO<SickList,Integer> sickListDao,GenericDAO<SurveyHistory,Integer> surveyHistoryDao) throws PersistentException {
+        this.sickListDao=sickListDao;
+        this.surveyHistoryDao=surveyHistoryDao;
     }
 
     @Override
@@ -79,11 +79,11 @@ public class SickListServiceImpl implements SickListService {
     }
 
     @Override
-    public boolean deleteSickList(int id) throws PersistentException {
-        SurveyHistoryService surveyHistoryService = new SurveyHistoryServiceImpl();
-        List<SurveyHistory> list = surveyHistoryService.getAllbySickList(id);
+    public boolean deleteSickList(int sickListID) throws PersistentException {
+
+        List<SurveyHistory> list = surveyHistoryDao.FindByCondition("WHERE sick_list.sick_list_id = " + sickListID + ";");
         if (list.isEmpty()){
-            sickListDao.delete(sickListDao.getByPrimaryKey(id));
+            sickListDao.delete(sickListDao.getByPrimaryKey(sickListID));
             return true;
         } else
         return false;

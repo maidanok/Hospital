@@ -1,5 +1,6 @@
 package by.hospital.DAO;
 
+import by.hospital.DAO.conditions.Condition;
 import by.hospital.domain.Entity;
 import by.hospital.exception.PersistentException;
 
@@ -11,11 +12,9 @@ import java.util.List;
 
 public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKey extends Integer> implements GenericDAO<Type, PrimaryKey> {
 
-    private DaoFactory<Connection> parentFactory;
     protected Connection connection;
 
-    public AbstractJDBCDao(DaoFactory<Connection> parentFactory, Connection connection) {
-        this.parentFactory = parentFactory;
+    public AbstractJDBCDao(Connection connection) {
         this.connection = connection;
     }
 
@@ -157,10 +156,10 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
         return list;
     }
 
-    public  List<Type> FindByCondition(String condition) throws PersistentException {
+    public  List<Type> FindByCondition(Condition condition) throws PersistentException {
         List<Type> list;
         String sql = getSelectedQuery();
-        sql += condition;
+        sql += condition.getValue();
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
@@ -173,6 +172,7 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
 
 
 
+/*
     //получить вложенный объект получается во время реализации конкретного класса
     //когда парсируем результат sql закроса мы в данный метод подставляем класс поля которое хотим получить и
     //ID который нам пришел в ответе parentFactory по классу найдет нам нужную фабрику
@@ -181,6 +181,7 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
         return parentFactory.getDao(connection, dtoClass).getByPrimaryKey(primaryKey);
     }
 
+*/
 
     //с такой конвертацией не выдает NullPointerException
     //и адекватно осуществляет вставку записи где дата равна null

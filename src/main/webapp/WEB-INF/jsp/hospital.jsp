@@ -11,6 +11,7 @@
             <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">Удалить выбранные</a><br>
             <input type="search" class="easyui-searchbox" data-options="prompt:'Фамилия'" style="width:25%">
             <input type="search" class="easyui-datebox" data-options="prompt:'Дата поступления'" style="width:25%">
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">Найти</a>
             <table>
                 <tr>
                     <th>Отметить</th>
@@ -39,6 +40,7 @@
             <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Добавить</a>
             <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">Удалить выбранные</a><br>
             <input type="search" class="easyui-searchbox" data-options="prompt:'Фамилия'" style="width:25%">
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">Найти</a>
             <table>
                 <tr>
                     <th>Отметить</th>

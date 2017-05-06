@@ -1,7 +1,6 @@
 package by.hospital.service.impl;
 
-import by.hospital.DAO.mysql.MySqlDaoFactory;
-import by.hospital.DAO.mysql.MySqlSurveyHistoryDao;
+import by.hospital.DAO.GenericDAO;
 import by.hospital.domain.SurveyHistory;
 import by.hospital.exception.PersistentException;
 import by.hospital.service.api.SurveyHistoryService;
@@ -14,15 +13,15 @@ import java.util.List;
  * Created by Admin on 23.04.2017.
  */
 public class SurveyHistoryServiceImpl implements SurveyHistoryService {
-    private MySqlDaoFactory mySqlDaoFactory = new MySqlDaoFactory();
-    private MySqlSurveyHistoryDao surveyHistoryDao = (MySqlSurveyHistoryDao) mySqlDaoFactory.getDao(mySqlDaoFactory.getContext(),SurveyHistory.class);
+    private GenericDAO<SurveyHistory, Integer> surveyHistoryDao;
 
-    public SurveyHistoryServiceImpl() throws PersistentException {
+    public SurveyHistoryServiceImpl(GenericDAO<SurveyHistory, Integer> surveyHistoryDao) throws PersistentException {
+        this.surveyHistoryDao = surveyHistoryDao;
     }
 
     @Override
     public List<SurveyHistory> getAllbySickList(int sickListID) throws PersistentException {
-        return surveyHistoryDao.FindByCondition( "WHERE sick_list.sick_list_id = "+sickListID+";");
+        return surveyHistoryDao.FindByCondition("WHERE sick_list.sick_list_id = " + sickListID + ";");
     }
 
     @Override
@@ -38,7 +37,7 @@ public class SurveyHistoryServiceImpl implements SurveyHistoryService {
         surveyHistory.getStaff().setPrimaryKey(staffID);
         surveyHistory.setSurveyDate(date);
         surveyHistory.setDescription(description);
-        surveyHistory=surveyHistoryDao.persist(surveyHistory);
+        surveyHistory = surveyHistoryDao.persist(surveyHistory);
         return surveyHistory;
     }
 
@@ -51,7 +50,7 @@ public class SurveyHistoryServiceImpl implements SurveyHistoryService {
     public List<SurveyHistory> findByDiagnoseID(int id) {
         List<SurveyHistory> list = new ArrayList<>();
         try {
-            list = surveyHistoryDao.FindByCondition(" WHERE s_diagnose_id = "+id+";");
+            list = surveyHistoryDao.FindByCondition(" WHERE s_diagnose_id = " + id + ";");
         } catch (PersistentException e) {
             e.printStackTrace();
         }
