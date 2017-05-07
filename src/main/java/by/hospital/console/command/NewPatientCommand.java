@@ -1,8 +1,7 @@
 package by.hospital.console.command;
-import by.hospital.domain.Patient;
 import by.hospital.exception.PersistentException;
+import by.hospital.service.ServiceLocator;
 import by.hospital.service.api.PatientService;
-import by.hospital.service.impl.PatientServiceImpl;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -13,7 +12,7 @@ import static java.lang.System.out;
  * Created by Admin on 22.04.2017.
  */
 public class NewPatientCommand extends AbstractCommandFactory{
-   private PatientService patientService = new PatientServiceImpl(mySqlDaoFactory.getDao(mySqlDaoFactory.getContext(), Patient.class));
+
     public NewPatientCommand() throws PersistentException, SQLException {
         super("Добавить нового пациента");
     }
@@ -35,7 +34,7 @@ public class NewPatientCommand extends AbstractCommandFactory{
         String addr = scanner.nextLine();
         out.println("Номер паспорта");
         String pas = scanner.nextLine();
-        patientService.createNewPatient(fn,ln,mn,date,sex,addr,pas);
+        ServiceLocator.getService(PatientService.class).createNewPatient(fn,ln,mn,date,sex,addr,pas);
     }
 }
 

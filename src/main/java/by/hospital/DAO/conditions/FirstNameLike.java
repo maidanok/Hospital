@@ -3,15 +3,14 @@ package by.hospital.DAO.conditions;
 /**
  * Created by Admin on 06.05.2017.
  */
-public class FirstNameLike implements Condition {
-    private String lastName;
+public class FirstNameLike extends Condition {
 
-    public FirstNameLike(String lastName) {
-        this.lastName = lastName;
+    public FirstNameLike (String value){
+        super(value);
     }
 
     @Override
     public String getValue() {
-        return " where first_name like '" + lastName + "';";
+        return " where first_name like '" + value + "';";
     }
 }

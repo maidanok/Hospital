@@ -3,7 +3,7 @@ package by.hospital.DAO.conditions;
 /**
  * Created by Admin on 06.05.2017.
  */
-public class QuantityMoreCompleted implements Condition {
+public class QuantityMoreCompleted extends Condition {
 
     @Override
     public String getValue() {

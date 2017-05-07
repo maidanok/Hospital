@@ -1,9 +1,11 @@
 package by.hospital.service.impl;
 
 import by.hospital.DAO.GenericDAO;
+import by.hospital.DAO.conditions.PrescriptionID;
 import by.hospital.DAO.conditions.QuantityMoreCompleted;
-import by.hospital.domain.Prescription;
-import by.hospital.domain.PrescriptionExecution;
+import by.hospital.DAO.conditions.SickListID;
+import by.hospital.DAO.conditions.SurveyHistoryID;
+import by.hospital.domain.*;
 import by.hospital.exception.PersistentException;
 import by.hospital.service.api.PrescriptionService;
 
@@ -38,10 +40,10 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     }
 
     @Override
-    public List<Prescription> findBySickList(int id) {
+    public List<Prescription> findBySickList(SickList sickList) {
         List<Prescription> list = new ArrayList<>();
         try {
-            list = prescriptionDao.FindByCondition(" WHERE sick_list.sick_list_id = " + id + ";");
+            list = prescriptionDao.FindByCondition(new SickListID(sickList.getPrimaryKey()));
         } catch (PersistentException e) {
             e.printStackTrace();
         }
@@ -49,10 +51,10 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     }
 
     @Override
-    public List<Prescription> findBySurveyHistory(int id) {
+    public List<Prescription> findBySurveyHistory(SurveyHistory surveyHistory) {
         List<Prescription> list = new ArrayList<>();
         try {
-            list = prescriptionDao.FindByCondition(" WHERE survey_history.survey_history_id = " + id + ";");
+            list = prescriptionDao.FindByCondition(new SurveyHistoryID(surveyHistory.getPrimaryKey()));
         } catch (PersistentException e) {
             e.printStackTrace();
         }
@@ -75,12 +77,12 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     }
 
     @Override
-    public boolean deletePrescription(int id) {
+    public boolean deletePrescription(Prescription prescription) {
         List<PrescriptionExecution> prescriptionExecutions = new ArrayList<>();
         try {
-            prescriptionExecutions = prescriptionExecutionDao.FindByCondition("WHERE prescription_id = " + id + ";");
+            prescriptionExecutions = prescriptionExecutionDao.FindByCondition(new PrescriptionID(prescription.getPrimaryKey()));
             if (prescriptionExecutions.isEmpty()) {
-                prescriptionDao.delete(prescriptionDao.getByPrimaryKey(id));
+                prescriptionDao.delete(prescriptionDao.getByPrimaryKey(prescription.getPrimaryKey()));
                 return true;
             }
         } catch (PersistentException e) {
@@ -90,15 +92,15 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     }
 
     @Override
-    public boolean executePrescription(int id, int staffID) throws PersistentException {
-        Prescription prescription = prescriptionDao.getByPrimaryKey(id);
+    public boolean executePrescription(Prescription prescription, Staff staff) throws PersistentException {
+        Prescription prescr = prescriptionDao.getByPrimaryKey(prescription.getPrimaryKey());
 
-        if (prescription.getPrescriptionType().equals(DISCHARGE)){
-            prescription.getSurveyHistory().getSickList().setDateOUT(Date.valueOf(LocalDate.now()));
+        if (prescr.getPrescriptionType().equals(DISCHARGE)){
+            prescr.getSurveyHistory().getSickList().setDateOUT(Date.valueOf(LocalDate.now()));
         }
         PrescriptionExecution prescriptionExecution = new PrescriptionExecution();
-        prescriptionExecution.setPrescriptionID(id);
-        prescriptionExecution.getStaff().setPrimaryKey(staffID);
+        prescriptionExecution.setPrescriptionID(prescription.getPrimaryKey());
+        prescriptionExecution.getStaff().setPrimaryKey(staff.getPrimaryKey());
         prescriptionExecution.setPrescriptionExecutionDate(Date.valueOf(LocalDate.now()));
 
         prescriptionExecution = prescriptionExecutionDao.persist(prescriptionExecution);

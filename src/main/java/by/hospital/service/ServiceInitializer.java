@@ -29,7 +29,7 @@ public class ServiceInitializer {
             PrescriptionService prescriptionService = new PrescriptionServiceImpl(prescriptionDao,prescriptionExecutionDao);
             SickListService sickListService = new SickListServiceImpl(sickListDao,surveyHistoryDao);
             StaffService staffService = new StaffServiceImpl(staffDao);
-            SurveyHistoryService surveyHistoryService= new SurveyHistoryServiceImpl(surveyHistoryDao);
+            SurveyHistoryService surveyHistoryService= new SurveyHistoryServiceImpl(surveyHistoryDao,prescriptionDao);
 
             locator.registerService(DiagnoseService.class,diagnoseService);
             locator.registerService(PatientService.class,patientService);

@@ -22,21 +22,6 @@ public class MySqlSurveyHistoryDao extends AbstractJDBCDao<SurveyHistory, Intege
         super(connection);
     }
 
-    @Override
-    public List<SurveyHistory> FindByCondition(String condition) throws PersistentException {
-        List<SurveyHistory> list;
-        String sql = getSelectedQuery();
-        sql += condition;
-        try {
-            PreparedStatement statement = super.connection.prepareStatement(sql);
-            ResultSet resultSet = statement.executeQuery();
-            list = parseResultSet(resultSet);
-        } catch (Exception e) {
-            throw new PersistentException(e);
-        }
-        return list;
-    }
-
     private class PersistSurveyHistory extends SurveyHistory {
         public void setPrimaryKey(int id) {
             super.setPrimaryKey(id);

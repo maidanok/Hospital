@@ -1,9 +1,8 @@
 package by.hospital.console.command;
 
-import by.hospital.domain.SickList;
 import by.hospital.exception.PersistentException;
+import by.hospital.service.ServiceLocator;
 import by.hospital.service.api.SickListService;
-import by.hospital.service.impl.SickListServiceImpl;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -14,7 +13,7 @@ import static java.lang.System.out;
  * Created by Admin on 23.04.2017.
  */
 public class NewSickList extends AbstractCommandFactory {
-    private SickListService sickListService = new SickListServiceImpl(mySqlDaoFactory.getDao(mySqlDaoFactory.getContext(), SickList.class));
+
     public NewSickList() throws PersistentException {
         super("Добавить новый больничный лист");
     }
@@ -29,8 +28,6 @@ public class NewSickList extends AbstractCommandFactory {
         out.println("На что жалуется пациент? (в одну строку)");
         String sympt = scanner.nextLine();
         System.out.println("Врач установит диагноз после осмотра");
-        sickListService.createNewSickIst(id,date,room,sympt,1);
-
-
+        ServiceLocator.getService(SickListService.class).createNewSickIst(id,date,room,sympt,1);
     }
 }
