@@ -29,8 +29,9 @@
                         <td>${patient.getAddress()}</td>
                         <td>${patient.getPassportNumber()}</td>
                         <td>
-                            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'"></a>
-                            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a>
+                            <a  href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'"></a>
+                            <a href="controller?COMMAND=EditPatient&id=${patient.getPrimaryKey()}" class="easyui-linkbutton" data-options="iconCls:'icon-edit'"></a>
+                            <a  href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -59,7 +60,9 @@
                         <td>${staff.getSex().getName()}</td>
                         <td>${staff.getAddress()}</td>
                         <td>${staff.getPassportNumber()}</td>
-                        <td><a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a></td>
+                        <td>
+                        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">
+                        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a></td>
                     </tr>
                 </c:forEach>
             </table>

@@ -12,7 +12,7 @@
         </div>
 
         <div data-options="region:'east'" style="width:30%;padding:10px;border:0;">
-        <p align ="right"><a href="">Врач Фамилия имя отчество</a></p>
-        <p align ="right"><a href="">Выход</a></p>
+        <p align ="right"><a href="">${user.getPost().getName()} ${user.getFullName()}</a></p>
+        <p align ="right"><a href="controller?COMMAND=Logout">Выход</a></p>
         </div>
     </div>

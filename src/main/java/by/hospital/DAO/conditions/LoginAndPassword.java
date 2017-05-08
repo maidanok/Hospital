@@ -14,6 +14,6 @@ public class LoginAndPassword extends Condition {
     }
     @Override
     public String getValue() {
-        return " WHERE login="+log+" AND password="+pass+";";
+        return " WHERE login='"+log+"' AND password='"+pass+"';";
     }
 }

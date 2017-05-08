@@ -3,7 +3,6 @@ package by.hospital.service.api;
 import by.hospital.domain.Patient;
 import by.hospital.exception.PersistentException;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,7 +10,7 @@ import java.util.List;
  */
 public interface PatientService {
 
-    Patient createNewPatient(String fersN, String lastN, String middleN, Date birth, String sex, String addr, String passp);
+    Patient createNewPatient(Patient patient);
 
     Patient returnPatientFull(Patient patient);
 
@@ -22,4 +21,6 @@ public interface PatientService {
     List <Patient> FindLastName(Patient patient);
 
     boolean deletePatient (Patient patient) throws PersistentException;
+
+    void savePatient(Patient patient);
 }

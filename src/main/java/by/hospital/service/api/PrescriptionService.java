@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface PrescriptionService {
 
-    List<Prescription> getAllNotDone() throws PersistentException;
+    List<Prescription> getAllNotDone();
 
     List<Prescription> findBySickList(SickList sickList);
 

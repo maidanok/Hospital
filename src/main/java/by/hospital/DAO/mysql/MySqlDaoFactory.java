@@ -19,7 +19,7 @@ import java.util.Map;
 public class MySqlDaoFactory implements DaoFactory<Connection> {
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
     private Map<Class, DaoCreator> creators = new HashMap();
-    private static MySqlDaoFactory instance = new MySqlDaoFactory();
+    private static MySqlDaoFactory instance = null;
 
     public Connection getContext() throws PersistentException {
         try {
@@ -97,6 +97,9 @@ public class MySqlDaoFactory implements DaoFactory<Connection> {
     }
 
     public static MySqlDaoFactory getInstance(){
+        if (instance==null){
+            instance=new MySqlDaoFactory();
+        }
         return instance;
     }
 }

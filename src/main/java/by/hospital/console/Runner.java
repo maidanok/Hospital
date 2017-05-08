@@ -21,6 +21,7 @@ public class Runner {
             new NewSurveyHistory(),
             new NewPrescription(),
             new ExecutePrescription(),
+            new FindLogPass(),
             new MenuCikle()
     };
     private Scanner scanner = new Scanner(System.in);

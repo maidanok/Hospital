@@ -17,7 +17,7 @@ public interface StaffService {
 
     Staff createNewStaff(String fersN, String lastN, String middleN, Date birth, String sex, String addr, String passp, String post, String login, String passw);
 
-    List<Staff> getAllStaff() throws PersistentException;
+    List<Staff> getAllStaff();
 
     Staff returnStaffFull (Staff staff) throws PersistentException;
 

@@ -8,7 +8,6 @@ import by.hospital.domain.SickList;
 import by.hospital.exception.PersistentException;
 import by.hospital.service.api.PatientService;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,15 +24,7 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public Patient createNewPatient(String fersN, String lastN, String middleN, Date birth, String sex, String addr, String passp) {
-        Patient patient = new Patient();
-        patient.setFirstName(fersN);
-        patient.setLastName(lastN);
-        patient.setMiddleName(middleN);
-        patient.setBirthday(birth);
-        patient.setSex(sex);
-        patient.setAddress(addr);
-        patient.setPassportNumber(passp);
+    public Patient createNewPatient(Patient patient) {
         try {
             return patientDao.persist(patient);
         } catch (PersistentException e) {
@@ -97,5 +88,18 @@ public class PatientServiceImpl implements PatientService {
             }
         }
         return false;
+    }
+
+    public void savePatient(Patient patient){
+        if(patient.getPrimaryKey()!=0){
+            try {
+                patientDao.update(patient);
+            } catch (PersistentException e) {
+                e.printStackTrace();
+            }
+        }
+        if (patient.getPrimaryKey()==0){
+            createNewPatient(patient);
+        }
     }
 }

@@ -44,8 +44,13 @@ public class DiagnoseServiceImpl implements DiagnoseService {
     }
 
     @Override
-    public List<Diagnose> getAll() throws PersistentException {
-        return diagnoseDao.getAll();
+    public List<Diagnose> getAll(){
+        try {
+            return diagnoseDao.getAll();
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override

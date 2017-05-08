@@ -14,7 +14,7 @@ public interface DiagnoseService {
 
     Diagnose getDiagmose(Diagnose diagnose) throws PersistentException;
 
-    List<Diagnose> getAll() throws PersistentException;
+    List<Diagnose> getAll();
 
     boolean deleteDiagnose(Diagnose diagnose);
 

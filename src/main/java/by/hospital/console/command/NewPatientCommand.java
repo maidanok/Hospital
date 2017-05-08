@@ -1,7 +1,5 @@
 package by.hospital.console.command;
 import by.hospital.exception.PersistentException;
-import by.hospital.service.ServiceLocator;
-import by.hospital.service.api.PatientService;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -34,7 +32,7 @@ public class NewPatientCommand extends AbstractCommandFactory{
         String addr = scanner.nextLine();
         out.println("Номер паспорта");
         String pas = scanner.nextLine();
-        ServiceLocator.getService(PatientService.class).createNewPatient(fn,ln,mn,date,sex,addr,pas);
+        //ServiceLocator.getService(PatientService.class).createNewPatient(fn,ln,mn,date,sex,addr,pas);
     }
 }
 
