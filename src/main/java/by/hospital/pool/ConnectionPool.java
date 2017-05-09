@@ -1,7 +1,7 @@
 package by.hospital.pool;
 
 import by.hospital.prop_managers.ConnectionManager;
-import org.slf4j.Logger;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,7 +14,7 @@ import java.util.List;
 public class ConnectionPool {
     private static ConnectionPool instance = null;
 
-    static Logger logger;//TODO выяснить
+    static Logger logger = Logger.getLogger(ConnectionPool.class);//TODO выяснить
     private int maxPool;
     private int minPool;
     private String url;

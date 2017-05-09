@@ -2,7 +2,9 @@ package by.hospital.controllers;
 
 import by.hospital.command.Command;
 import by.hospital.command.CommandFactory;
+import by.hospital.prop_managers.ConfigurationManager;
 import by.hospital.service.ServiceInitializer;
+import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,6 +21,7 @@ import java.io.IOException;
 @WebServlet("/controller")
 public class HospitalController extends HttpServlet {
 
+    Logger logger = Logger.getLogger(HospitalController.class);
     CommandFactory commandFactory = CommandFactory.getInstance();
 
     public HospitalController() {
@@ -39,14 +42,26 @@ public class HospitalController extends HttpServlet {
         String page = null;
         Command command = commandFactory.getCommand(request);
         page = command.execute(request,response);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(page);
-        requestDispatcher.forward(request,response);
 
+        boolean isRedirect =(request.getAttribute("isRedirect") != null) ? (boolean) request.getAttribute("isRedirect") : false;
+        if (page != null && isRedirect) {
+            response.sendRedirect("./"+ page);
+        } else {
+            if (page != null) {
+                RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+                dispatcher.forward(request, response);
+            } else {
+                page = ConfigurationManager.getProperty("path.page.error");
+                RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+                dispatcher.forward(request, response);
+            }
+        }
     }
 
     public void init() throws ServletException {
         ServiceInitializer.init();
         super.init();
+        logger.info("Hospitall_Controller start");
 
     }
 

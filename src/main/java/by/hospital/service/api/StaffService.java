@@ -19,9 +19,9 @@ public interface StaffService {
 
     List<Staff> getAllStaff();
 
-    Staff returnStaffFull (Staff staff) throws PersistentException;
+    Staff returnStaffFull (Staff staff);
 
-    Staff returnStaffShort(Staff staff) throws PersistentException;
+    Staff returnStaffShort(Staff staff);
 
     boolean deleteStaff(Staff staff) throws PersistentException;
 }

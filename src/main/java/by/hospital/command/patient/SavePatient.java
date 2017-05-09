@@ -11,7 +11,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Date;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 
@@ -37,7 +39,14 @@ public class SavePatient implements Command {
         String address= request.getParameter(PARAM_PATIENT_ADDRESS);
         String passport = request.getParameter(PARAM_PATIENT_PASSPORT);
         Gender gender = Gender.valueOf(request.getParameter(PARAM_PATIENT_GENDER));
-        Date birthday = Date.valueOf(request.getParameter(PARAM_PATIENT_BIRTDAY));
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String getDate = request.getParameter(PARAM_PATIENT_BIRTDAY);
+        Date birthday = null;
+        try {
+            birthday = formatter.parse(getDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         Patient patient = new Patient();
         patient.setPrimaryKey(id);
@@ -52,6 +61,7 @@ public class SavePatient implements Command {
         ServiceLocator.getService(PatientService.class).savePatient(patient);
         List<Patient> allPatient = ServiceLocator.getService(PatientService.class).getALLPatients();
         request.setAttribute("allPatient",allPatient);
+        request.setAttribute("isRedirect", true);
 
         page= ConfigurationManager.getProperty("PAGE_DIRECTORIES");
 

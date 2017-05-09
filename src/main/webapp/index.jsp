@@ -20,6 +20,7 @@ pageEncoding="UTF-8"%>
         </h1>
     </div>
 </div>
-<jsp:forward page="/WEB-INF/jsp/login.jsp"></jsp:forward>
+<c:set var="context" value="${contextPath}" />
+<jsp:forward page="${context }/WEB-INF/jsp/login.jsp"></jsp:forward>
 </body>
 </html>

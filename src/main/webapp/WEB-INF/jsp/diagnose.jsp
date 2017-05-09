@@ -3,6 +3,7 @@ pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib tagdir ="/WEB-INF/tags" prefix = "t"%>
+<fmt:requestEncoding value="UTF-8" />
 <t:html>
     <t:header/>
     <div class="easyui-panel" title="Новый диагноз" style="width:100%;max-width:400px;padding:30px 60px;">

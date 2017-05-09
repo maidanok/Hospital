@@ -5,6 +5,7 @@ import by.hospital.command.login.LogOutCommand;
 import by.hospital.command.login.LoginCommand;
 import by.hospital.command.patient.EditPatient;
 import by.hospital.command.patient.SavePatient;
+import by.hospital.command.staff.EditStaff;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -22,6 +23,8 @@ public class CommandFactory {
         commands.put("OpenDirectories", new OpenDirectoriesPage());
         commands.put("EditPatient",new EditPatient());
         commands.put("SavePatient",new SavePatient());
+
+        commands.put("EditStaff", new EditStaff());
     }
 
     public Command getCommand(HttpServletRequest request){

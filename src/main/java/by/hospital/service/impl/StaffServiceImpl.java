@@ -84,13 +84,24 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public Staff returnStaffFull(Staff staff) throws PersistentException {
-        return staffDao.getByPrimaryKey(staff.getPrimaryKey());
+    public Staff returnStaffFull(Staff staf) {
+        Staff staff = null;
+        try {
+            staff=staffDao.getByPrimaryKey(staf.getPrimaryKey());
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
+        return staff;
     }
 
     @Override
-    public Staff returnStaffShort(Staff staf) throws PersistentException {
-        Staff staff = staffDao.getByPrimaryKey(staf.getPrimaryKey());
+    public Staff returnStaffShort(Staff staf) {
+        Staff staff = null;
+        try {
+            staff = staffDao.getByPrimaryKey(staf.getPrimaryKey());
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
         staff.setPassword(null);
         staff.setLogin(null);
         staff.setPassportNumber(null);
