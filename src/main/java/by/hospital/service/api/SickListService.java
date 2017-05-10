@@ -15,6 +15,8 @@ public interface SickListService {
 
     List<SickList> findAllActive();
 
+    SickList findById(SickList sickList);
+
     List<SickList> findByPatient(Patient patient);
 
     List<SickList> findByPatientAndDAte(String patientFirstName, Date dateIn);

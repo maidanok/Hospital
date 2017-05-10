@@ -1,14 +1,25 @@
 package by.hospital.command;
 
+import by.hospital.command.Hospital.OpenHospital;
+import by.hospital.command.diagnose.DeleteDiagnose;
+import by.hospital.command.diagnose.EditDiagnose;
+import by.hospital.command.diagnose.SaveDiagnose;
 import by.hospital.command.directories.OpenDirectoriesPage;
 import by.hospital.command.login.LogOutCommand;
 import by.hospital.command.login.LoginCommand;
+import by.hospital.command.patient.DeletePatient;
 import by.hospital.command.patient.EditPatient;
 import by.hospital.command.patient.SavePatient;
+import by.hospital.command.sicklist.EditSickList;
+import by.hospital.command.staff.DeleteStaff;
 import by.hospital.command.staff.EditStaff;
+import by.hospital.command.staff.SaveStaff;
+import by.hospital.domain.enumeration.Post;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Admin on 07.05.2017.
@@ -17,14 +28,26 @@ public class CommandFactory {
     private static CommandFactory instance = null;
     HashMap<String, Command> commands = new HashMap<String, Command>();
 
+
     private CommandFactory(){
         commands.put("Login",new LoginCommand());
         commands.put("Logout",new LogOutCommand());
         commands.put("OpenDirectories", new OpenDirectoriesPage());
+        commands.put("OpenHospital", new OpenHospital());
+
         commands.put("EditPatient",new EditPatient());
         commands.put("SavePatient",new SavePatient());
+        commands.put("DeletePatient",new DeletePatient());
 
         commands.put("EditStaff", new EditStaff());
+        commands.put("SaveStaff", new SaveStaff());
+        commands.put("DeleteStaff", new DeleteStaff());
+
+        commands.put("EditDiagnose",new EditDiagnose());
+        commands.put("SaveDiagnose", new SaveDiagnose());
+        commands.put("DeleteDiagnose", new DeleteDiagnose());
+
+        commands.put("EditSickList", new EditSickList());
     }
 
     public Command getCommand(HttpServletRequest request){
@@ -43,4 +66,5 @@ public class CommandFactory {
         }
         return instance;
     }
+
 }

@@ -1,9 +1,9 @@
 package by.hospital.service.impl;
 
-import by.hospital.DAO.GenericDAO;
-import by.hospital.DAO.conditions.FindSdiagnoseID;
-import by.hospital.DAO.conditions.SickListID;
-import by.hospital.DAO.conditions.SurveyHistoryID;
+import by.hospital.dao.GenericDAO;
+import by.hospital.dao.conditions.FindSdiagnoseID;
+import by.hospital.dao.conditions.SickListID;
+import by.hospital.dao.conditions.SurveyHistoryID;
 import by.hospital.domain.Diagnose;
 import by.hospital.domain.Prescription;
 import by.hospital.domain.SickList;
@@ -29,8 +29,14 @@ public class SurveyHistoryServiceImpl implements SurveyHistoryService {
     }
 
     @Override
-    public List<SurveyHistory> getAllbySickList(SickList sickList) throws PersistentException {
-        return surveyHistoryDao.FindByCondition(new SickListID(sickList.getPrimaryKey()));
+    public List<SurveyHistory> getAllbySickList(SickList sickList){
+        List<SurveyHistory> surveyHistoryList = new ArrayList<>();
+        try {
+            surveyHistoryList=surveyHistoryDao.FindByCondition(new SickListID(sickList.getPrimaryKey()));
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
+        return surveyHistoryList;
     }
 
     @Override

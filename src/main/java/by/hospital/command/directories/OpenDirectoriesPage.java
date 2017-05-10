@@ -4,6 +4,7 @@ import by.hospital.command.Command;
 import by.hospital.domain.Diagnose;
 import by.hospital.domain.Patient;
 import by.hospital.domain.Staff;
+import by.hospital.domain.enumeration.Post;
 import by.hospital.prop_managers.ConfigurationManager;
 import by.hospital.service.ServiceLocator;
 import by.hospital.service.api.DiagnoseService;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Admin on 08.05.2017.
@@ -31,5 +33,10 @@ public class OpenDirectoriesPage implements Command {
         request.setAttribute("allDiagnose", allDiagnose);
         page = ConfigurationManager.getProperty("PAGE_DIRECTORIES");
         return page;
+    }
+
+    @Override
+    public Set<Post> getAllowPosts() {
+        return null;
     }
 }

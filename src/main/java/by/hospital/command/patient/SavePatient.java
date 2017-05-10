@@ -3,6 +3,7 @@ package by.hospital.command.patient;
 import by.hospital.command.Command;
 import by.hospital.domain.Patient;
 import by.hospital.domain.enumeration.Gender;
+import by.hospital.domain.enumeration.Post;
 import by.hospital.prop_managers.ConfigurationManager;
 import by.hospital.service.ServiceLocator;
 import by.hospital.service.api.PatientService;
@@ -14,7 +15,9 @@ import java.io.IOException;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -29,6 +32,12 @@ public class SavePatient implements Command {
     private static final String PARAM_PATIENT_GENDER="gender";
     private static final String PARAM_PATIENT_ADDRESS="address";
     private static final String PARAM_PATIENT_PASSPORT="passport";
+    private static Set<Post> roles =new HashSet<>();
+    static {
+        roles.add(Post.ADMINISTRATOR);
+        roles.add(Post.NURSE);
+        roles.add(Post.DOCTOR);
+    }
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = null;
@@ -68,5 +77,10 @@ public class SavePatient implements Command {
 
 
         return page;
+    }
+
+    @Override
+    public Set<Post> getAllowPosts() {
+        return roles;
     }
 }

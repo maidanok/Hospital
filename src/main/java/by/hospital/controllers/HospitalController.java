@@ -18,7 +18,7 @@ import java.io.IOException;
 /**
  * Created by Admin on 07.05.2017.
  */
-@WebServlet("/controller")
+//@WebServlet("/controller")
 public class HospitalController extends HttpServlet {
 
     Logger logger = Logger.getLogger(HospitalController.class);
@@ -45,13 +45,13 @@ public class HospitalController extends HttpServlet {
 
         boolean isRedirect =(request.getAttribute("isRedirect") != null) ? (boolean) request.getAttribute("isRedirect") : false;
         if (page != null && isRedirect) {
-            response.sendRedirect("./"+ page);
+            response.sendRedirect( request.getContextPath() + "/index.jsp");
         } else {
             if (page != null) {
                 RequestDispatcher dispatcher = request.getRequestDispatcher(page);
                 dispatcher.forward(request, response);
             } else {
-                page = ConfigurationManager.getProperty("path.page.error");
+                //page = ConfigurationManager.getProperty("path.page.error");
                 RequestDispatcher dispatcher = request.getRequestDispatcher(page);
                 dispatcher.forward(request, response);
             }

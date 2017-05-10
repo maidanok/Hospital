@@ -13,27 +13,31 @@
                 <form id="ff" method="post">
                     <div style="margin-bottom:20px">
                         <input class="easyui-textbox" name="fullname" style="width:50%"
-                               data-options="label:'Фамилия Имя Отчество'">
+                               data-options="label:'Фамилия Имя Отчество',labelPosition:'top', editable:0"  value="${sickList.getPatient().getFullName()}">
                     </div>
                     <div style="margin-bottom:20px">
                         <input class="easyui-datebox" name="datein"
-                               data-options="label:'Дата поступления', labelPosition:'top'" style="width:50%;">
+                               data-options="label:'Дата поступления', labelPosition:'top'" style="width:50%;"
+                        value="${sickList.getDateIN()}">
                     </div>
                     <div style="margin-bottom:20px">
                         <input class="easyui-datebox" name="dateout"
-                               data-options="label:'Дата выписки', labelPosition:'top'" style="width:50%;">
+                               data-options="label:'Дата выписки', labelPosition:'top', disabled:1" style="width:50%;"
+                        value="${sickList.getDateOUT()}">
                     </div>
                     <div style="margin-bottom:20px">
-                        <input class="easyui-textbox" name="room" style="width:50%" data-options="label:'Палата:'">
+                        <input class="easyui-textbox" name="room" style="width:50%" data-options="label:'Палата:'"
+                        value="${sickList.getRoom()}">
                     </div>
                     <div style="margin-bottom:20px">
                         <input class="easyui-textbox" name="symptoms" style="width:50%;height:80px"
-                               data-options="label:'Анамнез:', labelPosition:'top',multiline:true">
+                               data-options="label:'Анамнез:', labelPosition:'top',multiline:true"
+                        value="${sickList.getSymptoms()}">
                     </div>
                     <div style="text-align:left;padding:5px 0">
-                        <a href="javascript:void(0)" data-options="iconCls:'icon-ok'" class="easyui-linkbutton"
-                           onclick=" " style="width:80px">ОК</a>
-                        <a href="javascript:void(0)" data-options="iconCls:'icon-cancel'" class="easyui-linkbutton"
+                        <input type="submit" data-options="iconCls:'icon-ok'" class="easyui-linkbutton" value="OK"
+                               style="width:110px; height:27px">
+                        <a href="javascript:history.back()" data-options="iconCls:'icon-cancel'" class="easyui-linkbutton"
                            onclick=" " style="width:110px">Отменить</a>
                     </div>
                 </form>
@@ -49,6 +53,17 @@
                     <th>Дата</th>
                     <th>Действие</th>
                 </tr>
+                    <c:forEach items="${surveyHistoryList}" var="surveyHistory">
+                <tr>
+                    <td id={"surveyHistory.getPrimaryKey()}">${surveyHistory.getPrimaryKey()}</td>
+                    <td>${surveyHistory.getStaff().getFullName()}</td>
+                    <td><fmt:formatDate pattern = "dd-MM-yyyy" value="${surveyHistory.getSurveyDate()}"/></td>
+                    <td>
+                        <a href="controller?COMMAND=EditStaff&id=${staff.getPrimaryKey()}" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">
+                        <a href="controller?COMMAND=DeleteStaff&id=${staff.getPrimaryKey()}" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a>
+                    </td>
+                </tr>
+                </c:forEach>
             </table>
             <div style="text-align:left;padding:5px 0">
                 <a href="javascript:void(0)" data-options="iconCls:'icon-ok'" class="easyui-linkbutton" onclick=" "

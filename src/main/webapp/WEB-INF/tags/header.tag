@@ -12,7 +12,11 @@
         </div>
 
         <div data-options="region:'east'" style="width:30%;padding:10px;border:0;">
-        <p align ="right"><a href="">${user.getPost().getName()} ${user.getFullName()}</a></p>
+        <p align ="right"><a href="controller?COMMAND=EditStaff&id=${user.getPrimaryKey()}">${user.getPost().getName()} ${user.getFullName()}</a></p>
         <p align ="right"><a href="controller?COMMAND=Logout">Выход</a></p>
         </div>
+    </div>
+    <div class="easyui-panel" style="padding:5px;">
+            <a href="controller?COMMAND=OpenHospital" class="easyui-linkbutton" data-options="toggle:true,group:'g2',plain:true">Стационар</a>
+            <a href="controller?COMMAND=OpenDirectories" class="easyui-linkbutton" data-options="toggle:true,group:'g2',plain:true">Справочники</a>
     </div>

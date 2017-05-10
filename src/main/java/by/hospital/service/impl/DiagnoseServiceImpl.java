@@ -1,8 +1,8 @@
 package by.hospital.service.impl;
 
-import by.hospital.DAO.GenericDAO;
-import by.hospital.DAO.conditions.FindFinalDiagnoseID;
-import by.hospital.DAO.conditions.FindSdiagnoseID;
+import by.hospital.dao.GenericDAO;
+import by.hospital.dao.conditions.FindFinalDiagnoseID;
+import by.hospital.dao.conditions.FindSdiagnoseID;
 import by.hospital.domain.Diagnose;
 import by.hospital.domain.SickList;
 import by.hospital.domain.SurveyHistory;
@@ -15,23 +15,31 @@ import java.util.List;
  * Created by Admin on 23.04.2017.
  */
 public class DiagnoseServiceImpl implements DiagnoseService {
-   private GenericDAO<Diagnose, Integer> diagnoseDao;
-   private GenericDAO<SurveyHistory,Integer> surveyHistoryDao;
-   private GenericDAO<SickList,Integer> sickListDao;
+    private GenericDAO<Diagnose, Integer> diagnoseDao;
+    private GenericDAO<SurveyHistory, Integer> surveyHistoryDao;
+    private GenericDAO<SickList, Integer> sickListDao;
 
-    public DiagnoseServiceImpl(GenericDAO<Diagnose, Integer> diagnoseDao,GenericDAO<SurveyHistory,Integer> surveyHistoryDao,GenericDAO<SickList,Integer> sickListDao) throws PersistentException {
+    public DiagnoseServiceImpl(GenericDAO<Diagnose, Integer> diagnoseDao, GenericDAO<SurveyHistory, Integer> surveyHistoryDao, GenericDAO<SickList, Integer> sickListDao) throws PersistentException {
         this.diagnoseDao = diagnoseDao;
-        this.sickListDao=sickListDao;
-        this.surveyHistoryDao=surveyHistoryDao;
+        this.sickListDao = sickListDao;
+        this.surveyHistoryDao = surveyHistoryDao;
     }
 
     @Override
-    public Diagnose createNewDiagnose(String name, String therapy) {
-        Diagnose diagnose = new Diagnose();
-        diagnose.setDiagnoseName(name);
-        diagnose.setTherapy(therapy);
+    public Diagnose createNewDiagnose(Diagnose diagnose) {
+        Diagnose newDiagnose = diagnose;
         try {
-            diagnose = diagnoseDao.persist(diagnose);
+            newDiagnose = diagnoseDao.persist(diagnose);
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
+        return newDiagnose;
+    }
+
+    @Override
+    public Diagnose getDiagnose(Diagnose diagnose) {
+        try {
+            diagnose=diagnoseDao.getByPrimaryKey(diagnose.getPrimaryKey());
         } catch (PersistentException e) {
             e.printStackTrace();
         }
@@ -39,12 +47,7 @@ public class DiagnoseServiceImpl implements DiagnoseService {
     }
 
     @Override
-    public Diagnose getDiagmose(Diagnose diagnose) throws PersistentException {
-        return diagnoseDao.getByPrimaryKey(diagnose.getPrimaryKey());
-    }
-
-    @Override
-    public List<Diagnose> getAll(){
+    public List<Diagnose> getAll() {
         try {
             return diagnoseDao.getAll();
         } catch (PersistentException e) {
@@ -55,9 +58,12 @@ public class DiagnoseServiceImpl implements DiagnoseService {
 
     @Override
     public boolean deleteDiagnose(Diagnose diagnose) {
+        if (diagnose.getPrimaryKey()==0){
+            return false;
+        }
         try {
             if (surveyHistoryDao.FindByCondition(new FindSdiagnoseID(diagnose.getPrimaryKey())).isEmpty()
-                    && sickListDao.FindByCondition(new FindFinalDiagnoseID(diagnose.getPrimaryKey())).isEmpty()){
+                    && sickListDao.FindByCondition(new FindFinalDiagnoseID(diagnose.getPrimaryKey())).isEmpty()) {
                 diagnoseDao.delete(diagnoseDao.getByPrimaryKey(diagnose.getPrimaryKey()));
                 return true;
             }
@@ -65,5 +71,19 @@ public class DiagnoseServiceImpl implements DiagnoseService {
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public void saveDiagnose(Diagnose diagnose) {
+        if (diagnose.getPrimaryKey()!=0){
+            try {
+                diagnoseDao.update(diagnose);
+            } catch (PersistentException e) {
+                e.printStackTrace();
+            }
+        }
+        if (diagnose.getPrimaryKey()==0){
+            createNewDiagnose(diagnose);
+        }
     }
 }

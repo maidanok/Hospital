@@ -15,7 +15,7 @@ public interface StaffService {
 
     Staff changePassword(Staff staff) throws PersistentException;
 
-    Staff createNewStaff(String fersN, String lastN, String middleN, Date birth, String sex, String addr, String passp, String post, String login, String passw);
+    Staff createNewStaff(Staff staff);
 
     List<Staff> getAllStaff();
 
@@ -23,5 +23,7 @@ public interface StaffService {
 
     Staff returnStaffShort(Staff staff);
 
-    boolean deleteStaff(Staff staff) throws PersistentException;
+    boolean deleteStaff(Staff staff);
+
+    void saveStaff(Staff staff);
 }

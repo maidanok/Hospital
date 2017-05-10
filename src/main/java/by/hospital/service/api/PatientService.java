@@ -20,7 +20,7 @@ public interface PatientService {
 
     List <Patient> FindLastName(Patient patient);
 
-    boolean deletePatient (Patient patient) throws PersistentException;
+    boolean deletePatient (Patient patient);
 
     void savePatient(Patient patient);
 }

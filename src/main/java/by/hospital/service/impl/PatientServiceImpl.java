@@ -1,8 +1,8 @@
 package by.hospital.service.impl;
 
-import by.hospital.DAO.GenericDAO;
-import by.hospital.DAO.conditions.FirstNameLike;
-import by.hospital.DAO.conditions.PersonPersonID;
+import by.hospital.dao.GenericDAO;
+import by.hospital.dao.conditions.FirstNameLike;
+import by.hospital.dao.conditions.PersonPersonID;
 import by.hospital.domain.Patient;
 import by.hospital.domain.SickList;
 import by.hospital.exception.PersistentException;
@@ -77,15 +77,17 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public boolean deletePatient(Patient patient) throws PersistentException {
-
-        if (sickListDao.FindByCondition(new PersonPersonID(patient.getPrimaryKey())).size()==0){
-            try {
+    public boolean deletePatient(Patient patient){
+        if (patient.getPrimaryKey()==0){
+            return false;
+        }
+        try {
+            if (sickListDao.FindByCondition(new PersonPersonID(patient.getPrimaryKey())).size() == 0) {
                 patientDao.delete(patientDao.getByPrimaryKey(patient.getPrimaryKey()));
                 return true;
-            } catch (PersistentException e) {
-                e.printStackTrace();
             }
+        }catch (PersistentException e){
+            e.printStackTrace();
         }
         return false;
     }

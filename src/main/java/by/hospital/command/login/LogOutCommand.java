@@ -1,6 +1,7 @@
 package by.hospital.command.login;
 
 import by.hospital.command.Command;
+import by.hospital.domain.enumeration.Post;
 import by.hospital.prop_managers.ConfigurationManager;
 
 import javax.servlet.ServletException;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Set;
 
 /**
  * Created by Admin on 08.05.2017.
@@ -19,5 +21,10 @@ public class LogOutCommand implements Command {
         HttpSession session = request.getSession(false);
         page= ConfigurationManager.getProperty("PAGE_LOGIN");
         return page;
+    }
+
+    @Override
+    public Set<Post> getAllowPosts() {
+        return null;
     }
 }

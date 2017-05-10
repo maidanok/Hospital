@@ -44,8 +44,9 @@ pageEncoding="UTF-8"%>
                        data-options="label:'Паспорт:',required:true" value="${patient.getPassportNumber()}">
             </div>
             <div style="text-align:center;padding:5px 0">
-                <input type="submit" data-options="iconCls:'icon-ok'" class="easyui-linkbutton" value="OK">
-                <a href="controller?COMMAND=OpenDirectories" data-options="iconCls:'icon-cancel'" class="easyui-linkbutton" onclick=" "
+                <input type="submit" data-options="iconCls:'icon-ok'" class="easyui-linkbutton" value="OK"
+                       style="width:110px; height:27px">
+                <a href="javascript:history.back()" data-options="iconCls:'icon-cancel'" class="easyui-linkbutton" onclick=" "
                    style="width:110px">Отменить</a>
             </div>
         </form>

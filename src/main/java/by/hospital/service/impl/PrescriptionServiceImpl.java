@@ -1,10 +1,10 @@
 package by.hospital.service.impl;
 
-import by.hospital.DAO.GenericDAO;
-import by.hospital.DAO.conditions.PrescriptionID;
-import by.hospital.DAO.conditions.QuantityMoreCompleted;
-import by.hospital.DAO.conditions.SickListID;
-import by.hospital.DAO.conditions.SurveyHistoryID;
+import by.hospital.dao.GenericDAO;
+import by.hospital.dao.conditions.PrescriptionID;
+import by.hospital.dao.conditions.QuantityMoreCompleted;
+import by.hospital.dao.conditions.SickListID;
+import by.hospital.dao.conditions.SurveyHistoryID;
 import by.hospital.domain.*;
 import by.hospital.exception.PersistentException;
 import by.hospital.service.api.PrescriptionService;

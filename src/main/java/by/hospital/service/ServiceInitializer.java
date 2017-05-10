@@ -1,7 +1,7 @@
 package by.hospital.service;
 
-import by.hospital.DAO.GenericDAO;
-import by.hospital.DAO.mysql.MySqlDaoFactory;
+import by.hospital.dao.GenericDAO;
+import by.hospital.dao.mysql.MySqlDaoFactory;
 import by.hospital.domain.*;
 import by.hospital.exception.PersistentException;
 import by.hospital.service.api.*;
@@ -28,7 +28,7 @@ public class ServiceInitializer {
             PatientService patientService = new PatientServiceImpl(patientDao,sickListDao);
             PrescriptionService prescriptionService = new PrescriptionServiceImpl(prescriptionDao,prescriptionExecutionDao);
             SickListService sickListService = new SickListServiceImpl(sickListDao,surveyHistoryDao);
-            StaffService staffService = new StaffServiceImpl(staffDao);
+            StaffService staffService = new StaffServiceImpl(staffDao,prescriptionExecutionDao,surveyHistoryDao);
             SurveyHistoryService surveyHistoryService= new SurveyHistoryServiceImpl(surveyHistoryDao,prescriptionDao);
 
             locator.registerService(DiagnoseService.class,diagnoseService);

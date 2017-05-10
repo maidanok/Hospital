@@ -1,7 +1,7 @@
 package by.hospital.service.impl;
 
-import by.hospital.DAO.GenericDAO;
-import by.hospital.DAO.conditions.*;
+import by.hospital.dao.GenericDAO;
+import by.hospital.dao.conditions.*;
 import by.hospital.domain.Diagnose;
 import by.hospital.domain.Patient;
 import by.hospital.domain.SickList;
@@ -34,6 +34,16 @@ public class SickListServiceImpl implements SickListService {
             e.printStackTrace();
         }
         return result;
+    }
+
+    @Override
+    public SickList findById(SickList sickList) {
+        try {
+            sickList=sickListDao.getByPrimaryKey(sickList.getPrimaryKey());
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
+        return sickList;
     }
 
     @Override

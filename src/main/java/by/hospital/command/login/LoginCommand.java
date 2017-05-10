@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Admin on 07.05.2017.
@@ -59,5 +60,10 @@ public class LoginCommand implements Command {
             page=ConfigurationManager.getProperty("PAGE_LOGIN");
         }
         return page;
+    }
+
+    @Override
+    public Set<Post> getAllowPosts() {
+        return null;
     }
 }

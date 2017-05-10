@@ -1,0 +1,770 @@
+ 
+#login-modal .modal-dialog {
+    width: 350px;
+}
+
+#login-modal input[type=text], input[type=password] {
+	margin-top: 0px;
+}
+
+#div-login-msg,
+#div-lost-msg,
+#div-register-msg {
+    border: 1px solid #dadfe1;
+    height: 30px;
+    line-height: 28px;
+    transition: all ease-in-out 500ms;
+}
+
+#div-login-msg.success,
+#div-lost-msg.success,
+#div-register-msg.success {
+    border: 1px solid #68c3a3;
+    background-color: #c8f7c5;
+}
+
+#div-login-msg.error,
+#div-lost-msg.error,
+#div-register-msg.error {
+    border: 1px solid #eb575b;
+    background-color: #ffcad1;
+}
+
+#icon-login-msg,
+#icon-lost-msg,
+#icon-register-msg {
+    width: 30px;
+    float: left;
+    line-height: 28px;
+    text-align: center;
+    background-color: #dadfe1;
+    margin-right: 5px;
+    transition: all ease-in-out 500ms;
+}
+
+#icon-login-msg.success,
+#icon-lost-msg.success,
+#icon-register-msg.success {
+    background-color: #68c3a3 !important;
+}
+
+#icon-login-msg.error,
+#icon-lost-msg.error,
+#icon-register-msg.error {
+    background-color: #eb575b !important;
+}
+
+#img_logo {
+    max-height: 100px;
+    max-width: 100px;
+}
+
+/* #########################################
+   #    override the bootstrap configs     #
+   ######################################### */
+
+.modal-backdrop.in {
+    filter: alpha(opacity=50);
+    opacity: .8;
+}
+
+.modal-content {
+    background-color: #ececec;
+    border: 1px solid #bdc3c7;
+    border-radius: 0px;
+    outline: 0;
+}
+
+.modal-header {
+    min-height: 16.43px;
+    padding: 15px 15px 15px 15px;
+    border-bottom: 0px;
+}
+
+.modal-body {
+    position: relative;
+    padding: 5px 15px 5px 15px;
+}
+
+.modal-footer {
+    padding: 15px 15px 15px 15px;
+    border-top: 0px;
+}
+
+.checkbox {
+    margin-bottom: 0px;
+}
+
+.btn {
+    border-radius: 0px;
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+    outline: none;
+}
+
+.btn-lg, .btn-group-lg>.btn {
+    border-radius: 0px;
+}
+
+.btn-link {
+    padding: 5px 10px 0px 0px;
+    color: #95a5a6;
+}
+
+.btn-link:hover, .btn-link:focus {
+    color: #2c3e50;
+    text-decoration: none;
+}
+
+
+.form-control {
+  border-radius: 0px;
+}
+th {
+	text-align: center;
+}
+TABLE {
+                border-collapse: collapse;
+            }
+            TH {
+                border: 1px solid black;
+                padding: 5px 30px 5px 10px;
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            }
+            TD {
+                border: 1px solid black;
+                padding: 5px 30px 5px 10px;
+            }
+ 
+/*ОФОРМЛЕНИЕ ТАБЛИЦ*/
+            table {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+            font-size: 14px;
+            border-radius: 10px;
+            border-spacing: 0;
+            text-align: center;
+            }
+            th {
+            background: #BCEBDD;
+            color: white;
+            text-shadow: 0 1px 1px #2D2020;
+            padding: 10px 20px;
+            }
+            th, td {
+            border-style: solid;
+            border-width: 0 1px 1px 0;
+            border-color: white;
+            }
+            th:first-child, td:first-child {
+            text-align: left;
+            }
+            th:first-child {
+            border-top-left-radius: 10px;
+            }
+            th:last-child {
+            border-top-right-radius: 10px;
+            border-right: none;
+            }
+            td {
+            padding: 10px 20px;
+            background: #F8E391;
+            }
+            tr:last-child td:first-child {
+            border-radius: 0 0 0 10px;
+            }
+            tr:last-child td:last-child {
+            border-radius: 0 0 10px 0;
+            }
+            tr td:last-child {
+            border-right: none;
+            }
+
+            .simple-little-table {
+            font-family:Arial, Helvetica, sans-serif;
+            color:#666;
+            font-size:12px;
+            text-shadow: 1px 1px 0px #fff;
+            background:#eaebec;
+            margin:20px;
+            border:#ccc 1px solid;
+            border-collapse:separate;
+         
+            -moz-border-radius:3px;
+            -webkit-border-radius:3px;
+            border-radius:3px;
+         
+            -moz-box-shadow: 0 1px 2px #d1d1d1;
+            -webkit-box-shadow: 0 1px 2px #d1d1d1;
+            box-shadow: 0 1px 2px #d1d1d1;
+        }
+         
+        .simple-little-table th {
+            font-weight:bold;
+            padding:21px 25px 22px 25px;
+            border-top:1px solid #fafafa;
+            border-bottom:1px solid #e0e0e0;
+         
+            background: #ededed;
+            background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
+            background: -moz-linear-gradient(top,  #ededed,  #ebebeb);
+        }
+        .simple-little-table th:first-child{
+            text-align: left;
+            padding-left:20px;
+        }
+        .simple-little-table tr:first-child th:first-child{
+            -moz-border-radius-topleft:3px;
+            -webkit-border-top-left-radius:3px;
+            border-top-left-radius:3px;
+        }
+        .simple-little-table tr:first-child th:last-child{
+            -moz-border-radius-topright:3px;
+            -webkit-border-top-right-radius:3px;
+            border-top-right-radius:3px;
+        }
+        .simple-little-table tr{
+            text-align: center;
+            padding-left:20px;
+        }
+        .simple-little-table tr td:first-child{
+            text-align: left;
+            padding-left:20px;
+            border-left: 0;
+        }
+        .simple-little-table tr td {
+            padding:18px;
+            border-top: 1px solid #ffffff;
+            border-bottom:1px solid #e0e0e0;
+            border-left: 1px solid #e0e0e0;
+         
+            background: #fafafa;
+            background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
+            background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa);
+        }
+        .simple-little-table tr:nth-child(even) td{
+            background: #f6f6f6;
+            background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6));
+            background: -moz-linear-gradient(top,  #f8f8f8,  #f6f6f6);
+        }
+        .simple-little-table tr:last-child td{
+            border-bottom:0;
+        }
+        .simple-little-table tr:last-child td:first-child{
+            -moz-border-radius-bottomleft:3px;
+            -webkit-border-bottom-left-radius:3px;
+            border-bottom-left-radius:3px;
+        }
+        .simple-little-table tr:last-child td:last-child{
+            -moz-border-radius-bottomright:3px;
+            -webkit-border-bottom-right-radius:3px;
+            border-bottom-right-radius:3px;
+        }
+        .simple-little-table tr:hover td{
+            background: #f2f2f2;
+            background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
+            background: -moz-linear-gradient(top,  #f2f2f2,  #f0f0f0);
+        }
+         
+        .simple-little-table a:link {
+            color: #666;
+            font-weight: bold;
+            text-decoration:none;
+        }
+        .simple-little-table a:visited {
+            color: #999999;
+            font-weight:bold;
+            text-decoration:none;
+        }
+        .simple-little-table a:active,
+        .simple-little-table a:hover {
+            color: #bd5a35;
+            text-decoration:underline;
+        }
+
+/*CHECKBOX LABEL*/
+            label
+            {
+            font: 16px helvetica;
+            line-height: 18px;
+
+            position: relative;
+
+            display: block;
+
+            margin-bottom: 20px;
+
+            cursor: pointer;
+
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            }
+
+/* CHECKBOXES */
+
+            input[type='checkbox']
+            {
+            margin-right: 20px;
+            display: inline-block;
+            vertical-align: middle;
+            }
+
+            input[type='checkbox']:after
+            {
+            font-size: 0;
+            font-family: 'times new roman';
+            line-height: 20px;
+
+            top: 0;
+            left: 0;
+
+            display: block;
+
+            width: 22px;
+            height: 22px;
+
+            content: '\2714';
+           -webkit-transition: all .1s linear;
+            -moz-transition: all .1s linear;
+            transition: all .1s linear;
+            text-align: center;
+
+            color: #fff;
+            border: 1px solid #333;
+            border-radius: 2px;
+            background-color: #fff;
+
+            box-sizing: border-box;
+            }
+
+            input[type='checkbox']:checked:after
+            {
+            font-size: 18px;
+
+            background-color: #07b4d3;
+            text-shadow: 1px 1px 0 #05a4c1;
+
+            -webkit-text-shadow: 1px 1px 0 #05a4c1;
+            -moz-text-shadow: 1px 1px 0 #05a4c1;
+            }
+/*ОФОРМЛЕНИЕ ГИПЕРССЫЛОК*/
+            nav a {
+            position: relative;
+            display: inline-block;
+            margin: 0px 0px;
+            outline: none;
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 400;
+            text-shadow: 0 0 1px rgba(255,255,255,0.3);
+            font-size: 1.1em;
+            }
+
+            *::before {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            }
+
+            nav a:hover,
+            nav a:focus {
+            outline: none;
+            }
+
+            .cl-effect-15 a {
+            color: rgba(0,0,0,1);
+            font-weight: 600;
+            text-shadow: none;
+            }
+
+            .cl-effect-15 a::before {
+            color:  #808080;
+            content: attr(data-hover);
+            position: absolute;
+            -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+            -moz-transition: -moz-transform 0.3s, opacity 0.3s;
+            transition: transform 0.3s, opacity 0.3s;
+            }
+
+            .cl-effect-15 a:hover::before,
+            .cl-effect-15 a:focus::before {
+            -webkit-transform: scale(0.9);
+            -moz-transform: scale(0.9);
+            transform: scale(0.9);
+            opacity: 0;
+            }
+            
+            .hg1 {
+            font-size: 24px;
+            font-style:italic;
+            line-height: 28px;
+            margin: 1em 0 .6em 0;
+            font-weight: normal;
+            color: white;
+            font-family: 'Hammersmith One', sans-serif;
+            text-shadow: 0 -1px 0 rgba(0,0,0,0.4);
+            position: relative;
+            color: #6Cf;
+            }
+
+            .hg2 {
+            font-size: 16px;
+            font-style:italic;
+            line-height: 20px;
+            margin: 1em 0 .6em 0;
+            font-weight: 400;
+            color: white;
+            font-family: 'Hammersmith One', sans-serif;
+            text-shadow: 0 -1px 0 rgba(0,0,0,0.4);
+            position: relative;
+            color: #c19734;
+            }
+
+            .hg3 {
+            font-family: 'MV BOLI';
+            font-weight: 800;
+            color:#0c0c0c;
+            font-size: 22px;
+            }
+
+/* МОДАЛЬНЫЕ ОКНА */
+            .overlay {
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 10;
+                display: none;
+            /* фон затемнения */
+                background-color: rgba(0, 0, 0, 0.65);
+                position: fixed; /* фиксированное поцизионирование */
+                cursor: default; /* тип курсара */
+            }
+            /* активируем слой затемнения */
+            .overlay:target {
+                display: block;
+            }
+            /* стили модального окна */
+            .popup {
+                top: -100%;
+                right: 0;
+                left: 50%;
+                font-size: 14px;
+                z-index: 20;
+                margin: 0;
+                width: 85%;
+                min-width: 320px;
+                max-width: 600px;
+            /* фиксированное позиционирование, окно стабильно при прокрутке */
+                position: fixed;
+                padding: 15px;
+                border: 1px solid #383838;
+                background: #fefefe;
+            /* скругление углов */
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                -ms-border-radius: 4px;
+                border-radius: 4px;
+                font: 14px/18px 'Tahoma', Arial, sans-serif;
+            /* внешняя тень */
+                -webkit-box-shadow: 0 15px 20px rgba(0,0,0,.22),0 19px 60px rgba(0,0,0,.3);
+                -moz-box-shadow: 0 15px 20px rgba(0,0,0,.22),0 19px 60px rgba(0,0,0,.3);
+                -ms-box-shadow: 0 15px 20px rgba(0,0,0,.22),0 19px 60px rgba(0,0,0,.3);
+                box-shadow: 0 15px 20px rgba(0,0,0,.22),0 19px 60px rgba(0,0,0,.3);
+                -webkit-transform: translate(-50%, -500%);
+                -ms-transform: translate(-50%, -500%);
+                -o-transform: translate(-50%, -500%);
+                transform: translate(-50%, -500%);
+                -webkit-transition: -webkit-transform 0.6s ease-out;
+                -moz-transition: -moz-transform 0.6s ease-out;
+                -o-transition: -o-transform 0.6s ease-out;
+                transition: transform 0.6s ease-out;
+            }
+            /* активируем модальный блок */
+            .overlay:target+.popup {
+                -webkit-transform: translate(-50%, 0);
+                -ms-transform: translate(-50%, 0);
+                -o-transform: translate(-50%, 0);
+                transform: translate(-50%, 0);
+                top: 20%;
+            }
+            /* формируем кнопку закрытия */
+            
+            /* изображения внутри окна */
+            .popup img {
+                width: 100%;
+                height: auto;
+            }
+            /* миниатюры слева/справа */
+            .pic-left, 
+            .pic-right {
+                width: 25%;
+                height: auto;
+            }
+            .pic-left {
+                float: left;
+                margin: 5px 15px 5px 0;
+            }
+            .pic-right {
+                float: right;
+                margin: 5px 0 5px 15px;
+            }
+            /* элементы м-медиа, фреймы */
+            .popup embed, 
+            .popup iframe {
+                top: 0;
+                right: 0;
+                bottom: 0; 
+                left: 0; 
+                display:block;
+                margin: auto;
+                min-width: 320px;
+                max-width: 600px;
+                width: 100%;
+            }
+            .popup h2 { /* заголовок 2 */
+                margin: 0;
+                color: #008000;
+                padding: 5px 0px 10px;
+                text-align: left;
+                text-shadow: 1px 1px 3px #adadad;
+                font-weight: 500;
+                font-size: 1.4em;
+                font-family: 'Tahoma', Arial, sans-serif;
+                line-height: 1.3;
+            }
+            /* параграфы */
+            .popup p {margin: 0; padding: 5px 0}
+
+            /* Окно информации */
+            .support_button {
+                background-color: #D2D2D2;
+                border: 1px solid #9C9C9C;
+                border-radius: 0 0 5px 5px;
+                cursor: pointer;
+                display: inline-block;
+                font-family: Arial,Tahoma,sans-serif;
+                font-size: 14px;
+                height: 32px;
+                line-height: 32px;
+                min-width: 180px;
+                padding: 0 9px;
+                position: fixed;
+                right: 0;
+                top: 0;
+                z-index: 10000;
+            }
+
+            .hg2 {
+                font-family: 'MV BOLI';
+                font-size: 20px;
+                color: #dbc51e;
+            }
+       
+
+.bt {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+@media (min-width: 768px) {
+    .kpx_row-sm-offset-3 div:first-child[class*="col-"] {
+        margin-left: 25%;
+    }
+}
+body {
+    font-family: 'Titillium Web', sans-serif; 
+}
+a{
+    color:#ff5400;
+}
+a:hover {
+    opacity: 0.8;
+    color:#ff5400;
+    text-decoration:none;
+}
+.kpx_login .kpx_authTitle {
+    text-align: center;
+    line-height: 300%;
+}
+    
+.kpx_login .kpx_socialButtons a {
+    color: white; // In yourUse @body-bg 
+    opacity:0.9;
+}
+.kpx_login .kpx_socialButtons a:hover {
+    color: white;
+    opacity:1;      
+}
+
+.kpx_login .kpx_socialButtons .kpx_btn-facebook {background: #3b5998; -webkit-transition: all 0.5s ease-in-out;
+     -moz-transition: all 0.5s ease-in-out;
+       -o-transition: all 0.5s ease-in-out;
+          transition: all 0.5s ease-in-out;}
+.kpx_login .kpx_socialButtons .kpx_btn-facebook:hover {background: #172d5e}
+.kpx_login .kpx_socialButtons .kpx_btn-facebook:focus {background: #fff; color:#3b5998; border-color: #3b5998;}
+
+.kpx_login .kpx_socialButtons .kpx_btn-twitter {background: #00aced; -webkit-transition: all 0.5s ease-in-out;
+     -moz-transition: all 0.5s ease-in-out;
+       -o-transition: all 0.5s ease-in-out;
+          transition: all 0.5s ease-in-out;}
+.kpx_login .kpx_socialButtons .kpx_btn-twitter:hover {background: #043d52}
+.kpx_login .kpx_socialButtons .kpx_btn-twitter:focus {background: #fff; color:#00aced; border-color: #00aced;}
+
+.kpx_login .kpx_socialButtons .kpx_btn-google-plus {background: #c32f10; -webkit-transition: all 0.5s ease-in-out;
+     -moz-transition: all 0.5s ease-in-out;
+       -o-transition: all 0.5s ease-in-out;
+          transition: all 0.5s ease-in-out;}
+.kpx_login .kpx_socialButtons .kpx_btn-google-plus:hover {background: #6b1301}
+.kpx_login .kpx_socialButtons .kpx_btn-google-plus:focus {background: #fff; color: #c32f10; border-color: #c32f10}
+
+.kpx_login .kpx_socialButtons .kpx_btn-soundcloud {background: #ff8800; -webkit-transition: all 0.5s ease-in-out;
+     -moz-transition: all 0.5s ease-in-out;
+       -o-transition: all 0.5s ease-in-out;
+          transition: all 0.5s ease-in-out;}
+.kpx_login .kpx_socialButtons .kpx_btn-soundcloud:hover {background: #c73e04}
+.kpx_login .kpx_socialButtons .kpx_btn-soundcloud:focus {background: #fff; color: #ff8800; border-color:#ff8800}
+
+.kpx_login .kpx_socialButtons .kpx_btn-github {background: #666666; -webkit-transition: all 0.5s ease-in-out;
+     -moz-transition: all 0.5s ease-in-out;
+       -o-transition: all 0.5s ease-in-out;
+          transition: all 0.5s ease-in-out;}
+.kpx_login .kpx_socialButtons .kpx_btn-github:hover {background: #333333}
+.kpx_login .kpx_socialButtons .kpx_btn-github:focus {background: #fff; color : #666666; border-color: #666666}
+
+.kpx_login .kpx_socialButtons .kpx_btn-steam {background: #878787; -webkit-transition: all 0.5s ease-in-out;
+     -moz-transition: all 0.5s ease-in-out;
+       -o-transition: all 0.5s ease-in-out;
+          transition: all 0.5s ease-in-out;}
+.kpx_login .kpx_socialButtons .kpx_btn-steam:hover {background: #292929}
+.kpx_login .kpx_socialButtons .kpx_btn-steam:focus {background: #fff; color : #878787; border-color: #878787}
+
+.kpx_login .kpx_socialButtons .kpx_btn-pinterest {background: #cc2127; -webkit-transition: all 0.5s ease-in-out;
+     -moz-transition: all 0.5s ease-in-out;
+       -o-transition: all 0.5s ease-in-out;
+          transition: all 0.5s ease-in-out;}
+.kpx_login .kpx_socialButtons .kpx_btn-pinterest:hover {background: #780004}
+.kpx_login .kpx_socialButtons .kpx_btn-pinterest:focus {background: #fff; color: #cc2127; border-color: #cc2127}
+
+.kpx_login .kpx_socialButtons .kpx_btn-vimeo {background: #1ab7ea; -webkit-transition: all 0.5s ease-in-out;
+     -moz-transition: all 0.5s ease-in-out;
+       -o-transition: all 0.5s ease-in-out;
+          transition: all 0.5s ease-in-out;}
+.kpx_login .kpx_socialButtons .kpx_btn-vimeo:hover {background: #162221}
+.kpx_login .kpx_socialButtons .kpx_btn-vimeo:focus {background: #fff; color: #1ab7ea;border-color: #1ab7ea}
+
+.kpx_login .kpx_socialButtons .kpx_btn-lastfm {background: #c3000d; -webkit-transition: all 0.5s ease-in-out;
+     -moz-transition: all 0.5s ease-in-out;
+       -o-transition: all 0.5s ease-in-out;
+          transition: all 0.5s ease-in-out;}
+.kpx_login .kpx_socialButtons .kpx_btn-lastfm:hover {background: #5e0208}
+.kpx_login .kpx_socialButtons .kpx_btn-lastfm:focus {background: #fff; color: #c3000d; border-color: #c3000d}
+
+.kpx_login .kpx_socialButtons .kpx_btn-yahoo {background: #400191; -webkit-transition: all 0.5s ease-in-out;
+     -moz-transition: all 0.5s ease-in-out;
+       -o-transition: all 0.5s ease-in-out;
+          transition: all 0.5s ease-in-out;}
+.kpx_login .kpx_socialButtons .kpx_btn-yahoo:hover {background: #230052}
+.kpx_login .kpx_socialButtons .kpx_btn-yahoo:focus {background: #fff; color: #400191; border-color: #400191}
+
+.kpx_login .kpx_socialButtons .kpx_btn-vk {background: #45668e; -webkit-transition: all 0.5s ease-in-out;
+     -moz-transition: all 0.5s ease-in-out;
+       -o-transition: all 0.5s ease-in-out;
+          transition: all 0.5s ease-in-out;}
+.kpx_login .kpx_socialButtons .kpx_btn-vk:hover {background: #1a3352}
+.kpx_login .kpx_socialButtons .kpx_btn-vk:focus {background: #fff; color: #45668e; border-color: #45668e}
+
+.kpx_login .kpx_socialButtons .kpx_btn-spotify {background: #7ab800; -webkit-transition: all 0.5s ease-in-out;
+     -moz-transition: all 0.5s ease-in-out;
+       -o-transition: all 0.5s ease-in-out;
+          transition: all 0.5s ease-in-out;}
+.kpx_login .kpx_socialButtons .kpx_btn-spotify:hover {background: #3a5700}
+.kpx_login .kpx_socialButtons .kpx_btn-spotify:focus {background: #fff; color: #7ab800; border-color: #7ab800}
+
+.kpx_login .kpx_socialButtons .kpx_btn-linkedin {background: #0976b4; -webkit-transition: all 0.5s ease-in-out;
+     -moz-transition: all 0.5s ease-in-out;
+       -o-transition: all 0.5s ease-in-out;
+          transition: all 0.5s ease-in-out;}
+.kpx_login .kpx_socialButtons .kpx_btn-linkedin:hover {background: #004269}
+.kpx_login .kpx_socialButtons .kpx_btn-linkedin:focus {background: #fff; color: #0976b4; border-color: #0976b4}
+
+.kpx_login .kpx_socialButtons .kpx_btn-stumbleupon {background: #eb4924; -webkit-transition: all 0.5s ease-in-out;
+     -moz-transition: all 0.5s ease-in-out;
+       -o-transition: all 0.5s ease-in-out;
+          transition: all 0.5s ease-in-out;}
+.kpx_login .kpx_socialButtons .kpx_btn-stumbleupon:hover {background: #943019}
+.kpx_login .kpx_socialButtons .kpx_btn-stumbleupon:focus {background: #fff; color: #eb4924; border-color: #eb4924}
+
+.kpx_login .kpx_socialButtons .kpx_btn-tumblr {background: #35465c; -webkit-transition: all 0.5s ease-in-out;
+     -moz-transition: all 0.5s ease-in-out;
+       -o-transition: all 0.5s ease-in-out;
+          transition: all 0.5s ease-in-out;}
+.kpx_login .kpx_socialButtons .kpx_btn-tumblr:hover {background: #142030}
+.kpx_login .kpx_socialButtons .kpx_btn-tumblr:focus {background: #fff; color: #35465c; border-color: #35465c}
+
+
+.kpx_login .kpx_loginOr {
+    position: relative;
+    font-size: 1.5em;
+    color: #aaa;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+.kpx_login .kpx_loginOr .kpx_hrOr {
+    background-color: #cdcdcd;
+    height: 1px;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+.kpx_login .kpx_loginOr .kpx_spanOr {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: -0.6em;
+    margin-left: -1.5em;
+    background-color: white;
+    width: 3em;
+    text-align: center;
+}           
+
+.kpx_login .kpx_loginForm .input-group.i {
+    width: 2em;
+}
+.kpx_login .kpx_loginForm  .help-block {
+    color: red;
+}
+
+    
+@media (min-width: 768px) {
+    .kpx_login .kpx_forgotPwd {
+        text-align: right;
+        margin-top:10px;
+    }       
+}

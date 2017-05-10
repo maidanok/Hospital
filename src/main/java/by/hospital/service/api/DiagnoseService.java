@@ -10,12 +10,14 @@ import java.util.List;
  */
 public interface DiagnoseService {
 
-    Diagnose createNewDiagnose(String name, String therapy);
+    Diagnose createNewDiagnose(Diagnose diagnose);
 
-    Diagnose getDiagmose(Diagnose diagnose) throws PersistentException;
+    Diagnose getDiagnose(Diagnose diagnose);
 
     List<Diagnose> getAll();
 
     boolean deleteDiagnose(Diagnose diagnose);
+
+    void saveDiagnose(Diagnose diagnose);
 
 }

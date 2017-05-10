@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface SurveyHistoryService {
 
-    List<SurveyHistory> getAllbySickList(SickList sickList) throws PersistentException;
+    List<SurveyHistory> getAllbySickList(SickList sickList);
 
     SurveyHistory returnSurveyHistoru(SurveyHistory surveyHistory) throws PersistentException;
 

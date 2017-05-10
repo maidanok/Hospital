@@ -9,7 +9,7 @@
     <div class="easyui-tabs" style="width:95%;">
         <div title="Пациенты" style="padding:10px">
             <h3>Пациенты</h3>
-            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Добавить</a>
+            <a href="controller?COMMAND=EditPatient&id=0" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Добавить</a>
             <input type="search" class="easyui-searchbox" data-options="prompt:'Фамилия'" style="width:25%">
             <table>
                 <tr>
@@ -32,7 +32,7 @@
                         <td>
                             <a  href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'"></a>
                             <a href="controller?COMMAND=EditPatient&id=${patient.getPrimaryKey()}" class="easyui-linkbutton" data-options="iconCls:'icon-edit'"></a>
-                            <a  href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a>
+                            <a  href="controller?COMMAND=DeletePatient&id=${patient.getPrimaryKey()}" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -42,7 +42,7 @@
 
         <div title="Сотрудники" style="padding:10px">
             <h3>Персонал</h3>
-            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Добавить</a>
+            <a href="controller?COMMAND=EditStaff&id=0" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Добавить</a>
             <table>
                 <tr>
                     <th>№</th>
@@ -63,14 +63,14 @@
                         <td>${staff.getPassportNumber()}</td>
                         <td>
                         <a href="controller?COMMAND=EditStaff&id=${staff.getPrimaryKey()}" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">
-                        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a></td>
+                        <a href="controller?COMMAND=DeleteStaff&id=${staff.getPrimaryKey()}" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a></td>
                     </tr>
                 </c:forEach>
             </table>
         </div>
         <div title="Диагнозы" style="padding:10px">
             <h3>Диагнозы</h3>
-            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Добавить</a>
+            <a href="controller?COMMAND=EditDiagnose&id=0" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Добавить</a>
             <table>
                 <tr>
                     <th>№</th>
@@ -84,7 +84,8 @@
                         <td>${diagnose.getDiagnoseName()}</td>
                         <td>${diagnose.getTherapy()}</td>
                         <td>
-                            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a></td>
+                            <a href="controller?COMMAND=EditDiagnose&id=${diagnose.getPrimaryKey()}" class="easyui-linkbutton" data-options="iconCls:'icon-edit'"></a>
+                            <a href="controller?COMMAND=DeleteDiagnose&id=${diagnose.getPrimaryKey()}" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a></td>
                     </tr>
                 </c:forEach>
             </table>

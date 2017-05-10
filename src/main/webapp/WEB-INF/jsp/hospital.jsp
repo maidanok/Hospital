@@ -33,7 +33,7 @@
                         <td>${sickList.getPatient().getSex().getName()}</td>
                         <td>${sickList.getDateIN()}</td>
                         <td>${sickList.getFinalDiagnose().getDiagnoseName()}</td>
-                        <td><a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit'"></a>
+                        <td><a href="controller?COMMAND=EditSickList&id=${sickList.getPrimaryKey()}" class="easyui-linkbutton" data-options="iconCls:'icon-edit'"></a>
                             <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a></td>
                     </tr>
                 </c:forEach>

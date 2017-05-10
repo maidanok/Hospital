@@ -1,9 +1,8 @@
 package by.hospital.service.impl;
 
-import by.hospital.DAO.GenericDAO;
-import by.hospital.DAO.conditions.FindStaffID;
-import by.hospital.DAO.conditions.LoginAndPassword;
-import by.hospital.DAO.mysql.MySqlDaoFactory;
+import by.hospital.dao.GenericDAO;
+import by.hospital.dao.conditions.FindStaffID;
+import by.hospital.dao.conditions.LoginAndPassword;
 import by.hospital.domain.PrescriptionExecution;
 import by.hospital.domain.Staff;
 import by.hospital.domain.SurveyHistory;
@@ -11,7 +10,6 @@ import by.hospital.exception.PersistentException;
 import by.hospital.service.api.StaffService;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,9 +17,14 @@ import java.util.List;
  */
 public class StaffServiceImpl implements StaffService {
     private GenericDAO<Staff, Integer> staffDao;
+    private GenericDAO<PrescriptionExecution,Integer> persistentExceptionDao;
+    private GenericDAO<SurveyHistory,Integer> surveyHistoryDao;
 
-    public StaffServiceImpl(GenericDAO<Staff, Integer> staffDao) throws PersistentException {
+    public StaffServiceImpl(GenericDAO<Staff, Integer> staffDao,GenericDAO<PrescriptionExecution,Integer> persistentExceptionDao,
+                            GenericDAO<SurveyHistory,Integer> surveyHistoryDao) throws PersistentException {
         this.staffDao = staffDao;
+        this.persistentExceptionDao=persistentExceptionDao;
+        this.surveyHistoryDao=surveyHistoryDao;
     }
 
     @Override
@@ -49,27 +52,14 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public Staff createNewStaff(String firstN, String lastN, String middleN, Date birth, String sex, String addr,
-                                String passp, String post, String login, String passw) {
-        Staff staff = new Staff();
-        staff.setLogin(login);
-        staff.setPassword(passw);
-        if (findByLogPass(staff) == null) {
-            staff.setFirstName(firstN);
-            staff.setLastName(lastN);
-            staff.setMiddleName(middleN);
-            staff.setBirthday(birth);
-            staff.setSex(sex);
-            staff.setAddress(addr);
-            staff.setPassportNumber(passp);
-            staff.setPost(post);
-            try {
-                staff = staffDao.persist(staff);
-            } catch (PersistentException e) {
-                e.printStackTrace();
-            }
+    public Staff createNewStaff(Staff staff) {
+        Staff newStaff = null;
+        try {
+            newStaff = staffDao.persist(staff);
+        } catch (PersistentException e) {
+            e.printStackTrace();
         }
-        return staff;
+        return newStaff;
     }
 
     @Override
@@ -87,7 +77,7 @@ public class StaffServiceImpl implements StaffService {
     public Staff returnStaffFull(Staff staf) {
         Staff staff = null;
         try {
-            staff=staffDao.getByPrimaryKey(staf.getPrimaryKey());
+            staff = staffDao.getByPrimaryKey(staf.getPrimaryKey());
         } catch (PersistentException e) {
             e.printStackTrace();
         }
@@ -111,15 +101,34 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public boolean deleteStaff(Staff staff) throws PersistentException {
-        List<PrescriptionExecution> listPE = MySqlDaoFactory.getInstance().getDao(MySqlDaoFactory.getInstance().getContext(), PrescriptionExecution.class)
-                .FindByCondition(new FindStaffID(staff.getPrimaryKey()));
-        List<SurveyHistory> listSH = MySqlDaoFactory.getInstance().getDao(MySqlDaoFactory.getInstance().getContext(), SurveyHistory.class)
-                .FindByCondition(new FindStaffID(staff.getPrimaryKey()));
-        if ((listPE.isEmpty()) && (listSH.isEmpty())) {
-            staffDao.delete(staffDao.getByPrimaryKey(staff.getPrimaryKey()));
-            return true;
+    public boolean deleteStaff(Staff staff){
+        if (staff.getPrimaryKey()==0){
+            return false;
+        }
+        try {
+            List<PrescriptionExecution> listPE = persistentExceptionDao.FindByCondition(new FindStaffID(staff.getPrimaryKey()));
+            List<SurveyHistory> listSH = surveyHistoryDao.FindByCondition(new FindStaffID(staff.getPrimaryKey()));
+            if ((listPE.isEmpty()) && (listSH.isEmpty())) {
+                staffDao.delete(staff);
+                return true;
+            }
+        }catch (PersistentException e){
+            e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public void saveStaff(Staff staff) {
+        if (staff.getPrimaryKey() != 0) {
+            try {
+                staffDao.update(staff);
+            } catch (PersistentException e) {
+                e.printStackTrace();
+            }
+        }
+        if (staff.getPrimaryKey() == 0) {
+            createNewStaff(staff);
+        }
     }
 }
