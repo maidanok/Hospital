@@ -5,90 +5,34 @@
          version="3.1">
 
 
-    <servlet>
-        <servlet-name>DirectoriesController</servlet-name>
-        <servlet-class>by.hospital.controllers.DirectoriesController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>PrescriptionController</servlet-name>
-        <servlet-class>by.hospital.controllers.PrescriptionController</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>SurveyController</servlet-name>
-        <servlet-class>by.hospital.controllers.SurveyController</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>DiagnoseController</servlet-name>
-        <servlet-class>by.hospital.controllers.DiagnoseController</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>StaffController</servlet-name>
-        <servlet-class>by.hospital.controllers.StaffController</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>PatientController</servlet-name>
-        <servlet-class>by.hospital.controllers.PatientController</servlet-class>
-    </servlet>
-
+<!--Servlet-->
     <servlet>
         <servlet-name>HospitalController</servlet-name>
         <servlet-class>by.hospital.controllers.HospitalController</servlet-class>
     </servlet>
 
-    <servlet>
-        <servlet-name>StartPageController</servlet-name>
-        <servlet-class>by.hospital.controllers.StartPageController</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>LoginController</servlet-name>
-        <servlet-class>by.hospital.controllers.LoginController</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>LoginController</servlet-name>
-        <url-pattern>/login.html</url-pattern>
-    </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>HospitalController</servlet-name>
-        <url-pattern>/hospital.html</url-pattern>
+        <url-pattern>/controller</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>SickListController</servlet-name>
-        <servlet-class>by.hospital.controllers.SickListController</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>StartPageController</servlet-name>
-        <url-pattern>/index.html</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>PatientController</servlet-name>
-        <url-pattern>/patient.html</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>StaffController</servlet-name>
-        <url-pattern>/staff.html</url-pattern>
-    </servlet-mapping>
-
+<!--Filters-->
     <filter>
         <filter-name>EncodingFilter</filter-name>
         <filter-class>by.hospital.filters.EncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
     </filter>
+
     <filter-mapping>
         <filter-name>EncodingFilter</filter-name>
-        <url-pattern>*.html</url-pattern>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
 
     <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>*.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

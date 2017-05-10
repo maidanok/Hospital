@@ -1,8 +1,8 @@
 package by.hospital.console.command;
 
 import by.hospital.exception.PersistentException;
+import by.hospital.service.ServiceLocator;
 import by.hospital.service.api.SurveyHistoryService;
-import by.hospital.service.impl.SurveyHistoryServiceImpl;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -19,7 +19,6 @@ public class NewSurveyHistory extends AbstractCommandFactory {
 
     @Override
     public void runCommand() throws PersistentException {
-        SurveyHistoryService surveyHistoryService = new SurveyHistoryServiceImpl();
         out.println("Здравствуйте доктор введите свой ID");
         int staffID = Integer.valueOf(scanner.nextLine());
         out.println("введите номер больничного листа");
@@ -29,6 +28,6 @@ public class NewSurveyHistory extends AbstractCommandFactory {
         Date date = Date.valueOf(LocalDate.now());
         out.println("ведите примечания к осмотру. В одну строку");
         String des = scanner.nextLine();
-        surveyHistoryService.createNewSurveyHistory(sickListId,diagnID,staffID,date,des);
+        ServiceLocator.getService(SurveyHistoryService.class).createNewSurveyHistory(sickListId,diagnID,staffID,date,des);
     }
 }

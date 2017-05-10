@@ -1,7 +1,6 @@
 package by.hospital.DAO.mysql;
 
 import by.hospital.DAO.AbstractJDBCDao;
-import by.hospital.DAO.DaoFactory;
 import by.hospital.DAO.mysql.interfaces.GenericDaoForSickList;
 import by.hospital.domain.SickList;
 import by.hospital.exception.PersistentException;
@@ -24,8 +23,8 @@ public class MySqlSickListDao extends AbstractJDBCDao<SickList, Integer> impleme
         }
     }
 
-    public MySqlSickListDao(DaoFactory<Connection> parentFactory, Connection connection) {
-        super(parentFactory, connection);
+    public MySqlSickListDao(Connection connection) {
+        super(connection);
 
     }
 

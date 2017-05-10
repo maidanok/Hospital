@@ -12,10 +12,10 @@ public interface DiagnoseService {
 
     Diagnose createNewDiagnose(String name, String therapy);
 
-    Diagnose getDiagmose(int id) throws PersistentException;
+    Diagnose getDiagmose(Diagnose diagnose) throws PersistentException;
 
-    List<Diagnose> getAll() throws PersistentException;
+    List<Diagnose> getAll();
 
-    boolean deleteDiagnose(int id);
+    boolean deleteDiagnose(Diagnose diagnose);
 
 }

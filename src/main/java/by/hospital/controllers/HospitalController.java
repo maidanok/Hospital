@@ -1,63 +1,69 @@
 package by.hospital.controllers;
 
-import by.hospital.domain.Prescription;
-import by.hospital.domain.SickList;
-import by.hospital.exception.PersistentException;
-import by.hospital.service.api.PrescriptionService;
-import by.hospital.service.api.SickListService;
-import by.hospital.service.impl.PrescriptionServiceImpl;
-import by.hospital.service.impl.SickListServiceImpl;
+import by.hospital.command.Command;
+import by.hospital.command.CommandFactory;
+import by.hospital.prop_managers.ConfigurationManager;
+import by.hospital.service.ServiceInitializer;
+import org.apache.log4j.Logger;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-@WebServlet(urlPatterns = "/hospital")
+
+/**
+ * Created by Admin on 07.05.2017.
+ */
+@WebServlet("/controller")
 public class HospitalController extends HttpServlet {
-    List<SickList> sickLists = new ArrayList<>();
-    List<Prescription> prescriptionList = new ArrayList<>();
-    SickListService sickListService = new SickListServiceImpl();
-    PrescriptionService prescriptionService = new PrescriptionServiceImpl();
 
-    public HospitalController() throws PersistentException {
+    Logger logger = Logger.getLogger(HospitalController.class);
+    CommandFactory commandFactory = CommandFactory.getInstance();
+
+    public HospitalController() {
         super();
     }
 
-    public void init() throws ServletException {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        processRequest(request, response);
+    }
 
-            sickLists = sickListService.findAllActive();
-        try {
-            prescriptionList = prescriptionService.getAllNotDone();
-        } catch (PersistentException e) {
-            e.printStackTrace();
+    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String page = null;
+        Command command = commandFactory.getCommand(request);
+        page = command.execute(request,response);
+
+        boolean isRedirect =(request.getAttribute("isRedirect") != null) ? (boolean) request.getAttribute("isRedirect") : false;
+        if (page != null && isRedirect) {
+            response.sendRedirect("./"+ page);
+        } else {
+            if (page != null) {
+                RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+                dispatcher.forward(request, response);
+            } else {
+                page = ConfigurationManager.getProperty("path.page.error");
+                RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+                dispatcher.forward(request, response);
+            }
         }
-
-        request.setAttribute("sickLists", sickLists);
-        request.setAttribute("prescriptionList",prescriptionList);
-
-        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/hospital.jsp").forward(request, response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html");
-        response.getWriter().print("This is " + this.getClass().getName()
-                + ", using the POST method");
+    public void init() throws ServletException {
+        ServiceInitializer.init();
+        super.init();
+        logger.info("Hospitall_Controller start");
+
     }
 
-    public void destroy() {
-        super.destroy(); // Just puts "destroy" string in log
-    }
+
 }

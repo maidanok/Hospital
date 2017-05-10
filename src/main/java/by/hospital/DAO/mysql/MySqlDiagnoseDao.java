@@ -1,7 +1,6 @@
 package by.hospital.DAO.mysql;
 
 import by.hospital.DAO.AbstractJDBCDao;
-import by.hospital.DAO.DaoFactory;
 import by.hospital.domain.Diagnose;
 import by.hospital.exception.PersistentException;
 
@@ -22,8 +21,8 @@ public class MySqlDiagnoseDao extends AbstractJDBCDao <Diagnose, Integer> {
         }
     }
 
-    public MySqlDiagnoseDao(DaoFactory<Connection> parentFactory, Connection connection) {
-        super(parentFactory, connection);
+    public MySqlDiagnoseDao(Connection connection) {
+        super(connection);
     }
 
     @Override

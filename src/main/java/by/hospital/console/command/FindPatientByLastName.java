@@ -1,8 +1,9 @@
 package by.hospital.console.command;
 
+import by.hospital.domain.Patient;
 import by.hospital.exception.PersistentException;
+import by.hospital.service.ServiceLocator;
 import by.hospital.service.api.PatientService;
-import by.hospital.service.impl.PatientServiceImpl;
 
 import static java.lang.System.out;
 
@@ -17,8 +18,9 @@ public class FindPatientByLastName extends AbstractCommandFactory {
     @Override
     public void runCommand() throws PersistentException {
         out.println("Введите фамилию пациента");
-        PatientService patientService = new PatientServiceImpl();
         String lastName = scanner.nextLine();
-        out.println(patientService.FindLastName(lastName));
+        Patient patient = new Patient();
+        patient.setLastName(lastName);
+        out.println(ServiceLocator.getService(PatientService.class).FindLastName(patient));
     }
 }

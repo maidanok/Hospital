@@ -1,7 +1,12 @@
 package by.hospital.service.impl;
 
-import by.hospital.DAO.mysql.MySqlDaoFactory;
-import by.hospital.DAO.mysql.MySqlSurveyHistoryDao;
+import by.hospital.DAO.GenericDAO;
+import by.hospital.DAO.conditions.FindSdiagnoseID;
+import by.hospital.DAO.conditions.SickListID;
+import by.hospital.DAO.conditions.SurveyHistoryID;
+import by.hospital.domain.Diagnose;
+import by.hospital.domain.Prescription;
+import by.hospital.domain.SickList;
 import by.hospital.domain.SurveyHistory;
 import by.hospital.exception.PersistentException;
 import by.hospital.service.api.SurveyHistoryService;
@@ -14,20 +19,23 @@ import java.util.List;
  * Created by Admin on 23.04.2017.
  */
 public class SurveyHistoryServiceImpl implements SurveyHistoryService {
-    private MySqlDaoFactory mySqlDaoFactory = new MySqlDaoFactory();
-    private MySqlSurveyHistoryDao surveyHistoryDao = (MySqlSurveyHistoryDao) mySqlDaoFactory.getDao(mySqlDaoFactory.getContext(),SurveyHistory.class);
+    private GenericDAO<SurveyHistory, Integer> surveyHistoryDao;
+    private GenericDAO<Prescription, Integer> prescriptionDao;
 
-    public SurveyHistoryServiceImpl() throws PersistentException {
+
+    public SurveyHistoryServiceImpl(GenericDAO<SurveyHistory, Integer> surveyHistoryDao, GenericDAO<Prescription, Integer> prescriptionDao) throws PersistentException {
+        this.surveyHistoryDao = surveyHistoryDao;
+        this.prescriptionDao = prescriptionDao;
     }
 
     @Override
-    public List<SurveyHistory> getAllbySickList(int sickListID) throws PersistentException {
-        return surveyHistoryDao.FindByCondition( "WHERE sick_list.sick_list_id = "+sickListID+";");
+    public List<SurveyHistory> getAllbySickList(SickList sickList) throws PersistentException {
+        return surveyHistoryDao.FindByCondition(new SickListID(sickList.getPrimaryKey()));
     }
 
     @Override
-    public SurveyHistory returnSurveyHistoru(int id) throws PersistentException {
-        return surveyHistoryDao.getByPrimaryKey(id);
+    public SurveyHistory returnSurveyHistoru(SurveyHistory surveyHistory) throws PersistentException {
+        return surveyHistoryDao.getByPrimaryKey(surveyHistory.getPrimaryKey());
     }
 
     @Override
@@ -38,20 +46,34 @@ public class SurveyHistoryServiceImpl implements SurveyHistoryService {
         surveyHistory.getStaff().setPrimaryKey(staffID);
         surveyHistory.setSurveyDate(date);
         surveyHistory.setDescription(description);
-        surveyHistory=surveyHistoryDao.persist(surveyHistory);
+        surveyHistory = surveyHistoryDao.persist(surveyHistory);
         return surveyHistory;
     }
 
     @Override
-    public boolean deleteSurveyHistory(int id) {
+    public boolean deleteSurveyHistory(SurveyHistory surveyHistory) {
+        List<Prescription> list = new ArrayList<>();
+        try {
+            list = prescriptionDao.FindByCondition(new SurveyHistoryID(surveyHistory.getPrimaryKey()));
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
+        if (list.isEmpty()) {
+            try {
+                surveyHistoryDao.delete(surveyHistory);
+                return true;
+            } catch (PersistentException e) {
+                e.printStackTrace();
+            }
+        }
         return false;
     }
 
     @Override
-    public List<SurveyHistory> findByDiagnoseID(int id) {
+    public List<SurveyHistory> findByDiagnoseID(Diagnose diagnose) {
         List<SurveyHistory> list = new ArrayList<>();
         try {
-            list = surveyHistoryDao.FindByCondition(" WHERE s_diagnose_id = "+id+";");
+            list = surveyHistoryDao.FindByCondition(new FindSdiagnoseID(diagnose.getPrimaryKey()));
         } catch (PersistentException e) {
             e.printStackTrace();
         }

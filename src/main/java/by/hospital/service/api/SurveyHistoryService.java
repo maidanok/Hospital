@@ -1,5 +1,7 @@
 package by.hospital.service.api;
 
+import by.hospital.domain.Diagnose;
+import by.hospital.domain.SickList;
 import by.hospital.domain.SurveyHistory;
 import by.hospital.exception.PersistentException;
 
@@ -11,13 +13,13 @@ import java.util.List;
  */
 public interface SurveyHistoryService {
 
-    List<SurveyHistory> getAllbySickList(int sickListID) throws PersistentException;
+    List<SurveyHistory> getAllbySickList(SickList sickList) throws PersistentException;
 
-    SurveyHistory returnSurveyHistoru(int id) throws PersistentException;
+    SurveyHistory returnSurveyHistoru(SurveyHistory surveyHistory) throws PersistentException;
 
     SurveyHistory createNewSurveyHistory(int sickID, int diagnoseID, int staffID, Date date, String description) throws PersistentException;
 
-    boolean deleteSurveyHistory(int id);
+    boolean deleteSurveyHistory(SurveyHistory surveyHistory);
 
-    List<SurveyHistory>findByDiagnoseID(int id);
+    List<SurveyHistory> findByDiagnoseID(Diagnose diagnose);
 }

@@ -2,15 +2,19 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib tagdir ="/WEB-INF/tags" prefix = "t"%>
+<fmt:requestEncoding value="UTF-8" />
+
 <t:html>
     <t:header/>
+
     <div style="margin:10px 0 10px 0;"></div>
     <div class="easyui-tabs" style="width:95%;">
         <div title="Стационар" style="padding:10px">
-            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Добавить</a>
+            <a href="controller?COMMAND=OpenDirectories" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Добавить</a>
             <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">Удалить выбранные</a><br>
             <input type="search" class="easyui-searchbox" data-options="prompt:'Фамилия'" style="width:25%">
             <input type="search" class="easyui-datebox" data-options="prompt:'Дата поступления'" style="width:25%">
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">Найти</a>
             <table>
                 <tr>
                     <th>Отметить</th>
@@ -39,6 +43,7 @@
             <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Добавить</a>
             <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">Удалить выбранные</a><br>
             <input type="search" class="easyui-searchbox" data-options="prompt:'Фамилия'" style="width:25%">
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">Найти</a>
             <table>
                 <tr>
                     <th>Отметить</th>

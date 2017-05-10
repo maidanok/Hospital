@@ -2,6 +2,7 @@ package by.hospital.console;
 
 import by.hospital.console.command.*;
 import by.hospital.exception.PersistentException;
+import by.hospital.service.ServiceInitializer;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -20,6 +21,7 @@ public class Runner {
             new NewSurveyHistory(),
             new NewPrescription(),
             new ExecutePrescription(),
+            new FindLogPass(),
             new MenuCikle()
     };
     private Scanner scanner = new Scanner(System.in);
@@ -48,6 +50,7 @@ public class Runner {
     }
 
     public static void main(String[] args) throws PersistentException, SQLException {
+        ServiceInitializer.init();
         Runner runner = new Runner();
         while (runner.i!=runner.commandFactory.length){
             runner.menu();

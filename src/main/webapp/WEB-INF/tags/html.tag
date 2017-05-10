@@ -18,7 +18,7 @@
 <c:if test="${not empty javascript}">
 <script type="text/javascript" src="${scriptPath}/${javascript}"></script>
 </c:if>
-<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<META http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
 <jsp:doBody/>

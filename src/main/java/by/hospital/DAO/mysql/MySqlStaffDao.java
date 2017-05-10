@@ -1,7 +1,6 @@
 package by.hospital.DAO.mysql;
 
 import by.hospital.DAO.AbstractJDBCDao;
-import by.hospital.DAO.DaoFactory;
 import by.hospital.DAO.mysql.interfaces.GenericDAOForStaff;
 import by.hospital.domain.Staff;
 import by.hospital.exception.PersistentException;
@@ -17,8 +16,8 @@ import java.util.List;
  */
 public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements GenericDAOForStaff {
 
-    public MySqlStaffDao(DaoFactory<Connection> parentFactory, Connection connection) {
-        super(parentFactory, connection);
+    public MySqlStaffDao(Connection connection) {
+        super(connection);
     }
 
 

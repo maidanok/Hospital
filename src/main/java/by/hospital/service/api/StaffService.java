@@ -11,17 +11,17 @@ import java.util.List;
  */
 public interface StaffService {
 
-    Staff findByLogPass(String log, String pass);
+    Staff findByLogPass(Staff staff);
 
-    Staff changePassword(int id, String pass) throws PersistentException;
+    Staff changePassword(Staff staff) throws PersistentException;
 
     Staff createNewStaff(String fersN, String lastN, String middleN, Date birth, String sex, String addr, String passp, String post, String login, String passw);
 
-    List<Staff> getAllStaff() throws PersistentException;
+    List<Staff> getAllStaff();
 
-    Staff returnStaffFull (int id) throws PersistentException;
+    Staff returnStaffFull (Staff staff);
 
-    Staff returnStaffShort(int id) throws PersistentException;
+    Staff returnStaffShort(Staff staff);
 
-    boolean deleteStaff(int staffId) throws PersistentException;
+    boolean deleteStaff(Staff staff) throws PersistentException;
 }

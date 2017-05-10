@@ -1,12 +1,13 @@
 package by.hospital.service.impl;
 
-import by.hospital.DAO.mysql.MySqlDaoFactory;
-import by.hospital.DAO.mysql.MySqlSickListDao;
+import by.hospital.DAO.GenericDAO;
+import by.hospital.DAO.conditions.*;
+import by.hospital.domain.Diagnose;
+import by.hospital.domain.Patient;
 import by.hospital.domain.SickList;
 import by.hospital.domain.SurveyHistory;
 import by.hospital.exception.PersistentException;
 import by.hospital.service.api.SickListService;
-import by.hospital.service.api.SurveyHistoryService;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,17 +17,19 @@ import java.util.List;
  * Created by Admin on 22.04.2017.
  */
 public class SickListServiceImpl implements SickListService {
-    private MySqlDaoFactory mySqlDaoFactory = new MySqlDaoFactory();
-    private MySqlSickListDao sickListDao = (MySqlSickListDao) mySqlDaoFactory.getDao(mySqlDaoFactory.getContext(), SickList.class);
+    private GenericDAO<SurveyHistory,Integer> surveyHistoryDao;
+    private GenericDAO<SickList,Integer> sickListDao;
 
-    public SickListServiceImpl() throws PersistentException {
+    public SickListServiceImpl(GenericDAO<SickList,Integer> sickListDao,GenericDAO<SurveyHistory,Integer> surveyHistoryDao) throws PersistentException {
+        this.sickListDao=sickListDao;
+        this.surveyHistoryDao=surveyHistoryDao;
     }
 
     @Override
     public List<SickList> findAllActive() {
         List<SickList> result = null;
         try {
-            result = sickListDao.FindByCondition(" WHERE date_out is null;");
+            result = sickListDao.FindByCondition(new DateOutNotNull());
         } catch (PersistentException e) {
             e.printStackTrace();
         }
@@ -34,10 +37,10 @@ public class SickListServiceImpl implements SickListService {
     }
 
     @Override
-    public List<SickList> findByPatient(int patientID) {
+    public List<SickList> findByPatient(Patient patient) {
         List<SickList> result = null;
         try {
-            result = sickListDao.FindByCondition(" WHERE person.person_id = " + patientID + ";");
+            result = sickListDao.FindByCondition(new PersonPersonID(patient.getPrimaryKey()));
         } catch (PersistentException e) {
             e.printStackTrace();
         }
@@ -49,15 +52,15 @@ public class SickListServiceImpl implements SickListService {
         List<SickList> result = null;
         try {
             if (patientFirstName == null) {
-                result = sickListDao.FindByCondition(" WHERE date_in = " + dateIn + ";");
+                result = sickListDao.FindByCondition(new DateIN(dateIn));
             } else {
                 if (dateIn == null) {
-                    result = sickListDao.FindByCondition("WHERE first_name like '" + patientFirstName + "';");
+                    result = sickListDao.FindByCondition(new FirstNameLike(patientFirstName));
                 }else {
                     if (patientFirstName==null && dateIn==null){
                         result=findAllActive();
                     }else {
-                        result = sickListDao.FindByCondition("WHERE first_name like '" + patientFirstName +"' AND date_in = " + dateIn + ";");
+                        result = sickListDao.FindByCondition(new FirstNameAndDateIN(patientFirstName,dateIn));
                     }
                 }
             }
@@ -79,21 +82,21 @@ public class SickListServiceImpl implements SickListService {
     }
 
     @Override
-    public boolean deleteSickList(int id) throws PersistentException {
-        SurveyHistoryService surveyHistoryService = new SurveyHistoryServiceImpl();
-        List<SurveyHistory> list = surveyHistoryService.getAllbySickList(id);
+    public boolean deleteSickList(SickList sickList) throws PersistentException {
+
+        List<SurveyHistory> list = surveyHistoryDao.FindByCondition(new SickListID(sickList.getPrimaryKey()));
         if (list.isEmpty()){
-            sickListDao.delete(sickListDao.getByPrimaryKey(id));
+            sickListDao.delete(sickListDao.getByPrimaryKey(sickList.getPrimaryKey()));
             return true;
         } else
         return false;
     }
 
     @Override
-    public List<SickList> findByDiagnoseID(int id) {
+    public List<SickList> findByDiagnoseID(Diagnose diagnose) {
         List<SickList> list=new ArrayList<>();
         try {
-            list= sickListDao.FindByCondition(" WHERE final_diagnose_id = "+id+";");
+            list= sickListDao.FindByCondition(new FindFinalDiagnoseID(diagnose.getPrimaryKey()));
         } catch (PersistentException e) {
             e.printStackTrace();
         }

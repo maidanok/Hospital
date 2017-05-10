@@ -1,7 +1,6 @@
 package by.hospital.DAO.mysql;
 
 import by.hospital.DAO.AbstractJDBCDao;
-import by.hospital.DAO.DaoFactory;
 import by.hospital.DAO.mysql.interfaces.GenericDaoForPrescription;
 import by.hospital.domain.Prescription;
 import by.hospital.domain.SickList;
@@ -19,8 +18,8 @@ import java.util.List;
  * Created by Admin on 18.04.2017.
  */
 public class MySqlPrescriptionDao extends AbstractJDBCDao <Prescription, Integer> implements GenericDaoForPrescription {
-    public MySqlPrescriptionDao(DaoFactory parentFactory, Connection connection) {
-        super(parentFactory, connection);
+    public MySqlPrescriptionDao(Connection connection) {
+        super(connection);
     }
 
     @Override
