@@ -2,7 +2,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib tagdir ="/WEB-INF/tags" prefix = "t"%>
-<fmt:requestEncoding value="UTF-8" />
+<fmt:requestEncoding value="UTF-8"/>
 
 <t:html>
     <t:header/>
@@ -12,9 +12,14 @@
         <div title="Стационар" style="padding:10px">
             <a href="controller?COMMAND=OpenDirectories" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Добавить</a>
             <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">Удалить выбранные</a><br>
-            <input type="search" class="easyui-searchbox" data-options="prompt:'Фамилия'" style="width:25%">
-            <input type="search" class="easyui-datebox" data-options="prompt:'Дата поступления'" style="width:25%">
-            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">Найти</a>
+            <form name="find" method="post" action="controller?COMMAND=FindSickListBy">
+                <input type="search" name="firstname" class="easyui-searchbox" data-options="prompt:'Фамилия'"
+                       style="width:25%" value="">
+                <input type="search" name="dateIn" class="easyui-datebox" data-options="prompt:'Дата поступления'"
+                       style="width:25%" value="">
+                <input type="submit" src="iconCls:'icon-ok'" class="easyui-linkbutton" value="Найти"
+                       style="width:110px; height:27px">
+            </form>
             <table>
                 <tr>
                     <th>Отметить</th>
@@ -33,8 +38,10 @@
                         <td>${sickList.getPatient().getSex().getName()}</td>
                         <td>${sickList.getDateIN()}</td>
                         <td>${sickList.getFinalDiagnose().getDiagnoseName()}</td>
-                        <td><a href="controller?COMMAND=EditSickList&id=${sickList.getPrimaryKey()}" class="easyui-linkbutton" data-options="iconCls:'icon-edit'"></a>
-                            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a></td>
+                        <td><a href="controller?COMMAND=EditSickList&id=${sickList.getPrimaryKey()}"
+                               class="easyui-linkbutton" data-options="iconCls:'icon-edit'"></a>
+                            <a href="controller?COMMAND=DeleteSickList&id=${sickList.getPrimaryKey()}"
+                               class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a></td>
                     </tr>
                 </c:forEach>
             </table>

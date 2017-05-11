@@ -6,12 +6,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
+import java.util.List;
 import java.util.Map;
 
 import java.util.concurrent.ConcurrentHashMap;
 
+import by.hospital.domain.*;
 import by.hospital.prop_managers.ConfigurationManager;
 
+import by.hospital.service.ServiceLocator;
+import by.hospital.service.api.*;
 import org.apache.log4j.Logger;
 
 
@@ -23,9 +27,9 @@ public class UriFilter implements Filter {
     private static Map<String, String> links = new ConcurrentHashMap<>();
 
     static {
-        links.put("/login", "PAGE_LOGIN_REDIRECT");
-        links.put("/hospital", "PAGE_HOSPITAL_REDIRECT");
-        links.put("/directories", "PAGE_DIRECTORIES_REDIRECT");
+        links.put("/login", "Login");
+        links.put("/hospital", "OpenHospital");
+        links.put("/directories", "OpenDirectories");
     }
 
     @Override
@@ -50,6 +54,7 @@ public class UriFilter implements Filter {
             }
             String command = links.get(commandName);
             if (command != null) {
+                httpServletRequest.setAttribute("COMMAND", command);
                 httpServletRequest.getServletContext().getRequestDispatcher(ConfigurationManager.getProperty(command)).forward(request, response);
                 chain.doFilter(request, response);
             }

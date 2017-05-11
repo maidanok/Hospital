@@ -42,6 +42,7 @@ public class HospitalController extends HttpServlet {
         String page = null;
         Command command = commandFactory.getCommand(request);
         page = command.execute(request,response);
+        logger.info(request.getParameter("COMMAND"));
 
         boolean isRedirect =(request.getAttribute("isRedirect") != null) ? (boolean) request.getAttribute("isRedirect") : false;
         if (page != null && isRedirect) {
