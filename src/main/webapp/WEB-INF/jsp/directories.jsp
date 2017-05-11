@@ -2,7 +2,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib tagdir ="/WEB-INF/tags" prefix = "t"%>
-<fmt:requestEncoding value="UTF-8" />
+<fmt:requestEncoding value="UTF-8"/>
 <t:html>
     <t:header/>
     <div style="margin:10px 0 10px 0;"></div>
@@ -25,14 +25,19 @@
                     <tr>
                         <td id={"$patient.getPrimaryKey()}">${patient.getPrimaryKey()}</td>
                         <td>${patient.getFullName()}</td>
-                        <td><fmt:formatDate pattern = "dd-MM-yyyy" value ="${patient.getBirthday()}"/></td>
+                        <td>
+                            <fmt:formatDate pattern="dd-MM-yyyy" value="${patient.getBirthday()}"/>
+                        </td>
                         <td>${patient.getSex().getName()}</td>
                         <td>${patient.getAddress()}</td>
                         <td>${patient.getPassportNumber()}</td>
                         <td>
-                            <a  href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'"></a>
-                            <a href="controller?COMMAND=EditPatient&id=${patient.getPrimaryKey()}" class="easyui-linkbutton" data-options="iconCls:'icon-edit'"></a>
-                            <a  href="controller?COMMAND=DeletePatient&id=${patient.getPrimaryKey()}" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a>
+                            <a href="controller?COMMAND=NewSickList&id=${patient.getPrimaryKey()}"
+                               class="easyui-linkbutton" data-options="iconCls:'icon-ok'"></a>
+                            <a href="controller?COMMAND=EditPatient&id=${patient.getPrimaryKey()}"
+                               class="easyui-linkbutton" data-options="iconCls:'icon-edit'"></a>
+                            <a href="controller?COMMAND=DeletePatient&id=${patient.getPrimaryKey()}"
+                               class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -57,13 +62,17 @@
                     <tr>
                         <td id={"$staff.getPrimaryKey()}">${staff.getPrimaryKey()}</td>
                         <td>${staff.getFullName()}</td>
-                        <td><fmt:formatDate pattern = "dd-MM-yyyy" value="${staff.getBirthday()}"/></td>
+                        <td>
+                            <fmt:formatDate pattern="dd-MM-yyyy" value="${staff.getBirthday()}"/>
+                        </td>
                         <td>${staff.getSex().getName()}</td>
                         <td>${staff.getAddress()}</td>
                         <td>${staff.getPassportNumber()}</td>
                         <td>
-                        <a href="controller?COMMAND=EditStaff&id=${staff.getPrimaryKey()}" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">
-                        <a href="controller?COMMAND=DeleteStaff&id=${staff.getPrimaryKey()}" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a></td>
+                            <a href="controller?COMMAND=EditStaff&id=${staff.getPrimaryKey()}" class="easyui-linkbutton"
+                               data-options="iconCls:'icon-edit'">
+                                <a href="controller?COMMAND=DeleteStaff&id=${staff.getPrimaryKey()}"
+                                   class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a></td>
                     </tr>
                 </c:forEach>
             </table>
@@ -84,8 +93,10 @@
                         <td>${diagnose.getDiagnoseName()}</td>
                         <td>${diagnose.getTherapy()}</td>
                         <td>
-                            <a href="controller?COMMAND=EditDiagnose&id=${diagnose.getPrimaryKey()}" class="easyui-linkbutton" data-options="iconCls:'icon-edit'"></a>
-                            <a href="controller?COMMAND=DeleteDiagnose&id=${diagnose.getPrimaryKey()}" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a></td>
+                            <a href="controller?COMMAND=EditDiagnose&id=${diagnose.getPrimaryKey()}"
+                               class="easyui-linkbutton" data-options="iconCls:'icon-edit'"></a>
+                            <a href="controller?COMMAND=DeleteDiagnose&id=${diagnose.getPrimaryKey()}"
+                               class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a></td>
                     </tr>
                 </c:forEach>
             </table>

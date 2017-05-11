@@ -28,6 +28,6 @@ public class NewSickList extends AbstractCommandFactory {
         out.println("На что жалуется пациент? (в одну строку)");
         String sympt = scanner.nextLine();
         System.out.println("Врач установит диагноз после осмотра");
-        ServiceLocator.getService(SickListService.class).createNewSickIst(id,date,room,sympt,1);
+      //  ServiceLocator.getService(SickListService.class).createNewSickIst(id,date,room,sympt,1);
     }
 }

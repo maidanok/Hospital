@@ -10,7 +10,10 @@ import by.hospital.command.login.LoginCommand;
 import by.hospital.command.patient.DeletePatient;
 import by.hospital.command.patient.EditPatient;
 import by.hospital.command.patient.SavePatient;
+import by.hospital.command.sicklist.DeleteSickList;
 import by.hospital.command.sicklist.EditSickList;
+import by.hospital.command.sicklist.NewSickList;
+import by.hospital.command.sicklist.SaveSickList;
 import by.hospital.command.staff.DeleteStaff;
 import by.hospital.command.staff.EditStaff;
 import by.hospital.command.staff.SaveStaff;
@@ -47,7 +50,10 @@ public class CommandFactory {
         commands.put("SaveDiagnose", new SaveDiagnose());
         commands.put("DeleteDiagnose", new DeleteDiagnose());
 
+        commands.put("NewSickList", new NewSickList());
         commands.put("EditSickList", new EditSickList());
+        commands.put("SaveSickList", new SaveSickList());
+        commands.put("DeleteSickList", new DeleteSickList());
     }
 
     public Command getCommand(HttpServletRequest request){

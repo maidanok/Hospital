@@ -31,6 +31,7 @@ public class SaveStaff implements Command {
     private static final String PARAM_STAFF_LOGIN="login";
     private static final String PARAM_STAFF_PASSWORD = "password";
     private static final String PARAM_STAFF_FIRED = "fired";
+    private static final String PARAM_STAFF_POST = "post";
 
     //TODO ошибка в SQL создание нового сотрудника
     private static Set<Post> roles =new HashSet<>();
@@ -59,6 +60,7 @@ public class SaveStaff implements Command {
         String login = request.getParameter(PARAM_STAFF_LOGIN);
         String password = request.getParameter(PARAM_STAFF_PASSWORD);
         Boolean fierd = Boolean.getBoolean(request.getParameter(PARAM_STAFF_FIRED));
+        Post post = Post.valueOf(request.getParameter(PARAM_STAFF_POST));
         Staff staff = new Staff();
 
         if (id!=0){
@@ -75,14 +77,14 @@ public class SaveStaff implements Command {
         staff.setPassportNumber(passport);
         staff.setBirthday(birthday);
         staff.setFired(fierd);
-        staff.setPost(Post.ADMINISTRATOR.toString());
+        staff.setPost(post.toString());
 
         ServiceLocator.getService(StaffService.class).saveStaff(staff);
         List<Staff> allStaff = ServiceLocator.getService(StaffService.class).getAllStaff();
         request.setAttribute("allStaff",allStaff);
         request.setAttribute("isRedirect", true);
 
-        page= ConfigurationManager.getProperty("PAGE_DIRECTORIES");
+        page= "directories.html";
         return page;
     }
 

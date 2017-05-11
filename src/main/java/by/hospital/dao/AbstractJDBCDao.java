@@ -61,6 +61,7 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
             prepareStatementForInsert(statement, entity);
             logger.info("Insert " +entity.getClass() + " "+ statement);
             int count = statement.executeUpdate();
+            statement.close();
             if (count != 1) {
                 throw new PersistentException("On persist modify more then 1 record " + count);
             }
@@ -78,7 +79,9 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
                 throw new PersistentException("Exception on findByPrimaryKey new persist data. " + list.size());
             }
             persistInstanse = list.iterator().next();
+            statement.close();
         } catch (Exception e) {
+            logger.error("Error"+e.getLocalizedMessage());
             throw new PersistentException(e);
         }
 
@@ -98,8 +101,9 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
             if (count != 1) {
                 throw new PersistentException("On update modify more then 1 record: " + count);
             }
+            statement.close();
         } catch (Exception e) {
-            throw new PersistentException(e);
+            logger.error("Error"+e.getLocalizedMessage());
         }
     }
 
@@ -115,7 +119,7 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
             }
             statement.close();
         } catch (Exception e) {
-            throw new PersistentException(e);
+            logger.error("Error"+e.getLocalizedMessage());
         }
     }
 
@@ -129,6 +133,7 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
             statement.setInt(1, primaryKey);
             ResultSet resultSet = statement.executeQuery();
             list = parseResultSet(resultSet);
+            statement.close();
         } catch (Exception e) {
             throw new PersistentException(e);
         }
@@ -136,7 +141,7 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
             return null;
         }
         if (list.size() > 1) {
-            throw new PersistentException("more than one record");
+            logger.info("more than one record");
         }
         return list.iterator().next();
     }
@@ -149,7 +154,9 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             list = parseResultSet(resultSet);
+            statement.close();
         } catch (Exception e) {
+            logger.error("Error"+e.getLocalizedMessage());
             throw new PersistentException(e);
         }
         return list;
@@ -163,7 +170,9 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             list = parseResultSet(resultSet);
+            statement.close();
         } catch (Exception e) {
+            logger.error("Error"+e.getLocalizedMessage());
             throw new PersistentException(e);
         }
         return list;

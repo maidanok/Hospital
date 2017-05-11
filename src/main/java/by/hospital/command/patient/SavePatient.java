@@ -72,7 +72,7 @@ public class SavePatient implements Command {
         request.setAttribute("allPatient",allPatient);
         request.setAttribute("isRedirect", true);
 
-        page= ConfigurationManager.getProperty("PAGE_DIRECTORIES");
+        page= "directories.html";
 
 
 

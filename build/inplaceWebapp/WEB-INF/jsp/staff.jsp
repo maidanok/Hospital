@@ -46,17 +46,20 @@
                 </select>
             </div>
             <div style="margin-bottom:20px">
-                <span>Установить права доступа</span><br>
-                <c:set var="Role" value="${staff.getPost()}"/>
-                <c:if test="${not empty posts}">
-                    <c:forEach items="${posts}" var="post">
-                        <input type="checkbox" name="${post.toString()}" value="${post.toString()}"
-                        <c:if test="{Role=post}">
-                            <c:out value='checked="checked"'/>
-                        </c:if>
-                        >${post.getName()}<br>
-                    </c:forEach>
-                </c:if>
+
+                    <span>Установить права доступа</span><br>
+                    <c:set var="Role" value="${staff.getPost().toString()}"/>
+                    <c:if test="${not empty posts}">
+                        <c:forEach items="${posts}" var="post">
+                            <input type="radio" name="post" value="${post.toString()}"
+                            <c:set var="e" value="${post.toString()}"/>
+                                <c:if test="${Role eq e}">
+                                    <c:out value='checked'/>
+                                </c:if>
+                             >${post.getName()} ${post.toString()}<br>
+                        </c:forEach>
+                    </c:if>
+
             </div>
             <div style="margin-bottom:20px">
                 <input class="easyui-textbox" name="passport" style="width:100%" data-options="label:'Паспорт:'"
