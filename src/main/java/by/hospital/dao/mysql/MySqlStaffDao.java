@@ -54,12 +54,12 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
     protected String getCreateQuery() {
         return
                 "START TRANSACTION;\n" +
-                        "INSERT INTO hospital.person (first_name, last_name, middle_name, birthday, sex, address, passport_number)\n" +
-                        "VALUE (?, ?, ?, ?, ?, ?, ?);\n" +
-                        "INSERT INTO hospital.staff (post_id, login, password, person_id)\n" +
-                        "VALUE ((SELECT post_id FROM posts WHERE post_name = ?), ?, ?,\n" +
-                        "(SELECT person_id FROM person WHERE person_id = last_insert_id()));\n" +
-                        "COMMIT;";
+                 "INSERT INTO hospital.person (first_name, last_name, middle_name, birthday, sex, address, passport_number)\n" +
+                 "VALUE (?, ?, ?, ?, ?, ?, ?);\n" +
+                 "INSERT INTO hospital.staff (post_id, login, password, person_id)\n" +
+                 "VALUE ((SELECT post_id FROM posts WHERE post_name = ?), ?, ?,\n" +
+                 "(SELECT person_id FROM person WHERE person_id = last_insert_id()));\n" +
+                 "COMMIT;";
     }
 
     @Override
