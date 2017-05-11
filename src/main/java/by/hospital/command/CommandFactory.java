@@ -10,7 +10,7 @@ import by.hospital.command.login.LoginCommand;
 import by.hospital.command.patient.DeletePatient;
 import by.hospital.command.patient.EditPatient;
 import by.hospital.command.patient.SavePatient;
-import by.hospital.command.sicklist.EditSickList;
+import by.hospital.command.sicklist.*;
 import by.hospital.command.staff.DeleteStaff;
 import by.hospital.command.staff.EditStaff;
 import by.hospital.command.staff.SaveStaff;
@@ -34,6 +34,7 @@ public class CommandFactory {
         commands.put("Logout",new LogOutCommand());
         commands.put("OpenDirectories", new OpenDirectoriesPage());
         commands.put("OpenHospital", new OpenHospital());
+        commands.put("FindSickListBy",new FindSickListByCondition());
 
         commands.put("EditPatient",new EditPatient());
         commands.put("SavePatient",new SavePatient());
@@ -47,7 +48,10 @@ public class CommandFactory {
         commands.put("SaveDiagnose", new SaveDiagnose());
         commands.put("DeleteDiagnose", new DeleteDiagnose());
 
+        commands.put("NewSickList", new NewSickList());
         commands.put("EditSickList", new EditSickList());
+        commands.put("SaveSickList", new SaveSickList());
+        commands.put("DeleteSickList", new DeleteSickList());
     }
 
     public Command getCommand(HttpServletRequest request){

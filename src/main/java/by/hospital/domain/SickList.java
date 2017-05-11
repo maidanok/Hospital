@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by Pasha on 10.04.2017.
  */
 public class SickList implements Entity<Integer> {
-    private int sickListID;
+    private int sickListID=0;
     private Patient patient;
     private Date dateIN;
     private Date dateOUT;

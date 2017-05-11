@@ -81,24 +81,27 @@ public class SickListServiceImpl implements SickListService {
     }
 
     @Override
-    public SickList createNewSickIst(int patientID, Date dateIn, String roon, String symt, int diagnId) throws PersistentException {
-        SickList sickList = new SickList();
-        sickList.getPatient().setPrimaryKey(patientID);
-        sickList.setDateIN(dateIn);
-        sickList.setRoom(roon);
-        sickList.setSymptoms(symt);
-        sickList.getFinalDiagnose().setPrimaryKey(diagnId);
-        return sickListDao.persist(sickList);
+    public SickList createNewSickIst(SickList sickList){
+        SickList newSickList = null;
+        try {
+            newSickList=sickListDao.persist(sickList);
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
+        return newSickList;
     }
 
     @Override
-    public boolean deleteSickList(SickList sickList) throws PersistentException {
-
-        List<SurveyHistory> list = surveyHistoryDao.FindByCondition(new SickListID(sickList.getPrimaryKey()));
-        if (list.isEmpty()){
-            sickListDao.delete(sickListDao.getByPrimaryKey(sickList.getPrimaryKey()));
-            return true;
-        } else
+    public boolean deleteSickList(SickList sickList) {
+        try {
+            List<SurveyHistory> list = surveyHistoryDao.FindByCondition(new SickListID(sickList.getPrimaryKey()));
+            if (list.isEmpty()) {
+                sickListDao.delete(sickListDao.getByPrimaryKey(sickList.getPrimaryKey()));
+                return true;
+            }
+        }catch (PersistentException e){
+            e.printStackTrace();
+        }
         return false;
     }
 
@@ -111,5 +114,19 @@ public class SickListServiceImpl implements SickListService {
             e.printStackTrace();
         }
         return list;
+    }
+
+    @Override
+    public void saveSickList(SickList sickList) {
+        if (sickList.getPrimaryKey()!=0){
+            try {
+                sickListDao.update(sickList);
+            } catch (PersistentException e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            createNewSickIst(sickList);
+        }
     }
 }

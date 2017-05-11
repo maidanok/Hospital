@@ -3,6 +3,7 @@ package by.hospital.service.impl;
 import by.hospital.dao.GenericDAO;
 import by.hospital.dao.conditions.FindStaffID;
 import by.hospital.dao.conditions.LoginAndPassword;
+import by.hospital.dao.mysql.MySqlStaffDao;
 import by.hospital.domain.PrescriptionExecution;
 import by.hospital.domain.Staff;
 import by.hospital.domain.SurveyHistory;
@@ -16,11 +17,11 @@ import java.util.List;
  * Created by Admin on 22.04.2017.
  */
 public class StaffServiceImpl implements StaffService {
-    private GenericDAO<Staff, Integer> staffDao;
+    private MySqlStaffDao staffDao;
     private GenericDAO<PrescriptionExecution,Integer> persistentExceptionDao;
     private GenericDAO<SurveyHistory,Integer> surveyHistoryDao;
 
-    public StaffServiceImpl(GenericDAO<Staff, Integer> staffDao,GenericDAO<PrescriptionExecution,Integer> persistentExceptionDao,
+    public StaffServiceImpl(MySqlStaffDao staffDao,GenericDAO<PrescriptionExecution,Integer> persistentExceptionDao,
                             GenericDAO<SurveyHistory,Integer> surveyHistoryDao) throws PersistentException {
         this.staffDao = staffDao;
         this.persistentExceptionDao=persistentExceptionDao;

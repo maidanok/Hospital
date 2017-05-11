@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import java.util.List;
 public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements GenericDAOForStaff {
 
     Logger logger = Logger.getLogger(MySqlStaffDao.class);
+
     public MySqlStaffDao(Connection connection) {
         super(connection);
     }
@@ -53,47 +55,89 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
     @Override
     protected String getCreateQuery() {
         return
-                "START TRANSACTION;\n" +
-                 "INSERT INTO hospital.person (first_name, last_name, middle_name, birthday, sex, address, passport_number)\n" +
-                 "VALUE (?, ?, ?, ?, ?, ?, ?);\n" +
-                 "INSERT INTO hospital.staff (post_id, login, password, person_id)\n" +
-                 "VALUE ((SELECT post_id FROM posts WHERE post_name = ?), ?, ?,\n" +
-                 "(SELECT person_id FROM person WHERE person_id = last_insert_id()));\n" +
-                 "COMMIT;";
+                "INSERT INTO hospital.person (first_name, last_name, middle_name, birthday, sex, address, passport_number)\n" +
+                "VALUE (?, ?, ?, ?, ?, ?, ?);\n" +
+                "INSERT INTO hospital.staff (post_id, login, password, person_id)\n" +
+                "VALUE ((SELECT post_id FROM posts WHERE post_name = ?), ?, ?,\n" +
+                "(SELECT person_id FROM person WHERE person_id = last_insert_id()));";
     }
 
     @Override
     protected String getUpdateQuery() {
         return
                 "UPDATE staff, person \n" +
-                        "SET post_id = ?, login = ?, password = ?, fired = ?,\n" +
-                        "first_name = ?, last_name = ?, middle_name = ?, birthday = ?, sex = ?, address = ?, passport_number = ?\n" +
-                        "WHERE staff.person_id = person.person_id and staff.person_id = ? ;";
+                "SET post_id = ?, login = ?, password = ?, fired = ?,\n" +
+                "first_name = ?, last_name = ?, middle_name = ?, birthday = ?, sex = ?, address = ?, passport_number = ?\n" +
+                "WHERE staff.person_id = person.person_id and staff.person_id = ? ;";
     }
 
     @Override
     protected String getDeleteQuery() {
-        return "START TRANSACTION;\n" +
+        return
                 "DELETE FROM staff WHERE person_id = ?;\n" +
-                "DELETE FROM person WHERE person_id = ?; " +
-                "COMMIT;";
+                "DELETE FROM person WHERE person_id = ?; ";
+    }
+
+    public Staff persist(Staff entity) throws PersistentException {
+        if (!entity.getPrimaryKey().equals(0)) {
+            throw new PersistentException("Object is already persist.");
+        }
+        Staff persistInstanse;
+        String sql = getCreateQuery();
+
+        try {
+            connection.setAutoCommit(false);
+            PreparedStatement statement = connection.prepareStatement(sql);
+            prepareStatementForInsert(statement, entity);
+            logger.info("Insert " + entity.getClass() + " " + statement);
+            int count = statement.executeUpdate();
+            connection.commit();
+            if (count != 1) {
+                throw new PersistentException("On persist modify more then 1 record " + count);
+            }
+            connection.setAutoCommit(true);
+            statement.close();
+        } catch (Exception e) {
+            logger.error("Error" + e.getLocalizedMessage());
+        }
+
+        //получаем только что вставленную запись
+        sql = getSelectedQuery() + " WHERE " + getPrimaryKeyQuery() + " = LAST_INSERT_ID();";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            List<Staff> list = parseResultSet(resultSet);
+            if ((list == null) || (list.size() != 1)) {
+                throw new PersistentException("Exception on findByPrimaryKey new persist data. " + list.size());
+            }
+            persistInstanse = list.iterator().next();
+            statement.close();
+        } catch (Exception e) {
+            throw new PersistentException(e);
+        }
+
+        return persistInstanse;
     }
 
     public void delete(Staff staff) {
         String sql = getDeleteQuery();
         try {
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, staff.getPrimaryKey());
-            statement.setInt(2, staff.getPrimaryKey());
-            int cont = statement.executeUpdate();
+            connection.setAutoCommit(false);
+            PreparedStatement statement1 = connection.prepareStatement(sql);
+            statement1.setInt(1, staff.getPrimaryKey());
+            statement1.setInt(2, staff.getPrimaryKey());
+            int cont = statement1.executeUpdate();
+            connection.commit();
             if (cont != 1) {
                 throw new PersistentException("On delete modify more then 1 record: " + cont);
             }
-            statement.close();
+            statement1.close();
+            connection.setAutoCommit(true);
         } catch (Exception e) {
-            logger.error("Error delete Staff "+e.getLocalizedMessage());
+            logger.error("Error delete Staff " + e.getLocalizedMessage());
         }
     }
+
 
     public List<Staff> getAllForField(Boolean field) throws PersistentException {
         List<Staff> list;
@@ -103,6 +147,7 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
             PreparedStatement statement = super.connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             list = parseResultSet(resultSet);
+            statement.close();
         } catch (Exception e) {
             throw new PersistentException(e);
         }
@@ -116,6 +161,7 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
             PreparedStatement statement = connection.prepareStatement(sql);
             prepareStatementForUpdate(statement, entity);
             int count = statement.executeUpdate();
+            statement.close();
         } catch (Exception e) {
             throw new PersistentException(e);
         }
@@ -146,13 +192,14 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
         }
         return result;
     }
-/*               "START TRANSACTION;\n" +
-                        "INSERT INTO person (first_name, last_name, middle_name, birthday, sex, address, passport_number)\n" +
-                        "VALUE ('1', '2', '3', '2010-11-11', 'MALE', '12', '123');\n" +
-                        "INSERT INTO staff (post_id, login, password, person_id)\n" +
-                        "VALUE ((SELECT post_id FROM posts WHERE post_name = 'ADMINISTRATOR'), '1', '1',\n" +
-                        "(SELECT person_id FROM person WHERE person_id = last_insert_id()));\n" +
-                        "COMMIT;";*/
+
+    /*               "START TRANSACTION;\n" +
+                            "INSERT INTO person (first_name, last_name, middle_name, birthday, sex, address, passport_number)\n" +
+                            "VALUE ('1', '2', '3', '2010-11-11', 'MALE', '12', '123');\n" +
+                            "INSERT INTO staff (post_id, login, password, person_id)\n" +
+                            "VALUE ((SELECT post_id FROM posts WHERE post_name = 'ADMINISTRATOR'), '1', '1',\n" +
+                            "(SELECT person_id FROM person WHERE person_id = last_insert_id()));\n" +
+                            "COMMIT;";*/
     @Override
     protected void prepareStatementForInsert(PreparedStatement statement, Staff object) throws PersistentException {
         try {

@@ -40,7 +40,7 @@ public class PatientServiceImpl implements PatientService {
         } catch (PersistentException e) {
             e.printStackTrace();
         }
-        return null;
+        return patient;
     }
 
     @Override

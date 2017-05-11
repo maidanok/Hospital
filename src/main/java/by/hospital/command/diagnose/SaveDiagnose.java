@@ -42,7 +42,7 @@ public class SaveDiagnose implements Command {
         List<Diagnose> allDiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();
         request.setAttribute("allDiagnose", allDiagnose);
         request.setAttribute("isRedirect", true);
-        page = ConfigurationManager.getProperty("PAGE_DIRECTORIES");
+        page = "directories.html";
 
         return page;
     }

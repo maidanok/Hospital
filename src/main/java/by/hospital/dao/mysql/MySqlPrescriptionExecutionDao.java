@@ -104,6 +104,7 @@ public class MySqlPrescriptionExecutionDao extends AbstractJDBCDao<PrescriptionE
             PreparedStatement statement = super.connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             list = parseResultSet(resultSet);
+            statement.close();
         } catch (Exception e) {
             throw new PersistentException(e);
         }

@@ -1,11 +1,14 @@
 package by.hospital.command.sicklist;
 
 import by.hospital.command.Command;
+import by.hospital.domain.Diagnose;
 import by.hospital.domain.Prescription;
 import by.hospital.domain.SickList;
 import by.hospital.domain.SurveyHistory;
 import by.hospital.domain.enumeration.Post;
+import by.hospital.prop_managers.ConfigurationManager;
 import by.hospital.service.ServiceLocator;
+import by.hospital.service.api.DiagnoseService;
 import by.hospital.service.api.PrescriptionService;
 import by.hospital.service.api.SickListService;
 import by.hospital.service.api.SurveyHistoryService;
@@ -41,11 +44,14 @@ public class EditSickList implements Command {
         List <SurveyHistory> surveyHistoryList = ServiceLocator.getService(SurveyHistoryService.class).getAllbySickList(sickList);
         List <Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).findBySickList(sickList);
 
+        List<Diagnose> alldiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();
+
         request.setAttribute("sickList",sickList);
         request.setAttribute("surveyHistoryList",surveyHistoryList);
         request.setAttribute("prescriptionList",prescriptionList);
+        request.setAttribute("alldiagnose",alldiagnose);
 
-        page= by.hospital.prop_managers.ConfigurationManager.getProperty("PAGE_SICKLIST");
+        page= ConfigurationManager.getProperty("PAGE_SICKLIST");
 
         return page;
     }

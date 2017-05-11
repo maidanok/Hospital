@@ -39,7 +39,7 @@ public class DeleteStaff implements Command {
         request.setAttribute("allStaff",allStaff);
         request.setAttribute("isRedirect", true);
 
-        page= ConfigurationManager.getProperty("PAGE_DIRECTORIES");
+        page= "directories.html";
         return page;
     }
 

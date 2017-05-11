@@ -20,6 +20,16 @@
 
 <!--Filters-->
     <filter>
+        <filter-name>UriFilter</filter-name>
+        <filter-class>by.hospital.filters.UriFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>UriFilter</filter-name>
+        <url-pattern>*.html</url-pattern>
+    </filter-mapping>
+
+    <filter>
         <filter-name>EncodingFilter</filter-name>
         <filter-class>by.hospital.filters.EncodingFilter</filter-class>
         <init-param>
@@ -30,7 +40,7 @@
 
     <filter-mapping>
         <filter-name>EncodingFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>*.jsp</url-pattern>
     </filter-mapping>
 <!--
     <filter>
@@ -43,6 +53,9 @@
         <url-pattern>/controller</url-pattern>
     </filter-mapping>
 -->
+
+
+
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
