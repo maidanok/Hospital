@@ -1,11 +1,11 @@
-package by.hospital.command.Hospital;
+package by.hospital.command.patient;
 
 import by.hospital.command.Command;
-import by.hospital.domain.*;
+import by.hospital.domain.Patient;
 import by.hospital.domain.enumeration.Post;
 import by.hospital.prop_managers.ConfigurationManager;
 import by.hospital.service.ServiceLocator;
-import by.hospital.service.api.*;
+import by.hospital.service.api.PatientService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,17 +15,19 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by Pasha on 10.05.2017.
+ * Created by Pasha on 12.05.2017.
  */
-public class OpenHospital implements Command {
+public class FindPatientByLastName implements Command {
+    private static final String PARAM_PATIENT_FIRSNAME="firstname";
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = null;
-        List<SickList> sickLists = ServiceLocator.getService(SickListService.class).findAllActive();
-        List<Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).getAllNotDone();
-        request.setAttribute("sickLists",sickLists);
-        request.setAttribute("prescriptionList",prescriptionList);
-        page = ConfigurationManager.getProperty("PAGE_HOSPITAL");
+        String firstName=request.getParameter(PARAM_PATIENT_FIRSNAME);
+        Patient patient = new Patient();
+        patient.setLastName(firstName);
+        List<Patient> allPatient = ServiceLocator.getService(PatientService.class).FindLastName(patient);
+        request.setAttribute("allPatient",allPatient);
+        page= ConfigurationManager.getProperty("PAGE_DIRECTORIES");
         return page;
     }
 

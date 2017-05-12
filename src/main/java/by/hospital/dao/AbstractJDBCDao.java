@@ -97,6 +97,7 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
             PreparedStatement statement = connection.prepareStatement(sql);
 
             prepareStatementForUpdate(statement, entity);
+
             int count = statement.executeUpdate();
             if (count != 1) {
                 throw new PersistentException("On update modify more then 1 record: " + count);
@@ -168,6 +169,7 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
         sql += condition.getValue();
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
+
             ResultSet resultSet = statement.executeQuery();
             list = parseResultSet(resultSet);
             statement.close();

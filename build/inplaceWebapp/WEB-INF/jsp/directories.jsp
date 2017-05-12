@@ -10,7 +10,11 @@
         <div title="Пациенты" style="padding:10px">
             <h3>Пациенты</h3>
             <a href="controller?COMMAND=EditPatient&id=0" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Добавить</a>
-            <input type="search" class="easyui-searchbox" data-options="prompt:'Фамилия'" style="width:25%">
+            <form name="find" method="post" action="controller?COMMAND=FindPatientByLastName">
+                <input type="search" name="firstname" class="easyui-searchbox" data-options="prompt:'Фамилия'" style="width:25%" value="">
+                <input type="submit" src="${cssPath}/themes/icons/search.png" class="easyui-linkbutton" value="Найти"
+                       style="width:110px; height:27px">
+            </form>
             <table>
                 <tr>
                     <th>№</th>
@@ -26,7 +30,7 @@
                         <td id={"$patient.getPrimaryKey()}">${patient.getPrimaryKey()}</td>
                         <td>${patient.getFullName()}</td>
                         <td>
-                            <fmt:formatDate pattern="dd-MM-yyyy" value="${patient.getBirthday()}"/>
+                            <fmt:formatDate pattern="dd/MM/yyyy" value="${patient.getBirthday()}"/>
                         </td>
                         <td>${patient.getSex().getName()}</td>
                         <td>${patient.getAddress()}</td>
@@ -63,7 +67,7 @@
                         <td id={"$staff.getPrimaryKey()}">${staff.getPrimaryKey()}</td>
                         <td>${staff.getFullName()}</td>
                         <td>
-                            <fmt:formatDate pattern="dd-MM-yyyy" value="${staff.getBirthday()}"/>
+                            <fmt:formatDate pattern="dd/MM/yyyy" value="${staff.getBirthday()}"/>
                         </td>
                         <td>${staff.getSex().getName()}</td>
                         <td>${staff.getAddress()}</td>

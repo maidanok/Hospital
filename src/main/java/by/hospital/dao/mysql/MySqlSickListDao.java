@@ -4,6 +4,7 @@ import by.hospital.dao.AbstractJDBCDao;
 import by.hospital.dao.mysql.interfaces.GenericDaoForSickList;
 import by.hospital.domain.SickList;
 import by.hospital.exception.PersistentException;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

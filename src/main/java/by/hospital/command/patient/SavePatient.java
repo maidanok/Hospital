@@ -7,6 +7,7 @@ import by.hospital.domain.enumeration.Post;
 import by.hospital.prop_managers.ConfigurationManager;
 import by.hospital.service.ServiceLocator;
 import by.hospital.service.api.PatientService;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +25,7 @@ import java.util.Set;
  * Created by Admin on 08.05.2017.
  */
 public class SavePatient implements Command {
+    Logger logger = Logger.getLogger(SavePatient.class);
     private static final String PARAM_PATIENT_ID = "id";
     private static final String PARAM_PATIENT_LASTNAME="lastname";
     private static final String PARAM_PATIENT_FIRSNAME="firstname";
@@ -54,7 +56,7 @@ public class SavePatient implements Command {
         try {
             birthday = formatter.parse(getDate);
         } catch (ParseException e) {
-            e.printStackTrace();
+            logger.error("Parse error "+e.getLocalizedMessage());
         }
 
         Patient patient = new Patient();

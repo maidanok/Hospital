@@ -13,6 +13,6 @@ public class DateIN extends Condition {
 
     @Override
     public String getValue() {
-        return " WHERE date_in = " + dateIn + ";";
+        return " WHERE date_in = '" + dateIn + "';";
     }
 }
