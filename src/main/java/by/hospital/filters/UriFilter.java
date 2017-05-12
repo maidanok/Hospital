@@ -54,10 +54,10 @@ public class UriFilter implements Filter {
             }
             String command = links.get(commandName);
             if (command != null) {
-                httpServletRequest.setAttribute("COMMAND", command);
-                httpServletRequest.getServletContext().getRequestDispatcher(ConfigurationManager.getProperty(command)).forward(request, response);
-                chain.doFilter(request, response);
+                request.setAttribute("COMMAND", command);
+                request.getServletContext().getRequestDispatcher(ConfigurationManager.getProperty(command)).forward(request, response);
             }
+            chain.doFilter(request, response);
         } else {
             request.getServletContext().getRequestDispatcher(ConfigurationManager.getProperty("PAGE_ERROR")).forward(request, response);
         }

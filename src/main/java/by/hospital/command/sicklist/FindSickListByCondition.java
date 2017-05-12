@@ -4,6 +4,7 @@ import by.hospital.command.Command;
 import by.hospital.domain.SickList;
 import by.hospital.domain.enumeration.Post;
 import by.hospital.prop_managers.ConfigurationManager;
+import by.hospital.service.DateConvertor;
 import by.hospital.service.ServiceLocator;
 import by.hospital.service.api.SickListService;
 import org.apache.log4j.Logger;
@@ -12,8 +13,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -30,6 +33,9 @@ public class FindSickListByCondition implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = null;
         String firstName = request.getParameter(PARAM_PATIENT_FIRSTNAME);
+        if (firstName==""){
+            firstName=null;
+        }
         String date = request.getParameter(PARAM_SICK_LIST_DATE_IN);
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Date dateIN=null;
@@ -41,7 +47,12 @@ public class FindSickListByCondition implements Command {
                 logger.error(e.getLocalizedMessage());
             }
         }
-        List<SickList> sickLists = ServiceLocator.getService(SickListService.class).findByPatientAndDAte(firstName,dateIN);
+
+        logger.info("firstName = "+firstName );
+        logger.info("date ="+date );
+        logger.info("dateIN= "+dateIN);
+        List<SickList> sickLists = ServiceLocator.getService(SickListService.class).
+                findByPatientAndDAte(firstName, DateConvertor.getInstanse().convert(dateIN));
         request.setAttribute("sickLists",sickLists);
 
         page = ConfigurationManager.getProperty("PAGE_HOSPITAL");

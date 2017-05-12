@@ -17,6 +17,6 @@ public class FirstNameAndDateIN extends Condition {
 
     @Override
     public String getValue() {
-        return "WHERE first_name like '" + name +"' AND date_in = " + dateIn + ";";
+        return "WHERE first_name like '" + name +"' AND date_in = '" + dateIn + "';";
     }
 }

@@ -47,7 +47,7 @@ public class HospitalController extends HttpServlet {
         boolean isRedirect =(request.getAttribute("isRedirect") != null) ? (boolean) request.getAttribute("isRedirect") : false;
         if (page != null && isRedirect) {
             response.sendRedirect( request.getContextPath() + "/"+page);
-            logger.info(request.getContextPath() + page);
+            logger.info(request.getContextPath() + "/"+page);
         } else {
             if (page != null) {
                 RequestDispatcher dispatcher = request.getRequestDispatcher(page);

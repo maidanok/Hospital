@@ -40,8 +40,13 @@ public class SurveyHistoryServiceImpl implements SurveyHistoryService {
     }
 
     @Override
-    public SurveyHistory returnSurveyHistoru(SurveyHistory surveyHistory) throws PersistentException {
-        return surveyHistoryDao.getByPrimaryKey(surveyHistory.getPrimaryKey());
+    public SurveyHistory returnSurveyHistoru(SurveyHistory surveyHistory){
+        try {
+            return surveyHistoryDao.getByPrimaryKey(surveyHistory.getPrimaryKey());
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
+        return new SurveyHistory();
     }
 
     @Override

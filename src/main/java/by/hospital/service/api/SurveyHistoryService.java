@@ -15,7 +15,7 @@ public interface SurveyHistoryService {
 
     List<SurveyHistory> getAllbySickList(SickList sickList);
 
-    SurveyHistory returnSurveyHistoru(SurveyHistory surveyHistory) throws PersistentException;
+    SurveyHistory returnSurveyHistoru(SurveyHistory surveyHistory);
 
     SurveyHistory createNewSurveyHistory(int sickID, int diagnoseID, int staffID, Date date, String description) throws PersistentException;
 

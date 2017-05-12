@@ -1,25 +1,16 @@
 package by.hospital.command;
 
-import by.hospital.command.Hospital.OpenHospital;
-import by.hospital.command.diagnose.DeleteDiagnose;
-import by.hospital.command.diagnose.EditDiagnose;
-import by.hospital.command.diagnose.SaveDiagnose;
+import by.hospital.command.hospital.OpenHospital;
+import by.hospital.command.diagnose.*;
 import by.hospital.command.directories.OpenDirectoriesPage;
-import by.hospital.command.login.LogOutCommand;
-import by.hospital.command.login.LoginCommand;
-import by.hospital.command.patient.DeletePatient;
-import by.hospital.command.patient.EditPatient;
-import by.hospital.command.patient.SavePatient;
+import by.hospital.command.login.*;
+import by.hospital.command.patient.*;
 import by.hospital.command.sicklist.*;
-import by.hospital.command.staff.DeleteStaff;
-import by.hospital.command.staff.EditStaff;
-import by.hospital.command.staff.SaveStaff;
-import by.hospital.domain.enumeration.Post;
+import by.hospital.command.staff.*;
+import by.hospital.command.surveyhistory.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by Admin on 07.05.2017.
@@ -39,6 +30,7 @@ public class CommandFactory {
         commands.put("EditPatient",new EditPatient());
         commands.put("SavePatient",new SavePatient());
         commands.put("DeletePatient",new DeletePatient());
+        commands.put("FindPatientByLastName",new FindPatientByLastName());
 
         commands.put("EditStaff", new EditStaff());
         commands.put("SaveStaff", new SaveStaff());
@@ -52,6 +44,9 @@ public class CommandFactory {
         commands.put("EditSickList", new EditSickList());
         commands.put("SaveSickList", new SaveSickList());
         commands.put("DeleteSickList", new DeleteSickList());
+
+        commands.put("EditSurveyHistory",new EditSurveyHistory());
+        commands.put("NewSurveyHistory",new NewSurveyHistory());
     }
 
     public Command getCommand(HttpServletRequest request){

@@ -15,8 +15,8 @@
             <form name="find" method="post" action="controller?COMMAND=FindSickListBy">
                 <input type="search" name="firstname" class="easyui-searchbox" data-options="prompt:'Фамилия'"
                        style="width:25%" value="">
-                <input type="search" name="dateIn" class="easyui-datebox" data-options="prompt:'Дата поступления'"
-                       style="width:25%" value="">
+                <input class="easyui-datebox" name="dateIn" data-options="prompt:'Дата поступления'"
+                       style="width:25%;" value="">
                 <input type="submit" src="iconCls:'icon-ok'" class="easyui-linkbutton" value="Найти"
                        style="width:110px; height:27px">
             </form>
@@ -36,7 +36,7 @@
                         <td>${sickList.getRoom()}</td>
                         <td>${sickList.getPatient().getFullName()}</td>
                         <td>${sickList.getPatient().getSex().getName()}</td>
-                        <td>${sickList.getDateIN()}</td>
+                        <td><fmt:formatDate pattern="dd/MM/yyyy" value="${sickList.getDateIN()}"/></td>
                         <td>${sickList.getFinalDiagnose().getDiagnoseName()}</td>
                         <td><a href="controller?COMMAND=EditSickList&id=${sickList.getPrimaryKey()}"
                                class="easyui-linkbutton" data-options="iconCls:'icon-edit'"></a>

@@ -8,6 +8,7 @@ import by.hospital.domain.SickList;
 import by.hospital.domain.SurveyHistory;
 import by.hospital.exception.PersistentException;
 import by.hospital.service.api.SickListService;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,6 +18,7 @@ import java.util.List;
  * Created by Admin on 22.04.2017.
  */
 public class SickListServiceImpl implements SickListService {
+    Logger logger = Logger.getLogger(SickListService.class);
     private GenericDAO<SurveyHistory,Integer> surveyHistoryDao;
     private GenericDAO<SickList,Integer> sickListDao;
 
@@ -61,21 +63,29 @@ public class SickListServiceImpl implements SickListService {
     public List<SickList> findByPatientAndDAte(String patientFirstName, Date dateIn) {
         List<SickList> result = null;
         try {
-            if (patientFirstName == null) {
-                result = sickListDao.FindByCondition(new DateIN(dateIn));
-            } else {
-                if (dateIn == null) {
-                    result = sickListDao.FindByCondition(new FirstNameLike(patientFirstName));
+            if (patientFirstName!=null&&dateIn!=null){
+                result=sickListDao.FindByCondition(new FirstNameAndDateIN(patientFirstName,dateIn));
+                logger.info("1");
+                return result;
+            }else {
+                if (patientFirstName==null&&dateIn!=null){
+                    result=sickListDao.FindByCondition(new DateIN(dateIn));
+                    logger.info("2");
+                    return result;
                 }else {
-                    if (patientFirstName==null && dateIn==null){
+                    if (patientFirstName!=null&&dateIn==null){
+                        result=sickListDao.FindByCondition(new FirstNameLike(patientFirstName));
+                        logger.info("3");
+                        return result;
+                    } else {
                         result=findAllActive();
-                    }else {
-                        result = sickListDao.FindByCondition(new FirstNameAndDateIN(patientFirstName,dateIn));
+                        logger.info("4");
+                        return result;
                     }
                 }
             }
         } catch (PersistentException e) {
-            e.printStackTrace();
+            logger.error("Not Found "+e.getLocalizedMessage());
         }
         return result;
     }

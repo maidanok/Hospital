@@ -40,9 +40,9 @@
                                 <c:forEach items="${alldiagnose}" var="diagnose">
                                     <c:set var="diagnoseid" value="${diagnose.getPrimaryKey()}"></c:set>
                                     <option value="${diagnose.getPrimaryKey()}"
-                                        <c:if test="${diagnoseid eq finalDiagnose}">
-                                            <c:out value='selected="selected"'/>
-                                        </c:if>
+                                    <c:if test="${diagnoseid eq finalDiagnose}">
+                                        <c:out value='selected="selected"'/>
+                                    </c:if>
                                     >${diagnose.getDiagnoseName()}</option>
                                 </c:forEach>
                             </select>
@@ -67,7 +67,11 @@
         </div>
         <div title="Осмотры" style="padding:10px">
             <h3>Осмотры</h3>
-            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Добавить</a>
+            <form id="01" method="post" action="controller?COMMAND=NewSurveyHistory">
+                <input type="hidden" name="sickListid" value="${sickList.getPrimaryKey()}">
+                <input type="submit" data-options="iconCls:'icon-ok'" class="easyui-linkbutton" value="Добавить"
+                       style="width:110px; height:27px">
+            </form>
             <table>
                 <tr>
                     <th>№</th>
@@ -80,17 +84,18 @@
                         <td id={"surveyHistory.getPrimaryKey()}">${surveyHistory.getPrimaryKey()}</td>
                         <td>${surveyHistory.getStaff().getFullName()}</td>
                         <td>
-                            <fmt:formatDate pattern="dd-MM-yyyy" value="${surveyHistory.getSurveyDate()}"/>
+                            <fmt:formatDate pattern="dd/MM/yyyy" value="${surveyHistory.getSurveyDate()}"/>
                         </td>
                         <td>
-                            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit'"></a>
-                            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a>
+                            <a href="controller?COMMAND=EditSurveyHistory&id=${surveyHistory.getPrimaryKey()}"
+                               class="easyui-linkbutton" data-options="iconCls:'icon-edit'"></a>
+                            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a>
                         </td>
                     </tr>
                 </c:forEach>
             </table>
             <div style="text-align:left;padding:5px 0">
-                <a href="javascript:void(0)" data-options="iconCls:'icon-ok'" class="easyui-linkbutton" onclick=" "
+                <a href="" data-options="iconCls:'icon-ok'" class="easyui-linkbutton" onclick=" "
                    style="width:80px">ОК</a>
             </div>
         </div>
@@ -101,7 +106,7 @@
                 <tr>
                     <th></th>
                     <th>Дата</th>
-                    <th>Кол-во. План.факт</th>
+                    <th>Кол-во.<br> План.факт</th>
                     <th>Назначение</th>
                     <th>Описание</th>
                     <th>Врач</th>
@@ -111,7 +116,7 @@
                     <tr>
                         <td id="${prescription.getPrimaryKey()}">${prescription.getPrimaryKey()}</td>
                         <td>
-                            <fmt:formatDate pattern="dd-MM-yyyy"
+                            <fmt:formatDate pattern="dd/MM/yyyy"
                                             value="${prescription.getSurveyHistory().getSurveyDate()}"/>
                         </td>
                         <td>${prescription.getQuantity()}/${prescription.getCompleted()}</td>
