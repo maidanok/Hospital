@@ -8,7 +8,7 @@
     <t:header/>
 
     <div class="easyui-panel" title="${staff.getFullName()}" style="width:100%;max-width:400px;padding:30px 60px;">
-        <form id="staffform" method="post" action="controller?COMMAND=SaveStaff">
+        <form id="stafform" method="post" action="controller?COMMAND=SaveStaff">
             <input type="hidden" name="id" value="${staff.getPrimaryKey()}">
             <div style="margin-bottom:20px">
                 <input class="easyui-textbox" name="firstname" style="width:100%"
@@ -81,8 +81,8 @@
                 >уволен<br>
             </div>
             <div style="text-align:center;padding:5px 0">
-                <input type="submit" data-options="iconCls:'icon-ok'" class="easyui-linkbutton" value="OK"
-                       style="width:110px; height:27px">
+                <a href="javascript:void(0)" data-options="iconCls:'icon-ok'" class="easyui-linkbutton" onclick="submitForm('stafform')"
+                   style="width:80px">ОК</a>
                 <a href="javascript:history.back()" data-options="iconCls:'icon-cancel'" class="easyui-linkbutton"
                    onclick="" style="width:110px">Отменить</a>
             </div>

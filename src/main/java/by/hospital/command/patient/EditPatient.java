@@ -35,6 +35,7 @@ public class EditPatient implements Command {
         if (patientID!=0) {
             patient = ServiceLocator.getService(PatientService.class).returnPatientFull(patient);
         }
+
         request.setAttribute("patient",patient);
         page= ConfigurationManager.getProperty("PAGE_PATIENT");
 

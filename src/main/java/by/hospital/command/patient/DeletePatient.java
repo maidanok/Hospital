@@ -37,8 +37,7 @@ public class DeletePatient implements Command {
         ServiceLocator.getService(PatientService.class).deletePatient(patient);
         List<Patient> allPatient = ServiceLocator.getService(PatientService.class).getALLPatients();
         request.setAttribute("allPatient", allPatient);
-        request.setAttribute("isRedirect", true);
-        page = "directories.html";
+        page=ConfigurationManager.getProperty("PAGE_DIRECTORIES");
         return page;
     }
 

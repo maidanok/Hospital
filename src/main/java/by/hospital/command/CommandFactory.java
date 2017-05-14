@@ -47,6 +47,7 @@ public class CommandFactory {
 
         commands.put("EditSurveyHistory",new EditSurveyHistory());
         commands.put("NewSurveyHistory",new NewSurveyHistory());
+        commands.put("SaveSurveyHistory",new SaveSurveyHistory());
     }
 
     public Command getCommand(HttpServletRequest request){

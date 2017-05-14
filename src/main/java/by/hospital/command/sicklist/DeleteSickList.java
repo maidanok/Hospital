@@ -3,6 +3,7 @@ package by.hospital.command.sicklist;
 import by.hospital.command.Command;
 import by.hospital.domain.SickList;
 import by.hospital.domain.enumeration.Post;
+import by.hospital.prop_managers.ConfigurationManager;
 import by.hospital.service.ServiceLocator;
 import by.hospital.service.api.SickListService;
 
@@ -38,8 +39,7 @@ public class DeleteSickList implements Command {
 
         List<SickList> sickLists = ServiceLocator.getService(SickListService.class).findAllActive();
         request.setAttribute("sickLists", sickLists);
-        page = "hospital.html";
-        request.setAttribute("isRedirect", true);
+        page = ConfigurationManager.getProperty("PAGE_HOSPITAL");
         return page;
     }
 

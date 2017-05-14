@@ -1,21 +1,25 @@
 package by.hospital.command.patient;
 
 import by.hospital.command.Command;
+import by.hospital.domain.Diagnose;
 import by.hospital.domain.Patient;
+import by.hospital.domain.Staff;
 import by.hospital.domain.enumeration.Gender;
 import by.hospital.domain.enumeration.Post;
-import by.hospital.prop_managers.ConfigurationManager;
 import by.hospital.service.ServiceLocator;
+import by.hospital.service.api.DiagnoseService;
 import by.hospital.service.api.PatientService;
+import by.hospital.service.api.StaffService;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -69,11 +73,18 @@ public class SavePatient implements Command {
         patient.setBirthday(birthday);
         patient.setPassportNumber(passport);
 
+        HttpSession session = request.getSession(true);
+
         ServiceLocator.getService(PatientService.class).savePatient(patient);
         List<Patient> allPatient = ServiceLocator.getService(PatientService.class).getALLPatients();
-        request.setAttribute("allPatient",allPatient);
-        request.setAttribute("isRedirect", true);
+        List<Staff> allStaff = ServiceLocator.getService(StaffService.class).getAllStaff();
+        List<Diagnose> allDiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();
 
+        session.setAttribute("allPatient",allPatient);
+        session.setAttribute("allStaff",allStaff);
+        session.setAttribute("allDiagnose",allDiagnose);
+
+        request.setAttribute("isRedirect",true);
         page= "directories.html";
 
 

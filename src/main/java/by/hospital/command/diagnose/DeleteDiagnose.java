@@ -35,8 +35,8 @@ public class DeleteDiagnose implements Command {
 
         List<Diagnose> allDiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();
         request.setAttribute("allDiagnose", allDiagnose);
-        request.setAttribute("isRedirect", true);
-        page = "directories.html";
+
+        page= ConfigurationManager.getProperty("PAGE_DIRECTORIES");
 
         return page;
     }

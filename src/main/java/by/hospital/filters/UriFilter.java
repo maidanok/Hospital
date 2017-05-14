@@ -1,22 +1,14 @@
 package by.hospital.filters;
 
+import by.hospital.prop_managers.ConfigurationManager;
+import org.apache.log4j.Logger;
+
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
-
-import java.util.List;
 import java.util.Map;
-
 import java.util.concurrent.ConcurrentHashMap;
-
-import by.hospital.domain.*;
-import by.hospital.prop_managers.ConfigurationManager;
-
-import by.hospital.service.ServiceLocator;
-import by.hospital.service.api.*;
-import org.apache.log4j.Logger;
 
 
 /**
@@ -54,6 +46,7 @@ public class UriFilter implements Filter {
             }
             String command = links.get(commandName);
             if (command != null) {
+
                 request.setAttribute("COMMAND", command);
                 request.getServletContext().getRequestDispatcher(ConfigurationManager.getProperty(command)).forward(request, response);
             }

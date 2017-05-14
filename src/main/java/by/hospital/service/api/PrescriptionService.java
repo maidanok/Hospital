@@ -19,7 +19,7 @@ public interface PrescriptionService {
 
     List<Prescription> findBySurveyHistory(SurveyHistory surveyHistory);
 
-    Prescription createNewPrescription(String type, int SurvID, String description, int quantity);
+    Prescription createNewPrescription(Prescription prescription);
 
     boolean deletePrescription(Prescription prescription);
 

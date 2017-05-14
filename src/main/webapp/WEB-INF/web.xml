@@ -11,14 +11,27 @@
         <servlet-class>by.hospital.controllers.HospitalController</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>DispatcherServlet</servlet-name>
+        <servlet-class>by.hospital.controllers.DispatcherServlet</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>HospitalController</servlet-name>
         <url-pattern>/controller</url-pattern>
     </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>DispatcherServlet</servlet-name>
+        <url-pattern>*.html</url-pattern>
+    </servlet-mapping>
+
+
     
     
 
 <!--Filters-->
+    <!--
     <filter>
         <filter-name>UriFilter</filter-name>
         <filter-class>by.hospital.filters.UriFilter</filter-class>
@@ -28,7 +41,7 @@
         <filter-name>UriFilter</filter-name>
         <url-pattern>*.html</url-pattern>
     </filter-mapping>
-
+-->
     <filter>
         <filter-name>EncodingFilter</filter-name>
         <filter-class>by.hospital.filters.EncodingFilter</filter-class>

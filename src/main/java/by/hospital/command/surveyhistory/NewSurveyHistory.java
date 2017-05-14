@@ -1,16 +1,15 @@
 package by.hospital.command.surveyhistory;
 
 import by.hospital.command.Command;
-import by.hospital.domain.Prescription;
+import by.hospital.domain.Diagnose;
 import by.hospital.domain.SickList;
 import by.hospital.domain.Staff;
 import by.hospital.domain.SurveyHistory;
 import by.hospital.domain.enumeration.Post;
 import by.hospital.prop_managers.ConfigurationManager;
 import by.hospital.service.ServiceLocator;
-import by.hospital.service.api.PrescriptionService;
+import by.hospital.service.api.DiagnoseService;
 import by.hospital.service.api.SickListService;
-import by.hospital.service.api.SurveyHistoryService;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -60,8 +59,10 @@ public class NewSurveyHistory implements Command {
         surveyHistory.setStaff(staff);
         Date date = java.sql.Date.valueOf(LocalDate.now());
         surveyHistory.setSurveyDate(date);
+        List<Diagnose> alldiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();
 
         request.setAttribute("surveyHistory",surveyHistory);
+        request.setAttribute("alldiagnose",alldiagnose);
         page = ConfigurationManager.getProperty("PAGE_SURVEY");
         return page;
     }

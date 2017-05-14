@@ -10,14 +10,16 @@
     <div class="easyui-tabs" style="width:95%;">
         <div title="Осмотр пациента №${surveyHistory.getPrimaryKey()}" style="padding:10px">
             <div class="easyui-layout" style="width:700px;height:350px;">
-                <form name="survey" method="post" action="">
+                <form id="ff" name="survey" method="post" action="controller?COMMAND=SaveSurveyHistory">
                     <div style="margin-bottom:20px">
                         <input type="hidden" name="id" value="${surveyHistory.getPrimaryKey()}">
-                        <input class="easyui-textbox" name="patient" style="width:50%" data-options="label:'Пациент'"
+                        <input type="hidden" name="sickListid" value="${surveyHistory.getSickList().getPrimaryKey()}">
+                        <input class="easyui-textbox" name="patient" style="width:50%" data-options="label:'Пациент',disabled:1"
                                value="${surveyHistory.getSickList().getPatient().getFullName()}">
                     </div>
                     <div style="margin-bottom:20px">
-                        <input class="easyui-textbox" name="staff" style="width:50%" data-options="label:'Врач'"
+                        <input type="hidden" name="staffid" value="${surveyHistory.getStaff().getPrimaryKey()}">
+                        <input class="easyui-textbox" name="staff" style="width:50%" data-options="label:'Врач',disabled:1"
                                value="${surveyHistory.getStaff().getFullName()}">
                     </div>
                     <div style="margin-bottom:20px">
@@ -25,17 +27,30 @@
                                data-options="label:'Дата осмотра', labelPosition:'top'" style="width:50%;"
                                value="${surveyHistory.getSurveyDate()}">
                     </div>
+                    <c:set var="myDiagnose" value="${surveyHistory.getDiagnose().getPrimaryKey()}"/>
+                    <c:if test="${not empty alldiagnose}">
+                        <select class="easyui-combobox" name="diagnose" label="Диагноз" style="width:50%">
+                            <c:forEach items="${alldiagnose}" var="diagnose">
+                                <c:set var="diagnoseid" value="${diagnose.getPrimaryKey()}"></c:set>
+                                <option value="${diagnose.getPrimaryKey()}"
+                                <c:if test="${diagnoseid eq myDiagnose}">
+                                    <c:out value='selected="selected"'/>
+                                </c:if>
+                                >${diagnose.getDiagnoseName()}</option>
+                            </c:forEach>
+                        </select>
+                    </c:if>
                     <div style="margin-bottom:20px">
                         <input class="easyui-textbox" name="description" style="width:50%;height:80px"
                                data-options="label:'Примечания:', labelPosition:'top',multiline:true"
                                value="${surveyHistory.getDescription()}">
                     </div>
                     <div style="margin-bottom:20px">
-                        <input type="checkbox" name="isdischarge" value="">Пациент готов к выписке
+                        <input type="checkbox" name="isdischarge">Пациент готов к выписке
                     </div>
                     <div style="text-align:left;padding:5px 0">
-                        <input type="submit" data-options="iconCls:'icon-ok'" class="easyui-linkbutton" value="OK"
-                               style="width:110px; height:27px">
+                        <a href="javascript:void(0)" data-options="iconCls:'icon-ok'" class="easyui-linkbutton" onclick="submitForm('ff')"
+                           style="width:80px">ОК</a>
                         <a href="javascript:history.back()" data-options="iconCls:'icon-cancel'"
                            class="easyui-linkbutton"
                            onclick=" " style="width:110px">Отменить</a>

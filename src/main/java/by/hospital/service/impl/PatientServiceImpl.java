@@ -7,20 +7,23 @@ import by.hospital.domain.Patient;
 import by.hospital.domain.SickList;
 import by.hospital.exception.PersistentException;
 import by.hospital.service.api.PatientService;
+import org.apache.log4j.Logger;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Admin on 22.04.2017.
  */
 public class PatientServiceImpl implements PatientService {
+    Logger logger = Logger.getLogger(PatientServiceImpl.class);
 
-    private GenericDAO<Patient,Integer> patientDao;
-    private GenericDAO<SickList,Integer> sickListDao;
+    private GenericDAO<Patient, Integer> patientDao;
+    private GenericDAO<SickList, Integer> sickListDao;
 
-    public PatientServiceImpl(GenericDAO<Patient,Integer> patientDao,GenericDAO<SickList,Integer> sickListDao) throws PersistentException {
-        this.patientDao=patientDao;
-        this.sickListDao=sickListDao;
+    public PatientServiceImpl(GenericDAO<Patient, Integer> patientDao, GenericDAO<SickList, Integer> sickListDao) throws PersistentException {
+        this.patientDao = patientDao;
+        this.sickListDao = sickListDao;
     }
 
     @Override
@@ -28,7 +31,7 @@ public class PatientServiceImpl implements PatientService {
         try {
             return patientDao.persist(patient);
         } catch (PersistentException e) {
-            e.printStackTrace();
+            logger.error(e.getLocalizedMessage());
         }
         return null;
     }
@@ -38,20 +41,20 @@ public class PatientServiceImpl implements PatientService {
         try {
             return patientDao.getByPrimaryKey(patient.getPrimaryKey());
         } catch (PersistentException e) {
-            e.printStackTrace();
+            logger.error(e.getLocalizedMessage());
         }
         return patient;
     }
 
     @Override
     public Patient returnPatientShort(Patient pat) {
-        Patient patien=null;
+        Patient patien = null;
         try {
             Patient patient = patientDao.getByPrimaryKey(pat.getPrimaryKey());
             patient.setPassportNumber(null);
             patient.setAddress(null);
         } catch (PersistentException e) {
-            e.printStackTrace();
+            logger.error(e.getLocalizedMessage());
         }
         return patien;
     }
@@ -61,7 +64,7 @@ public class PatientServiceImpl implements PatientService {
         try {
             return patientDao.getAll();
         } catch (PersistentException e) {
-            e.printStackTrace();
+            logger.error(e.getLocalizedMessage());
         }
         return null;
     }
@@ -69,16 +72,20 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public List<Patient> FindLastName(Patient patient) {
         try {
-            return patientDao.FindByCondition(new FirstNameLike(patient.getLastName()));
+            if (patient.getLastName() != null) {
+                return patientDao.FindByCondition(new FirstNameLike(patient.getLastName()));
+            } else {
+                return patientDao.getAll();
+            }
         } catch (PersistentException e) {
-            e.printStackTrace();
+            logger.error(e.getLocalizedMessage());
         }
-        return null;
+        return new ArrayList<Patient>();
     }
 
     @Override
-    public boolean deletePatient(Patient patient){
-        if (patient.getPrimaryKey()==0){
+    public boolean deletePatient(Patient patient) {
+        if (patient.getPrimaryKey() == 0) {
             return false;
         }
         try {
@@ -86,21 +93,21 @@ public class PatientServiceImpl implements PatientService {
                 patientDao.delete(patientDao.getByPrimaryKey(patient.getPrimaryKey()));
                 return true;
             }
-        }catch (PersistentException e){
-            e.printStackTrace();
+        } catch (PersistentException e) {
+            logger.error(e.getLocalizedMessage());
         }
         return false;
     }
 
-    public void savePatient(Patient patient){
-        if(patient.getPrimaryKey()!=0){
+    public void savePatient(Patient patient) {
+        if (patient.getPrimaryKey() != 0) {
             try {
                 patientDao.update(patient);
             } catch (PersistentException e) {
-                e.printStackTrace();
+                logger.error(e.getLocalizedMessage());
             }
         }
-        if (patient.getPrimaryKey()==0){
+        if (patient.getPrimaryKey() == 0) {
             createNewPatient(patient);
         }
     }

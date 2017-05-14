@@ -3,9 +3,7 @@ package by.hospital.service.api;
 import by.hospital.domain.Diagnose;
 import by.hospital.domain.SickList;
 import by.hospital.domain.SurveyHistory;
-import by.hospital.exception.PersistentException;
 
-import java.sql.Date;
 import java.util.List;
 
 /**
@@ -17,9 +15,11 @@ public interface SurveyHistoryService {
 
     SurveyHistory returnSurveyHistoru(SurveyHistory surveyHistory);
 
-    SurveyHistory createNewSurveyHistory(int sickID, int diagnoseID, int staffID, Date date, String description) throws PersistentException;
+    SurveyHistory createNewSurveyHistory(SurveyHistory surveyHistory);
 
     boolean deleteSurveyHistory(SurveyHistory surveyHistory);
 
     List<SurveyHistory> findByDiagnoseID(Diagnose diagnose);
+
+    SurveyHistory saveSurveyHistory(SurveyHistory surveyHistory);
 }

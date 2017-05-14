@@ -1,8 +1,6 @@
 package by.hospital.console.command;
 
 import by.hospital.exception.PersistentException;
-import by.hospital.service.ServiceLocator;
-import by.hospital.service.api.SurveyHistoryService;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -28,6 +26,6 @@ public class NewSurveyHistory extends AbstractCommandFactory {
         Date date = Date.valueOf(LocalDate.now());
         out.println("ведите примечания к осмотру. В одну строку");
         String des = scanner.nextLine();
-        ServiceLocator.getService(SurveyHistoryService.class).createNewSurveyHistory(sickListId,diagnID,staffID,date,des);
+        //ServiceLocator.getService(SurveyHistoryService.class).createNewSurveyHistory(sickListId,diagnID,staffID,date,des);
     }
 }

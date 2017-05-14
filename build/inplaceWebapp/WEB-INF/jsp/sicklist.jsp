@@ -56,8 +56,8 @@
                     </div>
 
                     <div style="text-align:left;padding:5px 0">
-                        <input type="submit" data-options="iconCls:'icon-ok'" class="easyui-linkbutton" value="OK"
-                               style="width:110px; height:27px">
+                        <a href="javascript:void(0)" data-options="iconCls:'icon-ok'" class="easyui-linkbutton" onclick="submitForm('ff')"
+                           style="width:80px">ОК</a>
                         <a href="javascript:history.back()" data-options="iconCls:'icon-cancel'"
                            class="easyui-linkbutton"
                            onclick=" " style="width:110px">Отменить</a>
@@ -67,10 +67,9 @@
         </div>
         <div title="Осмотры" style="padding:10px">
             <h3>Осмотры</h3>
-            <form id="01" method="post" action="controller?COMMAND=NewSurveyHistory">
+            <form id="add" method="post" action="controller?COMMAND=NewSurveyHistory">
                 <input type="hidden" name="sickListid" value="${sickList.getPrimaryKey()}">
-                <input type="submit" data-options="iconCls:'icon-ok'" class="easyui-linkbutton" value="Добавить"
-                       style="width:110px; height:27px">
+                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add'"onclick="submitForm('add')">Добавить</a>
             </form>
             <table>
                 <tr>

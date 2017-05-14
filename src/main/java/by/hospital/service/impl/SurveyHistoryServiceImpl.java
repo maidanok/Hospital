@@ -11,7 +11,6 @@ import by.hospital.domain.SurveyHistory;
 import by.hospital.exception.PersistentException;
 import by.hospital.service.api.SurveyHistoryService;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,14 +49,12 @@ public class SurveyHistoryServiceImpl implements SurveyHistoryService {
     }
 
     @Override
-    public SurveyHistory createNewSurveyHistory(int sickID, int diagnoseID, int staffID, Date date, String description) throws PersistentException {
-        SurveyHistory surveyHistory = new SurveyHistory();
-        surveyHistory.getSickList().setPrimaryKey(sickID);
-        surveyHistory.getDiagnose().setPrimaryKey(diagnoseID);
-        surveyHistory.getStaff().setPrimaryKey(staffID);
-        surveyHistory.setSurveyDate(date);
-        surveyHistory.setDescription(description);
-        surveyHistory = surveyHistoryDao.persist(surveyHistory);
+    public SurveyHistory createNewSurveyHistory(SurveyHistory surveyHistory){
+        try {
+            surveyHistory = surveyHistoryDao.persist(surveyHistory);
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
         return surveyHistory;
     }
 
@@ -89,5 +86,20 @@ public class SurveyHistoryServiceImpl implements SurveyHistoryService {
             e.printStackTrace();
         }
         return list;
+    }
+
+    @Override
+    public SurveyHistory saveSurveyHistory(SurveyHistory surveyHistory) {
+        if (surveyHistory.getPrimaryKey()==0){
+            surveyHistory=this.createNewSurveyHistory(surveyHistory);
+        }else {
+            try {
+                surveyHistoryDao.update(surveyHistory);
+                surveyHistory=surveyHistoryDao.getByPrimaryKey(surveyHistory.getPrimaryKey());
+            } catch (PersistentException e) {
+                e.printStackTrace();
+            }
+        }
+        return surveyHistory;
     }
 }

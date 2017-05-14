@@ -9,7 +9,7 @@
 
     <div style="margin:10px 0 10px 0;"></div>
     <div class="easyui-tabs" style="width:95%;">
-        <div title="Стационар" style="padding:10px">
+        <div title="Отделение" style="padding:10px">
             <a href="controller?COMMAND=OpenDirectories" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Добавить</a>
             <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">Удалить выбранные</a><br>
             <form name="find" method="post" action="controller?COMMAND=FindSickListBy">

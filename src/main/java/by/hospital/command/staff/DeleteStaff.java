@@ -37,9 +37,7 @@ public class DeleteStaff implements Command {
         ServiceLocator.getService(StaffService.class).deleteStaff(staff);
         List<Staff> allStaff = ServiceLocator.getService(StaffService.class).getAllStaff();
         request.setAttribute("allStaff",allStaff);
-        request.setAttribute("isRedirect", true);
-
-        page= "directories.html";
+        page=ConfigurationManager.getProperty("PAGE_DIRECTORIES");
         return page;
     }
 

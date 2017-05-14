@@ -1,12 +1,13 @@
 package by.hospital.command.surveyhistory;
 
 import by.hospital.command.Command;
+import by.hospital.domain.Diagnose;
 import by.hospital.domain.Prescription;
 import by.hospital.domain.SurveyHistory;
 import by.hospital.domain.enumeration.Post;
 import by.hospital.prop_managers.ConfigurationManager;
 import by.hospital.service.ServiceLocator;
-import by.hospital.service.api.PatientService;
+import by.hospital.service.api.DiagnoseService;
 import by.hospital.service.api.PrescriptionService;
 import by.hospital.service.api.SurveyHistoryService;
 
@@ -39,10 +40,12 @@ public class EditSurveyHistory implements Command {
         SurveyHistory surveyHistory = new SurveyHistory();
         surveyHistory.setPrimaryKey(surveyID);
         surveyHistory = ServiceLocator.getService(SurveyHistoryService.class).returnSurveyHistoru(surveyHistory);
+        List<Diagnose> alldiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();
 
         List<Prescription> prescriptionList =ServiceLocator.getService(PrescriptionService.class).findBySurveyHistory(surveyHistory);
         request.setAttribute("surveyHistory",surveyHistory);
         request.setAttribute("prescriptionList",prescriptionList);
+        request.setAttribute("alldiagnose",alldiagnose);
         page= ConfigurationManager.getProperty("PAGE_SURVEY");
         return page;
     }

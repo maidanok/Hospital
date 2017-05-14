@@ -1,8 +1,6 @@
 package by.hospital.console.command;
 
 import by.hospital.exception.PersistentException;
-import by.hospital.service.ServiceLocator;
-import by.hospital.service.api.PrescriptionService;
 
 import static java.lang.System.out;
 
@@ -25,6 +23,6 @@ public class NewPrescription extends AbstractCommandFactory {
         String descript = scanner.nextLine();
         out.println("Введите количество");
         int qant = Integer.valueOf(scanner.nextLine());
-        ServiceLocator.getService(PrescriptionService.class).createNewPrescription(type,sureveyID,descript,qant);
+        //ServiceLocator.getService(PrescriptionService.class).createNewPrescription(type,sureveyID,descript,qant);
     }
 }

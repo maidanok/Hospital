@@ -62,12 +62,7 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     }
 
     @Override
-    public Prescription createNewPrescription(String type, int SurvID, String description, int quantity) {
-        Prescription prescription = new Prescription();
-        prescription.setPrescriptionType(type);
-        prescription.getSurveyHistory().setPrimaryKey(SurvID);
-        prescription.setDescription(description);
-        prescription.setQuantity(quantity);
+    public Prescription createNewPrescription(Prescription prescription) {
         try {
             prescription = prescriptionDao.persist(prescription);
         } catch (PersistentException e) {
@@ -97,6 +92,8 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 
         if (prescr.getPrescriptionType().equals(DISCHARGE)){
             prescr.getSurveyHistory().getSickList().setDateOUT(Date.valueOf(LocalDate.now()));
+            Diagnose diagnose = prescr.getSurveyHistory().getDiagnose();
+            prescr.getSurveyHistory().getSickList().setFinalDiagnose(diagnose);
         }
         PrescriptionExecution prescriptionExecution = new PrescriptionExecution();
         prescriptionExecution.setPrescriptionID(prescription.getPrimaryKey());
