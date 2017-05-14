@@ -3,7 +3,6 @@ package by.hospital.dao;
 import by.hospital.dao.conditions.Condition;
 import by.hospital.domain.Entity;
 import by.hospital.exception.PersistentException;
-import com.mysql.cj.x.protobuf.MysqlxCrud;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -59,14 +58,13 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             prepareStatementForInsert(statement, entity);
-            logger.info("Insert " +entity.getClass() + " "+ statement);
             int count = statement.executeUpdate();
             statement.close();
             if (count != 1) {
                 throw new PersistentException("On persist modify more then 1 record " + count);
             }
         } catch (Exception e) {
-            logger.error("Error"+e.getLocalizedMessage());
+            logger.error("Error persist"+e.getLocalizedMessage());
         }
 
         //получаем только что вставленную запись
@@ -81,7 +79,7 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
             persistInstanse = list.iterator().next();
             statement.close();
         } catch (Exception e) {
-            logger.error("Error"+e.getLocalizedMessage());
+            logger.error("Error persist"+e.getLocalizedMessage());
             throw new PersistentException(e);
         }
 
@@ -104,7 +102,7 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
             }
             statement.close();
         } catch (Exception e) {
-            logger.error("Error"+e.getLocalizedMessage());
+            logger.error("Error update "+e.getLocalizedMessage());
         }
     }
 
@@ -120,7 +118,8 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
             }
             statement.close();
         } catch (Exception e) {
-            logger.error("Error"+e.getLocalizedMessage());
+            logger.error("Error delete "+e.getLocalizedMessage());
+            logger.error("\n"+sql);
         }
     }
 
@@ -136,6 +135,8 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
             list = parseResultSet(resultSet);
             statement.close();
         } catch (Exception e) {
+            logger.error("Error getByPrimaryKey "+e.getLocalizedMessage());
+            logger.error("\n"+sql);
             throw new PersistentException(e);
         }
         if (list == null || list.size() == 0) {
@@ -157,7 +158,8 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
             list = parseResultSet(resultSet);
             statement.close();
         } catch (Exception e) {
-            logger.error("Error"+e.getLocalizedMessage());
+            logger.error("Error getAll "+e.getLocalizedMessage());
+            logger.error("\n"+sql);
             throw new PersistentException(e);
         }
         return list;
@@ -169,12 +171,12 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
         sql += condition.getValue();
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-
             ResultSet resultSet = statement.executeQuery();
             list = parseResultSet(resultSet);
             statement.close();
         } catch (Exception e) {
-            logger.error("Error"+e.getLocalizedMessage());
+            logger.error("Error FindByCondition "+e.getLocalizedMessage());
+            logger.error("\n"+sql);
             throw new PersistentException(e);
         }
         return list;
@@ -200,5 +202,11 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
             return null;
         }
         return new java.sql.Date(date.getTime());
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        connection.close();
     }
 }

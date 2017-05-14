@@ -53,9 +53,10 @@
 
     <filter-mapping>
         <filter-name>EncodingFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/controller</url-pattern>
+        <url-pattern>*.html</url-pattern>
     </filter-mapping>
-<!--
+
     <filter>
         <filter-name>SecurityFilter</filter-name>
         <filter-class>by.hospital.filters.SecurityFilter</filter-class>
@@ -64,8 +65,9 @@
     <filter-mapping>
         <filter-name>SecurityFilter</filter-name>
         <url-pattern>/controller</url-pattern>
+        <url-pattern>*.html</url-pattern>
     </filter-mapping>
--->
+
 
 
 

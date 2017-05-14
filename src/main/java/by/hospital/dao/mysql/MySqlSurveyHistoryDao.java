@@ -72,7 +72,7 @@ public class MySqlSurveyHistoryDao extends AbstractJDBCDao<SurveyHistory, Intege
 
     @Override
     protected String getDeleteQuery() {
-        return "DELETE FROM staff WHERE staff_id = ? ;";
+        return "DELETE FROM survey_history WHERE survey_history_id = ? ;";
     }
 
     @Override

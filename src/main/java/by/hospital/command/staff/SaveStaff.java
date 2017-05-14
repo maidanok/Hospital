@@ -10,6 +10,7 @@ import by.hospital.service.ServiceLocator;
 import by.hospital.service.api.DiagnoseService;
 import by.hospital.service.api.PatientService;
 import by.hospital.service.api.StaffService;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +28,7 @@ import java.util.Set;
  * Created by Pasha on 10.05.2017.
  */
 public class SaveStaff implements Command {
+    private Logger logger = Logger.getLogger(SaveStaff.class);
     private static final String PARAM_STAFF_ID = "id";
     private static final String PARAM_STAFF_LASTNAME = "lastname";
     private static final String PARAM_STAFF_FIRSNAME = "firstname";
@@ -40,7 +42,7 @@ public class SaveStaff implements Command {
     private static final String PARAM_STAFF_FIRED = "fired";
     private static final String PARAM_STAFF_POST = "post";
 
-    //TODO ошибка в SQL создание нового сотрудника
+
     private static Set<Post> roles = new HashSet<>();
 
     static {
@@ -94,6 +96,13 @@ public class SaveStaff implements Command {
         List<Patient> allPatient = ServiceLocator.getService(PatientService.class).getALLPatients();
         List<Staff> allStaff = ServiceLocator.getService(StaffService.class).getAllStaff();
         List<Diagnose> allDiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();
+
+        Boolean isUser = (Boolean) session.getAttribute("isUser");
+        logger.info("isUser="+isUser);
+        if (isUser){
+            session.setAttribute("user",staff);
+            session.removeAttribute("isUser");
+        }
 
         session.setAttribute("allPatient", allPatient);
         session.setAttribute("allStaff", allStaff);

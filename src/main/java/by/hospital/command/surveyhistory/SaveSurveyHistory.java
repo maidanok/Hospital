@@ -5,7 +5,6 @@ import by.hospital.domain.Prescription;
 import by.hospital.domain.SurveyHistory;
 import by.hospital.domain.enumeration.Post;
 import by.hospital.domain.enumeration.PrescriptionType;
-import by.hospital.prop_managers.ConfigurationManager;
 import by.hospital.service.ServiceLocator;
 import by.hospital.service.api.PrescriptionService;
 import by.hospital.service.api.SurveyHistoryService;
@@ -14,6 +13,7 @@ import org.apache.log4j.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -58,7 +58,8 @@ public class SaveSurveyHistory implements Command {
             logger.error("Error date "+e.getLocalizedMessage());
         }
         String description = request.getParameter(PARAM_SURVEY_HISTORY_DESCRIPTION);
-        Boolean isDischarge = Boolean.getBoolean(request.getParameter(PARAM_DISCHARGE));
+        String isDischarge = request.getParameter(PARAM_DISCHARGE);
+        logger.info("isDischarge ="+isDischarge);
         SurveyHistory surveyHistory= new SurveyHistory();
         surveyHistory.setPrimaryKey(surveyID);
         surveyHistory.getSickList().setPrimaryKey(sickListID);
@@ -67,7 +68,9 @@ public class SaveSurveyHistory implements Command {
         surveyHistory.setSurveyDate(surveydate);
         surveyHistory.setDescription(description);
         surveyHistory=ServiceLocator.getService(SurveyHistoryService.class).saveSurveyHistory(surveyHistory);
-        if (isDischarge){
+
+
+        if (isDischarge!=null){
             Prescription prescription = new Prescription();
             prescription.setSurveyHistory(surveyHistory);
             prescription.setQuantity(1);
@@ -80,16 +83,17 @@ public class SaveSurveyHistory implements Command {
         List <Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).
                 findBySickList(surveyHistory.getSickList());
 
+        HttpSession session = request.getSession();
 
 
-        request.setAttribute("id",surveyHistory.getPrimaryKey());
-        request.setAttribute("surveyHistoryList",surveyHistoryList);
-        request.setAttribute("sickList",surveyHistory.getSickList());
-        request.setAttribute("prescriptionList",prescriptionList);
+
+        session.setAttribute("surveyHistoryList",surveyHistoryList);
+        session.setAttribute("sickList",surveyHistory.getSickList());
+        session.setAttribute("prescriptionList",prescriptionList);
 
 
-        page= ConfigurationManager.getProperty("PAGE_SICKLIST");
-
+        request.setAttribute("isRedirect", true);
+        page= "sicklist.html";
 
         return page;
     }

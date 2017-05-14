@@ -1,11 +1,13 @@
 package by.hospital.command.sicklist;
 
 import by.hospital.command.Command;
+import by.hospital.domain.Prescription;
 import by.hospital.domain.SickList;
 import by.hospital.domain.enumeration.Post;
 import by.hospital.prop_managers.ConfigurationManager;
 import by.hospital.service.DateConvertor;
 import by.hospital.service.ServiceLocator;
+import by.hospital.service.api.PrescriptionService;
 import by.hospital.service.api.SickListService;
 import org.apache.log4j.Logger;
 
@@ -48,11 +50,10 @@ public class FindSickListByCondition implements Command {
             }
         }
 
-        logger.info("firstName = "+firstName );
-        logger.info("date ="+date );
-        logger.info("dateIN= "+dateIN);
         List<SickList> sickLists = ServiceLocator.getService(SickListService.class).
                 findByPatientAndDAte(firstName, DateConvertor.getInstanse().convert(dateIN));
+        List<Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).getAllNotDone();
+        request.setAttribute("prescriptionList",prescriptionList);
         request.setAttribute("sickLists",sickLists);
 
         page = ConfigurationManager.getProperty("PAGE_HOSPITAL");

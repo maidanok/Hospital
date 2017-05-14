@@ -88,19 +88,19 @@
                         <td>
                             <a href="controller?COMMAND=EditSurveyHistory&id=${surveyHistory.getPrimaryKey()}"
                                class="easyui-linkbutton" data-options="iconCls:'icon-edit'"></a>
-                            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a>
+                            <a href="controller?COMMAND=DeleteSurveyHistory&id=${surveyHistory.getPrimaryKey()}" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a>
                         </td>
                     </tr>
                 </c:forEach>
             </table>
             <div style="text-align:left;padding:5px 0">
-                <a href="" data-options="iconCls:'icon-ok'" class="easyui-linkbutton" onclick=" "
+                <a href="controller?COMMAND=OpenHospital" data-options="iconCls:'icon-ok'" class="easyui-linkbutton" onclick=" "
                    style="width:80px">ОК</a>
             </div>
         </div>
         <div title="Назначения" style="padding:10px">
             <h3>Назначения</h3>
-            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Добавить</a>
+
             <table>
                 <tr>
                     <th></th>
@@ -130,7 +130,7 @@
                 </c:forEach>
             </table>
             <div style="text-align:left;padding:5px 0">
-                <a href="javascript:void(0)" data-options="iconCls:'icon-ok'" class="easyui-linkbutton" onclick=" "
+                <a href="controller?COMMAND=OpenHospital" data-options="iconCls:'icon-ok'" class="easyui-linkbutton" onclick=" "
                    style="width:80px">ОК</a>
             </div>
         </div>

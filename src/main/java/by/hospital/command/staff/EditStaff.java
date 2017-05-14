@@ -22,7 +22,6 @@ public class EditStaff implements Command {
     private static Set<Post> roles =new HashSet<>();
     static {
         roles.add(Post.ADMINISTRATOR);
-        roles.add(Post.DOCTOR);
     }
 
     @Override

@@ -139,21 +139,6 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
     }
 
 
-    public List<Staff> getAllForField(Boolean field) throws PersistentException {
-        List<Staff> list;
-        String sql = getSelectedQuery();
-        sql += " WHERE fired = " + field;
-        try {
-            PreparedStatement statement = super.connection.prepareStatement(sql);
-            ResultSet resultSet = statement.executeQuery();
-            list = parseResultSet(resultSet);
-            statement.close();
-        } catch (Exception e) {
-            throw new PersistentException(e);
-        }
-        return list;
-    }
-
     public void update(Staff entity) throws PersistentException {
 
         String sql = getUpdateQuery();

@@ -96,21 +96,6 @@ public class MySqlPrescriptionExecutionDao extends AbstractJDBCDao<PrescriptionE
         return result;
     }
 
-    public List<PrescriptionExecution> getAllFromPrescription(int prescriptionPK) throws PersistentException {
-        List<PrescriptionExecution> list;
-        String sql = getSelectedQuery();
-        sql += "WHERE prescription_id = " + prescriptionPK + ";";
-        try {
-            PreparedStatement statement = super.connection.prepareStatement(sql);
-            ResultSet resultSet = statement.executeQuery();
-            list = parseResultSet(resultSet);
-            statement.close();
-        } catch (Exception e) {
-            throw new PersistentException(e);
-        }
-        return list;
-    }
-
     @Override
     protected void prepareStatementForInsert(PreparedStatement statement, PrescriptionExecution object) throws PersistentException {
         try {

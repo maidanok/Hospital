@@ -46,14 +46,14 @@
                                value="${surveyHistory.getDescription()}">
                     </div>
                     <div style="margin-bottom:20px">
-                        <input type="checkbox" name="isdischarge">Пациент готов к выписке
+                        <input type="checkbox" name="isdischarge" value="true">Пациент готов к выписке
                     </div>
                     <div style="text-align:left;padding:5px 0">
                         <a href="javascript:void(0)" data-options="iconCls:'icon-ok'" class="easyui-linkbutton" onclick="submitForm('ff')"
                            style="width:80px">ОК</a>
-                        <a href="javascript:history.back()" data-options="iconCls:'icon-cancel'"
+                        <a href="controller?COMMAND=EditSickList&id=${surveyHistory.getSickList().getPrimaryKey()}" data-options="iconCls:'icon-cancel'"
                            class="easyui-linkbutton"
-                           onclick=" " style="width:110px">Отменить</a>
+                           onclick="" style="width:110px">Отменить</a>
                     </div>
                 </form>
             </div>
@@ -79,7 +79,7 @@
                             <td>${prescription.getQuantity()}/${prescription.getCompleted()}</td>
                             <td>${prescription.getPrescriptionType().getName()}</td>
                             <td>${prescription.getDescription()}</td>
-                            <td><a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'"></a>
+                            <td><a href="controller?COMMAND=EditPrescription&id=${prescription.getPrimaryKey()}" class="easyui-linkbutton" data-options="iconCls:'icon-edit'"></a>
                                 <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-no'"></a></td>
                         </tr>
                     </c:forEach>

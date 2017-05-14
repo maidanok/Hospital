@@ -3,7 +3,6 @@ package by.hospital.service.api;
 import by.hospital.domain.Staff;
 import by.hospital.exception.PersistentException;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,11 +18,13 @@ public interface StaffService {
 
     List<Staff> getAllStaff();
 
-    Staff returnStaffFull (Staff staff);
+    Staff returnStaffFull(Staff staff);
 
     Staff returnStaffShort(Staff staff);
 
     boolean deleteStaff(Staff staff);
 
     void saveStaff(Staff staff);
+
+    List<Staff> getAllNotField();
 }

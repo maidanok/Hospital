@@ -4,7 +4,6 @@ import by.hospital.domain.Prescription;
 import by.hospital.domain.SickList;
 import by.hospital.domain.Staff;
 import by.hospital.domain.SurveyHistory;
-import by.hospital.exception.PersistentException;
 
 import java.util.List;
 
@@ -21,9 +20,11 @@ public interface PrescriptionService {
 
     Prescription createNewPrescription(Prescription prescription);
 
+    Prescription returnPrescription(Prescription prescription);
+
     boolean deletePrescription(Prescription prescription);
 
-    boolean executePrescription(Prescription prescription, Staff staff) throws PersistentException;
+    boolean executePrescription(Prescription prescription, Staff staff);
 
 
 }
