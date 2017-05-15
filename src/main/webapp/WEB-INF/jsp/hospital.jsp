@@ -12,13 +12,14 @@
         <div title="Отделение" style="padding:10px">
             <a href="controller?COMMAND=OpenDirectories" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Добавить</a>
             <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">Удалить выбранные</a><br>
-            <form name="find" method="post" action="controller?COMMAND=FindSickListBy">
+            <form id="findsick" method="post" action="controller?COMMAND=FindSickListBy">
                 <input type="search" name="firstname" class="easyui-searchbox" data-options="prompt:'Фамилия'"
                        style="width:25%" value="">
                 <input class="easyui-datebox" name="dateIn" data-options="prompt:'Дата поступления'"
                        style="width:25%;" value="">
-                <input type="submit" src="iconCls:'icon-ok'" class="easyui-linkbutton" value="Найти"
-                       style="width:110px; height:27px">
+                <a href="javascript:void(0)" data-options="iconCls:'icon-search'" class="easyui-linkbutton"
+                   onclick="submitForm('findsick')"
+                   style="width:80px">Найти</a>
             </form>
             <table>
                 <tr>
@@ -36,21 +37,36 @@
                         <td>${sickList.getRoom()}</td>
                         <td>${sickList.getPatient().getFullName()}</td>
                         <td>${sickList.getPatient().getSex().getName()}</td>
-                        <td><fmt:formatDate pattern="dd/MM/yyyy" value="${sickList.getDateIN()}"/></td>
+                        <td>
+                            <fmt:formatDate pattern="dd/MM/yyyy" value="${sickList.getDateIN()}"/>
+                        </td>
                         <td>${sickList.getFinalDiagnose().getDiagnoseName()}</td>
-                        <td><a href="controller?COMMAND=EditSickList&id=${sickList.getPrimaryKey()}"
-                               class="easyui-linkbutton" data-options="iconCls:'icon-edit'"></a>
-                            <a href="controller?COMMAND=DeleteSickList&id=${sickList.getPrimaryKey()}"
-                               class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a></td>
+                        <td>
+                                <form id="edsl${sickList.getPrimaryKey()}" method="post"
+                                      action="controller?COMMAND=EditSickList" style="float:left">
+                                    <input type="hidden" name="id" value="${sickList.getPrimaryKey()}">
+                                    <a href="javascript:void(0)" onclick="submitForm('edsl${sickList.getPrimaryKey()}')"
+                                       class="easyui-linkbutton" data-options="iconCls:'icon-edit'"></a>
+                                </form>
+                                <form id="delsl${sickList.getPrimaryKey()}" method="post"
+                                      action="controller?COMMAND=DeleteSickList">
+                                    <input type="hidden" name="id" value="${sickList.getPrimaryKey()}">
+                                    <a href="javascript:void(0)"
+                                       onclick="submitForm('delsl${sickList.getPrimaryKey()}')"
+                                       class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a>
+                                </form>
+                        </td>
                     </tr>
                 </c:forEach>
             </table>
         </div>
         <div title="Назначения" style="padding:10px">
-            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Добавить</a>
-            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">Удалить выбранные</a><br>
-            <input type="search" class="easyui-searchbox" data-options="prompt:'Фамилия'" style="width:25%">
-            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">Найти</a>
+            <form id="findpres" method="post" action="controller?COMMAND=FindPressriptionByPatientLastName">
+                <input type="search" name="firstname" class="easyui-searchbox" data-options="prompt:'Фамилия'"
+                       style="width:25%" value="">
+                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
+                   onclick="submitForm('findpres')">Найти</a>
+            </form>
             <table>
                 <tr>
                     <th>Отметить</th>
@@ -69,8 +85,8 @@
                         <td>${prescription.getPrescriptionType().getName()}</td>
                         <td>${prescription.getQuantity()}</td>
                         <td>${prescription.getDescription()}</td>
-                        <td><a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'"></a>
-                            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-no'"></a></td>
+                        <td><a href="controller?COMMAND=ExecutePrescriptionHosp&id=${prescription.getPrimaryKey()}"
+                               class="easyui-linkbutton" data-options="iconCls:'icon-ok'"></a></td>
                     </tr>
                 </c:forEach>
             </table>

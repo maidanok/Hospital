@@ -72,7 +72,7 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public List<Patient> FindLastName(Patient patient) {
         try {
-            if (patient.getLastName() != null) {
+            if (patient.getLastName() != "") {
                 return patientDao.FindByCondition(new FirstNameLike(patient.getLastName()));
             } else {
                 return patientDao.getAll();

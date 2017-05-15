@@ -13,8 +13,7 @@ import java.util.List;
 
 public class ConnectionPool {
     private static ConnectionPool instance = null;
-
-    static Logger logger = Logger.getLogger(ConnectionPool.class);//TODO выяснить
+    static Logger logger = Logger.getLogger(ConnectionPool.class);
     private int maxPool;
     private int minPool;
     private String url;
@@ -30,12 +29,6 @@ public class ConnectionPool {
 
 
     private ConnectionPool(int minPool, int maxPool, String url, String user, String password) throws SQLException {
-        /*try {
-            Class.forName(DB_DRIVER);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }*/
-
         this.minPool = minPool;
         this.maxPool = maxPool;
         this.url = url;
@@ -106,7 +99,7 @@ public class ConnectionPool {
             }
         } catch (SQLException ex) {
             //logger.error("Can't create a new connection: " + ex.getLocalizedMessage());
-            System.out.println(
+            logger.error(
                     "Oops... Can't create a new connection. Contact the developer." + ex.getLocalizedMessage());
             try {
                 if (con != null)
@@ -116,7 +109,7 @@ public class ConnectionPool {
             }
             throw ex;
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            logger.error("ClassNotFoundException "+e.getLocalizedMessage());
         }
         return pcon;
     }

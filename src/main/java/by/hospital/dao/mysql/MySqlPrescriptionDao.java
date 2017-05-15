@@ -49,7 +49,7 @@ public class MySqlPrescriptionDao extends AbstractJDBCDao <Prescription, Integer
                 "final_diagnose_id, findiagn.diagnose_name as findiagn_name, findiagn.therapy as findiagn_therapy,\n" +
                 "survey_history.survey_history_id, survey_date, survey_description,\n" +
                 "survey_history.diagnose_id as s_diagnose_id, s_diagnose.diagnose_name as s_diagnose_name, s_diagnose.therapy as s_diagnose_therapy,\n" +
-                "staff_id, staff.first_name as staff_fn, staff.last_name as staff_ln, staff.middle_name as staff_mn, staff.birthday as staff_bd, staff.sex as staff_sex, staff.address as staff_addr, staff.passport_number as staff_passport,\n" +
+                "survey_history.staff_id, staff.first_name as staff_fn, staff.last_name as staff_ln, staff.middle_name as staff_mn, staff.birthday as staff_bd, staff.sex as staff_sex, staff.address as staff_addr, staff.passport_number as staff_passport,\n" +
                 "prescription_id, description, quantity, completed,\n" +
                 "prescription_type_name\n" +
                 "FROM person\n" +
@@ -57,7 +57,7 @@ public class MySqlPrescriptionDao extends AbstractJDBCDao <Prescription, Integer
                 "join diagnose as findiagn on final_diagnose_id = diagnose_id\n" +
                 "join survey_history on survey_history.sick_list_id=sick_list.sick_list_id\n" +
                 "join diagnose as s_diagnose on survey_history.diagnose_id = s_diagnose.diagnose_id\n" +
-                "join person as staff on staff_id=staff.person_id\n" +
+                "join person as staff on survey_history.staff_id=staff.person_id\n" +
                 "join prescription on prescription.survey_history_id=survey_history.survey_history_id\n" +
                 "join prescription_type on prescription.prescription_type_id=prescription_type.prescription_type_id";
     }
@@ -165,21 +165,5 @@ public class MySqlPrescriptionDao extends AbstractJDBCDao <Prescription, Integer
         } catch (Exception e) {
             throw new PersistentException(e);
         }
-    }
-
-    @Override
-    public List<Prescription> getAllNotDone() throws PersistentException {
-        List<Prescription> list;
-        String sql = getSelectedQuery();
-        sql += " WHERE quantity>completed;";
-        try {
-            PreparedStatement statement = super.connection.prepareStatement(sql);
-            ResultSet resultSet = statement.executeQuery();
-            list=parseResultSet(resultSet);
-            statement.close();
-        }catch (Exception e) {
-            throw new PersistentException(e);
-        }
-        return list;
     }
 }

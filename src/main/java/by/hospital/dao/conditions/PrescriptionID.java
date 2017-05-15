@@ -10,6 +10,6 @@ public class PrescriptionID extends Condition {
     }
     @Override
     public String getValue() {
-        return "WHERE prescription_id = " + value + ";";
+        return " WHERE prescription_id = " + value + ";";
     }
 }

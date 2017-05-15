@@ -1,6 +1,5 @@
 package by.hospital.controllers;
 
-import by.hospital.command.CommandFactory;
 import by.hospital.prop_managers.ConfigurationManager;
 import org.apache.log4j.Logger;
 
@@ -20,7 +19,6 @@ public class DispatcherServlet extends HttpServlet {
     private static Logger logger = Logger.getLogger(DispatcherServlet.class);
     private static Map<String, String> links = new ConcurrentHashMap<>();
     private static Map<String,String[]> resources = new ConcurrentHashMap<>();
-    private CommandFactory commandFactory = CommandFactory.getInstance();
 
 
     public DispatcherServlet() {
@@ -32,9 +30,13 @@ public class DispatcherServlet extends HttpServlet {
         links.put("/login", "Login");
         links.put("/hospital", "OpenHospital");
         links.put("/directories", "OpenDirectories");
+        links.put("/sicklist","EditSickList");
+        links.put("/survey","EditSurveyHistory");
 
         resources.put("OpenDirectories",new String[]{"allPatient","allStaff","allDiagnose"});
         resources.put("OpenHospital", new String[]{"sickLists","prescriptionList"});
+        resources.put("EditSickList",new String[]{"surveyHistoryList","sickList","prescriptionList"});
+        resources.put("EditSurveyHistory",new String[]{"surveyHistory","prescriptionList","alldiagnose",});
     }
 
     @Override
@@ -51,7 +53,6 @@ public class DispatcherServlet extends HttpServlet {
             commandName = uri.substring(beginAction);
         }
         String command = links.get(commandName);
-
         HttpSession session = request.getSession(true);
         if (command != null) {
             String []attributes = resources.get(command);

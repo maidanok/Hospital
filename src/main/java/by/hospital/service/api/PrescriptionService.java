@@ -1,10 +1,6 @@
 package by.hospital.service.api;
 
-import by.hospital.domain.Prescription;
-import by.hospital.domain.SickList;
-import by.hospital.domain.Staff;
-import by.hospital.domain.SurveyHistory;
-import by.hospital.exception.PersistentException;
+import by.hospital.domain.*;
 
 import java.util.List;
 
@@ -19,11 +15,17 @@ public interface PrescriptionService {
 
     List<Prescription> findBySurveyHistory(SurveyHistory surveyHistory);
 
+    List<Prescription> findByPatientFirstName(Patient patient);
+
     Prescription createNewPrescription(Prescription prescription);
+
+    Prescription returnPrescription(Prescription prescription);
 
     boolean deletePrescription(Prescription prescription);
 
-    boolean executePrescription(Prescription prescription, Staff staff) throws PersistentException;
+    boolean executePrescription(Prescription prescription, Staff staff);
+
+    Prescription savePrescription(Prescription prescription);
 
 
 }

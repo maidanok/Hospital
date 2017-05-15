@@ -10,10 +10,12 @@
         <div title="Пациенты" style="padding:10px">
             <h3>Пациенты</h3>
             <a href="controller?COMMAND=EditPatient&id=0" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Добавить</a>
-            <form name="find" method="post" action="controller?COMMAND=FindPatientByLastName">
-                <input type="search" name="firstname" class="easyui-searchbox" data-options="prompt:'Фамилия'" style="width:25%" value="">
-                <input type="submit" src="${cssPath}/themes/icons/search.png" class="easyui-linkbutton" value="Найти"
-                       style="width:110px; height:27px">
+            <form id="find" method="post" action="controller?COMMAND=FindPatientByLastName">
+                <input type="search" name="firstname" class="easyui-searchbox" data-options="prompt:'Фамилия'"
+                       style="width:25%" value="">
+                <a href="javascript:void(0)" data-options="iconCls:'icon-search'" class="easyui-linkbutton"
+                   onclick="submitForm('find')"
+                   style="width:80px">Найти</a>
             </form>
             <table>
                 <tr>
@@ -36,12 +38,24 @@
                         <td>${patient.getAddress()}</td>
                         <td>${patient.getPassportNumber()}</td>
                         <td>
-                            <a href="controller?COMMAND=NewSickList&id=${patient.getPrimaryKey()}"
-                               class="easyui-linkbutton" data-options="iconCls:'icon-ok'"></a>
-                            <a href="controller?COMMAND=EditPatient&id=${patient.getPrimaryKey()}"
-                               class="easyui-linkbutton" data-options="iconCls:'icon-edit'"></a>
-                            <a href="controller?COMMAND=DeletePatient&id=${patient.getPrimaryKey()}"
-                               class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a>
+                            <form id="nsl${patient.getPrimaryKey()}" method="post"
+                                  action="controller?COMMAND=NewSickList" style="float:left">
+                                <input type="hidden" name="id" value="${patient.getPrimaryKey()}">
+                                <a href="javascript:void(0)" onclick="submitForm('nsl${patient.getPrimaryKey()}')"
+                                   class="easyui-linkbutton" data-options="iconCls:'icon-ok'"></a>
+                            </form>
+                            <form id="edp${patient.getPrimaryKey()}" method="post"
+                                  action="controller?COMMAND=EditPatient" style="float:left">
+                                <input type="hidden" name="id" value="${patient.getPrimaryKey()}">
+                                <a href="javascript:void(0)" onclick="submitForm('edp${patient.getPrimaryKey()}')"
+                                   class="easyui-linkbutton" data-options="iconCls:'icon-edit'"></a>
+                            </form>
+                            <form id="delp${patient.getPrimaryKey()}" method="post" style="float:left"
+                                  action="controller?COMMAND=DeletePatient">
+                                <input type="hidden" name="id" value="${patient.getPrimaryKey()}">
+                                <a href="javascript:void(0)" onclick="submitForm('delp${patient.getPrimaryKey()}')"
+                                   class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a>
+                            </form>
                         </td>
                     </tr>
                 </c:forEach>
