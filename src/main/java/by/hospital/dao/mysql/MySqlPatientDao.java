@@ -4,6 +4,7 @@ import by.hospital.dao.AbstractJDBCDao;
 import by.hospital.dao.mysql.interfaces.GenericDAOForPatient;
 import by.hospital.domain.Patient;
 import by.hospital.exception.PersistentException;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +16,7 @@ import java.util.List;
  * Created by Pasha on 10.04.2017.
  */
 public class MySqlPatientDao extends AbstractJDBCDao<Patient, Integer> implements GenericDAOForPatient{
+    Logger logger = Logger.getLogger(MySqlPatientDao.class);
 
     private class PersistPatient extends Patient {
         public void setPrimaryKey(int id) {
@@ -79,6 +81,7 @@ public class MySqlPatientDao extends AbstractJDBCDao<Patient, Integer> implement
             }
 
         } catch (Exception e) {
+            logger.error("parse error"+e.getLocalizedMessage());
             throw new PersistentException(e);
         }
         return result;
@@ -95,6 +98,7 @@ public class MySqlPatientDao extends AbstractJDBCDao<Patient, Integer> implement
             statement.setString(6, object.getAddress());
             statement.setString(7, object.getPassportNumber());
         } catch (Exception e) {
+            logger.error(e.getLocalizedMessage());
             throw new PersistentException(e);
         }
 
@@ -112,6 +116,7 @@ public class MySqlPatientDao extends AbstractJDBCDao<Patient, Integer> implement
             statement.setString(7, object.getPassportNumber());
             statement.setInt(8, object.getPrimaryKey());
         } catch (Exception e) {
+            logger.error(e.getLocalizedMessage());
             throw new PersistentException(e);
         }
     }

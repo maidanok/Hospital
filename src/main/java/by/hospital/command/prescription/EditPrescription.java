@@ -9,6 +9,7 @@ import by.hospital.prop_managers.ConfigurationManager;
 import by.hospital.service.ServiceLocator;
 import by.hospital.service.api.PrescriptionService;
 import by.hospital.service.api.SurveyHistoryService;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,7 @@ import java.util.Set;
  * Created by Admin on 14.05.2017.
  */
 public class EditPrescription implements Command {
+    Logger logger = Logger.getLogger(EditPrescription.class);
     private static final String PARAM_PRESCRIPTION_ID = "id";
     private static final String PARAM_PRESCRIPTION_SURVEY_ID = "shid";
 
@@ -49,7 +51,7 @@ public class EditPrescription implements Command {
         }
 
         request.setAttribute("prescription",prescription);
-        request.setAttribute("prescriptionType", PrescriptionType.values());
+        request.setAttribute("types", PrescriptionType.values());
         page= ConfigurationManager.getProperty("PAGE_PRESCRIPTION");
         return page;
     }

@@ -11,7 +11,7 @@ import by.hospital.command.patient.DeletePatient;
 import by.hospital.command.patient.EditPatient;
 import by.hospital.command.patient.FindPatientByLastName;
 import by.hospital.command.patient.SavePatient;
-import by.hospital.command.prescription.EditPrescription;
+import by.hospital.command.prescription.*;
 import by.hospital.command.sicklist.*;
 import by.hospital.command.staff.DeleteStaff;
 import by.hospital.command.staff.EditStaff;
@@ -68,6 +68,12 @@ public class CommandFactory {
         commands.put("DeleteSurveyHistory", new DeleteSurveyHistory());
 
         commands.put("EditPrescription", new EditPrescription());
+        commands.put("SavePrescription", new SavePrescription());
+        commands.put("DeletePrescription", new DeletePrescription());
+        commands.put("ExecutePrescriptionHosp", new ExecutePrescriptionHosp());
+        commands.put("ExecutePrescriptionList", new ExecutePrescriptionList());
+        commands.put("ExecutePrescriptionSurvey", new ExecutePrescriptionSurvey());
+        commands.put("FindPressriptionByPatientLastName",new FindPressriptionByPatientLastName());
     }
 
     public Command getCommand(HttpServletRequest request){

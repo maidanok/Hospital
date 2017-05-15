@@ -183,18 +183,6 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
     }
 
 
-
-/*
-    //получить вложенный объект получается во время реализации конкретного класса
-    //когда парсируем результат sql закроса мы в данный метод подставляем класс поля которое хотим получить и
-    //ID который нам пришел в ответе parentFactory по классу найдет нам нужную фабрику
-    //и по ID выполнит запрос getByPrimaryKey.
-    protected Entity getDependence(Class<? extends Entity> dtoClass, Integer primaryKey) throws PersistentException {
-        return parentFactory.getDao(connection, dtoClass).getByPrimaryKey(primaryKey);
-    }
-
-*/
-
     //с такой конвертацией не выдает NullPointerException
     //и адекватно осуществляет вставку записи где дата равна null
     protected java.sql.Date convert(Date date) {

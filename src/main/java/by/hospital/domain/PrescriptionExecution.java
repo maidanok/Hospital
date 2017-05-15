@@ -9,18 +9,19 @@ public class PrescriptionExecution implements Entity<Integer> {
     private int prescriptionExecutionID;
     private Staff staff;
     private Date prescriptionExecutionDate;
-    private int prescriptionID;
+    private Prescription prescription;
 
     public PrescriptionExecution(){
+        prescription=new Prescription();
         staff = new Staff();
     }
 
-    public void setPrescriptionID(int prescriptionID) {
-        this.prescriptionID = prescriptionID;
+    public void setPrescription(Prescription prescription) {
+        this.prescription = prescription;
     }
 
-    public int getPrescriptionID() {
-        return prescriptionID;
+    public Prescription getPrescription() {
+        return prescription;
     }
 
     public Staff getStaff() {

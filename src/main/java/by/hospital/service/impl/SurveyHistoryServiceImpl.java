@@ -10,6 +10,7 @@ import by.hospital.domain.SickList;
 import by.hospital.domain.SurveyHistory;
 import by.hospital.exception.PersistentException;
 import by.hospital.service.api.SurveyHistoryService;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,13 +19,17 @@ import java.util.List;
  * Created by Admin on 23.04.2017.
  */
 public class SurveyHistoryServiceImpl implements SurveyHistoryService {
+    Logger logger = Logger.getLogger(SurveyHistoryServiceImpl.class);
     private GenericDAO<SurveyHistory, Integer> surveyHistoryDao;
     private GenericDAO<Prescription, Integer> prescriptionDao;
+    private GenericDAO<SickList,Integer> sickListDao;
 
 
-    public SurveyHistoryServiceImpl(GenericDAO<SurveyHistory, Integer> surveyHistoryDao, GenericDAO<Prescription, Integer> prescriptionDao) throws PersistentException {
+    public SurveyHistoryServiceImpl(GenericDAO<SurveyHistory, Integer> surveyHistoryDao,
+                                    GenericDAO<Prescription, Integer> prescriptionDao, GenericDAO<SickList,Integer> sickListDao){
         this.surveyHistoryDao = surveyHistoryDao;
         this.prescriptionDao = prescriptionDao;
+        this.sickListDao=sickListDao;
     }
 
     @Override
@@ -33,7 +38,7 @@ public class SurveyHistoryServiceImpl implements SurveyHistoryService {
         try {
             surveyHistoryList=surveyHistoryDao.FindByCondition(new SickListID(sickList.getPrimaryKey()));
         } catch (PersistentException e) {
-            e.printStackTrace();
+            logger.error(e.getLocalizedMessage());
         }
         return surveyHistoryList;
     }
@@ -43,7 +48,7 @@ public class SurveyHistoryServiceImpl implements SurveyHistoryService {
         try {
             return surveyHistoryDao.getByPrimaryKey(surveyHistory.getPrimaryKey());
         } catch (PersistentException e) {
-            e.printStackTrace();
+            logger.error(e.getLocalizedMessage());
         }
         return new SurveyHistory();
     }
@@ -53,7 +58,7 @@ public class SurveyHistoryServiceImpl implements SurveyHistoryService {
         try {
             surveyHistory = surveyHistoryDao.persist(surveyHistory);
         } catch (PersistentException e) {
-            e.printStackTrace();
+            logger.error(e.getLocalizedMessage());
         }
         return surveyHistory;
     }
@@ -64,14 +69,14 @@ public class SurveyHistoryServiceImpl implements SurveyHistoryService {
         try {
             list = prescriptionDao.FindByCondition(new SurveyHistoryID(surveyHistory.getPrimaryKey()));
         } catch (PersistentException e) {
-            e.printStackTrace();
+            logger.error(e.getLocalizedMessage());
         }
         if (list.isEmpty()) {
             try {
                 surveyHistoryDao.delete(surveyHistory);
                 return true;
             } catch (PersistentException e) {
-                e.printStackTrace();
+                logger.error(e.getLocalizedMessage());
             }
         }
         return false;
@@ -83,13 +88,18 @@ public class SurveyHistoryServiceImpl implements SurveyHistoryService {
         try {
             list = surveyHistoryDao.FindByCondition(new FindSdiagnoseID(diagnose.getPrimaryKey()));
         } catch (PersistentException e) {
-            e.printStackTrace();
+            logger.error(e.getLocalizedMessage());
         }
         return list;
     }
 
     @Override
     public SurveyHistory saveSurveyHistory(SurveyHistory surveyHistory) {
+        try {
+            sickListDao.update(surveyHistory.getSickList());
+        } catch (PersistentException e) {
+            logger.error(e.getLocalizedMessage());
+        }
         if (surveyHistory.getPrimaryKey()==0){
             surveyHistory=this.createNewSurveyHistory(surveyHistory);
         }else {
@@ -97,7 +107,7 @@ public class SurveyHistoryServiceImpl implements SurveyHistoryService {
                 surveyHistoryDao.update(surveyHistory);
                 surveyHistory=surveyHistoryDao.getByPrimaryKey(surveyHistory.getPrimaryKey());
             } catch (PersistentException e) {
-                e.printStackTrace();
+                logger.error(e.getLocalizedMessage());
             }
         }
         return surveyHistory;

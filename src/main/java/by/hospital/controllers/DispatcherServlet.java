@@ -31,10 +31,12 @@ public class DispatcherServlet extends HttpServlet {
         links.put("/hospital", "OpenHospital");
         links.put("/directories", "OpenDirectories");
         links.put("/sicklist","EditSickList");
+        links.put("/survey","EditSurveyHistory");
 
         resources.put("OpenDirectories",new String[]{"allPatient","allStaff","allDiagnose"});
         resources.put("OpenHospital", new String[]{"sickLists","prescriptionList"});
         resources.put("EditSickList",new String[]{"surveyHistoryList","sickList","prescriptionList"});
+        resources.put("EditSurveyHistory",new String[]{"surveyHistory","prescriptionList","alldiagnose",});
     }
 
     @Override

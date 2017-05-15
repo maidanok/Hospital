@@ -2,6 +2,7 @@ package by.hospital.domain;
 
 import by.hospital.domain.enumeration.Gender;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -15,6 +16,16 @@ public abstract class Person implements Entity<Integer>{
     private Gender sex;
     private String address;
     private String passportNumber;
+
+    public Person(){
+        firstName="";
+        lastName="";
+        middleName="";
+        address="";
+        passportNumber="";
+        sex=Gender.MALE;
+        birthday= java.sql.Date.valueOf(LocalDate.now());
+    }
 
     public String getFirstName() {
         return firstName;

@@ -1,12 +1,16 @@
 package by.hospital.command.surveyhistory;
 
 import by.hospital.command.Command;
+import by.hospital.domain.Diagnose;
 import by.hospital.domain.Prescription;
+import by.hospital.domain.SickList;
 import by.hospital.domain.SurveyHistory;
 import by.hospital.domain.enumeration.Post;
 import by.hospital.domain.enumeration.PrescriptionType;
 import by.hospital.service.ServiceLocator;
+import by.hospital.service.api.DiagnoseService;
 import by.hospital.service.api.PrescriptionService;
+import by.hospital.service.api.SickListService;
 import by.hospital.service.api.SurveyHistoryService;
 import org.apache.log4j.Logger;
 
@@ -67,6 +71,9 @@ public class SaveSurveyHistory implements Command {
         surveyHistory.getDiagnose().setPrimaryKey(diagnoseID);
         surveyHistory.setSurveyDate(surveydate);
         surveyHistory.setDescription(description);
+        SickList sickList = ServiceLocator.getService(SickListService.class).findById(surveyHistory.getSickList());
+        sickList.setFinalDiagnose(surveyHistory.getDiagnose());
+        surveyHistory.setSickList(sickList);
         surveyHistory=ServiceLocator.getService(SurveyHistoryService.class).saveSurveyHistory(surveyHistory);
 
 
@@ -82,6 +89,7 @@ public class SaveSurveyHistory implements Command {
                 getAllbySickList(surveyHistory.getSickList());
         List <Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).
                 findBySickList(surveyHistory.getSickList());
+        List<Diagnose> alldiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();
 
         HttpSession session = request.getSession();
 
@@ -90,6 +98,7 @@ public class SaveSurveyHistory implements Command {
         session.setAttribute("surveyHistoryList",surveyHistoryList);
         session.setAttribute("sickList",surveyHistory.getSickList());
         session.setAttribute("prescriptionList",prescriptionList);
+        session.setAttribute("alldiagnose",alldiagnose);
 
 
         request.setAttribute("isRedirect", true);

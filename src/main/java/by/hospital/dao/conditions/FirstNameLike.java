@@ -11,6 +11,6 @@ public class FirstNameLike extends Condition {
 
     @Override
     public String getValue() {
-        return " where first_name like '" + value + "';";
+        return " WHERE first_name like '" + value + "%';";
     }
 }

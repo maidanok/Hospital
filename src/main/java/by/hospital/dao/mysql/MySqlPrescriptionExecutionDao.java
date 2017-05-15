@@ -77,7 +77,7 @@ public class MySqlPrescriptionExecutionDao extends AbstractJDBCDao<PrescriptionE
         try {
             while (resultSet.next()) {
                 PersistPrescriptionExecution pPE = new PersistPrescriptionExecution();
-                pPE.setPrescriptionID(resultSet.getInt("prescription_id"));
+                pPE.getPrescription().setPrimaryKey(resultSet.getInt("prescription_id"));
                 pPE.setPrimaryKey(resultSet.getInt("prescription_execution_id"));
                 pPE.setPrescriptionExecutionDate(resultSet.getDate("prescription_execution_date"));
                 Staff staff= new Staff();
@@ -101,7 +101,7 @@ public class MySqlPrescriptionExecutionDao extends AbstractJDBCDao<PrescriptionE
         try {
             int StaffID = (object.getStaff() == null || object.getStaff().getPrimaryKey() == null) ? -1
                     : object.getStaff().getPrimaryKey();
-            statement.setInt(1, object.getPrescriptionID());
+            statement.setInt(1, object.getPrescription().getPrimaryKey());
             statement.setInt(2, StaffID);
             statement.setDate(3, convert(object.getPrescriptionExecutionDate()));
         } catch (Exception e) {
@@ -114,7 +114,7 @@ public class MySqlPrescriptionExecutionDao extends AbstractJDBCDao<PrescriptionE
         try {
             int StaffID = (object.getStaff() == null || object.getStaff().getPrimaryKey() == null) ? -1
                     : object.getStaff().getPrimaryKey();
-            statement.setInt(1, object.getPrescriptionID());
+            statement.setInt(1, object.getPrescription().getPrimaryKey());
             statement.setInt(2, StaffID);
             statement.setDate(3, convert(object.getPrescriptionExecutionDate()));
             statement.setInt(4, object.getPrimaryKey());

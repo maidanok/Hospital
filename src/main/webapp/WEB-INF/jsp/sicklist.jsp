@@ -100,7 +100,6 @@
         </div>
         <div title="Назначения" style="padding:10px">
             <h3>Назначения</h3>
-
             <table>
                 <tr>
                     <th></th>
@@ -123,8 +122,7 @@
                         <td>${prescription.getDescription()}</td>
                         <td>${prescription.getSurveyHistory().getStaff().getFullName()}</td>
                         <td>
-                            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'"></a>
-                            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a>
+                            <a href="controller?COMMAND=ExecutePrescriptionList&id=${prescription.getPrimaryKey()}" class="easyui-linkbutton" data-options="iconCls:'icon-ok'"></a>
                         </td>
                     </tr>
                 </c:forEach>
