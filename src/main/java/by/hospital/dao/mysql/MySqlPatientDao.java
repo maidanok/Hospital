@@ -16,7 +16,7 @@ import java.util.List;
  * Created by Pasha on 10.04.2017.
  */
 public class MySqlPatientDao extends AbstractJDBCDao<Patient, Integer> implements GenericDAOForPatient{
-    Logger logger = Logger.getLogger(MySqlPatientDao.class);
+    private Logger logger = Logger.getLogger(MySqlPatientDao.class);
 
     private class PersistPatient extends Patient {
         public void setPrimaryKey(int id) {

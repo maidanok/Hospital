@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements GenericDAOForStaff {
 
-    Logger logger = Logger.getLogger(MySqlStaffDao.class);
+    private Logger logger = Logger.getLogger(MySqlStaffDao.class);
 
     public MySqlStaffDao(Connection connection) {
         super(connection);
@@ -89,7 +89,6 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
             connection.setAutoCommit(false);
             PreparedStatement statement = connection.prepareStatement(sql);
             prepareStatementForInsert(statement, entity);
-            logger.info("Insert " + entity.getClass() + " " + statement);
             int count = statement.executeUpdate();
             connection.commit();
             if (count != 1) {
@@ -99,6 +98,7 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
             statement.close();
         } catch (Exception e) {
             logger.error("Error" + e.getLocalizedMessage());
+            logger.error(sql);
         }
 
         //получаем только что вставленную запись
@@ -113,6 +113,7 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
             persistInstanse = list.iterator().next();
             statement.close();
         } catch (Exception e) {
+            logger.error("Error" + e.getLocalizedMessage());
             throw new PersistentException(e);
         }
 
@@ -148,6 +149,7 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
             int count = statement.executeUpdate();
             statement.close();
         } catch (Exception e) {
+            logger.error("Error" + e.getLocalizedMessage());
             throw new PersistentException(e);
         }
     }
@@ -173,6 +175,7 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
                 result.add(staff);
             }
         } catch (Exception e) {
+            logger.error("Error" + e.getLocalizedMessage());
             throw new PersistentException(e);
         }
         return result;
@@ -199,6 +202,7 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
             statement.setString(9, object.getLogin());
             statement.setString(10, object.getPassword());
         } catch (Exception e) {
+            logger.error("Error" + e.getLocalizedMessage());
             throw new PersistentException(e);
         }
     }
@@ -228,6 +232,7 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
             statement.setString(11, object.getPassportNumber());
             statement.setInt(12, object.getPrimaryKey());
         } catch (Exception e) {
+            logger.error("Error" + e.getLocalizedMessage());
             throw new PersistentException(e);
         }
     }

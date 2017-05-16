@@ -18,7 +18,7 @@ public interface StaffService {
 
     List<Staff> getAllStaff();
 
-    Staff returnStaffFull(Staff staff);
+    Staff getStaff(Staff staff);
 
     Staff returnStaffShort(Staff staff);
 

@@ -26,7 +26,8 @@
                     <div style="margin-bottom:20px">
                         <input class="easyui-datebox" name="dateout"
                                data-options="label:'Дата выписки', labelPosition:'top', disabled:1" style="width:50%;"
-                               value="${sickList.getDateOUT()}">
+                        <fmt:formatDate pattern="dd/MM/yyyy" value="${sickList.getDateOUT()}"/>
+                        >
                     </div>
                     <div style="margin-bottom:20px">
                         <input class="easyui-textbox" name="room" style="width:50%" data-options="label:'Палата:'"
@@ -56,7 +57,8 @@
                     </div>
 
                     <div style="text-align:left;padding:5px 0">
-                        <a href="javascript:void(0)" data-options="iconCls:'icon-ok'" class="easyui-linkbutton" onclick="submitForm('ff')"
+                        <a href="javascript:void(0)" data-options="iconCls:'icon-ok'" class="easyui-linkbutton"
+                           onclick="submitForm('ff')"
                            style="width:80px">ОК</a>
                         <a href="javascript:history.back()" data-options="iconCls:'icon-cancel'"
                            class="easyui-linkbutton"
@@ -69,8 +71,10 @@
             <h3>Осмотры</h3>
             <form id="add" method="post" action="controller?COMMAND=NewSurveyHistory">
                 <input type="hidden" name="sickListid" value="${sickList.getPrimaryKey()}">
-                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add'"onclick="submitForm('add')">Добавить</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add'"
+                   onclick="submitForm('add')">Добавить</a>
             </form>
+            <div style="margin:20px 0;"></div>
             <table>
                 <tr>
                     <th>№</th>
@@ -87,19 +91,27 @@
                         </td>
                         <td>
                             <a href="controller?COMMAND=EditSurveyHistory&id=${surveyHistory.getPrimaryKey()}"
-                               class="easyui-linkbutton" data-options="iconCls:'icon-edit'"></a>
-                            <a href="controller?COMMAND=DeleteSurveyHistory&id=${surveyHistory.getPrimaryKey()}" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a>
+                               class="easyui-linkbutton" data-options="iconCls:'icon-edit'" style="float:left"></a>
+                            <form id="delsh${surveyHistory.getPrimaryKey()}" method="post" style="float:left"
+                                  action="controller?COMMAND=DeleteSurveyHistory">
+                                <input type="hidden" name="id" value="${surveyHistory.getPrimaryKey()}">
+                                <a href="javascript:void(0)"
+                                   onclick="submitForm('delsh${surveyHistory.getPrimaryKey()}')"
+                                   class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a>
+                            </form>
                         </td>
                     </tr>
                 </c:forEach>
             </table>
             <div style="text-align:left;padding:5px 0">
-                <a href="controller?COMMAND=OpenHospital" data-options="iconCls:'icon-ok'" class="easyui-linkbutton" onclick=" "
+                <a href="controller?COMMAND=OpenHospital" data-options="iconCls:'icon-ok'" class="easyui-linkbutton"
+                   onclick=" "
                    style="width:80px">ОК</a>
             </div>
         </div>
         <div title="Назначения" style="padding:10px">
             <h3>Назначения</h3>
+            <div style="margin:20px 0;"></div>
             <table>
                 <tr>
                     <th></th>
@@ -122,13 +134,24 @@
                         <td>${prescription.getDescription()}</td>
                         <td>${prescription.getSurveyHistory().getStaff().getFullName()}</td>
                         <td>
-                            <a href="controller?COMMAND=ExecutePrescriptionList&id=${prescription.getPrimaryKey()}" class="easyui-linkbutton" data-options="iconCls:'icon-ok'"></a>
+                            <c:set var="quantity" value="${prescription.getQuantity()}"/>
+                            <c:set var="completed" value="${prescription.getCompleted()}"/>
+                            <c:if test="${quantity >completed}">
+                                <form id="exp${prescription.getPrimaryKey()}" method="post"
+                                      action="controller?COMMAND=ExecutePrescriptionList">
+                                    <input type="hidden" name="id" value="${prescription.getPrimaryKey()}">
+                                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                                       onclick="submitForm('exp${prescription.getPrimaryKey()}')"
+                                       data-options="iconCls:'icon-ok'"></a>
+                                </form>
+                            </c:if>
                         </td>
                     </tr>
                 </c:forEach>
             </table>
             <div style="text-align:left;padding:5px 0">
-                <a href="controller?COMMAND=OpenHospital" data-options="iconCls:'icon-ok'" class="easyui-linkbutton" onclick=" "
+                <a href="controller?COMMAND=OpenHospital" data-options="iconCls:'icon-ok'" class="easyui-linkbutton"
+                   onclick=" "
                    style="width:80px">ОК</a>
             </div>
         </div>

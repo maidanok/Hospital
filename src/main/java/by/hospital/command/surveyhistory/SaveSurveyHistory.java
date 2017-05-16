@@ -71,7 +71,7 @@ public class SaveSurveyHistory implements Command {
         surveyHistory.getDiagnose().setPrimaryKey(diagnoseID);
         surveyHistory.setSurveyDate(surveydate);
         surveyHistory.setDescription(description);
-        SickList sickList = ServiceLocator.getService(SickListService.class).findById(surveyHistory.getSickList());
+        SickList sickList = ServiceLocator.getService(SickListService.class).getSickList(surveyHistory.getSickList());
         sickList.setFinalDiagnose(surveyHistory.getDiagnose());
         surveyHistory.setSickList(sickList);
         surveyHistory=ServiceLocator.getService(SurveyHistoryService.class).saveSurveyHistory(surveyHistory);

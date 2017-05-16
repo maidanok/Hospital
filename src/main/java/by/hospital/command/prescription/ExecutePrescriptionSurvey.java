@@ -39,15 +39,15 @@ public class ExecutePrescriptionSurvey implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = null;
         int prescriptionID = Integer.parseInt(request.getParameter(PARAM_PRESCRIPTION_ID));
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(false);
         Staff staff = (Staff) session.getAttribute("user");
         Prescription prescription = new Prescription();
         prescription.setPrimaryKey(prescriptionID);
-        prescription = ServiceLocator.getService(PrescriptionService.class).returnPrescription(prescription);
+        prescription = ServiceLocator.getService(PrescriptionService.class).getPrescription(prescription);
         ServiceLocator.getService(PrescriptionService.class).executePrescription(prescription, staff);
         SurveyHistory surveyHistory;
         surveyHistory = ServiceLocator.getService(SurveyHistoryService.class).
-                returnSurveyHistoru(prescription.getSurveyHistory());
+                getSurveyHistory(prescription.getSurveyHistory());
         List<Diagnose> alldiagnose = ServiceLocator.
                 getService(DiagnoseService.class).getAll();
         List<Prescription> prescriptionList = ServiceLocator.

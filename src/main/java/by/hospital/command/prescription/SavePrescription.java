@@ -58,7 +58,7 @@ public class SavePrescription implements Command {
         List<Diagnose> alldiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();
         List<Prescription> prescriptionList =ServiceLocator.getService(PrescriptionService.class).
                 findBySurveyHistory(prescription.getSurveyHistory());
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(false);
         session.setAttribute("surveyHistory",prescription.getSurveyHistory());
         session.setAttribute("alldiagnose",alldiagnose);
         session.setAttribute("prescriptionList",prescriptionList);

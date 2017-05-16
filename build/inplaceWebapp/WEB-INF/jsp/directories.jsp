@@ -17,6 +17,7 @@
                    onclick="submitForm('find')"
                    style="width:80px">Найти</a>
             </form>
+            <div style="margin:20px 0;"></div>
             <table>
                 <tr>
                     <th>№</th>
@@ -38,18 +39,10 @@
                         <td>${patient.getAddress()}</td>
                         <td>${patient.getPassportNumber()}</td>
                         <td>
-                            <form id="nsl${patient.getPrimaryKey()}" method="post"
-                                  action="controller?COMMAND=NewSickList" style="float:left">
-                                <input type="hidden" name="id" value="${patient.getPrimaryKey()}">
-                                <a href="javascript:void(0)" onclick="submitForm('nsl${patient.getPrimaryKey()}')"
-                                   class="easyui-linkbutton" data-options="iconCls:'icon-ok'"></a>
-                            </form>
-                            <form id="edp${patient.getPrimaryKey()}" method="post"
-                                  action="controller?COMMAND=EditPatient" style="float:left">
-                                <input type="hidden" name="id" value="${patient.getPrimaryKey()}">
-                                <a href="javascript:void(0)" onclick="submitForm('edp${patient.getPrimaryKey()}')"
-                                   class="easyui-linkbutton" data-options="iconCls:'icon-edit'"></a>
-                            </form>
+                            <a href="controller?COMMAND=NewSickList&id=${patient.getPrimaryKey()}"
+                               class="easyui-linkbutton" data-options="iconCls:'icon-ok'" style="float:left"></a>
+                            <a href="controller?COMMAND=EditPatient&id=${patient.getPrimaryKey()}"
+                               class="easyui-linkbutton" data-options="iconCls:'icon-edit'" style="float:left"></a>
                             <form id="delp${patient.getPrimaryKey()}" method="post" style="float:left"
                                   action="controller?COMMAND=DeletePatient">
                                 <input type="hidden" name="id" value="${patient.getPrimaryKey()}">
@@ -66,6 +59,7 @@
         <div title="Сотрудники" style="padding:10px">
             <h3>Персонал</h3>
             <a href="controller?COMMAND=EditStaff&id=0" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Добавить</a>
+            <div style="margin:20px 0;"></div>
             <table>
                 <tr>
                     <th>№</th>
@@ -88,9 +82,14 @@
                         <td>${staff.getPassportNumber()}</td>
                         <td>
                             <a href="controller?COMMAND=EditStaff&id=${staff.getPrimaryKey()}" class="easyui-linkbutton"
-                               data-options="iconCls:'icon-edit'">
-                                <a href="controller?COMMAND=DeleteStaff&id=${staff.getPrimaryKey()}"
-                                   class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a></td>
+                               data-options="iconCls:'icon-edit'" style="float:left"></a>
+                            <form id="dels${staff.getPrimaryKey()}" method="post"
+                                  action="controller?COMMAND=DeleteStaff" style="float:left">
+                                <input type="hidden" name="id" value="${staff.getPrimaryKey()}">
+                                <a href="javascript:void(0)" onclick="submitForm('dels${staff.getPrimaryKey()}')"
+                                   class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a>
+                            </form>
+                        </td>
                     </tr>
                 </c:forEach>
             </table>
@@ -98,6 +97,7 @@
         <div title="Диагнозы" style="padding:10px">
             <h3>Диагнозы</h3>
             <a href="controller?COMMAND=EditDiagnose&id=0" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Добавить</a>
+            <div style="margin:20px 0;"></div>
             <table>
                 <tr>
                     <th>№</th>
@@ -112,9 +112,14 @@
                         <td>${diagnose.getTherapy()}</td>
                         <td>
                             <a href="controller?COMMAND=EditDiagnose&id=${diagnose.getPrimaryKey()}"
-                               class="easyui-linkbutton" data-options="iconCls:'icon-edit'"></a>
-                            <a href="controller?COMMAND=DeleteDiagnose&id=${diagnose.getPrimaryKey()}"
-                               class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a></td>
+                               class="easyui-linkbutton" data-options="iconCls:'icon-edit'" style="float:left"></a>
+                            <form id="deld${diagnose.getPrimaryKey()}" method="post"
+                                  action="controller?COMMAND=DeleteDiagnose" style="float:left">
+                                <input type="hidden" name="id" value="${diagnose.getPrimaryKey()}">
+                                <a href="javascript:void(0)" onclick="submitForm('deld${diagnose.getPrimaryKey()}')"
+                                   class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"></a>
+                            </form>
+                        </td>
                     </tr>
                 </c:forEach>
             </table>

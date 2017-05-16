@@ -12,7 +12,7 @@ public interface PatientService {
 
     Patient createNewPatient(Patient patient);
 
-    Patient returnPatientFull(Patient patient);
+    Patient getPatient(Patient patient);
 
     Patient returnPatientShort(Patient patient);
 

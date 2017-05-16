@@ -19,7 +19,7 @@ import java.util.List;
  * Created by Admin on 22.04.2017.
  */
 public class StaffServiceImpl implements StaffService {
-    Logger logger = Logger.getLogger(StaffServiceImpl.class);
+    private Logger logger = Logger.getLogger(StaffServiceImpl.class);
     private MySqlStaffDao staffDao;
     private GenericDAO<PrescriptionExecution,Integer> persistentExceptionDao;
     private GenericDAO<SurveyHistory,Integer> surveyHistoryDao;
@@ -38,9 +38,10 @@ public class StaffServiceImpl implements StaffService {
         try {
             list = staffDao.FindByCondition(new LoginAndPassword(staff.getLogin(), staff.getPassword()));
         } catch (PersistentException e) {
-            logger.error(e.getLocalizedMessage());
+            logger.error("findByLogPass()"+e.getLocalizedMessage());
         }
         if (list.isEmpty()) {
+            logger.info("findByLogPass() result not found");
             return null;
         }
         newstaff = list.get(0);
@@ -61,7 +62,7 @@ public class StaffServiceImpl implements StaffService {
         try {
             newStaff = staffDao.persist(staff);
         } catch (PersistentException e) {
-            logger.error(e.getLocalizedMessage());
+            logger.error("createNewStaff()"+e.getLocalizedMessage());
         }
         return newStaff;
     }
@@ -72,18 +73,18 @@ public class StaffServiceImpl implements StaffService {
         try {
             result = staffDao.getAll();
         } catch (PersistentException e) {
-            logger.error(e.getLocalizedMessage());
+            logger.error("getAllStaff()"+e.getLocalizedMessage());
         }
         return result;
     }
 
     @Override
-    public Staff returnStaffFull(Staff staf) {
+    public Staff getStaff(Staff staf) {
         Staff staff = null;
         try {
             staff = staffDao.getByPrimaryKey(staf.getPrimaryKey());
         } catch (PersistentException e) {
-            logger.error(e.getLocalizedMessage());
+            logger.error("getStaff()"+e.getLocalizedMessage());
         }
         return staff;
     }
@@ -94,7 +95,7 @@ public class StaffServiceImpl implements StaffService {
         try {
             staff = staffDao.getByPrimaryKey(staf.getPrimaryKey());
         } catch (PersistentException e) {
-            logger.error(e.getLocalizedMessage());
+            logger.error("returnStaffShort()"+e.getLocalizedMessage());
         }
         staff.setPassword(null);
         staff.setLogin(null);
@@ -117,7 +118,7 @@ public class StaffServiceImpl implements StaffService {
                 return true;
             }
         }catch (PersistentException e){
-            logger.error(e.getLocalizedMessage());
+            logger.error("deleteStaff()"+e.getLocalizedMessage());
         }
         return false;
     }
@@ -128,7 +129,7 @@ public class StaffServiceImpl implements StaffService {
             try {
                 staffDao.update(staff);
             } catch (PersistentException e) {
-                logger.error(e.getLocalizedMessage());
+                logger.error("saveStaff()"+e.getLocalizedMessage());
             }
         }
         if (staff.getPrimaryKey() == 0) {
@@ -141,7 +142,7 @@ public class StaffServiceImpl implements StaffService {
         try {
             list=staffDao.FindByCondition(new NotFieldStaff(false));
         } catch (PersistentException e) {
-            logger.error(e.getLocalizedMessage());
+            logger.error("getAllNotField()"+e.getLocalizedMessage());
         }
         return list;
     }

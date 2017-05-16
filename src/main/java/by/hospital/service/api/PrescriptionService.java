@@ -19,7 +19,7 @@ public interface PrescriptionService {
 
     Prescription createNewPrescription(Prescription prescription);
 
-    Prescription returnPrescription(Prescription prescription);
+    Prescription getPrescription(Prescription prescription);
 
     boolean deletePrescription(Prescription prescription);
 

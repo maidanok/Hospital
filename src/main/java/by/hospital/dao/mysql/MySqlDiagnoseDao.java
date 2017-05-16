@@ -15,7 +15,7 @@ import java.util.List;
  * Created by Pasha on 12.04.2017.
  */
 public class MySqlDiagnoseDao extends AbstractJDBCDao <Diagnose, Integer> {
-    Logger logger = Logger.getLogger(MySqlDiagnoseDao.class);
+    private Logger logger = Logger.getLogger(MySqlDiagnoseDao.class);
 
     private class PersistDiagnose extends Diagnose{
         public void setPrimaryKey(int id) {

@@ -53,7 +53,7 @@ public class DispatcherServlet extends HttpServlet {
             commandName = uri.substring(beginAction);
         }
         String command = links.get(commandName);
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(false);
         if (command != null) {
             String []attributes = resources.get(command);
             for (String attribute : attributes) {

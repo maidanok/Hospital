@@ -7,7 +7,6 @@ import by.hospital.prop_managers.ConfigurationManager;
 import by.hospital.service.ServiceLocator;
 import by.hospital.service.api.DiagnoseService;
 import by.hospital.service.api.PrescriptionService;
-import by.hospital.service.api.SickListService;
 import by.hospital.service.api.SurveyHistoryService;
 
 import javax.servlet.ServletException;
@@ -37,11 +36,11 @@ public class ExecutePrescriptionList implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = null;
         int prescriptionID = Integer.parseInt(request.getParameter(PARAM_PRESCRIPTION_ID));
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(false);
         Staff staff = (Staff) session.getAttribute("user");
         Prescription prescription = new Prescription();
         prescription.setPrimaryKey(prescriptionID);
-        prescription = ServiceLocator.getService(PrescriptionService.class).returnPrescription(prescription);
+        prescription = ServiceLocator.getService(PrescriptionService.class).getPrescription(prescription);
         ServiceLocator.getService(PrescriptionService.class).executePrescription(prescription, staff);
         List<SurveyHistory> surveyHistoryList = ServiceLocator.getService(SurveyHistoryService.class).getAllbySickList(prescription.getSurveyHistory().getSickList());
         List<Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).findBySickList(prescription.getSurveyHistory().getSickList());

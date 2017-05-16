@@ -67,9 +67,9 @@
             <form>
                 <a href="controller?COMMAND=EditPrescription&shid=${surveyHistory.getPrimaryKey()}&id=0"
                    class="easyui-linkbutton" data-options="iconCls:'icon-add'">Добавить</a>
+                <div style="margin:20px 0;"></div>
                 <table>
                     <tr>
-                        <th></th>
                         <th>Дата</th>
                         <th>Кол-во.<br> План.факт</th>
                         <th>Назначение</th>
@@ -78,7 +78,6 @@
                     </tr>
                     <c:forEach items="${prescriptionList}" var="prescription">
                         <tr>
-                            <td><input id="${prescription.getPrimaryKey()}" type="checkbox"/></td>
                             <td>
                                 <fmt:formatDate pattern="dd/MM/yyyy"
                                                 value="${prescription.getSurveyHistory().getSurveyDate()}"/>
@@ -87,12 +86,26 @@
                             <td>${prescription.getPrescriptionType().getName()}</td>
                             <td>${prescription.getDescription()}</td>
                             <td>
-                                <a href="controller?COMMAND=ExecutePrescriptionSurvey&id=${prescription.getPrimaryKey()}"
-                                   class="easyui-linkbutton" data-options="iconCls:'icon-ok'"></a>
+                                <c:set var="quantity" value="${prescription.getQuantity()}"/>
+                                <c:set var="completed" value="${prescription.getCompleted()}"/>
+                                <c:if test="${quantity >completed}">
+                                    <form style="float:left" id="exp${prescription.getPrimaryKey()}" method="post"
+                                          action="controller?COMMAND=ExecutePrescriptionSurvey">
+                                        <input type="hidden" name="id" value="${prescription.getPrimaryKey()}">
+                                        <a href="javascript:void(0)" class="easyui-linkbutton"
+                                           onclick="submitForm('exp${prescription.getPrimaryKey()}')"
+                                           data-options="iconCls:'icon-ok'"></a>
+                                    </form>
+                                </c:if>
                                 <a href="controller?COMMAND=EditPrescription&id=${prescription.getPrimaryKey()}"
-                                   class="easyui-linkbutton" data-options="iconCls:'icon-edit'"></a>
-                                <a href="controller?COMMAND=DeletePrescription&id=${prescription.getPrimaryKey()}"
-                                   class="easyui-linkbutton" data-options="iconCls:'icon-no'"></a></td>
+                                   class="easyui-linkbutton" data-options="iconCls:'icon-edit'" style="float:left"></a>
+                                <form style="float:left" id="delp${prescription.getPrimaryKey()}" method="post"
+                                      action="controller?COMMAND=DeletePrescription">
+                                    <input type="hidden" name="id" value="${prescription.getPrimaryKey()}">
+                                    <a href="javascript:void(0)" class="easyui-linkbutton"
+                                       onclick="submitForm('delp${prescription.getPrimaryKey()}')"
+                                       data-options="iconCls:'icon-cancel'"></a>
+                                </form>
                         </tr>
                     </c:forEach>
                 </table>

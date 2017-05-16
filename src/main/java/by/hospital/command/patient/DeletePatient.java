@@ -1,11 +1,15 @@
 package by.hospital.command.patient;
 
 import by.hospital.command.Command;
+import by.hospital.domain.Diagnose;
 import by.hospital.domain.Patient;
+import by.hospital.domain.Staff;
 import by.hospital.domain.enumeration.Post;
 import by.hospital.prop_managers.ConfigurationManager;
 import by.hospital.service.ServiceLocator;
+import by.hospital.service.api.DiagnoseService;
 import by.hospital.service.api.PatientService;
+import by.hospital.service.api.StaffService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -36,7 +40,11 @@ public class DeletePatient implements Command {
         patient.setPrimaryKey(patientID);
         ServiceLocator.getService(PatientService.class).deletePatient(patient);
         List<Patient> allPatient = ServiceLocator.getService(PatientService.class).getALLPatients();
+        List<Staff> allStaff = ServiceLocator.getService(StaffService.class).getAllStaff();
+        List<Diagnose> allDiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();
         request.setAttribute("allPatient", allPatient);
+        request.setAttribute("allStaff", allStaff);
+        request.setAttribute("allDiagnose", allDiagnose);
         page=ConfigurationManager.getProperty("PAGE_DIRECTORIES");
         return page;
     }

@@ -19,7 +19,7 @@ import java.util.List;
  * Created by Admin on 23.04.2017.
  */
 public class SurveyHistoryServiceImpl implements SurveyHistoryService {
-    Logger logger = Logger.getLogger(SurveyHistoryServiceImpl.class);
+    private Logger logger = Logger.getLogger(SurveyHistoryServiceImpl.class);
     private GenericDAO<SurveyHistory, Integer> surveyHistoryDao;
     private GenericDAO<Prescription, Integer> prescriptionDao;
     private GenericDAO<SickList,Integer> sickListDao;
@@ -38,17 +38,17 @@ public class SurveyHistoryServiceImpl implements SurveyHistoryService {
         try {
             surveyHistoryList=surveyHistoryDao.FindByCondition(new SickListID(sickList.getPrimaryKey()));
         } catch (PersistentException e) {
-            logger.error(e.getLocalizedMessage());
+            logger.error("getAllbySickList()"+e.getLocalizedMessage());
         }
         return surveyHistoryList;
     }
 
     @Override
-    public SurveyHistory returnSurveyHistoru(SurveyHistory surveyHistory){
+    public SurveyHistory getSurveyHistory(SurveyHistory surveyHistory){
         try {
             return surveyHistoryDao.getByPrimaryKey(surveyHistory.getPrimaryKey());
         } catch (PersistentException e) {
-            logger.error(e.getLocalizedMessage());
+            logger.error("getSurveyHistory()"+e.getLocalizedMessage());
         }
         return new SurveyHistory();
     }
@@ -58,7 +58,7 @@ public class SurveyHistoryServiceImpl implements SurveyHistoryService {
         try {
             surveyHistory = surveyHistoryDao.persist(surveyHistory);
         } catch (PersistentException e) {
-            logger.error(e.getLocalizedMessage());
+            logger.error("deleteSurveyHistory()"+e.getLocalizedMessage());
         }
         return surveyHistory;
     }
@@ -76,7 +76,7 @@ public class SurveyHistoryServiceImpl implements SurveyHistoryService {
                 surveyHistoryDao.delete(surveyHistory);
                 return true;
             } catch (PersistentException e) {
-                logger.error(e.getLocalizedMessage());
+                logger.error("deleteSurveyHistory()"+e.getLocalizedMessage());
             }
         }
         return false;
@@ -88,7 +88,7 @@ public class SurveyHistoryServiceImpl implements SurveyHistoryService {
         try {
             list = surveyHistoryDao.FindByCondition(new FindSdiagnoseID(diagnose.getPrimaryKey()));
         } catch (PersistentException e) {
-            logger.error(e.getLocalizedMessage());
+            logger.error("findByDiagnoseID()"+e.getLocalizedMessage());
         }
         return list;
     }
@@ -98,7 +98,7 @@ public class SurveyHistoryServiceImpl implements SurveyHistoryService {
         try {
             sickListDao.update(surveyHistory.getSickList());
         } catch (PersistentException e) {
-            logger.error(e.getLocalizedMessage());
+            logger.error("saveSurveyHistory()"+e.getLocalizedMessage());
         }
         if (surveyHistory.getPrimaryKey()==0){
             surveyHistory=this.createNewSurveyHistory(surveyHistory);
@@ -107,7 +107,7 @@ public class SurveyHistoryServiceImpl implements SurveyHistoryService {
                 surveyHistoryDao.update(surveyHistory);
                 surveyHistory=surveyHistoryDao.getByPrimaryKey(surveyHistory.getPrimaryKey());
             } catch (PersistentException e) {
-                logger.error(e.getLocalizedMessage());
+                logger.error("saveSurveyHistory()"+e.getLocalizedMessage());
             }
         }
         return surveyHistory;

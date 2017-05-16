@@ -41,7 +41,7 @@ public class NewSurveyHistory implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = null;
         int sickListID = Integer.parseInt(request.getParameter(PARAM_SICK_LIST_ID));
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(false);
 
 
 
@@ -54,11 +54,12 @@ public class NewSurveyHistory implements Command {
         SurveyHistory surveyHistory = new SurveyHistory();
         SickList sickList = new SickList();
         sickList.setPrimaryKey(sickListID);
-        sickList = ServiceLocator.getService(SickListService.class).findById(sickList);
+        sickList = ServiceLocator.getService(SickListService.class).getSickList(sickList);
         surveyHistory.setSickList(sickList);
         surveyHistory.setStaff(staff);
         Date date = java.sql.Date.valueOf(LocalDate.now());
         surveyHistory.setSurveyDate(date);
+        surveyHistory.setDiagnose(sickList.getFinalDiagnose());
         List<Diagnose> alldiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();
 
         request.setAttribute("surveyHistory",surveyHistory);

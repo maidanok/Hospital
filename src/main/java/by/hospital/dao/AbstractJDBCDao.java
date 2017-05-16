@@ -64,7 +64,7 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
                 throw new PersistentException("On persist modify more then 1 record " + count);
             }
         } catch (Exception e) {
-            logger.error("Error persist"+e.getLocalizedMessage());
+            logger.error("Error persist" + e.getLocalizedMessage());
         }
 
         //получаем только что вставленную запись
@@ -79,7 +79,7 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
             persistInstanse = list.iterator().next();
             statement.close();
         } catch (Exception e) {
-            logger.error("Error persist"+e.getLocalizedMessage());
+            logger.error("Error persist" + e.getLocalizedMessage());
             throw new PersistentException(e);
         }
 
@@ -102,7 +102,7 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
             }
             statement.close();
         } catch (Exception e) {
-            logger.error("Error update "+e.getLocalizedMessage());
+            logger.error("Error update " + e.getLocalizedMessage());
         }
     }
 
@@ -118,8 +118,8 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
             }
             statement.close();
         } catch (Exception e) {
-            logger.error("Error delete "+e.getLocalizedMessage());
-            logger.error("\n"+sql);
+            logger.error("Error delete " + e.getLocalizedMessage());
+            logger.error("\n" + sql);
         }
     }
 
@@ -135,8 +135,8 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
             list = parseResultSet(resultSet);
             statement.close();
         } catch (Exception e) {
-            logger.error("Error getByPrimaryKey "+e.getLocalizedMessage());
-            logger.error("\n"+sql);
+            logger.error("Error getByPrimaryKey " + e.getLocalizedMessage());
+            logger.error("\n" + sql);
             throw new PersistentException(e);
         }
         if (list == null || list.size() == 0) {
@@ -151,21 +151,21 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
     @Override
     public List<Type> getAll() throws PersistentException {
         List<Type> list;
-        String sql = getSelectedQuery()+" ;";
+        String sql = getSelectedQuery() + " ;";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             list = parseResultSet(resultSet);
             statement.close();
         } catch (Exception e) {
-            logger.error("Error getAll "+e.getLocalizedMessage());
-            logger.error("\n"+sql);
+            logger.error("Error getAll " + e.getLocalizedMessage());
+            logger.error("\n" + sql);
             throw new PersistentException(e);
         }
         return list;
     }
 
-    public  List<Type> FindByCondition(Condition condition) throws PersistentException {
+    public List<Type> FindByCondition(Condition condition) throws PersistentException {
         List<Type> list;
         String sql = getSelectedQuery();
         sql += condition.getValue();
@@ -175,8 +175,8 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
             list = parseResultSet(resultSet);
             statement.close();
         } catch (Exception e) {
-            logger.error("Error FindByCondition "+e.getLocalizedMessage());
-            logger.error("\n"+sql);
+            logger.error("Error FindByCondition " + e.getLocalizedMessage());
+            logger.error("\n" + sql);
             throw new PersistentException(e);
         }
         return list;

@@ -73,7 +73,7 @@ public class SavePatient implements Command {
         patient.setBirthday(birthday);
         patient.setPassportNumber(passport);
 
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(false);
 
         ServiceLocator.getService(PatientService.class).savePatient(patient);
         List<Patient> allPatient = ServiceLocator.getService(PatientService.class).getALLPatients();

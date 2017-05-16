@@ -39,7 +39,7 @@ public class ExecutePrescriptionHosp implements Command {
         String page = null;
 
         int prescriptionID = Integer.parseInt(request.getParameter(PARAM_PRESCRIPTION_ID));
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(false);
         Staff staff = (Staff) session.getAttribute("user");
         Prescription prescription = new Prescription();
         prescription.setPrimaryKey(prescriptionID);

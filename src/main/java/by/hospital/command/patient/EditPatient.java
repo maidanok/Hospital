@@ -36,7 +36,7 @@ public class EditPatient implements Command {
         Patient patient = new Patient();
         patient.setPrimaryKey(patientID);
         if (patientID!=0) {
-            patient = ServiceLocator.getService(PatientService.class).returnPatientFull(patient);
+            patient = ServiceLocator.getService(PatientService.class).getPatient(patient);
         }
 
         request.setAttribute("patient",patient);
