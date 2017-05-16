@@ -30,9 +30,9 @@
                 </tr>
                 <c:forEach items="${allPatient}" var="patient">
                     <tr>
-                        <td id={"$patient.getPrimaryKey()}">${patient.getPrimaryKey()}</td>
-                        <td>${patient.getFullName()}</td>
-                        <td>
+                        <td id={"$patient.getPrimaryKey()}"  class="my-td">${patient.getPrimaryKey()}</td>
+                        <td class="my-td">${patient.getFullName()}</td>
+                        <td class="my-td">
                             <fmt:formatDate pattern="dd/MM/yyyy" value="${patient.getBirthday()}"/>
                         </td>
                         <td>${patient.getSex().getName()}</td>

@@ -3,6 +3,10 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib tagdir ="/WEB-INF/tags" prefix = "t"%>
 <fmt:requestEncoding value="UTF-8"/>
+<c:set var="locale" value="${not empty language ? language : pageContext.request.locale}" scope="session" />
+<fmt:requestEncoding value="UTF-8" />
+<fmt:setLocale value="${locale}" />
+<fmt:setBundle basename="resources.language" />
 
 <t:html>
     <t:header/>
@@ -20,25 +24,25 @@
                    style="width:80px">Найти</a>
             </form>
             <div style="margin:20px 0;"></div>
-            <table>
+            <table class="my-table">
                 <tr>
-                    <th>Номер палаты</th>
-                    <th>Фамилия Имя Отчество</th>
-                    <th>Пол</th>
-                    <th>Дата поступления</th>
-                    <th>Текущий диагноз</th>
-                    <th>Действие</th>
+                    <th class="my-th">Номер палаты</th>
+                    <th class="my-th">Фамилия Имя Отчество</th>
+                    <th class="my-th">Пол</th>
+                    <th class="my-th">Дата поступления</th>
+                    <th class="my-th">Текущий диагноз</th>
+                    <th class="my-th">Действие</th>
                 </tr>
                 <c:forEach items="${sickLists}" var="sickList">
                     <tr>
-                        <td>${sickList.getRoom()}</td>
-                        <td>${sickList.getPatient().getFullName()}</td>
-                        <td>${sickList.getPatient().getSex().getName()}</td>
-                        <td>
+                        <td class="my-td">${sickList.getRoom()}</td>
+                        <td class="my-td">${sickList.getPatient().getFullName()}</td>
+                        <td class="my-td">${sickList.getPatient().getSex().getName()}</td>
+                        <td class="my-td">
                             <fmt:formatDate pattern="dd/MM/yyyy" value="${sickList.getDateIN()}"/>
                         </td>
-                        <td>${sickList.getFinalDiagnose().getDiagnoseName()}</td>
-                        <td>
+                        <td class="my-td">${sickList.getFinalDiagnose().getDiagnoseName()}</td>
+                        <td class="my-td">
                             <a href="controller?COMMAND=EditSickList&id=${sickList.getPrimaryKey()}"
                                class="easyui-linkbutton" data-options="iconCls:'icon-edit'" style="float:left"></a>
                             <form id="delsl${sickList.getPrimaryKey()}" method="post"
@@ -61,25 +65,25 @@
                    onclick="submitForm('findpres')">Найти</a>
             </form>
             <div style="margin:20px 0;"></div>
-            <table>
+            <table class="my-table">
                 <tr>
-                    <th>Номер палаты</th>
-                    <th>Фамилия Имя Отчество</th>
-                    <th>Вид назначения</th>
-                    <th>Количество<br>
+                    <th class="my-th">Номер палаты</th>
+                    <th class="my-th">Фамилия Имя Отчество</th>
+                    <th class="my-th">Вид назначения</th>
+                    <th class="my-th">Количество<br>
                         План/Факт
                     </th>
-                    <th>Описание</th>
-                    <th>Действие</th>
+                    <th class="my-th">Описание</th>
+                    <th class="my-th">Действие</th>
                 </tr>
                 <c:forEach items="${prescriptionList}" var="prescription">
                     <tr>
-                        <td>${prescription.getSurveyHistory().getSickList().getRoom()}</td>
-                        <td>${prescription.getSurveyHistory().getSickList().getPatient().getFullName()}</td>
-                        <td>${prescription.getPrescriptionType().getName()}</td>
-                        <td>${prescription.getQuantity()}/${prescription.getCompleted()}</td>
-                        <td>${prescription.getDescription()}</td>
-                        <td>
+                        <td class="my-td">${prescription.getSurveyHistory().getSickList().getRoom()}</td>
+                        <td class="my-td">${prescription.getSurveyHistory().getSickList().getPatient().getFullName()}</td>
+                        <td class="my-td">${prescription.getPrescriptionType().getName()}</td>
+                        <td class="my-td">${prescription.getQuantity()}/${prescription.getCompleted()}</td>
+                        <td class="my-td">${prescription.getDescription()}</td>
+                        <td class="my-td">
                             <form id="runp${prescription.getPrimaryKey()}" method="post"
                                   action="controller?COMMAND=ExecutePrescriptionHosp">
                                 <input type="hidden" name="id" value="${prescription.getPrimaryKey()}">

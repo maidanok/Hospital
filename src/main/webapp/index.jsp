@@ -11,16 +11,23 @@ pageEncoding="UTF-8"%>
     <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
+<c:set var="context" value="${contextPath}"/>
 
-<div id="_1820">
 
-    <div id="_1821" class="nm-label">
-        <h1 id="_1822">
-            Hospital<br/>
-        </h1>
-    </div>
-</div>
-<c:set var="context" value="${contextPath}" />
+<c:if test="${not empty user}">
+    <c:set var="role" value="${user.getPost()}"/>
+    <c:if test="${role eq 'ADMINISTRATOR'}">
+        <jsp:forward page="${context }/WEB-INF/jsp/directories.jsp"></jsp:forward>
+    </c:if>
+    <c:if test="${role eq 'DOCTOR'}">
+        <jsp:forward page="${context }/WEB-INF/jsp/hospital.jsp"></jsp:forward>
+    </c:if>
+    <c:if test="${role eq 'NURSE'}">
+        <jsp:forward page="${context }/WEB-INF/jsp/hospital.jsp"></jsp:forward>
+    </c:if>
+</c:if>
+
+
 <jsp:forward page="${context }/WEB-INF/jsp/login.jsp"></jsp:forward>
 </body>
 </html>

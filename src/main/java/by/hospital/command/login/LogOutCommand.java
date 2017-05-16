@@ -19,7 +19,7 @@ public class LogOutCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = null;
-        HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession(true);
         session.invalidate();
         page= ConfigurationManager.getProperty("PAGE_LOGIN");
         return page;

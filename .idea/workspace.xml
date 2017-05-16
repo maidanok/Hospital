@@ -2,107 +2,47 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1ff7ae1-725d-4ad5-b9e2-aa4eb2f969bb" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/command/language/SetLanguage.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/language_en.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/language_ru.properties" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/SESSIONS.ser" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/3.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.1/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/by/hospital/DAO/mysql/MySqlStaffDao.class" afterPath="$PROJECT_DIR$/build/classes/main/by/hospital/DAO/mysql/MySqlStaffDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/by/hospital/command/diagnose/DeleteDiagnose.class" afterPath="$PROJECT_DIR$/build/classes/main/by/hospital/command/diagnose/DeleteDiagnose.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/by/hospital/command/CommandFactory.class" afterPath="$PROJECT_DIR$/build/classes/main/by/hospital/command/CommandFactory.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/by/hospital/command/login/LogOutCommand.class" afterPath="$PROJECT_DIR$/build/classes/main/by/hospital/command/login/LogOutCommand.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/by/hospital/command/patient/DeletePatient.class" afterPath="$PROJECT_DIR$/build/classes/main/by/hospital/command/patient/DeletePatient.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/by/hospital/command/patient/SavePatient.class" afterPath="$PROJECT_DIR$/build/classes/main/by/hospital/command/patient/SavePatient.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/by/hospital/command/prescription/EditPrescription.class" afterPath="$PROJECT_DIR$/build/classes/main/by/hospital/command/prescription/EditPrescription.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/by/hospital/command/prescription/ExecutePrescriptionHosp.class" afterPath="$PROJECT_DIR$/build/classes/main/by/hospital/command/prescription/ExecutePrescriptionHosp.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/by/hospital/command/prescription/ExecutePrescriptionList.class" afterPath="$PROJECT_DIR$/build/classes/main/by/hospital/command/prescription/ExecutePrescriptionList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/by/hospital/command/prescription/ExecutePrescriptionSurvey.class" afterPath="$PROJECT_DIR$/build/classes/main/by/hospital/command/prescription/ExecutePrescriptionSurvey.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/by/hospital/command/prescription/SavePrescription.class" afterPath="$PROJECT_DIR$/build/classes/main/by/hospital/command/prescription/SavePrescription.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/by/hospital/command/sicklist/SaveSickList.class" afterPath="$PROJECT_DIR$/build/classes/main/by/hospital/command/sicklist/SaveSickList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/by/hospital/command/staff/DeleteStaff.class" afterPath="$PROJECT_DIR$/build/classes/main/by/hospital/command/staff/DeleteStaff.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/by/hospital/command/staff/SaveStaff.class" afterPath="$PROJECT_DIR$/build/classes/main/by/hospital/command/staff/SaveStaff.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/by/hospital/command/surveyhistory/NewSurveyHistory.class" afterPath="$PROJECT_DIR$/build/classes/main/by/hospital/command/surveyhistory/NewSurveyHistory.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/by/hospital/command/user/EditUser.class" afterPath="$PROJECT_DIR$/build/classes/main/by/hospital/command/user/EditUser.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/by/hospital/controllers/DispatcherServlet.class" afterPath="$PROJECT_DIR$/build/classes/main/by/hospital/controllers/DispatcherServlet.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/by/hospital/service/impl/PrescriptionServiceImpl.class" afterPath="$PROJECT_DIR$/build/classes/main/by/hospital/service/impl/PrescriptionServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/by/hospital/service/impl/SickListServiceImpl.class" afterPath="$PROJECT_DIR$/build/classes/main/by/hospital/service/impl/SickListServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/WEB_002dINF/jsp/directories_jsp$Helper.class" afterPath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/WEB_002dINF/jsp/directories_jsp$Helper.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/WEB_002dINF/jsp/directories_jsp.class" afterPath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/WEB_002dINF/jsp/directories_jsp.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/WEB_002dINF/jsp/hospital_jsp$Helper.class" afterPath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/WEB_002dINF/jsp/hospital_jsp$Helper.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/WEB_002dINF/jsp/hospital_jsp.class" afterPath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/WEB_002dINF/jsp/hospital_jsp.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/WEB_002dINF/jsp/login_jsp.class" afterPath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/WEB_002dINF/jsp/login_jsp.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/WEB_002dINF/jsp/patient_jsp$Helper.class" afterPath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/WEB_002dINF/jsp/patient_jsp$Helper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/WEB_002dINF/jsp/patient_jsp.class" afterPath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/WEB_002dINF/jsp/patient_jsp.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/WEB_002dINF/jsp/sicklist_jsp$Helper.class" afterPath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/WEB_002dINF/jsp/sicklist_jsp$Helper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/WEB_002dINF/jsp/sicklist_jsp.class" afterPath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/WEB_002dINF/jsp/sicklist_jsp.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/index_jsp.class" afterPath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/index_jsp.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/tag/web/header_tag.class" afterPath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/tag/web/header_tag.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/tag/web/html_tag.class" afterPath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/tag/web/html_tag.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/inplaceWebapp/WEB-INF/jsp/directories.jsp" afterPath="$PROJECT_DIR$/build/inplaceWebapp/WEB-INF/jsp/directories.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/inplaceWebapp/WEB-INF/jsp/hospital.jsp" afterPath="$PROJECT_DIR$/build/inplaceWebapp/WEB-INF/jsp/hospital.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/inplaceWebapp/WEB-INF/jsp/patient.jsp" afterPath="$PROJECT_DIR$/build/inplaceWebapp/WEB-INF/jsp/patient.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/inplaceWebapp/WEB-INF/jsp/sicklist.jsp" afterPath="$PROJECT_DIR$/build/inplaceWebapp/WEB-INF/jsp/sicklist.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/inplaceWebapp/WEB-INF/jsp/staff.jsp" afterPath="$PROJECT_DIR$/build/inplaceWebapp/WEB-INF/jsp/staff.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/inplaceWebapp/WEB-INF/jsp/survey.jsp" afterPath="$PROJECT_DIR$/build/inplaceWebapp/WEB-INF/jsp/survey.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/inplaceWebapp/jquery-easyui-1.5.2/jquery.easyui.min.js" afterPath="$PROJECT_DIR$/build/inplaceWebapp/jquery-easyui-1.5.2/jquery.easyui.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/inplaceWebapp/WEB-INF/tags/header.tag" afterPath="$PROJECT_DIR$/build/inplaceWebapp/WEB-INF/tags/header.tag" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/inplaceWebapp/WEB-INF/tags/html.tag" afterPath="$PROJECT_DIR$/build/inplaceWebapp/WEB-INF/tags/html.tag" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/inplaceWebapp/index.jsp" afterPath="$PROJECT_DIR$/build/inplaceWebapp/index.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/inplaceWebapp/jquery-easyui-1.5.2/themes/default/easyui.css" afterPath="$PROJECT_DIR$/build/inplaceWebapp/jquery-easyui-1.5.2/themes/default/easyui.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/properties/config.properties" afterPath="$PROJECT_DIR$/build/resources/main/properties/config.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/WEB_002dINF/jsp/directories_jsp.java" afterPath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/WEB_002dINF/jsp/directories_jsp.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/WEB_002dINF/jsp/hospital_jsp.java" afterPath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/WEB_002dINF/jsp/hospital_jsp.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/WEB_002dINF/jsp/login_jsp.java" afterPath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/WEB_002dINF/jsp/login_jsp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/WEB_002dINF/jsp/patient_jsp.java" afterPath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/WEB_002dINF/jsp/patient_jsp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/WEB_002dINF/jsp/sicklist_jsp.java" afterPath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/WEB_002dINF/jsp/sicklist_jsp.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/index_jsp.java" afterPath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/index_jsp.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/tag/web/header_tag.java" afterPath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/tag/web/header_tag.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/tag/web/html_tag.java" afterPath="$PROJECT_DIR$/build/serverBaseDir_tomcat8/work/Tomcat/localhost/Hospital/org/apache/jsp/tag/web/html_tag.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/command/diagnose/DeleteDiagnose.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/command/diagnose/DeleteDiagnose.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/command/CommandFactory.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/command/CommandFactory.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/command/login/LogOutCommand.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/command/login/LogOutCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/command/patient/DeletePatient.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/command/patient/DeletePatient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/command/patient/EditPatient.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/command/patient/EditPatient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/command/patient/SavePatient.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/command/patient/SavePatient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/command/prescription/DeletePrescription.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/command/prescription/DeletePrescription.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/command/prescription/EditPrescription.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/command/prescription/EditPrescription.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/command/prescription/ExecutePrescriptionHosp.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/command/prescription/ExecutePrescriptionHosp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/command/prescription/ExecutePrescriptionList.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/command/prescription/ExecutePrescriptionList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/command/prescription/ExecutePrescriptionSurvey.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/command/prescription/ExecutePrescriptionSurvey.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/command/prescription/SavePrescription.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/command/prescription/SavePrescription.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/command/sicklist/EditSickList.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/command/sicklist/EditSickList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/command/sicklist/NewSickList.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/command/sicklist/NewSickList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/command/sicklist/SaveSickList.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/command/sicklist/SaveSickList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/command/staff/DeleteStaff.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/command/staff/DeleteStaff.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/command/staff/EditStaff.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/command/staff/EditStaff.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/command/staff/SaveStaff.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/command/staff/SaveStaff.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/command/surveyhistory/DeleteSurveyHistory.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/command/surveyhistory/DeleteSurveyHistory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/command/surveyhistory/EditSurveyHistory.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/command/surveyhistory/EditSurveyHistory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/command/surveyhistory/NewSurveyHistory.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/command/surveyhistory/NewSurveyHistory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/command/surveyhistory/SaveSurveyHistory.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/command/surveyhistory/SaveSurveyHistory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/command/user/EditUser.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/command/user/EditUser.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/controllers/DispatcherServlet.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/controllers/DispatcherServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/dao/AbstractJDBCDao.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/dao/AbstractJDBCDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/dao/mysql/MySqlDiagnoseDao.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/dao/mysql/MySqlDiagnoseDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/dao/mysql/MySqlPatientDao.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/dao/mysql/MySqlPatientDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/dao/mysql/MySqlPrescriptionDao.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/dao/mysql/MySqlPrescriptionDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/dao/mysql/MySqlPrescriptionExecutionDao.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/dao/mysql/MySqlPrescriptionExecutionDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/dao/mysql/MySqlSickListDao.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/dao/mysql/MySqlSickListDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/dao/mysql/MySqlStaffDao.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/dao/mysql/MySqlStaffDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/dao/mysql/MySqlSurveyHistoryDao.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/dao/mysql/MySqlSurveyHistoryDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/service/api/PatientService.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/service/api/PatientService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/service/api/PrescriptionService.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/service/api/PrescriptionService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/service/api/SickListService.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/service/api/SickListService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/service/api/StaffService.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/service/api/StaffService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/service/api/SurveyHistoryService.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/service/api/SurveyHistoryService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/service/impl/DiagnoseServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/service/impl/DiagnoseServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/service/impl/PatientServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/service/impl/PatientServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/service/impl/PrescriptionServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/service/impl/PrescriptionServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/service/impl/SickListServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/service/impl/SickListServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/service/impl/StaffServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/service/impl/StaffServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/hospital/service/impl/SurveyHistoryServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/by/hospital/service/impl/SurveyHistoryServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/properties/config.properties" afterPath="$PROJECT_DIR$/src/main/resources/properties/config.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/directories.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/directories.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/hospital.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/hospital.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/patient.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/patient.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/sicklist.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/sicklist.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/staff.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/staff.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/survey.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/survey.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/jquery-easyui-1.5.2/jquery.easyui.min.js" afterPath="$PROJECT_DIR$/src/main/webapp/jquery-easyui-1.5.2/jquery.easyui.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/header.tag" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/header.tag" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/html.tag" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/html.tag" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/jquery-easyui-1.5.2/themes/default/easyui.css" afterPath="$PROJECT_DIR$/src/main/webapp/jquery-easyui-1.5.2/themes/default/easyui.css" />
     </list>
     <ignored path="Hospital.iws" />
@@ -138,101 +78,49 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PatientServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/service/impl/PatientServiceImpl.java">
+      <file leaf-file-name="header.tag" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/header.tag">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="106" column="43" lean-forward="false" selection-start-line="106" selection-start-column="43" selection-end-line="106" selection-end-column="43" />
+            <state relative-caret-position="408">
+              <caret line="24" column="14" lean-forward="false" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PrescriptionServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/service/impl/PrescriptionServiceImpl.java">
+      <file leaf-file-name="SetLanguage.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/command/language/SetLanguage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="39" column="41" lean-forward="false" selection-start-line="39" selection-start-column="41" selection-end-line="39" selection-end-column="41" />
+            <state relative-caret-position="474">
+              <caret line="41" column="9" lean-forward="false" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="language_en.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/language_en.properties">
+          <provider editor-type-id="ResourceBundle">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="17" lean-forward="false" selection-start-line="0" selection-start-column="17" selection-end-line="0" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SickListServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/service/impl/SickListServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="35" column="40" lean-forward="false" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
-              <folding />
-            </state>
+      <file leaf-file-name="language_ru.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/language_ru.properties">
+          <provider editor-type-id="ResourceBundle">
+            <state />
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StaffServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/service/impl/StaffServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="45" column="9" lean-forward="false" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SurveyHistoryServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/service/impl/SurveyHistoryServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="409">
-              <caret line="40" column="42" lean-forward="false" selection-start-line="40" selection-start-column="42" selection-end-line="40" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DateConvertor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/service/DateConvertor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="9" lean-forward="false" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ServiceInitializer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/service/ServiceInitializer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ServiceLocator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/service/ServiceLocator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DiagnoseService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/service/api/DiagnoseService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DiagnoseServiceImpl.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/service/impl/DiagnoseServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1241">
-              <caret line="83" column="71" lean-forward="false" selection-start-line="83" selection-start-column="71" selection-end-line="83" selection-end-column="71" />
+            <state relative-caret-position="0">
+              <caret line="0" column="26" lean-forward="false" selection-start-line="0" selection-start-column="26" selection-end-line="0" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -876,31 +764,18 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/by/hospital/dao/conditions/FirstNameLike.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/hospital/dao/conditions/FirstNameAndDateIN.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/hospital/command/prescription/FindPressriptionByPatientLastName.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/hospital/command/CommandFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/hospital/dao/conditions/PersonFirstName.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/hospital/command/patient/SavePatient.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/hospital/command/prescription/ExecutePrescriptionHosp.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/hospital/command/prescription/ExecutePrescriptionList.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/hospital/command/prescription/ExecutePrescriptionSurvey.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/hospital/command/prescription/SavePrescription.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/hospital/command/sicklist/SaveSickList.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/hospital/command/user/EditUser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/hospital/controllers/DispatcherServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/hospital/filters/SecurityFilter.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/patient.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/by/hospital/command/login/LogOutCommand.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/js/main.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/jquery-easyui-1.5.2/jquery.easyui.min.js" />
         <option value="$PROJECT_DIR$/src/main/java/by/hospital/command/surveyhistory/NewSurveyHistory.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/jquery-easyui-1.5.2/themes/default/easyui.css" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/hospital.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/by/hospital/command/diagnose/DeleteDiagnose.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/hospital/command/patient/DeletePatient.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/hospital/command/staff/DeleteStaff.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/directories.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/sicklist.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/by/hospital/command/prescription/EditPrescription.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/prescription.jsp" />
@@ -927,6 +802,19 @@
         <option value="$PROJECT_DIR$/src/main/java/by/hospital/service/impl/SickListServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/hospital/service/impl/StaffServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/hospital/service/impl/SurveyHistoryServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/hospital/controllers/DispatcherServlet.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/properties/config.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/by/hospital/command/CommandFactory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/hospital/command/login/LogOutCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jquery-easyui-1.5.2/themes/default/easyui.css" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/directories.jsp" />
+        <option value="$PROJECT_DIR$/src/main/resources/language_ru.properties" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/html.tag" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/hospital.jsp" />
+        <option value="$PROJECT_DIR$/src/main/resources/language.properties" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/header.tag" />
+        <option value="$PROJECT_DIR$/src/main/java/by/hospital/command/language/SetLanguage.java" />
       </list>
     </option>
   </component>
@@ -976,8 +864,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1021,8 +907,26 @@
               <option name="myItemId" value="main" />
               <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
+              <option name="myItemId" value="Hospital" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hospital" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1044,12 +948,12 @@
               <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="WEB-INF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemId" value="Resource Bundle 'language'" />
+              <option name="myItemType" value="com.intellij.lang.properties.projectView.ResourceBundleNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -1070,59 +974,11 @@
               <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="WEB-INF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jsp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hospital" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hospital" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hospital" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hospital" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hospital" />
+              <option name="myItemId" value="properties" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1149,143 +1005,13 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="hospital" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hospital" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hospital" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hospital" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="impl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hospital" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hospital" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hospital" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hospital" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hospital" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hospital" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dao" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hospital" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hospital" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hospital" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="command" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -1600,6 +1326,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1616,8 +1343,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25970873" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26375404" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1632,6 +1358,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1664,256 +1391,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/command/surveyhistory/EditSurveyHistory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="50" column="5" lean-forward="false" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/command/surveyhistory/NewSurveyHistory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="61" column="63" lean-forward="false" selection-start-line="61" selection-start-column="63" selection-end-line="61" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jquery-easyui-1.5.2/jquery.easyui.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="4654" column="21" lean-forward="false" selection-start-line="4654" selection-start-column="16" selection-end-line="4654" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jquery-easyui-1.5.2/themes/default/tabs.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="17" lean-forward="true" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jquery-easyui-1.5.2/themes/default/validatebox.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/css/base.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="22" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jquery-easyui-1.5.2/themes/default/easyui.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="738">
-          <caret line="3238" column="1" lean-forward="false" selection-start-line="3238" selection-start-column="1" selection-end-line="3238" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/diagnose.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="44" lean-forward="true" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#t:html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#form#0;n#div#0;n#t:html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#2;n#form#0;n#div#0;n#t:html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/hospital.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1496">
-          <caret line="88" column="29" lean-forward="true" selection-start-line="88" selection-start-column="29" selection-end-line="88" selection-end-column="29" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#t:html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#t:html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#t:html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#form#0;n#div#0;n#div#1;n#t:html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#1;n#form#0;n#div#0;n#div#1;n#t:html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#t:html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#td#5;n#tr#0;n#c:forEach#0;n#table#0;n#div#0;n#div#1;n#t:html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#form#0;n#td#5;n#tr#0;n#c:forEach#0;n#table#0;n#div#0;n#div#1;n#t:html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#t:html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#t:html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/command/directories/OpenDirectoriesPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="32" column="57" lean-forward="true" selection-start-line="27" selection-start-column="8" selection-end-line="32" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/command/diagnose/DeleteDiagnose.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="44" column="57" lean-forward="false" selection-start-line="44" selection-start-column="57" selection-end-line="44" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/command/sicklist/DeleteSickList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/command/staff/DeleteStaff.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="46" column="57" lean-forward="false" selection-start-line="46" selection-start-column="57" selection-end-line="46" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/command/patient/DeletePatient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="46" column="57" lean-forward="false" selection-start-line="46" selection-start-column="57" selection-end-line="46" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/command/CommandFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="57" column="36" lean-forward="false" selection-start-line="57" selection-start-column="22" selection-end-line="57" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/domain/Prescription.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="29" lean-forward="false" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="29" />
-          <folding>
-            <element signature="e#563#564#0" expanded="true" />
-            <element signature="e#595#596#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/patient.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="36" column="41" lean-forward="false" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/directories.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-535">
-          <caret line="21" column="20" lean-forward="false" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#t:html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#td#6;n#tr#0;n#c:forEach#0;n#table#0;n#div#0;n#div#1;n#t:html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#1;n#td#6;n#tr#0;n#c:forEach#0;n#table#0;n#div#0;n#div#1;n#t:html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#t:html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#td#6;n#tr#0;n#c:forEach#0;n#table#0;n#div#1;n#div#1;n#t:html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#form#0;n#td#6;n#tr#0;n#c:forEach#0;n#table#0;n#div#1;n#div#1;n#t:html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#t:html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#td#3;n#tr#0;n#c:forEach#0;n#table#0;n#div#2;n#div#1;n#t:html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#form#0;n#td#3;n#tr#0;n#c:forEach#0;n#table#0;n#div#2;n#div#1;n#t:html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/sicklist.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="146" column="28" lean-forward="false" selection-start-line="146" selection-start-column="28" selection-end-line="146" selection-end-column="35" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#t:html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#td#3;n#tr#0;n#c:forEach#0;n#table#0;n#div#1;n#div#1;n#t:html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#form#0;n#td#3;n#tr#0;n#c:forEach#0;n#table#0;n#div#1;n#div#1;n#t:html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#t:html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#t:html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/survey.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="88" column="93" lean-forward="true" selection-start-line="88" selection-start-column="93" selection-end-line="88" selection-end-column="93" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#div#1;n#t:html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#form#0;n#c:if#0;n#td#4;n#tr#0;n#c:forEach#0;n#table#0;n#form#0;n#div#1;n#div#1;n#t:html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#td#4;n#tr#0;n#c:forEach#0;n#table#0;n#form#0;n#div#1;n#div#1;n#t:html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#form#0;n#td#4;n#tr#0;n#c:forEach#0;n#table#0;n#form#0;n#div#1;n#div#1;n#t:html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/domain/Staff.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="25" column="25" lean-forward="false" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/prescription.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/command/prescription/EditPrescription.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/domain/enumeration/Post.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="11" lean-forward="false" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/staff.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="48" column="59" lean-forward="false" selection-start-line="48" selection-start-column="59" selection-end-line="48" selection-end-column="59" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#c:if#0;n#form#0;n#div#0;n#t:html#0;n#!!top" expanded="true" />
-            <marker date="1494926375673" expanded="true" signature="4571:4768" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/command/staff/EditStaff.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/command/staff/SaveStaff.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1633">
@@ -1926,7 +1403,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="32" column="47" lean-forward="false" selection-start-line="32" selection-start-column="47" selection-end-line="32" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1934,7 +1410,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="40" column="29" lean-forward="false" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1942,7 +1417,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1950,7 +1424,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="18" column="12" lean-forward="false" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1958,9 +1431,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1767">
           <caret line="21" column="12" lean-forward="false" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1968,7 +1438,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="627">
           <caret line="125" column="60" lean-forward="false" selection-start-line="125" selection-start-column="60" selection-end-line="125" selection-end-column="60" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1976,7 +1445,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="613">
           <caret line="133" column="60" lean-forward="false" selection-start-line="133" selection-start-column="60" selection-end-line="133" selection-end-column="60" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1992,7 +1460,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2499">
           <caret line="167" column="60" lean-forward="false" selection-start-line="167" selection-start-column="60" selection-end-line="167" selection-end-column="60" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2000,7 +1467,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="14" column="22" lean-forward="false" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2008,7 +1474,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="21" column="20" lean-forward="false" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2016,7 +1481,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="27" column="55" lean-forward="false" selection-start-line="27" selection-start-column="55" selection-end-line="27" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2024,7 +1488,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="20" column="18" lean-forward="false" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2032,13 +1495,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="15" column="34" lean-forward="false" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/service/impl/PatientServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
+        <state relative-caret-position="1632">
           <caret line="106" column="43" lean-forward="false" selection-start-line="106" selection-start-column="43" selection-end-line="106" selection-end-column="43" />
           <folding />
         </state>
@@ -2054,7 +1516,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/service/impl/SickListServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
+        <state relative-caret-position="391">
           <caret line="35" column="40" lean-forward="false" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
           <folding />
         </state>
@@ -2062,7 +1524,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/service/impl/StaffServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
+        <state relative-caret-position="544">
           <caret line="45" column="9" lean-forward="false" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
           <folding />
         </state>
@@ -2070,7 +1532,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/service/impl/SurveyHistoryServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
+        <state relative-caret-position="459">
           <caret line="40" column="42" lean-forward="false" selection-start-line="40" selection-start-column="42" selection-end-line="40" selection-end-column="42" />
           <folding />
         </state>
@@ -2110,9 +1572,251 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/service/impl/DiagnoseServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1241">
-          <caret line="83" column="71" lean-forward="false" selection-start-line="83" selection-start-column="71" selection-end-line="83" selection-end-column="71" />
+        <state relative-caret-position="542">
+          <caret line="81" column="45" lean-forward="true" selection-start-line="81" selection-start-column="45" selection-end-line="81" selection-end-column="45" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/sicklist.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2100">
+          <caret line="146" column="28" lean-forward="false" selection-start-line="146" selection-start-column="28" selection-end-line="146" selection-end-column="35" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#t:html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#a#0;n#td#3;n#tr#0;n#c:forEach#0;n#table#0;n#div#1;n#div#1;n#t:html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#form#0;n#td#3;n#tr#0;n#c:forEach#0;n#table#0;n#div#1;n#div#1;n#t:html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#t:html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#t:html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/domain/Staff.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="25" column="25" lean-forward="false" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="25" />
+          <folding>
+            <element signature="e#521#522#0" expanded="false" />
+            <element signature="e#548#549#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/staff.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="48" column="58" lean-forward="false" selection-start-line="48" selection-start-column="44" selection-end-line="48" selection-end-column="58" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#c:if#0;n#form#0;n#div#0;n#t:html#0;n#!!top" expanded="true" />
+            <marker date="1494926375673" expanded="true" signature="4571:4768" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/domain/enumeration/Post.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="63" lean-forward="false" selection-start-line="7" selection-start-column="58" selection-end-line="7" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/command/diagnose/DeleteDiagnose.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="44" column="57" lean-forward="false" selection-start-line="44" selection-start-column="57" selection-end-line="44" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/filters/SecurityFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="45" column="16" lean-forward="false" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/command/login/LoginCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="39" column="30" lean-forward="false" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/controllers/DispatcherServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="29" column="34" lean-forward="false" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/properties/config.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="10" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/command/login/LogOutCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="21" column="53" lean-forward="false" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/patient.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="34" column="32" lean-forward="false" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/command/prescription/EditPrescription.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/prescription.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="27" column="43" lean-forward="false" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="43" />
+          <folding>
+            <element signature="n#style#0;n#div#3;n#div#0;n#form#0;n#t:html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/command/hospital/OpenHospital.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="26" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/command/directories/OpenDirectoriesPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="32" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/command/CommandFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="46" lean-forward="false" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/html.tag">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jquery-easyui-1.5.2/themes/default/easyui.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="619">
+          <caret line="3231" column="14" lean-forward="false" selection-start-line="3231" selection-start-column="8" selection-end-line="3231" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/hospital.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="8" selection-end-column="47" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#t:html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/directories.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="34" column="41" lean-forward="false" selection-start-line="34" selection-start-column="41" selection-end-line="34" selection-end-column="41" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#t:html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#6;n#tr#0;n#c:forEach#0;n#table#0;n#div#0;n#div#1;n#t:html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#1;n#td#6;n#tr#0;n#c:forEach#0;n#table#0;n#div#0;n#div#1;n#t:html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#t:html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#6;n#tr#0;n#c:forEach#0;n#table#0;n#div#1;n#div#1;n#t:html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#form#0;n#td#6;n#tr#0;n#c:forEach#0;n#table#0;n#div#1;n#div#1;n#t:html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#t:html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#3;n#tr#0;n#c:forEach#0;n#table#0;n#div#2;n#div#1;n#t:html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#form#0;n#td#3;n#tr#0;n#c:forEach#0;n#table#0;n#div#2;n#div#1;n#t:html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/language_en.properties">
+      <provider editor-type-id="ResourceBundle">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="17" lean-forward="false" selection-start-line="0" selection-start-column="17" selection-end-line="0" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/language_ru.properties">
+      <provider editor-type-id="ResourceBundle">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="26" lean-forward="false" selection-start-line="0" selection-start-column="26" selection-end-line="0" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/header.tag">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="14" lean-forward="false" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/hospital/command/language/SetLanguage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="474">
+          <caret line="41" column="9" lean-forward="false" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

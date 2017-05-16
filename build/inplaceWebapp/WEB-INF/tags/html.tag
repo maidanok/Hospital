@@ -3,6 +3,7 @@
 <%@ attribute name="css" required="false" rtexprvalue="true" type="java.lang.String"%>
 <%@ attribute name="javascript" required="false" rtexprvalue="true" type="java.lang.String"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
 <c:url var="cssPath" value="/jquery-easyui-1.5.2"/>

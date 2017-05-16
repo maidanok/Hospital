@@ -3219,21 +3219,21 @@
   cursor: default;
 }
 
-table, th, td {
+.my-table, .my-th, .my-td {
     border: 1px solid black;
     border-collapse: collapse;
 }
 
-table {
+.my-table {
     border-collapse: collapse;
     width: 100%;
     border 11px;
 }
-th, td {
+.my-th, .my-td {
     text-align: left;
     padding: 8px;
 }
-th {
+.my-th {
     background-color: #f2f2f2;
     color: black;
 }

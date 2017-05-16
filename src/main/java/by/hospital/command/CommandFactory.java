@@ -5,6 +5,7 @@ import by.hospital.command.diagnose.EditDiagnose;
 import by.hospital.command.diagnose.SaveDiagnose;
 import by.hospital.command.directories.OpenDirectoriesPage;
 import by.hospital.command.hospital.OpenHospital;
+import by.hospital.command.language.SetLanguage;
 import by.hospital.command.login.LogOutCommand;
 import by.hospital.command.login.LoginCommand;
 import by.hospital.command.patient.DeletePatient;
@@ -43,6 +44,7 @@ public class CommandFactory {
         commands.put("OpenHospital", new OpenHospital());
         commands.put("FindSickListBy",new FindSickListByCondition());
         commands.put("EditUser", new EditUser());
+        commands.put("SetLanguage", new SetLanguage());
 
         commands.put("EditPatient",new EditPatient());
         commands.put("SavePatient",new SavePatient());
