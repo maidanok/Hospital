@@ -18,8 +18,10 @@ import java.util.Set;
  * Created by Admin on 08.05.2017.
  */
 public class EditStaff implements Command {
+
     private static final String PARAM_STAFF_ID = "id";
-    private static Set<Post> roles =new HashSet<>();
+    private static Set<Post> roles = new HashSet<>();
+
     static {
         roles.add(Post.ADMINISTRATOR);
     }
@@ -30,12 +32,14 @@ public class EditStaff implements Command {
         int staffID = Integer.valueOf(request.getParameter(PARAM_STAFF_ID));
         Staff staff = new Staff();
         staff.setPrimaryKey(staffID);
-        if (staffID!=0) {
-            staff = ServiceLocator.getService(StaffService.class).returnStaffFull(staff);
+
+        if (staffID != 0) {
+            staff = ServiceLocator.getService(StaffService.class).getStaff(staff);
         }
-        request.setAttribute("staff",staff);
+        request.setAttribute("staff", staff);
         request.setAttribute("posts", Post.values());
-        page= ConfigurationManager.getProperty("PAGE_STAFF");
+        page = ConfigurationManager.getProperty("PAGE_STAFF");
+
         return page;
     }
 

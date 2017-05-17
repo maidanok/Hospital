@@ -39,7 +39,7 @@ public class EditSurveyHistory implements Command {
 
         SurveyHistory surveyHistory = new SurveyHistory();
         surveyHistory.setPrimaryKey(surveyID);
-        surveyHistory = ServiceLocator.getService(SurveyHistoryService.class).returnSurveyHistoru(surveyHistory);
+        surveyHistory = ServiceLocator.getService(SurveyHistoryService.class).getSurveyHistory(surveyHistory);
 
         List<Diagnose> alldiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();
         List<Prescription> prescriptionList =ServiceLocator.getService(PrescriptionService.class).findBySurveyHistory(surveyHistory);

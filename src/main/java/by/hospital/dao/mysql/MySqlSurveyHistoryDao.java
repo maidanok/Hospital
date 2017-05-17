@@ -6,6 +6,7 @@ import by.hospital.domain.SickList;
 import by.hospital.domain.Staff;
 import by.hospital.domain.SurveyHistory;
 import by.hospital.exception.PersistentException;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,6 +18,7 @@ import java.util.List;
  * Created by Pasha on 13.04.2017.
  */
 public class MySqlSurveyHistoryDao extends AbstractJDBCDao<SurveyHistory, Integer> implements GenericDAOForSurveyHistory {
+    private Logger logger = Logger.getLogger(MySqlSurveyHistoryDao.class);
 
     public MySqlSurveyHistoryDao(Connection connection) {
         super(connection);
@@ -142,6 +144,7 @@ public class MySqlSurveyHistoryDao extends AbstractJDBCDao<SurveyHistory, Intege
             statement.setDate(4, convert(object.getSurveyDate()));
             statement.setString(5, object.getDescription());
         } catch (Exception e) {
+            logger.error("Error" + e.getLocalizedMessage());
             throw new PersistentException(e);
         }
     }
@@ -162,6 +165,7 @@ public class MySqlSurveyHistoryDao extends AbstractJDBCDao<SurveyHistory, Intege
             statement.setString(5, object.getDescription());
             statement.setInt(6, object.getPrimaryKey());
         } catch (Exception e) {
+            logger.error("Error" + e.getLocalizedMessage());
             throw new PersistentException(e);
         }
     }

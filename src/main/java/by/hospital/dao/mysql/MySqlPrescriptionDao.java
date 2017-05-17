@@ -7,6 +7,7 @@ import by.hospital.domain.SickList;
 import by.hospital.domain.Staff;
 import by.hospital.domain.SurveyHistory;
 import by.hospital.exception.PersistentException;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,6 +19,7 @@ import java.util.List;
  * Created by Admin on 18.04.2017.
  */
 public class MySqlPrescriptionDao extends AbstractJDBCDao <Prescription, Integer> implements GenericDaoForPrescription {
+    private Logger logger = Logger.getLogger(MySqlPrescriptionDao.class);
     public MySqlPrescriptionDao(Connection connection) {
         super(connection);
     }
@@ -136,6 +138,7 @@ public class MySqlPrescriptionDao extends AbstractJDBCDao <Prescription, Integer
                 result.add(persistP);
             }
         } catch (Exception e) {
+            logger.error("Error" + e.getLocalizedMessage());
             throw new PersistentException(e);
         }
         return result;
@@ -150,6 +153,7 @@ public class MySqlPrescriptionDao extends AbstractJDBCDao <Prescription, Integer
             statement.setString(3, object.getDescription());
             statement.setInt(4,object.getQuantity());
         } catch (Exception e) {
+            logger.error("Error" + e.getLocalizedMessage());
             throw new PersistentException(e);
         }
     }
@@ -163,6 +167,7 @@ public class MySqlPrescriptionDao extends AbstractJDBCDao <Prescription, Integer
             statement.setInt(4,object.getQuantity());
             statement.setInt(5,object.getPrimaryKey());
         } catch (Exception e) {
+            logger.error("Error" + e.getLocalizedMessage());
             throw new PersistentException(e);
         }
     }

@@ -27,7 +27,7 @@ public class DispatcherServlet extends HttpServlet {
 
     @Override
     public void init() {
-        links.put("/login", "Login");
+        links.put("/index", "Login");
         links.put("/hospital", "OpenHospital");
         links.put("/directories", "OpenDirectories");
         links.put("/sicklist","EditSickList");
@@ -53,7 +53,7 @@ public class DispatcherServlet extends HttpServlet {
             commandName = uri.substring(beginAction);
         }
         String command = links.get(commandName);
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(false);
         if (command != null) {
             String []attributes = resources.get(command);
             for (String attribute : attributes) {

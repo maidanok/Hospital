@@ -72,7 +72,7 @@ public class SaveSickList implements Command {
         sickList.setSymptoms(symptoms);
         sickList.setFinalDiagnose(diagnose);
 
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(false);
         ServiceLocator.getService(SickListService.class).saveSickList(sickList);
         List<SickList> sickLists = ServiceLocator.getService(SickListService.class).findAllActive();
         List<Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).getAllNotDone();

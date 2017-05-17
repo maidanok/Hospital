@@ -15,7 +15,7 @@ public interface SickListService {
 
     List<SickList> findAllActive();
 
-    SickList findById(SickList sickList);
+    SickList getSickList(SickList sickList);
 
     List<SickList> findByPatient(Patient patient);
 

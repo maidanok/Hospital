@@ -34,7 +34,7 @@ public class DeleteSurveyHistory implements Command{
         int surveyID = Integer.parseInt(request.getParameter(PARAM_SURVEY_HISTORY_ID));
         SurveyHistory surveyHistory = new SurveyHistory();
         surveyHistory.setPrimaryKey(surveyID);
-        surveyHistory= ServiceLocator.getService(SurveyHistoryService.class).returnSurveyHistoru(surveyHistory);
+        surveyHistory= ServiceLocator.getService(SurveyHistoryService.class).getSurveyHistory(surveyHistory);
         ServiceLocator.getService(SurveyHistoryService.class).deleteSurveyHistory(surveyHistory);
         List<SurveyHistory> surveyHistoryList = ServiceLocator.getService(SurveyHistoryService.class).getAllbySickList(surveyHistory.getSickList());
         List <Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).

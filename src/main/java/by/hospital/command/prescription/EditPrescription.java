@@ -43,11 +43,12 @@ public class EditPrescription implements Command {
             int surveyID = Integer.valueOf(request.getParameter(PARAM_PRESCRIPTION_SURVEY_ID));
             SurveyHistory surveyHistory = new SurveyHistory();
             surveyHistory.setPrimaryKey(surveyID);
-            surveyHistory = ServiceLocator.getService(SurveyHistoryService.class).returnSurveyHistoru(surveyHistory);
+            surveyHistory = ServiceLocator.getService(SurveyHistoryService.class).getSurveyHistory(surveyHistory);
             prescription.setSurveyHistory(surveyHistory);
+
         }else {
             prescription.setPrimaryKey(prescriptionID);
-            prescription=ServiceLocator.getService(PrescriptionService.class).returnPrescription(prescription);
+            prescription=ServiceLocator.getService(PrescriptionService.class).getPrescription(prescription);
         }
 
         request.setAttribute("prescription",prescription);

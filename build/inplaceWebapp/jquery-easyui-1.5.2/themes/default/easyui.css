@@ -3218,3 +3218,22 @@
 .switchbutton-readonly {
   cursor: default;
 }
+
+.my-table, .my-th, .my-td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.my-table {
+    border-collapse: collapse;
+    width: 100%;
+    border 11px;
+}
+.my-th, .my-td {
+    text-align: left;
+    padding: 8px;
+}
+.my-th {
+    background-color: #f2f2f2;
+    color: black;
+}

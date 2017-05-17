@@ -13,7 +13,7 @@ public interface SurveyHistoryService {
 
     List<SurveyHistory> getAllbySickList(SickList sickList);
 
-    SurveyHistory returnSurveyHistoru(SurveyHistory surveyHistory);
+    SurveyHistory getSurveyHistory(SurveyHistory surveyHistory);
 
     SurveyHistory createNewSurveyHistory(SurveyHistory surveyHistory);
 

@@ -5,6 +5,7 @@ import by.hospital.dao.mysql.interfaces.GenericDAOForPrescriptionExecution;
 import by.hospital.domain.PrescriptionExecution;
 import by.hospital.domain.Staff;
 import by.hospital.exception.PersistentException;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,6 +17,7 @@ import java.util.List;
  * Created by Admin on 14.04.2017.
  */
 public class MySqlPrescriptionExecutionDao extends AbstractJDBCDao<PrescriptionExecution, Integer> implements GenericDAOForPrescriptionExecution {
+    private Logger logger = Logger.getLogger(MySqlPrescriptionExecutionDao.class);
 
     public MySqlPrescriptionExecutionDao(Connection connection) {
         super(connection);
@@ -80,7 +82,7 @@ public class MySqlPrescriptionExecutionDao extends AbstractJDBCDao<PrescriptionE
                 pPE.getPrescription().setPrimaryKey(resultSet.getInt("prescription_id"));
                 pPE.setPrimaryKey(resultSet.getInt("prescription_execution_id"));
                 pPE.setPrescriptionExecutionDate(resultSet.getDate("prescription_execution_date"));
-                Staff staff= new Staff();
+                Staff staff = new Staff();
                 staff.setPrimaryKey(resultSet.getInt("person_id"));
                 staff.setFirstName(resultSet.getString("first_name"));
                 staff.setLastName(resultSet.getString("last_name"));
@@ -91,6 +93,7 @@ public class MySqlPrescriptionExecutionDao extends AbstractJDBCDao<PrescriptionE
                 result.add(pPE);
             }
         } catch (Exception e) {
+            logger.error("Error" + e.getLocalizedMessage());
             throw new PersistentException(e);
         }
         return result;
@@ -105,6 +108,7 @@ public class MySqlPrescriptionExecutionDao extends AbstractJDBCDao<PrescriptionE
             statement.setInt(2, StaffID);
             statement.setDate(3, convert(object.getPrescriptionExecutionDate()));
         } catch (Exception e) {
+            logger.error("Error" + e.getLocalizedMessage());
             throw new PersistentException(e);
         }
     }
@@ -119,6 +123,7 @@ public class MySqlPrescriptionExecutionDao extends AbstractJDBCDao<PrescriptionE
             statement.setDate(3, convert(object.getPrescriptionExecutionDate()));
             statement.setInt(4, object.getPrimaryKey());
         } catch (Exception e) {
+            logger.error("Error" + e.getLocalizedMessage());
             throw new PersistentException(e);
         }
     }

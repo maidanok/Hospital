@@ -16,7 +16,7 @@ import java.util.List;
  * Created by Pasha on 10.04.2017.
  */
 public class MySqlSickListDao extends AbstractJDBCDao<SickList, Integer> implements GenericDaoForSickList {
-
+    private Logger logger = Logger.getLogger(MySqlSickListDao.class);
 
     private class PersistSickList extends SickList {
         public void setPrimaryKey(int id) {
@@ -95,6 +95,7 @@ public class MySqlSickListDao extends AbstractJDBCDao<SickList, Integer> impleme
                 result.add(sickList);
             }
         } catch (Exception e) {
+            logger.error("Error" + e.getLocalizedMessage());
             throw new PersistentException(e);
         }
         return result;
@@ -112,6 +113,7 @@ public class MySqlSickListDao extends AbstractJDBCDao<SickList, Integer> impleme
             statement.setString(5, object.getSymptoms());
             statement.setInt(6, object.getFinalDiagnose().getPrimaryKey());
         } catch (Exception e) {
+            logger.error("Error" + e.getLocalizedMessage());
             throw new PersistentException(e);
         }
     }
@@ -127,8 +129,9 @@ public class MySqlSickListDao extends AbstractJDBCDao<SickList, Integer> impleme
             statement.setString(4, object.getRoom());
             statement.setString(5, object.getSymptoms());
             statement.setInt(6, object.getFinalDiagnose().getPrimaryKey());
-            statement.setInt(7,object.getPrimaryKey());
+            statement.setInt(7, object.getPrimaryKey());
         } catch (Exception e) {
+            logger.error("Error" + e.getLocalizedMessage());
             throw new PersistentException(e);
         }
     }

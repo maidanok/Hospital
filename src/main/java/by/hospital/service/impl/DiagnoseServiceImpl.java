@@ -8,6 +8,7 @@ import by.hospital.domain.SickList;
 import by.hospital.domain.SurveyHistory;
 import by.hospital.exception.PersistentException;
 import by.hospital.service.api.DiagnoseService;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ import java.util.List;
  * Created by Admin on 23.04.2017.
  */
 public class DiagnoseServiceImpl implements DiagnoseService {
+    private Logger logger = Logger.getLogger(DiagnoseServiceImpl.class);
     private GenericDAO<Diagnose, Integer> diagnoseDao;
     private GenericDAO<SurveyHistory, Integer> surveyHistoryDao;
     private GenericDAO<SickList, Integer> sickListDao;
@@ -31,7 +33,7 @@ public class DiagnoseServiceImpl implements DiagnoseService {
         try {
             newDiagnose = diagnoseDao.persist(diagnose);
         } catch (PersistentException e) {
-            e.printStackTrace();
+            logger.error("createNewDiagnose()"+e.getLocalizedMessage());
         }
         return newDiagnose;
     }
@@ -41,7 +43,7 @@ public class DiagnoseServiceImpl implements DiagnoseService {
         try {
             diagnose=diagnoseDao.getByPrimaryKey(diagnose.getPrimaryKey());
         } catch (PersistentException e) {
-            e.printStackTrace();
+            logger.error("getDiagnose()"+e.getLocalizedMessage());
         }
         return diagnose;
     }
@@ -51,7 +53,7 @@ public class DiagnoseServiceImpl implements DiagnoseService {
         try {
             return diagnoseDao.getAll();
         } catch (PersistentException e) {
-            e.printStackTrace();
+            logger.error("getAll()"+e.getLocalizedMessage());
         }
         return null;
     }
@@ -68,7 +70,7 @@ public class DiagnoseServiceImpl implements DiagnoseService {
                 return true;
             }
         } catch (PersistentException e) {
-            e.printStackTrace();
+            logger.error("deleteDiagnose()"+e.getLocalizedMessage());
         }
         return false;
     }
@@ -79,7 +81,7 @@ public class DiagnoseServiceImpl implements DiagnoseService {
             try {
                 diagnoseDao.update(diagnose);
             } catch (PersistentException e) {
-                e.printStackTrace();
+                logger.error("saveDiagnose()"+e.getLocalizedMessage());
             }
         }
         if (diagnose.getPrimaryKey()==0){

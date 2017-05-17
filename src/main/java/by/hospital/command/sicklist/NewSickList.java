@@ -41,7 +41,7 @@ public class NewSickList implements Command {
         int patientID = Integer.parseInt(request.getParameter(PARAM_PATIENT_ID));
         Patient patient = new Patient();
         patient.setPrimaryKey(patientID);
-        patient = ServiceLocator.getService(PatientService.class).returnPatientFull(patient);
+        patient = ServiceLocator.getService(PatientService.class).getPatient(patient);
         Date dateIn = java.sql.Date.valueOf(LocalDate.now());
         SickList sickList = new SickList();
         sickList.setPatient(patient);

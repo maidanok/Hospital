@@ -18,7 +18,7 @@ import java.util.List;
  * Created by Admin on 22.04.2017.
  */
 public class SickListServiceImpl implements SickListService {
-    Logger logger = Logger.getLogger(SickListService.class);
+    private Logger logger = Logger.getLogger(SickListService.class);
     private GenericDAO<SurveyHistory,Integer> surveyHistoryDao;
     private GenericDAO<SickList,Integer> sickListDao;
 
@@ -33,17 +33,17 @@ public class SickListServiceImpl implements SickListService {
         try {
             result = sickListDao.FindByCondition(new DateOutNotNull());
         } catch (PersistentException e) {
-            e.printStackTrace();
+           logger.error("findAllActive()"+e.getLocalizedMessage());
         }
         return result;
     }
 
     @Override
-    public SickList findById(SickList sickList) {
+    public SickList getSickList(SickList sickList) {
         try {
             sickList=sickListDao.getByPrimaryKey(sickList.getPrimaryKey());
         } catch (PersistentException e) {
-            e.printStackTrace();
+            logger.error("getSickList()"+e.getLocalizedMessage());
         }
         return sickList;
     }
@@ -54,7 +54,7 @@ public class SickListServiceImpl implements SickListService {
         try {
             result = sickListDao.FindByCondition(new PersonPersonID(patient.getPrimaryKey()));
         } catch (PersistentException e) {
-            e.printStackTrace();
+            logger.error("findByPatient()"+e.getLocalizedMessage());
         }
         return result;
     }
@@ -65,27 +65,23 @@ public class SickListServiceImpl implements SickListService {
         try {
             if (patientFirstName!=null&&dateIn!=null){
                 result=sickListDao.FindByCondition(new FirstNameAndDateIN(patientFirstName,dateIn));
-                logger.info("1");
                 return result;
             }else {
                 if (patientFirstName==null&&dateIn!=null){
                     result=sickListDao.FindByCondition(new DateIN(dateIn));
-                    logger.info("2");
                     return result;
                 }else {
                     if (patientFirstName!=null&&dateIn==null){
                         result=sickListDao.FindByCondition(new FirstNameLike(patientFirstName));
-                        logger.info("3");
                         return result;
                     } else {
                         result=findAllActive();
-                        logger.info("4");
                         return result;
                     }
                 }
             }
         } catch (PersistentException e) {
-            logger.error("Not Found "+e.getLocalizedMessage());
+            logger.error("findByPatientAndDAte()()"+e.getLocalizedMessage());
         }
         return result;
     }
@@ -96,7 +92,7 @@ public class SickListServiceImpl implements SickListService {
         try {
             newSickList=sickListDao.persist(sickList);
         } catch (PersistentException e) {
-            e.printStackTrace();
+            logger.error("createNewSickIst()"+e.getLocalizedMessage());
         }
         return newSickList;
     }
@@ -110,7 +106,7 @@ public class SickListServiceImpl implements SickListService {
                 return true;
             }
         }catch (PersistentException e){
-            e.printStackTrace();
+            logger.error("deleteSickList()"+e.getLocalizedMessage());
         }
         return false;
     }
@@ -121,7 +117,7 @@ public class SickListServiceImpl implements SickListService {
         try {
             list= sickListDao.FindByCondition(new FindFinalDiagnoseID(diagnose.getPrimaryKey()));
         } catch (PersistentException e) {
-            e.printStackTrace();
+            logger.error("findByDiagnoseID()"+e.getLocalizedMessage());
         }
         return list;
     }
@@ -132,7 +128,7 @@ public class SickListServiceImpl implements SickListService {
             try {
                 sickListDao.update(sickList);
             } catch (PersistentException e) {
-                e.printStackTrace();
+                logger.error("saveSickList()"+e.getLocalizedMessage());
             }
         }
         else {

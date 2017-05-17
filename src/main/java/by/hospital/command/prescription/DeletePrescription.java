@@ -34,7 +34,7 @@ public class DeletePrescription implements Command {
         int prescriptionID = Integer.parseInt(request.getParameter(PARAM_PRESCRIPTION_ID));
         Prescription prescription = new Prescription();
         prescription.setPrimaryKey(prescriptionID);
-        prescription= ServiceLocator.getService(PrescriptionService.class).returnPrescription(prescription);
+        prescription= ServiceLocator.getService(PrescriptionService.class).getPrescription(prescription);
         ServiceLocator.getService(PrescriptionService.class).deletePrescription(prescription);
 
         List<Diagnose> alldiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();

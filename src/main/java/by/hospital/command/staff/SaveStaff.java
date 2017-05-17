@@ -48,11 +48,14 @@ public class SaveStaff implements Command {
     static {
         roles.add(Post.ADMINISTRATOR);
         roles.add(Post.DOCTOR);
+        roles.add(Post.NURSE);
     }
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = null;
+        Staff staff = new Staff();
+
         int id = Integer.parseInt(request.getParameter(PARAM_STAFF_ID));
         String lastName = request.getParameter(PARAM_STAFF_LASTNAME);
         String firstName = request.getParameter(PARAM_STAFF_FIRSNAME);
@@ -71,13 +74,22 @@ public class SaveStaff implements Command {
         String login = request.getParameter(PARAM_STAFF_LOGIN);
         String password = request.getParameter(PARAM_STAFF_PASSWORD);
         Boolean fierd = Boolean.getBoolean(request.getParameter(PARAM_STAFF_FIRED));
-        Post post = Post.valueOf(request.getParameter(PARAM_STAFF_POST));
-        Staff staff = new Staff();
+
+        HttpSession session = request.getSession(false);
+        Staff user = (Staff) session.getAttribute("user");
+
+
 
         if (id != 0) {
             staff.setPrimaryKey(id);
-            staff = ServiceLocator.getService(StaffService.class).returnStaffFull(staff);
+            staff = ServiceLocator.getService(StaffService.class).getStaff(staff);
         }
+
+        if (user.getPost().equals(Post.ADMINISTRATOR)) {
+            Post post = Post.valueOf(request.getParameter(PARAM_STAFF_POST));
+            staff.setPost(post.toString());
+        }
+
         staff.setAddress(address);
         staff.setSex(gender.toString());
         staff.setLastName(lastName);
@@ -88,20 +100,16 @@ public class SaveStaff implements Command {
         staff.setPassportNumber(passport);
         staff.setBirthday(birthday);
         staff.setFired(fierd);
-        staff.setPost(post.toString());
 
         ServiceLocator.getService(StaffService.class).saveStaff(staff);
-        HttpSession session = request.getSession(true);
 
         List<Patient> allPatient = ServiceLocator.getService(PatientService.class).getALLPatients();
         List<Staff> allStaff = ServiceLocator.getService(StaffService.class).getAllStaff();
         List<Diagnose> allDiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();
 
-        Boolean isUser = (Boolean) session.getAttribute("isUser");
-        logger.info("isUser="+isUser);
-        if (isUser){
+
+        if (user.getPrimaryKey()==staff.getPrimaryKey()){
             session.setAttribute("user",staff);
-            session.removeAttribute("isUser");
         }
 
         session.setAttribute("allPatient", allPatient);

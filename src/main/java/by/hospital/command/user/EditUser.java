@@ -26,7 +26,7 @@ public class EditUser implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page;
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(false);
         Staff staff = (Staff) session.getAttribute("user");
         request.setAttribute("staff",staff);
         request.setAttribute("posts", Post.values());
