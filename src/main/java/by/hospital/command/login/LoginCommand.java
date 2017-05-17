@@ -30,34 +30,35 @@ public class LoginCommand implements Command {
         String login = request.getParameter(PARAM_NAME_LOGIN);
         String password = request.getParameter(PARAM_NAME_PASSWORD);
         // извлечение из БД пользователя с таким логином и паролем
-        Staff findStaff=new Staff();
+        Staff findStaff = new Staff();
         findStaff.setLogin(login);
         findStaff.setPassword(password);
-        Staff staff = ServiceLocator.getService(StaffService.class).findByLogPass(findStaff);
-            if (staff!=null){
-            //начало сессии
-            HttpSession session = request.getSession(true);
-            session.setAttribute("user",staff);
+        HttpSession session = request.getSession(true);
+        Staff staff;
+        staff = ServiceLocator.getService(StaffService.class).findByLogPass(findStaff);
+        if (staff.getPrimaryKey() != 0) {
+            session.setAttribute("user", staff);
             // в зависимости от роли определение странички пользователя
-            if ((staff.getPost()== Post.DOCTOR)||(staff.getPost()==Post.NURSE)){
+            if ((staff.getPost() == Post.DOCTOR) || (staff.getPost() == Post.NURSE)) {
                 List<SickList> sickLists = ServiceLocator.getService(SickListService.class).findAllActive();
                 List<Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).getAllNotDone();
-                request.setAttribute("sickLists",sickLists);
-                request.setAttribute("prescriptionList",prescriptionList);
-                page= ConfigurationManager.getProperty("PAGE_HOSPITAL");
+                request.setAttribute("sickLists", sickLists);
+                request.setAttribute("prescriptionList", prescriptionList);
+                page = ConfigurationManager.getProperty("PAGE_HOSPITAL");
             } else {
-                if (staff.getPost()==Post.ADMINISTRATOR){
+                if (staff.getPost() == Post.ADMINISTRATOR) {
                     List<Patient> allPatient = ServiceLocator.getService(PatientService.class).getALLPatients();
                     List<Staff> allStaff = ServiceLocator.getService(StaffService.class).getAllStaff();
                     List<Diagnose> allDiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();
-                    request.setAttribute("allPatient",allPatient);
-                    request.setAttribute("allStaff",allStaff);
-                    request.setAttribute("allDiagnose",allDiagnose);
-                    page=ConfigurationManager.getProperty("PAGE_DIRECTORIES");
+                    request.setAttribute("allPatient", allPatient);
+                    request.setAttribute("allStaff", allStaff);
+                    request.setAttribute("allDiagnose", allDiagnose);
+                    page = ConfigurationManager.getProperty("PAGE_DIRECTORIES");
                 }
             }
-        } if (staff==null){
-            page=ConfigurationManager.getProperty("PAGE_LOGIN");
+        }
+        if (staff.getPrimaryKey() == 0) {
+            page = ConfigurationManager.getProperty("PAGE_LOGIN");
         }
         return page;
     }

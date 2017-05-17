@@ -36,7 +36,7 @@ public class SecurityFilter implements Filter {
             Set<Post> allowPost = command.getAllowPosts();
             HttpSession session = httpServletRequest.getSession(false);
 
-            Staff user = null;
+            Staff user = new Staff();
             String userName = "unauthorized user";
             if(session!=null){
                 user = (Staff) session.getAttribute("user");

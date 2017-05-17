@@ -27,7 +27,7 @@ public class DispatcherServlet extends HttpServlet {
 
     @Override
     public void init() {
-        links.put("/index", "Index");
+        links.put("/index", "Login");
         links.put("/hospital", "OpenHospital");
         links.put("/directories", "OpenDirectories");
         links.put("/sicklist","EditSickList");

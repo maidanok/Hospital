@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -166,7 +167,7 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
     }
 
     public List<Type> FindByCondition(Condition condition) throws PersistentException {
-        List<Type> list;
+        List<Type> list=new ArrayList<>();
         String sql = getSelectedQuery();
         sql += condition.getValue();
         try {

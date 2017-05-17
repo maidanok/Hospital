@@ -33,7 +33,10 @@ public class SetLanguage implements Command {
         String page = null;
         String language = request.getParameter(PARAM_LANGUAGE);
 
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(false);
+        if (session==null){
+            session=request.getSession(true);
+        }
 
         if (lang.contains(language)) {
             session.setAttribute("language",language);

@@ -33,7 +33,7 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public Staff findByLogPass(Staff staff) {
-        Staff newstaff;
+        Staff newstaff = new Staff();
         List<Staff> list = new ArrayList<>();
         try {
             list = staffDao.FindByCondition(new LoginAndPassword(staff.getLogin(), staff.getPassword()));
@@ -42,7 +42,7 @@ public class StaffServiceImpl implements StaffService {
         }
         if (list.isEmpty()) {
             logger.info("findByLogPass() result not found");
-            return null;
+            return newstaff;
         }
         newstaff = list.get(0);
         return newstaff;
