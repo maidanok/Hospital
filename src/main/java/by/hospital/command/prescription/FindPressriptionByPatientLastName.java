@@ -21,6 +21,7 @@ import java.util.Set;
  * Created by Pasha on 15.05.2017.
  */
 public class FindPressriptionByPatientLastName implements Command {
+
     private static final String PARAM_FIRSTNAME = "firstname";
 
     @Override

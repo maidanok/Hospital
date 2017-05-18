@@ -10,12 +10,13 @@ pageEncoding="UTF-8"%>
 <fmt:setBundle basename="language"/>
 <t:html>
     <t:header/>
+
     <div class="easyui-panel" title="${diagnose.getDiagnoseName()}" style="width:100%;max-width:500px;padding:30px 60px;">
         <form id="ff" method="post" action = "controller?COMMAND=SaveDiagnose">
             <input type="hidden" name="id" value="${diagnose.getPrimaryKey()}">
             <div style="margin-bottom:20px">
-                <input class="easyui-textbox" name="diagnosename" style="width:100%"
-                       data-options="label:'<fmt:message key='title'/>:',required:true" value="${diagnose.getDiagnoseName()}">
+                <input type="text" class="easyui-textbox" name="diagnosename" style="width:100%"
+                       data-options="label:'<fmt:message key='title'/>:',required:true" maxlength="10" title="WTF" value="${diagnose.getDiagnoseName()}">
             </div>
             <div style="margin-bottom:20px">
                 <input class="easyui-textbox" name="therapy" style="width:100%;height:200px"

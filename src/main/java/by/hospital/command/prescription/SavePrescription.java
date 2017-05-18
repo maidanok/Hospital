@@ -22,6 +22,7 @@ import java.util.Set;
  * Created by Pasha on 15.05.2017.
  */
 public class SavePrescription implements Command {
+
     private static final String PARAM_PRESCRIPTION_ID = "id";
     private static final String PARAM_PRESCRIPTION_SURVEY_ID = "shid";
     private static final String PARAM_PRESCRIPTION_TYPE = "prescriptiontype";
@@ -31,7 +32,6 @@ public class SavePrescription implements Command {
     private static Set<Post> roles = new HashSet<>();
 
     static {
-        roles.add(Post.ADMINISTRATOR);
         roles.add(Post.DOCTOR);
     }
 
@@ -53,18 +53,18 @@ public class SavePrescription implements Command {
         prescription.setQuantity(quantity);
 
 
-        prescription=ServiceLocator.getService(PrescriptionService.class).savePrescription(prescription);
+        prescription = ServiceLocator.getService(PrescriptionService.class).savePrescription(prescription);
 
         List<Diagnose> alldiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();
-        List<Prescription> prescriptionList =ServiceLocator.getService(PrescriptionService.class).
+        List<Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).
                 findBySurveyHistory(prescription.getSurveyHistory());
         HttpSession session = request.getSession(false);
-        session.setAttribute("surveyHistory",prescription.getSurveyHistory());
-        session.setAttribute("alldiagnose",alldiagnose);
-        session.setAttribute("prescriptionList",prescriptionList);
+        session.setAttribute("surveyHistory", prescription.getSurveyHistory());
+        session.setAttribute("alldiagnose", alldiagnose);
+        session.setAttribute("prescriptionList", prescriptionList);
 
         request.setAttribute("isRedirect", true);
-        page= "survey.html";
+        page = "survey.html";
         return page;
     }
 

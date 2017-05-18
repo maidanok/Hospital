@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -22,6 +23,14 @@ import java.util.Set;
  * Created by Admin on 08.05.2017.
  */
 public class OpenDirectoriesPage implements Command {
+    private static Set<Post> roles = new HashSet<>();
+
+    static {
+        roles.add(Post.ADMINISTRATOR);
+        roles.add(Post.DOCTOR);
+        roles.add(Post.NURSE);
+    }
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = null;
@@ -31,12 +40,13 @@ public class OpenDirectoriesPage implements Command {
         request.setAttribute("allPatient", allPatient);
         request.setAttribute("allStaff", allStaff);
         request.setAttribute("allDiagnose", allDiagnose);
+
         page = ConfigurationManager.getProperty("PAGE_DIRECTORIES");
         return page;
     }
 
     @Override
     public Set<Post> getAllowPosts() {
-        return null;
+        return roles;
     }
 }

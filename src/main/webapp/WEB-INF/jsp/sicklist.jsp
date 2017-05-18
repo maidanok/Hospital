@@ -33,7 +33,8 @@
                         >
                     </div>
                     <div style="margin-bottom:20px">
-                        <input class="easyui-textbox" name="room" style="width:50%" data-options="label:'<fmt:message key='room'/>'"
+                        <input class="easyui-textbox" name="room" style="width:50%"
+                               data-options="label:'<fmt:message key='room'/>',required:true"
                                value="${sickList.getRoom()}">
                     </div>
 
@@ -55,7 +56,7 @@
 
                     <div style="margin-bottom:20px">
                         <input class="easyui-textbox" name="symptoms" style="width:50%;height:80px"
-                               data-options="label:'<fmt:message key='anamnesis'/>:', labelPosition:'top',multiline:true"
+                               data-options="label:'<fmt:message key='anamnesis'/>:', labelPosition:'top',multiline:true,required:true"
                                value="${sickList.getSymptoms()}">
                     </div>
 

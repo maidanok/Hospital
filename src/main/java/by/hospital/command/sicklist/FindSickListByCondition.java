@@ -31,21 +31,22 @@ public class FindSickListByCondition implements Command {
     Logger logger = Logger.getLogger(FindSickListByCondition.class);
     private static final String PARAM_PATIENT_FIRSTNAME = "firstname";
     private static final String PARAM_SICK_LIST_DATE_IN = "dateIn";
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = null;
         String firstName = request.getParameter(PARAM_PATIENT_FIRSTNAME);
-        if (firstName==""){
-            firstName=null;
+        if (firstName == "") {
+            firstName = null;
         }
         String date = request.getParameter(PARAM_SICK_LIST_DATE_IN);
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        Date dateIN=null;
-        if (date!="") {
+        Date dateIN = null;
+        if (date != "") {
             try {
                 dateIN = formatter.parse(date);
             } catch (ParseException e) {
-                logger.error("Date Parse error"+date+"not parse");
+                logger.error("Date Parse error" + date + "not parse");
                 logger.error(e.getLocalizedMessage());
             }
         }
@@ -53,8 +54,8 @@ public class FindSickListByCondition implements Command {
         List<SickList> sickLists = ServiceLocator.getService(SickListService.class).
                 findByPatientAndDAte(firstName, DateConvertor.getInstanse().convert(dateIN));
         List<Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).getAllNotDone();
-        request.setAttribute("prescriptionList",prescriptionList);
-        request.setAttribute("sickLists",sickLists);
+        request.setAttribute("prescriptionList", prescriptionList);
+        request.setAttribute("sickLists", sickLists);
 
         page = ConfigurationManager.getProperty("PAGE_HOSPITAL");
         return page;

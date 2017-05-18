@@ -27,8 +27,6 @@ public class EditSurveyHistory implements Command {
     private static Set<Post> roles = new HashSet<>();
 
     static {
-        roles.add(Post.ADMINISTRATOR);
-        roles.add(Post.NURSE);
         roles.add(Post.DOCTOR);
     }
 
@@ -42,11 +40,11 @@ public class EditSurveyHistory implements Command {
         surveyHistory = ServiceLocator.getService(SurveyHistoryService.class).getSurveyHistory(surveyHistory);
 
         List<Diagnose> alldiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();
-        List<Prescription> prescriptionList =ServiceLocator.getService(PrescriptionService.class).findBySurveyHistory(surveyHistory);
-        request.setAttribute("surveyHistory",surveyHistory);
-        request.setAttribute("prescriptionList",prescriptionList);
-        request.setAttribute("alldiagnose",alldiagnose);
-        page= ConfigurationManager.getProperty("PAGE_SURVEY");
+        List<Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).findBySurveyHistory(surveyHistory);
+        request.setAttribute("surveyHistory", surveyHistory);
+        request.setAttribute("prescriptionList", prescriptionList);
+        request.setAttribute("alldiagnose", alldiagnose);
+        page = ConfigurationManager.getProperty("PAGE_SURVEY");
         return page;
     }
 

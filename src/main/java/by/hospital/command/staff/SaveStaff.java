@@ -79,7 +79,6 @@ public class SaveStaff implements Command {
         Staff user = (Staff) session.getAttribute("user");
 
 
-
         if (id != 0) {
             staff.setPrimaryKey(id);
             staff = ServiceLocator.getService(StaffService.class).getStaff(staff);
@@ -108,8 +107,8 @@ public class SaveStaff implements Command {
         List<Diagnose> allDiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();
 
 
-        if (user.getPrimaryKey()==staff.getPrimaryKey()){
-            session.setAttribute("user",staff);
+        if (user.getPrimaryKey() == staff.getPrimaryKey()) {
+            session.setAttribute("user", staff);
         }
 
         session.setAttribute("allPatient", allPatient);

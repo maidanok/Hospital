@@ -40,13 +40,13 @@ public class HospitalController extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String page = null;
         Command command = commandFactory.getCommand(request);
-        page = command.execute(request,response);
+        page = command.execute(request, response);
         logger.info(request.getParameter("COMMAND"));
 
-        boolean isRedirect =(request.getAttribute("isRedirect") != null) ? (boolean) request.getAttribute("isRedirect") : false;
+        boolean isRedirect = (request.getAttribute("isRedirect") != null) ? (boolean) request.getAttribute("isRedirect") : false;
         if (page != null && isRedirect) {
-            response.sendRedirect( request.getContextPath() + "/"+page);
-            logger.info(request.getContextPath() + "/"+page);
+            response.sendRedirect(request.getContextPath() + "/" + page);
+            logger.info(request.getContextPath() + "/" + page);
         } else {
             if (page != null) {
                 RequestDispatcher dispatcher = request.getRequestDispatcher(page);

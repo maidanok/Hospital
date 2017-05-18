@@ -18,7 +18,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class DispatcherServlet extends HttpServlet {
     private static Logger logger = Logger.getLogger(DispatcherServlet.class);
     private static Map<String, String> links = new ConcurrentHashMap<>();
-    private static Map<String,String[]> resources = new ConcurrentHashMap<>();
+    private static Map<String, String[]> resources = new ConcurrentHashMap<>();
 
 
     public DispatcherServlet() {
@@ -27,16 +27,17 @@ public class DispatcherServlet extends HttpServlet {
 
     @Override
     public void init() {
-        links.put("/index", "Login");
+        links.put("/index", "Index");
         links.put("/hospital", "OpenHospital");
         links.put("/directories", "OpenDirectories");
-        links.put("/sicklist","EditSickList");
-        links.put("/survey","EditSurveyHistory");
+        links.put("/sicklist", "EditSickList");
+        links.put("/survey", "EditSurveyHistory");
 
-        resources.put("OpenDirectories",new String[]{"allPatient","allStaff","allDiagnose"});
-        resources.put("OpenHospital", new String[]{"sickLists","prescriptionList"});
-        resources.put("EditSickList",new String[]{"surveyHistoryList","sickList","prescriptionList"});
-        resources.put("EditSurveyHistory",new String[]{"surveyHistory","prescriptionList","alldiagnose",});
+        resources.put("OpenDirectories", new String[]{"allPatient", "allStaff", "allDiagnose"});
+        resources.put("OpenHospital", new String[]{"sickLists", "prescriptionList"});
+        resources.put("EditSickList", new String[]{"surveyHistoryList", "sickList", "prescriptionList"});
+        resources.put("EditSurveyHistory", new String[]{"surveyHistory", "prescriptionList", "alldiagnose",});
+        resources.put("Index", new String[]{"allPatient", "allStaff", "allDiagnose", "sickLists", "prescriptionList"});
     }
 
     @Override
@@ -55,9 +56,9 @@ public class DispatcherServlet extends HttpServlet {
         String command = links.get(commandName);
         HttpSession session = request.getSession(false);
         if (command != null) {
-            String []attributes = resources.get(command);
+            String[] attributes = resources.get(command);
             for (String attribute : attributes) {
-                request.setAttribute(attribute,session.getAttribute(attribute));
+                request.setAttribute(attribute, session.getAttribute(attribute));
                 session.removeAttribute(attribute);
             }
             String page = ConfigurationManager.getProperty(command);

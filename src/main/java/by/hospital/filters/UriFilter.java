@@ -46,7 +46,6 @@ public class UriFilter implements Filter {
             }
             String command = links.get(commandName);
             if (command != null) {
-
                 request.setAttribute("COMMAND", command);
                 request.getServletContext().getRequestDispatcher(ConfigurationManager.getProperty(command)).forward(request, response);
             }

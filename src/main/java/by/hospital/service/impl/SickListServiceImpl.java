@@ -88,7 +88,10 @@ public class SickListServiceImpl implements SickListService {
 
     @Override
     public SickList createNewSickIst(SickList sickList){
-        SickList newSickList = null;
+        SickList newSickList = new SickList();
+        if (sickList.getDateIN().after(new Date())){
+            return newSickList;
+        }
         try {
             newSickList=sickListDao.persist(sickList);
         } catch (PersistentException e) {
@@ -124,7 +127,7 @@ public class SickListServiceImpl implements SickListService {
 
     @Override
     public void saveSickList(SickList sickList) {
-        if (sickList.getPrimaryKey()!=0){
+        if (sickList.getPrimaryKey()!=0&&sickList.getDateIN().before(new Date())){
             try {
                 sickListDao.update(sickList);
             } catch (PersistentException e) {

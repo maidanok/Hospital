@@ -93,7 +93,7 @@ public class MySqlPrescriptionExecutionDao extends AbstractJDBCDao<PrescriptionE
                 result.add(pPE);
             }
         } catch (Exception e) {
-            logger.error("Error" + e.getLocalizedMessage());
+            logger.error("Error parseResultSet" + e.getLocalizedMessage());
             throw new PersistentException(e);
         }
         return result;
@@ -108,7 +108,7 @@ public class MySqlPrescriptionExecutionDao extends AbstractJDBCDao<PrescriptionE
             statement.setInt(2, StaffID);
             statement.setDate(3, convert(object.getPrescriptionExecutionDate()));
         } catch (Exception e) {
-            logger.error("Error" + e.getLocalizedMessage());
+            logger.error("Error prepareStatementForInsert" + e.getLocalizedMessage());
             throw new PersistentException(e);
         }
     }
@@ -123,7 +123,8 @@ public class MySqlPrescriptionExecutionDao extends AbstractJDBCDao<PrescriptionE
             statement.setDate(3, convert(object.getPrescriptionExecutionDate()));
             statement.setInt(4, object.getPrimaryKey());
         } catch (Exception e) {
-            logger.error("Error" + e.getLocalizedMessage());
+
+            logger.error("Error prepareStatementForUpdate" + e.getLocalizedMessage());
             throw new PersistentException(e);
         }
     }

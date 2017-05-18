@@ -21,7 +21,7 @@ public class LogOutCommand implements Command {
         String page = null;
         HttpSession session = request.getSession(true);
         session.invalidate();
-        page= ConfigurationManager.getProperty("PAGE_LOGIN");
+        page = ConfigurationManager.getProperty("PAGE_LOGIN");
         return page;
     }
 

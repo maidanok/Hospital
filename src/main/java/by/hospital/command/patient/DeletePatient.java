@@ -45,7 +45,7 @@ public class DeletePatient implements Command {
         request.setAttribute("allPatient", allPatient);
         request.setAttribute("allStaff", allStaff);
         request.setAttribute("allDiagnose", allDiagnose);
-        page=ConfigurationManager.getProperty("PAGE_DIRECTORIES");
+        page = ConfigurationManager.getProperty("PAGE_DIRECTORIES");
         return page;
     }
 

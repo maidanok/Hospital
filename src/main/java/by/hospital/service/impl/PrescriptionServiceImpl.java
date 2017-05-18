@@ -149,18 +149,29 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     @Override
     public Prescription savePrescription(Prescription prescription) {
         Prescription prescr=new Prescription();
-        if (prescription.getPrimaryKey()!=0){
-            try {
-                prescriptionDao.update(prescription);
-                prescr=prescriptionDao.getByPrimaryKey(prescription.getPrimaryKey());
-            } catch (PersistentException e) {
-                logger.error("savePrescription()"+e.getLocalizedMessage());
+        if (prescription.getQuantity()>=prescription.getCompleted()) {
+            if (prescription.getPrimaryKey() != 0) {
+                try {
+                    prescriptionDao.update(prescription);
+                    prescr = prescriptionDao.getByPrimaryKey(prescription.getPrimaryKey());
+                } catch (PersistentException e) {
+                    logger.error("savePrescription()" + e.getLocalizedMessage());
+                }
+            } else {
+                prescr = createNewPrescription(prescription);
             }
-        } else {
-            prescr=createNewPrescription(prescription);
         }
         return prescr;
     }
 
+    public List <PrescriptionExecution> getPrescriptionExecutionByPrescription(Prescription prescription){
+        List<PrescriptionExecution> list = new ArrayList<>();
+        try {
+            list=prescriptionExecutionDao.FindByCondition(new PrescriptionID(prescription.getPrimaryKey()));
+        } catch (PersistentException e) {
+            logger.error("Error getPrescriptionExecutionByPrescription "+e.getLocalizedMessage());
+        }
+        return list;
+    }
 
 }

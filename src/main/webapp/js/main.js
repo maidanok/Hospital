@@ -6,3 +6,8 @@ function submitForm(id) {
 	}
 	return false;
 }
+function sda(){
+$(document).ready(function(){
+alert(1);
+});
+}

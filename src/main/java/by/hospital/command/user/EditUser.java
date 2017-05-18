@@ -17,21 +17,23 @@ import java.util.Set;
  * Created by Admin on 14.05.2017.
  */
 public class EditUser implements Command {
-    private static Set<Post> roles =new HashSet<>();
+    private static Set<Post> roles = new HashSet<>();
+
     static {
         roles.add(Post.DOCTOR);
         roles.add(Post.NURSE);
         roles.add(Post.ADMINISTRATOR);
     }
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page;
         HttpSession session = request.getSession(false);
         Staff staff = (Staff) session.getAttribute("user");
-        request.setAttribute("staff",staff);
+        request.setAttribute("staff", staff);
         request.setAttribute("posts", Post.values());
-        session.setAttribute("isUser",true);
-        page= ConfigurationManager.getProperty("PAGE_STAFF");
+        session.setAttribute("isUser", true);
+        page = ConfigurationManager.getProperty("PAGE_STAFF");
         return page;
     }
 

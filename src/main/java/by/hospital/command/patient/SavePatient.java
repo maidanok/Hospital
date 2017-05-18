@@ -31,19 +31,21 @@ import java.util.Set;
 public class SavePatient implements Command {
     Logger logger = Logger.getLogger(SavePatient.class);
     private static final String PARAM_PATIENT_ID = "id";
-    private static final String PARAM_PATIENT_LASTNAME="lastname";
-    private static final String PARAM_PATIENT_FIRSNAME="firstname";
-    private static final String PARAM_PATIENT_MIDDLENAME="middlename";
-    private static final String PARAM_PATIENT_BIRTDAY="birthday";
-    private static final String PARAM_PATIENT_GENDER="gender";
-    private static final String PARAM_PATIENT_ADDRESS="address";
-    private static final String PARAM_PATIENT_PASSPORT="passport";
-    private static Set<Post> roles =new HashSet<>();
+    private static final String PARAM_PATIENT_LASTNAME = "lastname";
+    private static final String PARAM_PATIENT_FIRSNAME = "firstname";
+    private static final String PARAM_PATIENT_MIDDLENAME = "middlename";
+    private static final String PARAM_PATIENT_BIRTDAY = "birthday";
+    private static final String PARAM_PATIENT_GENDER = "gender";
+    private static final String PARAM_PATIENT_ADDRESS = "address";
+    private static final String PARAM_PATIENT_PASSPORT = "passport";
+    private static Set<Post> roles = new HashSet<>();
+
     static {
         roles.add(Post.ADMINISTRATOR);
         roles.add(Post.NURSE);
         roles.add(Post.DOCTOR);
     }
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = null;
@@ -51,7 +53,7 @@ public class SavePatient implements Command {
         String lastName = request.getParameter(PARAM_PATIENT_LASTNAME);
         String firstName = request.getParameter(PARAM_PATIENT_FIRSNAME);
         String middleName = request.getParameter(PARAM_PATIENT_MIDDLENAME);
-        String address= request.getParameter(PARAM_PATIENT_ADDRESS);
+        String address = request.getParameter(PARAM_PATIENT_ADDRESS);
         String passport = request.getParameter(PARAM_PATIENT_PASSPORT);
         Gender gender = Gender.valueOf(request.getParameter(PARAM_PATIENT_GENDER));
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -60,7 +62,7 @@ public class SavePatient implements Command {
         try {
             birthday = formatter.parse(getDate);
         } catch (ParseException e) {
-            logger.error("Parse error "+e.getLocalizedMessage());
+            logger.error("Parse error " + e.getLocalizedMessage());
         }
 
         Patient patient = new Patient();
@@ -80,13 +82,12 @@ public class SavePatient implements Command {
         List<Staff> allStaff = ServiceLocator.getService(StaffService.class).getAllStaff();
         List<Diagnose> allDiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();
 
-        session.setAttribute("allPatient",allPatient);
-        session.setAttribute("allStaff",allStaff);
-        session.setAttribute("allDiagnose",allDiagnose);
+        session.setAttribute("allPatient", allPatient);
+        session.setAttribute("allStaff", allStaff);
+        session.setAttribute("allDiagnose", allDiagnose);
 
-        request.setAttribute("isRedirect",true);
-        page= "directories.html";
-
+        request.setAttribute("isRedirect", true);
+        page = "directories.html";
 
 
         return page;

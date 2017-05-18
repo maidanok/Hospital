@@ -22,7 +22,8 @@ public class EditPatient implements Command {
     Logger logger = Logger.getLogger(EditPatient.class);
 
     private static final String PARAM_PATIENT_ID = "id";
-    private static Set<Post> roles =new HashSet<>();
+    private static Set<Post> roles = new HashSet<>();
+
     static {
         roles.add(Post.ADMINISTRATOR);
         roles.add(Post.NURSE);
@@ -35,12 +36,12 @@ public class EditPatient implements Command {
         int patientID = Integer.valueOf(request.getParameter(PARAM_PATIENT_ID));
         Patient patient = new Patient();
         patient.setPrimaryKey(patientID);
-        if (patientID!=0) {
+        if (patientID != 0) {
             patient = ServiceLocator.getService(PatientService.class).getPatient(patient);
         }
 
-        request.setAttribute("patient",patient);
-        page= ConfigurationManager.getProperty("PAGE_PATIENT");
+        request.setAttribute("patient", patient);
+        page = ConfigurationManager.getProperty("PAGE_PATIENT");
 
         return page;
     }

@@ -27,12 +27,14 @@ import java.util.Set;
  */
 public class EditSickList implements Command {
     private static final String PARAM_SICK_LIST_ID = "id";
-    private static Set<Post> roles =new HashSet<>();
+    private static Set<Post> roles = new HashSet<>();
+
     static {
         roles.add(Post.ADMINISTRATOR);
         roles.add(Post.NURSE);
         roles.add(Post.DOCTOR);
     }
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = null;
@@ -41,17 +43,17 @@ public class EditSickList implements Command {
         sickList.setPrimaryKey(sicklistID);
         sickList = ServiceLocator.getService(SickListService.class).getSickList(sickList);
 
-        List <SurveyHistory> surveyHistoryList = ServiceLocator.getService(SurveyHistoryService.class).getAllbySickList(sickList);
-        List <Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).findBySickList(sickList);
+        List<SurveyHistory> surveyHistoryList = ServiceLocator.getService(SurveyHistoryService.class).getAllbySickList(sickList);
+        List<Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).findBySickList(sickList);
 
         List<Diagnose> alldiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();
 
-        request.setAttribute("sickList",sickList);
-        request.setAttribute("surveyHistoryList",surveyHistoryList);
-        request.setAttribute("prescriptionList",prescriptionList);
-        request.setAttribute("alldiagnose",alldiagnose);
+        request.setAttribute("sickList", sickList);
+        request.setAttribute("surveyHistoryList", surveyHistoryList);
+        request.setAttribute("prescriptionList", prescriptionList);
+        request.setAttribute("alldiagnose", alldiagnose);
 
-        page= ConfigurationManager.getProperty("PAGE_SICKLIST");
+        page = ConfigurationManager.getProperty("PAGE_SICKLIST");
 
         return page;
     }

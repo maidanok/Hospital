@@ -20,7 +20,7 @@ import java.util.Set;
 /**
  * Created by Admin on 14.05.2017.
  */
-public class DeleteSurveyHistory implements Command{
+public class DeleteSurveyHistory implements Command {
     private static final String PARAM_SURVEY_HISTORY_ID = "id";
     private static Set<Post> roles = new HashSet<>();
 
@@ -28,22 +28,23 @@ public class DeleteSurveyHistory implements Command{
         roles.add(Post.ADMINISTRATOR);
         roles.add(Post.DOCTOR);
     }
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = null;
         int surveyID = Integer.parseInt(request.getParameter(PARAM_SURVEY_HISTORY_ID));
         SurveyHistory surveyHistory = new SurveyHistory();
         surveyHistory.setPrimaryKey(surveyID);
-        surveyHistory= ServiceLocator.getService(SurveyHistoryService.class).getSurveyHistory(surveyHistory);
+        surveyHistory = ServiceLocator.getService(SurveyHistoryService.class).getSurveyHistory(surveyHistory);
         ServiceLocator.getService(SurveyHistoryService.class).deleteSurveyHistory(surveyHistory);
         List<SurveyHistory> surveyHistoryList = ServiceLocator.getService(SurveyHistoryService.class).getAllbySickList(surveyHistory.getSickList());
-        List <Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).
+        List<Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).
                 findBySickList(surveyHistory.getSickList());
 
-        request.setAttribute("sickList",surveyHistory.getSickList());
-        request.setAttribute("surveyHistoryList",surveyHistoryList);
-        request.setAttribute("prescriptionList",prescriptionList);
-        page= ConfigurationManager.getProperty("PAGE_SICKLIST");
+        request.setAttribute("sickList", surveyHistory.getSickList());
+        request.setAttribute("surveyHistoryList", surveyHistoryList);
+        request.setAttribute("prescriptionList", prescriptionList);
+        page = ConfigurationManager.getProperty("PAGE_SICKLIST");
         return page;
     }
 

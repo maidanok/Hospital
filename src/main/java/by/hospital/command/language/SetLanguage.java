@@ -22,28 +22,30 @@ import java.util.Set;
  */
 public class SetLanguage implements Command {
 
-    private static final String PARAM_LANGUAGE="language";
-    private static Set<String> lang=new HashSet<>();
+    private static final String PARAM_LANGUAGE = "language";
+    private static Set<String> lang = new HashSet<>();
+
     static {
         lang.add("en");
         lang.add("ru");
     }
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = null;
         String language = request.getParameter(PARAM_LANGUAGE);
 
         HttpSession session = request.getSession(false);
-        if (session==null){
-            session=request.getSession(true);
+        if (session == null) {
+            session = request.getSession(true);
         }
 
         if (lang.contains(language)) {
-            session.setAttribute("language",language);
+            session.setAttribute("language", language);
         } else {
-            session.setAttribute("language","ru");
+            session.setAttribute("language", "ru");
         }
-        page= ConfigurationManager.getProperty("PAGE_INDEX");
+        page = ConfigurationManager.getProperty("PAGE_INDEX");
         List<Patient> allPatient = ServiceLocator.getService(PatientService.class).getALLPatients();
         List<Staff> allStaff = ServiceLocator.getService(StaffService.class).getAllStaff();
         List<Diagnose> allDiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();
@@ -52,8 +54,8 @@ public class SetLanguage implements Command {
         request.setAttribute("allDiagnose", allDiagnose);
         List<SickList> sickLists = ServiceLocator.getService(SickListService.class).findAllActive();
         List<Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).getAllNotDone();
-        request.setAttribute("sickLists",sickLists);
-        request.setAttribute("prescriptionList",prescriptionList);
+        request.setAttribute("sickLists", sickLists);
+        request.setAttribute("prescriptionList", prescriptionList);
         return page;
     }
 

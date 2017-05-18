@@ -24,11 +24,13 @@ import java.util.Set;
  */
 public class DeleteDiagnose implements Command {
     private static final String PARAM_DIAGNOSE_ID = "id";
-    private static Set<Post> roles =new HashSet<>();
+    private static Set<Post> roles = new HashSet<>();
+
     static {
         roles.add(Post.ADMINISTRATOR);
         roles.add(Post.DOCTOR);
     }
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = null;
@@ -44,6 +46,7 @@ public class DeleteDiagnose implements Command {
         request.setAttribute("allStaff", allStaff);
         request.setAttribute("allDiagnose", allDiagnose);
 
+        page = ConfigurationManager.getProperty("PAGE_DIRECTORIES");
         return page;
     }
 
