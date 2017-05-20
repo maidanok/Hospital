@@ -1,0 +1,23 @@
+
+h1{font-size:32px}
+
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border 11px;
+}
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+th {
+    background-color: #f2f2f2;
+    color: black;
+}
+input[type=text] {
+    width: 100%;
+    padding: 15px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
