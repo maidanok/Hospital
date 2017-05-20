@@ -10,6 +10,7 @@ import by.hospital.exception.PersistentException;
 import by.hospital.service.api.PatientService;
 import org.apache.log4j.Logger;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
