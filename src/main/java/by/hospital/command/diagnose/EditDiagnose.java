@@ -17,26 +17,28 @@ import java.util.Set;
 /**
  * Created by Pasha on 10.05.2017.
  */
-public class EditDiagnose implements Command{
+public class EditDiagnose implements Command {
     private static final String PARAM_DIAGNOSE_ID = "id";
-    private static Set<Post> roles =new HashSet<>();
+    private static Set<Post> roles = new HashSet<>();
+
     static {
         roles.add(Post.ADMINISTRATOR);
         roles.add(Post.DOCTOR);
     }
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = null;
         int diagnoseID = Integer.parseInt(request.getParameter(PARAM_DIAGNOSE_ID));
         Diagnose diagnose = new Diagnose();
 
-        if (diagnoseID!=0){
+        if (diagnoseID != 0) {
             diagnose.setPrimaryKey(diagnoseID);
             diagnose = ServiceLocator.getService(DiagnoseService.class).getDiagnose(diagnose);
         }
 
-        request.setAttribute("diagnose",diagnose);
-        page= ConfigurationManager.getProperty("PAGE_DIAGNOSE");
+        request.setAttribute("diagnose", diagnose);
+        page = ConfigurationManager.getProperty("PAGE_DIAGNOSE");
 
         return page;
     }

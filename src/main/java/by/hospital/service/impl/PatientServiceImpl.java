@@ -5,11 +5,13 @@ import by.hospital.dao.conditions.FirstNameLike;
 import by.hospital.dao.conditions.PersonPersonID;
 import by.hospital.domain.Patient;
 import by.hospital.domain.SickList;
+import by.hospital.domain.comparator.SortPersonByFirstName;
 import by.hospital.exception.PersistentException;
 import by.hospital.service.api.PatientService;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,10 +30,13 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public Patient createNewPatient(Patient patient) {
+        if (patient.getBirthday().after(new Date())) {
+            return null;
+        }
         try {
             return patientDao.persist(patient);
         } catch (PersistentException e) {
-            logger.error("createNewPatient()"+e.getLocalizedMessage());
+            logger.error("createNewPatient()" + e.getLocalizedMessage());
         }
         return null;
     }
@@ -41,7 +46,7 @@ public class PatientServiceImpl implements PatientService {
         try {
             return patientDao.getByPrimaryKey(patient.getPrimaryKey());
         } catch (PersistentException e) {
-            logger.error("getPatient()"+e.getLocalizedMessage());
+            logger.error("getPatient()" + e.getLocalizedMessage());
         }
         return patient;
     }
@@ -54,19 +59,21 @@ public class PatientServiceImpl implements PatientService {
             patient.setPassportNumber(null);
             patient.setAddress(null);
         } catch (PersistentException e) {
-            logger.error("returnPatientShort()"+e.getLocalizedMessage());
+            logger.error("returnPatientShort()" + e.getLocalizedMessage());
         }
         return patien;
     }
 
     @Override
     public List<Patient> getALLPatients() {
+        List<Patient> list = new ArrayList<>();
         try {
-            return patientDao.getAll();
+            list=patientDao.getAll();
+            list.sort(new SortPersonByFirstName());
         } catch (PersistentException e) {
-            logger.error("getALLPatients()"+e.getLocalizedMessage());
+            logger.error("getALLPatients()" + e.getLocalizedMessage());
         }
-        return null;
+        return list;
     }
 
     @Override
@@ -78,7 +85,7 @@ public class PatientServiceImpl implements PatientService {
                 return patientDao.getAll();
             }
         } catch (PersistentException e) {
-            logger.error("FindLastName()"+e.getLocalizedMessage());
+            logger.error("FindLastName()" + e.getLocalizedMessage());
         }
         return new ArrayList<Patient>();
     }
@@ -94,17 +101,17 @@ public class PatientServiceImpl implements PatientService {
                 return true;
             }
         } catch (PersistentException e) {
-            logger.error("deletePatient()"+e.getLocalizedMessage());
+            logger.error("deletePatient()" + e.getLocalizedMessage());
         }
         return false;
     }
 
     public void savePatient(Patient patient) {
-        if (patient.getPrimaryKey() != 0) {
+        if (patient.getPrimaryKey() != 0 && patient.getBirthday().before(new Date())) {
             try {
                 patientDao.update(patient);
             } catch (PersistentException e) {
-                logger.error("savePatient()"+e.getLocalizedMessage());
+                logger.error("savePatient()" + e.getLocalizedMessage());
             }
         }
         if (patient.getPrimaryKey() == 0) {

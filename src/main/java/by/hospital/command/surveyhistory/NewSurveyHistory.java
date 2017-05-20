@@ -32,8 +32,6 @@ public class NewSurveyHistory implements Command {
     private static Set<Post> roles = new HashSet<>();
 
     static {
-        roles.add(Post.ADMINISTRATOR);
-        roles.add(Post.NURSE);
         roles.add(Post.DOCTOR);
     }
 
@@ -44,11 +42,10 @@ public class NewSurveyHistory implements Command {
         HttpSession session = request.getSession(false);
 
 
-
         Staff staff = (Staff) session.getAttribute("user");
 
-        if (staff==null){
-            page=ConfigurationManager.getProperty("PAGE_LOGIN");
+        if (staff == null) {
+            page = ConfigurationManager.getProperty("PAGE_LOGIN");
             return page;
         }
         SurveyHistory surveyHistory = new SurveyHistory();
@@ -62,8 +59,8 @@ public class NewSurveyHistory implements Command {
         surveyHistory.setDiagnose(sickList.getFinalDiagnose());
         List<Diagnose> alldiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();
 
-        request.setAttribute("surveyHistory",surveyHistory);
-        request.setAttribute("alldiagnose",alldiagnose);
+        request.setAttribute("surveyHistory", surveyHistory);
+        request.setAttribute("alldiagnose", alldiagnose);
         page = ConfigurationManager.getProperty("PAGE_SURVEY");
         return page;
     }

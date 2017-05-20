@@ -30,7 +30,6 @@ public class ExecutePrescriptionSurvey implements Command {
     private static Set<Post> roles = new HashSet<>();
 
     static {
-        roles.add(Post.ADMINISTRATOR);
         roles.add(Post.DOCTOR);
         roles.add(Post.NURSE);
     }

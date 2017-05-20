@@ -3,6 +3,8 @@ package by.hospital.service.impl;
 import by.hospital.dao.GenericDAO;
 import by.hospital.dao.conditions.*;
 import by.hospital.domain.*;
+import by.hospital.domain.comparator.SortPrescriptionByExec;
+import by.hospital.domain.comparator.SortPrescriptionByPatient;
 import by.hospital.domain.enumeration.Post;
 import by.hospital.domain.enumeration.PrescriptionType;
 import by.hospital.exception.PersistentException;
@@ -36,6 +38,7 @@ public class PrescriptionServiceImpl implements PrescriptionService {
         List<Prescription> result = new ArrayList<>();
         try {
             result = prescriptionDao.FindByCondition(new QuantityMoreCompleted());
+            result.sort(new SortPrescriptionByPatient());
         } catch (PersistentException e) {
             logger.error("getAllNotDone()"+e.getLocalizedMessage());
         }
@@ -47,6 +50,7 @@ public class PrescriptionServiceImpl implements PrescriptionService {
         List<Prescription> list = new ArrayList<>();
         try {
             list = prescriptionDao.FindByCondition(new SickListID(sickList.getPrimaryKey()));
+            list.sort(new SortPrescriptionByExec());
         } catch (PersistentException e) {
             logger.error("findBySickList()"+e.getLocalizedMessage());
         }
@@ -58,6 +62,7 @@ public class PrescriptionServiceImpl implements PrescriptionService {
         List<Prescription> list = new ArrayList<>();
         try {
             list = prescriptionDao.FindByCondition(new SurveyHistoryID(surveyHistory.getPrimaryKey()));
+            list.sort(new SortPrescriptionByExec());
         } catch (PersistentException e) {
             logger.error("findBySurveyHistory()"+e.getLocalizedMessage());
         }
@@ -149,18 +154,29 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     @Override
     public Prescription savePrescription(Prescription prescription) {
         Prescription prescr=new Prescription();
-        if (prescription.getPrimaryKey()!=0){
-            try {
-                prescriptionDao.update(prescription);
-                prescr=prescriptionDao.getByPrimaryKey(prescription.getPrimaryKey());
-            } catch (PersistentException e) {
-                logger.error("savePrescription()"+e.getLocalizedMessage());
+        if (prescription.getQuantity()>=prescription.getCompleted()) {
+            if (prescription.getPrimaryKey() != 0) {
+                try {
+                    prescriptionDao.update(prescription);
+                    prescr = prescriptionDao.getByPrimaryKey(prescription.getPrimaryKey());
+                } catch (PersistentException e) {
+                    logger.error("savePrescription()" + e.getLocalizedMessage());
+                }
+            } else {
+                prescr = createNewPrescription(prescription);
             }
-        } else {
-            prescr=createNewPrescription(prescription);
         }
         return prescr;
     }
 
+    public List <PrescriptionExecution> getPrescriptionExecutionByPrescription(Prescription prescription){
+        List<PrescriptionExecution> list = new ArrayList<>();
+        try {
+            list=prescriptionExecutionDao.FindByCondition(new PrescriptionID(prescription.getPrimaryKey()));
+        } catch (PersistentException e) {
+            logger.error("Error getPrescriptionExecutionByPrescription "+e.getLocalizedMessage());
+        }
+        return list;
+    }
 
 }

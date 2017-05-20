@@ -27,5 +27,7 @@ public interface PrescriptionService {
 
     Prescription savePrescription(Prescription prescription);
 
+    List <PrescriptionExecution> getPrescriptionExecutionByPrescription(Prescription prescription);
+
 
 }

@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -18,19 +19,27 @@ import java.util.Set;
  * Created by Pasha on 10.05.2017.
  */
 public class OpenHospital implements Command {
+    private static Set<Post> roles = new HashSet<>();
+
+    static {
+        roles.add(Post.ADMINISTRATOR);
+        roles.add(Post.DOCTOR);
+        roles.add(Post.NURSE);
+    }
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = null;
         List<SickList> sickLists = ServiceLocator.getService(SickListService.class).findAllActive();
         List<Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).getAllNotDone();
-        request.setAttribute("sickLists",sickLists);
-        request.setAttribute("prescriptionList",prescriptionList);
+        request.setAttribute("sickLists", sickLists);
+        request.setAttribute("prescriptionList", prescriptionList);
         page = ConfigurationManager.getProperty("PAGE_HOSPITAL");
         return page;
     }
 
     @Override
     public Set<Post> getAllowPosts() {
-        return null;
+        return roles;
     }
 }

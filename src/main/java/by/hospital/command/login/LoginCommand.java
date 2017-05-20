@@ -4,6 +4,7 @@ import by.hospital.command.Command;
 import by.hospital.domain.*;
 import by.hospital.domain.enumeration.Post;
 import by.hospital.prop_managers.ConfigurationManager;
+import by.hospital.service.ConvertToMd5;
 import by.hospital.service.ServiceLocator;
 import by.hospital.service.api.*;
 
@@ -29,6 +30,7 @@ public class LoginCommand implements Command {
         //извлечение логина и пароля
         String login = request.getParameter(PARAM_NAME_LOGIN);
         String password = request.getParameter(PARAM_NAME_PASSWORD);
+        password= ConvertToMd5.md5Custom(password);
         // извлечение из БД пользователя с таким логином и паролем
         Staff findStaff = new Staff();
         findStaff.setLogin(login);

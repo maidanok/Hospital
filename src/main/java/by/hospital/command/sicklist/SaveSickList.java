@@ -77,9 +77,9 @@ public class SaveSickList implements Command {
         List<SickList> sickLists = ServiceLocator.getService(SickListService.class).findAllActive();
         List<Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).getAllNotDone();
         session.setAttribute("sickLists", sickLists);
-        session.setAttribute("prescriptionList",prescriptionList);
+        session.setAttribute("prescriptionList", prescriptionList);
 
-        request.setAttribute("isRedirect",true);
+        request.setAttribute("isRedirect", true);
         page = "hospital.html";
         return page;
     }

@@ -28,7 +28,6 @@ public class DeleteStaff implements Command {
 
     static {
         roles.add(Post.ADMINISTRATOR);
-        roles.add(Post.DOCTOR);
     }
 //TODO ошибка в SQL
     @Override
@@ -45,7 +44,7 @@ public class DeleteStaff implements Command {
         request.setAttribute("allPatient", allPatient);
         request.setAttribute("allStaff", allStaff);
         request.setAttribute("allDiagnose", allDiagnose);
-        page=ConfigurationManager.getProperty("PAGE_DIRECTORIES");
+        page = ConfigurationManager.getProperty("PAGE_DIRECTORIES");
         return page;
     }
 

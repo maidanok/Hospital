@@ -18,18 +18,18 @@ import java.util.List;
 /**
  * Created by Admin on 18.04.2017.
  */
-public class MySqlPrescriptionDao extends AbstractJDBCDao <Prescription, Integer> implements GenericDaoForPrescription {
+public class MySqlPrescriptionDao extends AbstractJDBCDao<Prescription, Integer> implements GenericDaoForPrescription {
     private Logger logger = Logger.getLogger(MySqlPrescriptionDao.class);
+
     public MySqlPrescriptionDao(Connection connection) {
         super(connection);
     }
 
     @Override
     public Prescription create() throws PersistentException {
-        Prescription prescription =new Prescription();
+        Prescription prescription = new Prescription();
         return prescription;
     }
-
 
 
     private class PersistPrescription extends Prescription {
@@ -73,9 +73,9 @@ public class MySqlPrescriptionDao extends AbstractJDBCDao <Prescription, Integer
 
     @Override
     protected String getUpdateQuery() {
-        return "UPDATE prescription\n" +
-                "SET\n" +
-                "prescription_type_id` = ? survey_history_id = ? description = ? quantity` = ?" +
+        return "UPDATE prescription \n" +
+                "SET \n" +
+                "prescription_type_id = ?, survey_history_id = ?, description = ?, quantity = ?\n" +
                 "WHERE prescription_id = ?;";
     }
 
@@ -85,8 +85,8 @@ public class MySqlPrescriptionDao extends AbstractJDBCDao <Prescription, Integer
     }
 
     @Override
-    protected List <Prescription> parseResultSet(ResultSet resultSet) throws PersistentException {
-        List <Prescription> result = new ArrayList<>();
+    protected List<Prescription> parseResultSet(ResultSet resultSet) throws PersistentException {
+        List<Prescription> result = new ArrayList<>();
         try {
             while (resultSet.next()) {
                 PersistPrescription persistP = new PersistPrescription();
@@ -148,12 +148,12 @@ public class MySqlPrescriptionDao extends AbstractJDBCDao <Prescription, Integer
     @Override
     protected void prepareStatementForInsert(PreparedStatement statement, Prescription object) throws PersistentException {
         try {
-            statement.setInt(1,object.getPrescriptionType().getId());
-            statement.setInt(2,object.getSurveyHistory().getPrimaryKey());
+            statement.setInt(1, object.getPrescriptionType().getId());
+            statement.setInt(2, object.getSurveyHistory().getPrimaryKey());
             statement.setString(3, object.getDescription());
-            statement.setInt(4,object.getQuantity());
+            statement.setInt(4, object.getQuantity());
         } catch (Exception e) {
-            logger.error("Error" + e.getLocalizedMessage());
+            logger.error("Error prepareStatementForInsert" + e.getLocalizedMessage());
             throw new PersistentException(e);
         }
     }
@@ -161,13 +161,13 @@ public class MySqlPrescriptionDao extends AbstractJDBCDao <Prescription, Integer
     @Override
     protected void prepareStatementForUpdate(PreparedStatement statement, Prescription object) throws PersistentException {
         try {
-            statement.setInt(1,object.getPrescriptionType().getId());
-            statement.setInt(2,object.getSurveyHistory().getPrimaryKey());
+            statement.setInt(1, object.getPrescriptionType().getId());
+            statement.setInt(2, object.getSurveyHistory().getPrimaryKey());
             statement.setString(3, object.getDescription());
-            statement.setInt(4,object.getQuantity());
-            statement.setInt(5,object.getPrimaryKey());
+            statement.setInt(4, object.getQuantity());
+            statement.setInt(5, object.getPrimaryKey());
         } catch (Exception e) {
-            logger.error("Error" + e.getLocalizedMessage());
+            logger.error("Error prepareStatementForUpdate " + e.getLocalizedMessage());
             throw new PersistentException(e);
         }
     }

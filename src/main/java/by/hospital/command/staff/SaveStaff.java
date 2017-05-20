@@ -6,6 +6,7 @@ import by.hospital.domain.Patient;
 import by.hospital.domain.Staff;
 import by.hospital.domain.enumeration.Gender;
 import by.hospital.domain.enumeration.Post;
+import by.hospital.service.ConvertToMd5;
 import by.hospital.service.ServiceLocator;
 import by.hospital.service.api.DiagnoseService;
 import by.hospital.service.api.PatientService;
@@ -73,11 +74,11 @@ public class SaveStaff implements Command {
         }
         String login = request.getParameter(PARAM_STAFF_LOGIN);
         String password = request.getParameter(PARAM_STAFF_PASSWORD);
+        password= ConvertToMd5.md5Custom(password);
         Boolean fierd = Boolean.getBoolean(request.getParameter(PARAM_STAFF_FIRED));
 
         HttpSession session = request.getSession(false);
         Staff user = (Staff) session.getAttribute("user");
-
 
 
         if (id != 0) {
@@ -108,8 +109,8 @@ public class SaveStaff implements Command {
         List<Diagnose> allDiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();
 
 
-        if (user.getPrimaryKey()==staff.getPrimaryKey()){
-            session.setAttribute("user",staff);
+        if (user.getPrimaryKey() == staff.getPrimaryKey()) {
+            session.setAttribute("user", staff);
         }
 
         session.setAttribute("allPatient", allPatient);

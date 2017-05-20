@@ -2,6 +2,7 @@ package by.hospital.command.prescription;
 
 import by.hospital.command.Command;
 import by.hospital.domain.Prescription;
+import by.hospital.domain.PrescriptionExecution;
 import by.hospital.domain.SurveyHistory;
 import by.hospital.domain.enumeration.Post;
 import by.hospital.domain.enumeration.PrescriptionType;
@@ -16,13 +17,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
  * Created by Admin on 14.05.2017.
  */
 public class EditPrescription implements Command {
-    Logger logger = Logger.getLogger(EditPrescription.class);
+
     private static final String PARAM_PRESCRIPTION_ID = "id";
     private static final String PARAM_PRESCRIPTION_SURVEY_ID = "shid";
 
@@ -30,7 +32,6 @@ public class EditPrescription implements Command {
     private static Set<Post> roles = new HashSet<>();
 
     static {
-        roles.add(Post.ADMINISTRATOR);
         roles.add(Post.DOCTOR);
     }
 
@@ -46,14 +47,16 @@ public class EditPrescription implements Command {
             surveyHistory = ServiceLocator.getService(SurveyHistoryService.class).getSurveyHistory(surveyHistory);
             prescription.setSurveyHistory(surveyHistory);
 
-        }else {
+        } else {
             prescription.setPrimaryKey(prescriptionID);
-            prescription=ServiceLocator.getService(PrescriptionService.class).getPrescription(prescription);
+            prescription = ServiceLocator.getService(PrescriptionService.class).getPrescription(prescription);
+            List<PrescriptionExecution> executions = ServiceLocator.getService(PrescriptionService.class).getPrescriptionExecutionByPrescription(prescription);
+            request.setAttribute("executions", executions);
         }
 
-        request.setAttribute("prescription",prescription);
+        request.setAttribute("prescription", prescription);
         request.setAttribute("types", PrescriptionType.values());
-        page= ConfigurationManager.getProperty("PAGE_PRESCRIPTION");
+        page = ConfigurationManager.getProperty("PAGE_PRESCRIPTION");
         return page;
     }
 

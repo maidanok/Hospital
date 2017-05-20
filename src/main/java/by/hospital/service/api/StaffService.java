@@ -20,8 +20,6 @@ public interface StaffService {
 
     Staff getStaff(Staff staff);
 
-    Staff returnStaffShort(Staff staff);
-
     boolean deleteStaff(Staff staff);
 
     void saveStaff(Staff staff);

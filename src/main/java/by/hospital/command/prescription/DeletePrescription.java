@@ -25,26 +25,26 @@ public class DeletePrescription implements Command {
     private static final String PARAM_PRESCRIPTION_ID = "id";
 
     static {
-        roles.add(Post.ADMINISTRATOR);
         roles.add(Post.DOCTOR);
     }
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = null;
         int prescriptionID = Integer.parseInt(request.getParameter(PARAM_PRESCRIPTION_ID));
         Prescription prescription = new Prescription();
         prescription.setPrimaryKey(prescriptionID);
-        prescription= ServiceLocator.getService(PrescriptionService.class).getPrescription(prescription);
+        prescription = ServiceLocator.getService(PrescriptionService.class).getPrescription(prescription);
         ServiceLocator.getService(PrescriptionService.class).deletePrescription(prescription);
 
         List<Diagnose> alldiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();
-        List<Prescription> prescriptionList =ServiceLocator.getService(PrescriptionService.class).
+        List<Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).
                 findBySurveyHistory(prescription.getSurveyHistory());
-        request.setAttribute("surveyHistory",prescription.getSurveyHistory());
-        request.setAttribute("prescriptionList",prescriptionList);
-        request.setAttribute("alldiagnose",alldiagnose);
+        request.setAttribute("surveyHistory", prescription.getSurveyHistory());
+        request.setAttribute("prescriptionList", prescriptionList);
+        request.setAttribute("alldiagnose", alldiagnose);
 
-        page= ConfigurationManager.getProperty("PAGE_SURVEY");
+        page = ConfigurationManager.getProperty("PAGE_SURVEY");
         return page;
     }
 

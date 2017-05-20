@@ -22,12 +22,12 @@ import java.util.Set;
  * Created by Pasha on 15.05.2017.
  */
 public class ExecutePrescriptionList implements Command {
+
     private static final String PARAM_PRESCRIPTION_ID = "id";
 
     private static Set<Post> roles = new HashSet<>();
 
     static {
-        roles.add(Post.ADMINISTRATOR);
         roles.add(Post.DOCTOR);
         roles.add(Post.NURSE);
     }

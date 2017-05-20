@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/HTML4/strict.dtd">
+<!doctype html>
 <%@ tag language="java" pageEncoding="UTF-8" %>
 <%@ attribute name="css" required="false" rtexprvalue="true" type="java.lang.String"%>
 <%@ attribute name="javascript" required="false" rtexprvalue="true" type="java.lang.String"%>

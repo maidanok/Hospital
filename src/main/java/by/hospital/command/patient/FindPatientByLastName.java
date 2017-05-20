@@ -24,11 +24,12 @@ import java.util.Set;
  */
 public class FindPatientByLastName implements Command {
     Logger logger = Logger.getLogger(FindPatientByLastName.class);
-    private static final String PARAM_PATIENT_FIRSNAME="firstname";
+    private static final String PARAM_PATIENT_FIRSNAME = "firstname";
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = null;
-        String firstName=request.getParameter(PARAM_PATIENT_FIRSNAME);
+        String firstName = request.getParameter(PARAM_PATIENT_FIRSNAME);
         Patient patient = new Patient();
         patient.setLastName(firstName);
 
@@ -36,10 +37,10 @@ public class FindPatientByLastName implements Command {
         List<Staff> allStaff = ServiceLocator.getService(StaffService.class).getAllStaff();
         List<Diagnose> allDiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();
 
-        request.setAttribute("allPatient",allPatient);
+        request.setAttribute("allPatient", allPatient);
         request.setAttribute("allStaff", allStaff);
         request.setAttribute("allDiagnose", allDiagnose);
-        page= ConfigurationManager.getProperty("PAGE_DIRECTORIES");
+        page = ConfigurationManager.getProperty("PAGE_DIRECTORIES");
         return page;
     }
 
