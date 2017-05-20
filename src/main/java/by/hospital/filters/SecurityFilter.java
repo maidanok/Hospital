@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -55,7 +54,7 @@ public class SecurityFilter implements Filter {
             }else {
                 String message = "Accessdenied";
                 request.setAttribute("message",message);
-                logger.info(String.format("Trying of %s access to forbidden resource \"%s\"", userName, command));
+                logger.info(String.format("Trying of access to forbidden resource \"%s\"", userName, command));
                 httpServletRequest.getServletContext().getRequestDispatcher("/"+ConfigurationManager.getProperty("PAGE_LOGIN")).forward(request,response);
             }
         } else {

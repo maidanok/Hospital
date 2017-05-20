@@ -52,7 +52,7 @@ public class FindSickListByCondition implements Command {
         }
 
         List<SickList> sickLists = ServiceLocator.getService(SickListService.class).
-                findByPatientAndDAte(firstName, DateConvertor.getInstanse().convert(dateIN));
+                findByPatientAndDAte(firstName, DateConvertor.convert(dateIN));
         List<Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).getAllNotDone();
         request.setAttribute("prescriptionList", prescriptionList);
         request.setAttribute("sickLists", sickLists);

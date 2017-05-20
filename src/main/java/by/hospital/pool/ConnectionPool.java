@@ -100,7 +100,7 @@ public class ConnectionPool {
         } catch (SQLException ex) {
             //logger.error("Can't create a new connection: " + ex.getLocalizedMessage());
             logger.error(
-                    "Oops... Can't create a new connection. Contact the developer." + ex.getLocalizedMessage());
+                    "Can't create a new connection. Contact the developer." + ex.getLocalizedMessage());
             try {
                 if (con != null)
                     con.close();
@@ -125,7 +125,7 @@ public class ConnectionPool {
                 instance = new ConnectionPool(5, 15, DB_URL, DB_USER, DB_PASSWORD);
             }
         } catch (SQLException e) {
-            //logger.error("Can't create a new connection: " + e.getLocalizedMessage());
+            logger.error("Can't create a new connection: " + e.getLocalizedMessage());
         }
         return instance;
     }

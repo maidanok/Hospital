@@ -27,7 +27,7 @@ public class MySqlDaoFactory implements DaoFactory<Connection> {
         try {
             return this.connectionPool.getConnection();
         } catch (Exception var2) {
-            logger.error("getContext"+var2.getLocalizedMessage());
+            logger.error("getContext "+var2.getLocalizedMessage());
             throw new PersistentException(var2);
         }
     }

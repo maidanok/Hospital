@@ -167,7 +167,7 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
     }
 
     public List<Type> FindByCondition(Condition condition) throws PersistentException {
-        List<Type> list=new ArrayList<>();
+        List<Type> list = new ArrayList<>();
         String sql = getSelectedQuery();
         sql += condition.getValue();
         try {
@@ -191,11 +191,5 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
             return null;
         }
         return new java.sql.Date(date.getTime());
-    }
-
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
-        connection.close();
     }
 }

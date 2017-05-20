@@ -7,11 +7,13 @@ import by.hospital.domain.*;
 import by.hospital.exception.PersistentException;
 import by.hospital.service.api.*;
 import by.hospital.service.impl.*;
+import org.apache.log4j.Logger;
 
 /**
  * Created by Admin on 06.05.2017.
  */
 public class ServiceInitializer {
+    static Logger logger = Logger.getLogger(ServiceInitializer.class);
     public static void init() {
         ServiceLocator locator = new ServiceLocator();
         MySqlDaoFactory mySqlDaoFactory = MySqlDaoFactory.getInstance();
@@ -39,7 +41,7 @@ public class ServiceInitializer {
             locator.registerService(StaffService.class,staffService);
             locator.registerService(SurveyHistoryService.class,surveyHistoryService);
         } catch (PersistentException e) {
-            e.printStackTrace();
+            logger.error("ServiceInitializer error init "+e.getLocalizedMessage());
         }
         ServiceLocator.setLocator(locator);
     }

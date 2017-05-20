@@ -12,7 +12,6 @@ public interface DaoFactory<Context> {
 
 
     interface DaoCreator<Context> {
-
         public GenericDAO create(Context context);
     }
 

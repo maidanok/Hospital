@@ -13,7 +13,7 @@ public class ConvertToMd5 {
     static Logger logger = Logger.getLogger(ConvertToMd5.class);
 
     public static String md5Custom(String password) {
-        if (password==null){
+        if (password == null) {
             return "";
         }
         MessageDigest messageDigest = null;
@@ -24,7 +24,7 @@ public class ConvertToMd5 {
             messageDigest.update(password.getBytes());
             digest = messageDigest.digest();
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            logger.error(e.getLocalizedMessage());
         }
 
         BigInteger bigInt = new BigInteger(1, digest);
