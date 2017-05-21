@@ -10,7 +10,7 @@ import by.hospital.exception.PersistentException;
 // Фабрика объектов для работы с базой данных
 public interface DaoFactory<Context> {
 
-
+//соз
     interface DaoCreator<Context> {
         public GenericDAO create(Context context);
     }

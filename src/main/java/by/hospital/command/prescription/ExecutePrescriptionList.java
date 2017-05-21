@@ -29,7 +29,6 @@ public class ExecutePrescriptionList implements Command {
 
     static {
         roles.add(Post.DOCTOR);
-        roles.add(Post.NURSE);
     }
 
     @Override

@@ -4,7 +4,6 @@
 <%@taglib tagdir ="/WEB-INF/tags" prefix = "t"%>
 <fmt:requestEncoding value="UTF-8"/>
 <c:set var="locale" value="${not empty language ? language : pageContext.request.locale}" scope="session"/>
-<fmt:requestEncoding value="UTF-8"/>
 <fmt:setLocale value="${locale}" />
 <fmt:setBundle basename="language"/>
 <t:html>
@@ -59,7 +58,8 @@
             </table>
         </div>
 
-
+<c:set var="userrole" value="${user.getPost()}"/>
+    <c:if test="${userrole eq 'ADMINISTRATOR'}">
         <div title=<fmt:message key='staff'/> style="padding:10px">
             <h3><fmt:message key='staff'/></h3>
             <a href="controller?COMMAND=EditStaff&id=0" class="easyui-linkbutton" data-options="iconCls:'icon-add'"><fmt:message key='add'/></a>
@@ -100,6 +100,7 @@
                 </c:forEach>
             </table>
         </div>
+    </c:if>
         <div title=<fmt:message key='diagnosis'/> style="padding:10px">
             <h3><fmt:message key='diagnosis'/></h3>
             <a href="controller?COMMAND=EditDiagnose&id=0" class="easyui-linkbutton" data-options="iconCls:'icon-add'"><fmt:message key='add'/></a>

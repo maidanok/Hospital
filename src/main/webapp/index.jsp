@@ -17,17 +17,12 @@ pageEncoding="UTF-8"%>
 <c:if test="${not empty user}">
     <c:set var="role" value="${user.getPost()}"/>
     <c:if test="${role eq 'ADMINISTRATOR'}">
-        <jsp:forward page="${context }/WEB-INF/jsp/directories.jsp"></jsp:forward>
+        <jsp:forward page="controller?COMMAND=OpenDirectories"></jsp:forward>
     </c:if>
-    <c:if test="${role eq 'DOCTOR'}">
-        <jsp:forward page="${context }/WEB-INF/jsp/hospital.jsp"></jsp:forward>
-    </c:if>
-    <c:if test="${role eq 'NURSE'}">
-        <jsp:forward page="${context }/WEB-INF/jsp/hospital.jsp"></jsp:forward>
+    <c:if test="${role eq 'DOCTOR' or role eq 'NURSE'}">
+        <jsp:forward page="controller?COMMAND=OpenHospital"></jsp:forward>
     </c:if>
 </c:if>
-
-
 <jsp:forward page="${context }/WEB-INF/jsp/login.jsp"></jsp:forward>
 </body>
 </html>

@@ -23,6 +23,7 @@ public class MySqlDaoFactory implements DaoFactory<Connection> {
     private Map<Class, DaoCreator> creators = new HashMap();
     private static MySqlDaoFactory instance = null;
 
+    //возвращает новое соединение
     public Connection getContext() throws PersistentException {
         try {
             return this.connectionPool.getConnection();
@@ -31,6 +32,7 @@ public class MySqlDaoFactory implements DaoFactory<Connection> {
             throw new PersistentException(var2);
         }
     }
+
 
     public GenericDAO getDao(Connection connection, Class dtoClass) throws PersistentException {
         DaoCreator creator = (DaoCreator) this.creators.get(dtoClass);

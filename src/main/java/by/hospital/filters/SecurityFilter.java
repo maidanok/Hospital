@@ -55,7 +55,7 @@ public class SecurityFilter implements Filter {
                 String message = "Accessdenied";
                 request.setAttribute("message",message);
                 logger.info(String.format("Trying of access to forbidden resource \"%s\"", userName, command));
-                httpServletRequest.getServletContext().getRequestDispatcher("/"+ConfigurationManager.getProperty("PAGE_LOGIN")).forward(request,response);
+                httpServletRequest.getServletContext().getRequestDispatcher("/"+ConfigurationManager.getProperty("PAGE_ERROR")).forward(request,response);
             }
         } else {
             logger.error("It is impossible to use HTTP filter");
