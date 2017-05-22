@@ -77,8 +77,9 @@ public class SaveStaff implements Command {
             logger.error("SaveStaff error parse date "+e.getLocalizedMessage());
         }
         String login = request.getParameter(PARAM_STAFF_LOGIN);
+
         String password = request.getParameter(PARAM_STAFF_PASSWORD);
-        password = ConvertToMd5.md5Custom(password);
+
 
 
         String getfired = request.getParameter(PARAM_STAFF_FIRED);
@@ -93,6 +94,13 @@ public class SaveStaff implements Command {
         if (id != 0) {
             staff.setPrimaryKey(id);
             staff = ServiceLocator.getService(StaffService.class).getStaff(staff);
+        }
+            logger.info("staff pass "+staff.getPassword());
+            logger.info("new pass "+password);
+
+        if(!staff.getPassword().equals(password)){
+            logger.info("i am run");
+            password = ConvertToMd5.md5Custom(password);
         }
 
         if (user.getPost().equals(Post.ADMINISTRATOR)) {
@@ -112,7 +120,6 @@ public class SaveStaff implements Command {
         staff.setFired(fired);
 
         if ((user.getPost().equals(Post.ADMINISTRATOR)) || (user.getPrimaryKey() == staff.getPrimaryKey())) {
-            logger.info("save staff");
             ServiceLocator.getService(StaffService.class).saveStaff(staff);
             if (user.getPrimaryKey() == staff.getPrimaryKey()) {
                 session.setAttribute("user", staff);
