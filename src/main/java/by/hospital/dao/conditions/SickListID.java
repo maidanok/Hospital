@@ -5,7 +5,7 @@ package by.hospital.dao.conditions;
  */
 public class SickListID extends Condition {
 
-    public SickListID(int value){
+    public SickListID(int value) {
         super(value);
     }
 

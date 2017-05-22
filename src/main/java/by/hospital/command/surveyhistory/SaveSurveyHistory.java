@@ -57,13 +57,14 @@ public class SaveSurveyHistory implements Command {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Date surveydate = null;
         try {
-            surveydate = formatter.parse(date);
+            if (date != "") {
+                surveydate = formatter.parse(date);
+            } else surveydate = new Date();
         } catch (ParseException e) {
             logger.error("Error date " + e.getLocalizedMessage());
         }
         String description = request.getParameter(PARAM_SURVEY_HISTORY_DESCRIPTION);
         String isDischarge = request.getParameter(PARAM_DISCHARGE);
-        logger.info("isDischarge =" + isDischarge);
         SurveyHistory surveyHistory = new SurveyHistory();
         surveyHistory.setPrimaryKey(surveyID);
         surveyHistory.getSickList().setPrimaryKey(sickListID);
@@ -86,7 +87,7 @@ public class SaveSurveyHistory implements Command {
         }
 
         List<SurveyHistory> surveyHistoryList = ServiceLocator.getService(SurveyHistoryService.class).
-                getAllbySickList(surveyHistory.getSickList());
+                getAllBySickList(surveyHistory.getSickList());
         List<Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).
                 findBySickList(surveyHistory.getSickList());
         List<Diagnose> alldiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();

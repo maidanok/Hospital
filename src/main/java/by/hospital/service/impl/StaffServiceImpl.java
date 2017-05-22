@@ -8,6 +8,7 @@ import by.hospital.dao.mysql.MySqlStaffDao;
 import by.hospital.domain.PrescriptionExecution;
 import by.hospital.domain.Staff;
 import by.hospital.domain.SurveyHistory;
+import by.hospital.domain.comparator.SortPersonByFirstName;
 import by.hospital.exception.PersistentException;
 import by.hospital.service.api.StaffService;
 import org.apache.log4j.Logger;
@@ -75,6 +76,7 @@ public class StaffServiceImpl implements StaffService {
         List<Staff> result = new ArrayList<>();
         try {
             result = staffDao.getAll();
+            result.sort(new SortPersonByFirstName());
         } catch (PersistentException e) {
             logger.error("getAllStaff()" + e.getLocalizedMessage());
         }
@@ -128,6 +130,7 @@ public class StaffServiceImpl implements StaffService {
         List<Staff> list = new ArrayList<>();
         try {
             list = staffDao.FindByCondition(new NotFieldStaff(false));
+            list.sort(new SortPersonByFirstName());
         } catch (PersistentException e) {
             logger.error("getAllNotField()" + e.getLocalizedMessage());
         }

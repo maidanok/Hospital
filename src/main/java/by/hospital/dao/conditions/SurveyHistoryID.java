@@ -5,7 +5,7 @@ package by.hospital.dao.conditions;
  */
 public class SurveyHistoryID extends Condition {
 
-    public SurveyHistoryID(int value){
+    public SurveyHistoryID(int value) {
         super(value);
     }
 

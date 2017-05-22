@@ -41,7 +41,6 @@ public class NewSurveyHistory implements Command {
         int sickListID = Integer.parseInt(request.getParameter(PARAM_SICK_LIST_ID));
         HttpSession session = request.getSession(false);
 
-
         Staff staff = (Staff) session.getAttribute("user");
 
         if (staff == null) {
@@ -54,7 +53,7 @@ public class NewSurveyHistory implements Command {
         sickList = ServiceLocator.getService(SickListService.class).getSickList(sickList);
         surveyHistory.setSickList(sickList);
         surveyHistory.setStaff(staff);
-        Date date = java.sql.Date.valueOf(LocalDate.now());
+        Date date = new Date();
         surveyHistory.setSurveyDate(date);
         surveyHistory.setDiagnose(sickList.getFinalDiagnose());
         List<Diagnose> alldiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();

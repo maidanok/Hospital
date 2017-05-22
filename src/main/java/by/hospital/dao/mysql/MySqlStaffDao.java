@@ -56,28 +56,29 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
     protected String getCreateQuery() {
         return
                 "INSERT INTO hospital.person (first_name, last_name, middle_name, birthday, sex, address, passport_number)\n" +
-                "VALUE (?, ?, ?, ?, ?, ?, ?);\n" +
-                "INSERT INTO hospital.staff (post_id, login, password, person_id)\n" +
-                "VALUE ((SELECT post_id FROM posts WHERE post_name = ?), ?, ?,\n" +
-                "(SELECT person_id FROM person WHERE person_id = last_insert_id()));";
+                        "VALUE (?, ?, ?, ?, ?, ?, ?);\n" +
+                        "INSERT INTO hospital.staff (post_id, login, password, person_id)\n" +
+                        "VALUE ((SELECT post_id FROM posts WHERE post_name = ?), ?, ?,\n" +
+                        "(SELECT person_id FROM person WHERE person_id = last_insert_id()));";
     }
 
     @Override
     protected String getUpdateQuery() {
         return
                 "UPDATE staff, person \n" +
-                "SET post_id = ?, login = ?, password = ?, fired = ?,\n" +
-                "first_name = ?, last_name = ?, middle_name = ?, birthday = ?, sex = ?, address = ?, passport_number = ?\n" +
-                "WHERE staff.person_id = person.person_id and staff.person_id = ? ;";
+                        "SET post_id = ?, login = ?, password = ?, fired = ?,\n" +
+                        "first_name = ?, last_name = ?, middle_name = ?, birthday = ?, sex = ?, address = ?, passport_number = ?\n" +
+                        "WHERE staff.person_id = person.person_id and staff.person_id = ? ;";
     }
 
     @Override
     protected String getDeleteQuery() {
         return
                 "DELETE FROM staff WHERE person_id = ?;\n" +
-                "DELETE FROM person WHERE person_id = ?; ";
+                        "DELETE FROM person WHERE person_id = ?; ";
     }
 
+    //переопределены методы persist и delete для работы с транзакциями
     public Staff persist(Staff entity) throws PersistentException {
         if (!entity.getPrimaryKey().equals(0)) {
             throw new PersistentException("Object is already persist.");
@@ -120,6 +121,7 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
         return persistInstanse;
     }
 
+
     public void delete(Staff staff) {
         String sql = getDeleteQuery();
         try {
@@ -140,6 +142,7 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
     }
 
 
+    //метод переопределен так как обновление производится в 2 таблицы
     public void update(Staff entity) throws PersistentException {
 
         String sql = getUpdateQuery();
@@ -181,13 +184,6 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
         return result;
     }
 
-    /*               "START TRANSACTION;\n" +
-                            "INSERT INTO person (first_name, last_name, middle_name, birthday, sex, address, passport_number)\n" +
-                            "VALUE ('1', '2', '3', '2010-11-11', 'MALE', '12', '123');\n" +
-                            "INSERT INTO staff (post_id, login, password, person_id)\n" +
-                            "VALUE ((SELECT post_id FROM posts WHERE post_name = 'ADMINISTRATOR'), '1', '1',\n" +
-                            "(SELECT person_id FROM person WHERE person_id = last_insert_id()));\n" +
-                            "COMMIT;";*/
     @Override
     protected void prepareStatementForInsert(PreparedStatement statement, Staff object) throws PersistentException {
         try {
@@ -207,14 +203,7 @@ public class MySqlStaffDao extends AbstractJDBCDao<Staff, Integer> implements Ge
         }
     }
 
-    /*"START TRANSACTION;" +
-            "UPDATE staff\n" +
-            "SET login = ?, password = ?, fired = ?\n" +
-            "WHERE person_id = ?;" +
-            "UPDATE person \n" +
-            "SET first_name = ?, last_name = ?, middle_name = ?, birthday = ?, sex = ?, address = ?, passport_number = ?\n" +
-            "WHERE person_id = ?;\n" +
-            "COMMIT;";*/
+
     @Override
     protected void prepareStatementForUpdate(PreparedStatement statement, Staff object) throws PersistentException {
         try {

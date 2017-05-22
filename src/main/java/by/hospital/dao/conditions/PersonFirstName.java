@@ -7,7 +7,7 @@ public class PersonFirstName extends Condition {
     private String value;
 
     public PersonFirstName(String firstName) {
-        value=firstName;
+        value = firstName;
     }
 
     @Override

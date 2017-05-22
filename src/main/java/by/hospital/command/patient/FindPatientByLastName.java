@@ -23,7 +23,7 @@ import java.util.Set;
  * Created by Pasha on 12.05.2017.
  */
 public class FindPatientByLastName implements Command {
-    Logger logger = Logger.getLogger(FindPatientByLastName.class);
+
     private static final String PARAM_PATIENT_FIRSNAME = "firstname";
 
     @Override
@@ -33,7 +33,7 @@ public class FindPatientByLastName implements Command {
         Patient patient = new Patient();
         patient.setLastName(firstName);
 
-        List<Patient> allPatient = ServiceLocator.getService(PatientService.class).FindLastName(patient);
+        List<Patient> allPatient = ServiceLocator.getService(PatientService.class).findLastName(patient);
         List<Staff> allStaff = ServiceLocator.getService(StaffService.class).getAllStaff();
         List<Diagnose> allDiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();
 

@@ -46,13 +46,13 @@ public class FindSickListByCondition implements Command {
             try {
                 dateIN = formatter.parse(date);
             } catch (ParseException e) {
-                logger.error("Date Parse error" + date + "not parse");
+                logger.error("FindSickListByCondition date Parse error" + date + "not parse");
                 logger.error(e.getLocalizedMessage());
             }
         }
 
         List<SickList> sickLists = ServiceLocator.getService(SickListService.class).
-                findByPatientAndDAte(firstName, DateConvertor.getInstanse().convert(dateIN));
+                findByPatientAndDAte(firstName, DateConvertor.convert(dateIN));
         List<Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).getAllNotDone();
         request.setAttribute("prescriptionList", prescriptionList);
         request.setAttribute("sickLists", sickLists);

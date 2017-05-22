@@ -44,7 +44,7 @@ public class MySqlSurveyHistoryDao extends AbstractJDBCDao<SurveyHistory, Intege
     @Override
     protected String getSelectedQuery() {
         return "SELECT\n" +
-/*пациент*/                "person.person_id, person.first_name, person.last_name, person.middle_name, person.birthday, person.sex, person.address, person.passport_number,\n" +
+/*patient*/                "person.person_id, person.first_name, person.last_name, person.middle_name, person.birthday, person.sex, person.address, person.passport_number,\n" +
 /*sick_list*/                "sick_list.sick_list_id, date_in, date_out, room, symptoms,\n" +
 /*final_diagnose*/                "final_diagnose_id, findiagn.diagnose_name as findiagn_name, findiagn.therapy as findiagn_therapy,\n" +
 /*survey_history*/                "survey_history_id, survey_date, survey_description,\n" +

@@ -5,6 +5,7 @@ import by.hospital.dao.conditions.FirstNameLike;
 import by.hospital.dao.conditions.PersonPersonID;
 import by.hospital.domain.Patient;
 import by.hospital.domain.SickList;
+import by.hospital.domain.comparator.SortPersonByFirstName;
 import by.hospital.exception.PersistentException;
 import by.hospital.service.api.PatientService;
 import org.apache.log4j.Logger;
@@ -51,31 +52,21 @@ public class PatientServiceImpl implements PatientService {
         return patient;
     }
 
-    @Override
-    public Patient returnPatientShort(Patient pat) {
-        Patient patien = null;
-        try {
-            Patient patient = patientDao.getByPrimaryKey(pat.getPrimaryKey());
-            patient.setPassportNumber(null);
-            patient.setAddress(null);
-        } catch (PersistentException e) {
-            logger.error("returnPatientShort()" + e.getLocalizedMessage());
-        }
-        return patien;
-    }
 
     @Override
     public List<Patient> getALLPatients() {
+        List<Patient> list = new ArrayList<>();
         try {
-            return patientDao.getAll();
+            list = patientDao.getAll();
+            list.sort(new SortPersonByFirstName());
         } catch (PersistentException e) {
             logger.error("getALLPatients()" + e.getLocalizedMessage());
         }
-        return null;
+        return list;
     }
 
     @Override
-    public List<Patient> FindLastName(Patient patient) {
+    public List<Patient> findLastName(Patient patient) {
         try {
             if (patient.getLastName() != "") {
                 return patientDao.FindByCondition(new FirstNameLike(patient.getLastName()));
@@ -83,7 +74,7 @@ public class PatientServiceImpl implements PatientService {
                 return patientDao.getAll();
             }
         } catch (PersistentException e) {
-            logger.error("FindLastName()" + e.getLocalizedMessage());
+            logger.error("findLastName()" + e.getLocalizedMessage());
         }
         return new ArrayList<Patient>();
     }

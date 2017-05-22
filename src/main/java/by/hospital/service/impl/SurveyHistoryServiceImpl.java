@@ -34,12 +34,12 @@ public class SurveyHistoryServiceImpl implements SurveyHistoryService {
     }
 
     @Override
-    public List<SurveyHistory> getAllbySickList(SickList sickList) {
+    public List<SurveyHistory> getAllBySickList(SickList sickList) {
         List<SurveyHistory> surveyHistoryList = new ArrayList<>();
         try {
             surveyHistoryList = surveyHistoryDao.FindByCondition(new SickListID(sickList.getPrimaryKey()));
         } catch (PersistentException e) {
-            logger.error("getAllbySickList()" + e.getLocalizedMessage());
+            logger.error("getAllBySickList()" + e.getLocalizedMessage());
         }
         return surveyHistoryList;
     }
@@ -98,7 +98,7 @@ public class SurveyHistoryServiceImpl implements SurveyHistoryService {
 
     @Override
     public SurveyHistory saveSurveyHistory(SurveyHistory surveyHistory) {
-        if (surveyHistory.getSurveyDate().after(new Date())){
+        if (surveyHistory.getSurveyDate().after(new Date())) {
             return surveyHistory;
         }
         try {

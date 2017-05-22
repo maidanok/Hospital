@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface SurveyHistoryService {
 
-    List<SurveyHistory> getAllbySickList(SickList sickList);
+    List<SurveyHistory> getAllBySickList(SickList sickList);
 
     SurveyHistory getSurveyHistory(SurveyHistory surveyHistory);
 

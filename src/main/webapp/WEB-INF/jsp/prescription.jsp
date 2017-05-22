@@ -4,7 +4,6 @@
 <%@taglib tagdir ="/WEB-INF/tags" prefix = "t"%>
 <fmt:requestEncoding value="UTF-8"/>
 <c:set var="locale" value="${not empty language ? language : pageContext.request.locale}" scope="session"/>
-<fmt:requestEncoding value="UTF-8"/>
 <fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="language"/>
 <t:html>

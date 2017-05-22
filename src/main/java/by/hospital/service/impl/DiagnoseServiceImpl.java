@@ -33,7 +33,7 @@ public class DiagnoseServiceImpl implements DiagnoseService {
         try {
             newDiagnose = diagnoseDao.persist(diagnose);
         } catch (PersistentException e) {
-            logger.error("createNewDiagnose()"+e.getLocalizedMessage());
+            logger.error("createNewDiagnose()" + e.getLocalizedMessage());
         }
         return newDiagnose;
     }
@@ -41,9 +41,9 @@ public class DiagnoseServiceImpl implements DiagnoseService {
     @Override
     public Diagnose getDiagnose(Diagnose diagnose) {
         try {
-            diagnose=diagnoseDao.getByPrimaryKey(diagnose.getPrimaryKey());
+            diagnose = diagnoseDao.getByPrimaryKey(diagnose.getPrimaryKey());
         } catch (PersistentException e) {
-            logger.error("getDiagnose()"+e.getLocalizedMessage());
+            logger.error("getDiagnose()" + e.getLocalizedMessage());
         }
         return diagnose;
     }
@@ -53,14 +53,14 @@ public class DiagnoseServiceImpl implements DiagnoseService {
         try {
             return diagnoseDao.getAll();
         } catch (PersistentException e) {
-            logger.error("getAll()"+e.getLocalizedMessage());
+            logger.error("getAll()" + e.getLocalizedMessage());
         }
         return null;
     }
 
     @Override
     public boolean deleteDiagnose(Diagnose diagnose) {
-        if (diagnose.getPrimaryKey()==0){
+        if (diagnose.getPrimaryKey() == 0) {
             return false;
         }
         try {
@@ -70,21 +70,21 @@ public class DiagnoseServiceImpl implements DiagnoseService {
                 return true;
             }
         } catch (PersistentException e) {
-            logger.error("deleteDiagnose()"+e.getLocalizedMessage());
+            logger.error("deleteDiagnose()" + e.getLocalizedMessage());
         }
         return false;
     }
 
     @Override
     public void saveDiagnose(Diagnose diagnose) {
-        if (diagnose.getPrimaryKey()!=0){
+        if (diagnose.getPrimaryKey() != 0) {
             try {
                 diagnoseDao.update(diagnose);
             } catch (PersistentException e) {
-                logger.error("saveDiagnose()"+e.getLocalizedMessage());
+                logger.error("saveDiagnose()" + e.getLocalizedMessage());
             }
         }
-        if (diagnose.getPrimaryKey()==0){
+        if (diagnose.getPrimaryKey() == 0) {
             createNewDiagnose(diagnose);
         }
     }

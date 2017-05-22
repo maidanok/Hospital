@@ -10,13 +10,12 @@ import by.hospital.exception.PersistentException;
 // Фабрика объектов для работы с базой данных
 public interface DaoFactory<Context> {
 
-
+//создает нужное дао и принимает контекст для MySql - connection
     interface DaoCreator<Context> {
-
         public GenericDAO create(Context context);
     }
 
-    //возвращает подключение к БД
+    //возвращает подключение к данным MySql - connection
     Context getContext() throws PersistentException;
 
     //возвращает объект для управления персистентным состояние объекта

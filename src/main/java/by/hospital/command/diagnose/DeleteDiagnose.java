@@ -37,11 +37,13 @@ public class DeleteDiagnose implements Command {
         int id = Integer.parseInt(request.getParameter(PARAM_DIAGNOSE_ID));
         Diagnose diagnose = new Diagnose();
         diagnose.setPrimaryKey(id);
+
         ServiceLocator.getService(DiagnoseService.class).deleteDiagnose(diagnose);
 
         List<Patient> allPatient = ServiceLocator.getService(PatientService.class).getALLPatients();
         List<Staff> allStaff = ServiceLocator.getService(StaffService.class).getAllStaff();
         List<Diagnose> allDiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();
+
         request.setAttribute("allPatient", allPatient);
         request.setAttribute("allStaff", allStaff);
         request.setAttribute("allDiagnose", allDiagnose);

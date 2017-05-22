@@ -49,6 +49,7 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
     */
     protected abstract void prepareStatementForUpdate(PreparedStatement statement, Type object) throws PersistentException;
 
+    //создание новой записи в базу
     public Type persist(Type entity) throws PersistentException {
         if (!entity.getPrimaryKey().equals(0)) {
             throw new PersistentException("Object is already persist.");
@@ -87,6 +88,7 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
         return persistInstanse;
     }
 
+    //обновление существующей записи
     @Override
     public void update(Type entity) throws PersistentException {
 
@@ -107,6 +109,7 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
         }
     }
 
+    //удаление записи из базы
     @Override
     public void delete(Type entity) throws PersistentException {
         String sql = getDeleteQuery();
@@ -124,6 +127,7 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
         }
     }
 
+    //поиск по первичному ключу
     @Override
     public Type getByPrimaryKey(Integer primaryKey) throws PersistentException {
         List<Type> list;
@@ -149,6 +153,7 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
         return list.iterator().next();
     }
 
+    //выдать все
     @Override
     public List<Type> getAll() throws PersistentException {
         List<Type> list;
@@ -166,8 +171,10 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
         return list;
     }
 
+    //поиск по условию
+    @Override
     public List<Type> FindByCondition(Condition condition) throws PersistentException {
-        List<Type> list=new ArrayList<>();
+        List<Type> list = new ArrayList<>();
         String sql = getSelectedQuery();
         sql += condition.getValue();
         try {
@@ -191,11 +198,5 @@ public abstract class AbstractJDBCDao<Type extends Entity<PrimaryKey>, PrimaryKe
             return null;
         }
         return new java.sql.Date(date.getTime());
-    }
-
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
-        connection.close();
     }
 }

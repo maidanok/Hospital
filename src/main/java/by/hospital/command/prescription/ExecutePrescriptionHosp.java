@@ -36,12 +36,12 @@ public class ExecutePrescriptionHosp implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = null;
-
         int prescriptionID = Integer.parseInt(request.getParameter(PARAM_PRESCRIPTION_ID));
         HttpSession session = request.getSession(false);
         Staff staff = (Staff) session.getAttribute("user");
         Prescription prescription = new Prescription();
         prescription.setPrimaryKey(prescriptionID);
+        prescription = ServiceLocator.getService(PrescriptionService.class).getPrescription(prescription);
         ServiceLocator.getService(PrescriptionService.class).executePrescription(prescription, staff);
         List<SickList> sickLists = ServiceLocator.getService(SickListService.class).findAllActive();
         List<Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).getAllNotDone();

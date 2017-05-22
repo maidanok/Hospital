@@ -4,7 +4,6 @@
 <%@taglib tagdir ="/WEB-INF/tags" prefix = "t"%>
 <fmt:requestEncoding value="UTF-8"/>
 <c:set var="locale" value="${not empty language ? language : pageContext.request.locale}" scope="session"/>
-<fmt:requestEncoding value="UTF-8"/>
 <fmt:setLocale value="${locale}" />
 <fmt:setBundle basename="language"/>
 <t:html>
@@ -67,7 +66,6 @@
         </div>
 
         <div title=<fmt:message key='prescriptions.name'/> style="padding:10px">
-            <form>
                 <a href="controller?COMMAND=EditPrescription&shid=${surveyHistory.getPrimaryKey()}&id=0"
                    class="easyui-linkbutton" data-options="iconCls:'icon-add'"><fmt:message key='add'/></a>
                 <div style="margin:20px 0;"></div>
@@ -80,6 +78,8 @@
                         <th class="my-th"><fmt:message key='action'/></th>
                     </tr>
                     <c:forEach items="${prescriptionList}" var="prescription">
+                        <c:set var="quantity" value="${prescription.getQuantity()}"/>
+                        <c:set var="completed" value="${prescription.getCompleted()}"/>
                         <tr>
                             <td class="my-td">
                                 <fmt:formatDate pattern="dd/MM/yyyy"
@@ -89,19 +89,14 @@
                             <td class="my-td">${prescription.getPrescriptionType().getName()}</td>
                             <td class="my-td">${prescription.getDescription()}</td>
                             <td class="my-td">
-                                <c:set var="quantity" value="${prescription.getQuantity()}"/>
-                                <c:set var="completed" value="${prescription.getCompleted()}"/>
                                 <c:if test="${quantity >completed}">
-                                    <form style="float:left" id="exp${prescription.getPrimaryKey()}" method="post"
-                                          action="controller?COMMAND=ExecutePrescriptionSurvey">
+                                    <form style="float:left" id="exp${prescription.getPrimaryKey()}" method="post" action="controller?COMMAND=ExecutePrescriptionSurvey">
                                         <input type="hidden" name="id" value="${prescription.getPrimaryKey()}">
-                                        <a href="javascript:void(0)" class="easyui-linkbutton"
-                                           onclick="submitForm('exp${prescription.getPrimaryKey()}')"
-                                           data-options="iconCls:'icon-ok'"></a>
+                                        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm('exp${prescription.getPrimaryKey()}')" data-options="iconCls:'icon-ok'"></a>
                                     </form>
                                 </c:if>
-                                <a href="controller?COMMAND=EditPrescription&id=${prescription.getPrimaryKey()}"
-                                   class="easyui-linkbutton" data-options="iconCls:'icon-edit'" style="float:left"></a>
+                                <a style="float:left" href="controller?COMMAND=EditPrescription&id=${prescription.getPrimaryKey()}"
+                                   class="easyui-linkbutton" data-options="iconCls:'icon-edit'"></a>
                                 <form style="float:left" id="delp${prescription.getPrimaryKey()}" method="post"
                                       action="controller?COMMAND=DeletePrescription">
                                     <input type="hidden" name="id" value="${prescription.getPrimaryKey()}">
@@ -109,6 +104,7 @@
                                        onclick="submitForm('delp${prescription.getPrimaryKey()}')"
                                        data-options="iconCls:'icon-cancel'"></a>
                                 </form>
+                            </td>
                         </tr>
                     </c:forEach>
                 </table>
@@ -117,7 +113,6 @@
                        data-options="iconCls:'icon-ok'" class="easyui-linkbutton" onclick=" "
                        style="width:80px">ОК</a>
                 </div>
-            </form>
         </div>
     </div>
 </t:html>

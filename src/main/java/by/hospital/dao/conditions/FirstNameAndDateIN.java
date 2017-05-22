@@ -9,14 +9,14 @@ public class FirstNameAndDateIN extends Condition {
     private String name;
     private Date dateIn;
 
-    public FirstNameAndDateIN(String name, Date dateIn){
+    public FirstNameAndDateIN(String name, Date dateIn) {
         super();
-        this.name=name;
-        this.dateIn=dateIn;
+        this.name = name;
+        this.dateIn = dateIn;
     }
 
     @Override
     public String getValue() {
-        return " WHERE first_name like '" + name +"%' AND date_in = '" + dateIn + "';";
+        return " WHERE first_name like '" + name + "%' AND date_in = '" + dateIn + "';";
     }
 }

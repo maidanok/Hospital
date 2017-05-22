@@ -6,14 +6,15 @@ package by.hospital.dao.conditions;
 public class LoginAndPassword extends Condition {
     private String log, pass;
 
-    public LoginAndPassword(String log,String pass){
+    public LoginAndPassword(String log, String pass) {
         super();
-        this.log=log;
-        this.pass=pass;
+        this.log = log;
+        this.pass = pass;
 
     }
+
     @Override
     public String getValue() {
-        return " WHERE login='"+log+"' AND password='"+pass+"';";
+        return " WHERE login='" + log + "' AND password='" + pass + "';";
     }
 }

@@ -27,7 +27,6 @@ public class ConnectionPool {
     private static final String DB_DRIVER = ConnectionManager.getProperty("DB_DRIVER");
 
 
-
     private ConnectionPool(int minPool, int maxPool, String url, String user, String password) throws SQLException {
         this.minPool = minPool;
         this.maxPool = maxPool;
@@ -74,6 +73,7 @@ public class ConnectionPool {
         } else if (used.size() < maxPool) {
             pooledConnection = createConnectionWrapper();
         } else {
+            logger.error("Unable to create a connection");
             throw new RuntimeException("Unable to create a connection");
         }
         used.add(pooledConnection);
@@ -98,9 +98,9 @@ public class ConnectionPool {
                 warning = warning.getNextWarning();
             }
         } catch (SQLException ex) {
-            //logger.error("Can't create a new connection: " + ex.getLocalizedMessage());
+            logger.error("Can't create a new connection: " + ex.getLocalizedMessage());
             logger.error(
-                    "Oops... Can't create a new connection. Contact the developer." + ex.getLocalizedMessage());
+                    "Can't create a new connection. Contact the developer." + ex.getLocalizedMessage());
             try {
                 if (con != null)
                     con.close();
@@ -109,7 +109,7 @@ public class ConnectionPool {
             }
             throw ex;
         } catch (ClassNotFoundException e) {
-            logger.error("ClassNotFoundException "+e.getLocalizedMessage());
+            logger.error("ClassNotFoundException " + e.getLocalizedMessage());
         }
         return pcon;
     }
@@ -125,7 +125,7 @@ public class ConnectionPool {
                 instance = new ConnectionPool(5, 15, DB_URL, DB_USER, DB_PASSWORD);
             }
         } catch (SQLException e) {
-            //logger.error("Can't create a new connection: " + e.getLocalizedMessage());
+            logger.error("Can't create a new connection: " + e.getLocalizedMessage());
         }
         return instance;
     }

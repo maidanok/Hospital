@@ -6,7 +6,7 @@ import by.hospital.domain.enumeration.Post;
  * Created by Pasha on 12.04.2017.
  */
 public class Staff extends Person implements Entity<Integer> {
-    private int staffID=0;
+    private int staffID = 0;
     private Post post;
     private String login;
     private String password;
@@ -28,7 +28,7 @@ public class Staff extends Person implements Entity<Integer> {
     }
 
     public void setPost(String post) {
-        this.post =Post.valueOf(post);
+        this.post = Post.valueOf(post);
     }
 
     public String getLogin() {

@@ -4,7 +4,7 @@ package by.hospital.domain;
  * Created by Pasha on 10.04.2017.
  */
 public class Patient extends Person implements Entity<Integer> {
-    private int patientID=0;
+    private int patientID = 0;
 
 
     @Override
@@ -12,12 +12,12 @@ public class Patient extends Person implements Entity<Integer> {
         return patientID;
     }
 
-    public void setPrimaryKey(int primaryKey){
-        patientID=primaryKey;
+    public void setPrimaryKey(int primaryKey) {
+        patientID = primaryKey;
     }
 
 
-    public String toString(){
+    public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Patient[").append(patientID).append("]").append("\n");
         stringBuilder.append("First Name ").append(getFirstName()).append("\n");

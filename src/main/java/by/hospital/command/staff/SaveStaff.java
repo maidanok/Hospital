@@ -6,6 +6,7 @@ import by.hospital.domain.Patient;
 import by.hospital.domain.Staff;
 import by.hospital.domain.enumeration.Gender;
 import by.hospital.domain.enumeration.Post;
+import by.hospital.service.ConvertToMd5;
 import by.hospital.service.ServiceLocator;
 import by.hospital.service.api.DiagnoseService;
 import by.hospital.service.api.PatientService;
@@ -67,14 +68,24 @@ public class SaveStaff implements Command {
         String getDate = request.getParameter(PARAM_STAFF_BIRTDAY);
         Date birthday = null;
         try {
-            birthday = formatter.parse(getDate);
+            if (getDate != "") {
+                birthday = formatter.parse(getDate);
+            }else {
+                birthday=new Date();
+            }
         } catch (ParseException e) {
-            e.printStackTrace();
+            logger.error("SaveStaff error parse date "+e.getLocalizedMessage());
         }
         String login = request.getParameter(PARAM_STAFF_LOGIN);
         String password = request.getParameter(PARAM_STAFF_PASSWORD);
-        Boolean fierd = Boolean.getBoolean(request.getParameter(PARAM_STAFF_FIRED));
+        password = ConvertToMd5.md5Custom(password);
 
+
+        String getfired = request.getParameter(PARAM_STAFF_FIRED);
+        boolean fired = false;
+        if (getfired != null) {
+            fired = true;
+        }
         HttpSession session = request.getSession(false);
         Staff user = (Staff) session.getAttribute("user");
 
@@ -98,18 +109,18 @@ public class SaveStaff implements Command {
         staff.setLogin(login);
         staff.setPassportNumber(passport);
         staff.setBirthday(birthday);
-        staff.setFired(fierd);
+        staff.setFired(fired);
 
-        ServiceLocator.getService(StaffService.class).saveStaff(staff);
-
+        if ((user.getPost().equals(Post.ADMINISTRATOR)) || (user.getPrimaryKey() == staff.getPrimaryKey())) {
+            logger.info("save staff");
+            ServiceLocator.getService(StaffService.class).saveStaff(staff);
+            if (user.getPrimaryKey() == staff.getPrimaryKey()) {
+                session.setAttribute("user", staff);
+            }
+        }
         List<Patient> allPatient = ServiceLocator.getService(PatientService.class).getALLPatients();
         List<Staff> allStaff = ServiceLocator.getService(StaffService.class).getAllStaff();
         List<Diagnose> allDiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();
-
-
-        if (user.getPrimaryKey() == staff.getPrimaryKey()) {
-            session.setAttribute("user", staff);
-        }
 
         session.setAttribute("allPatient", allPatient);
         session.setAttribute("allStaff", allStaff);

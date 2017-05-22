@@ -4,6 +4,7 @@ import by.hospital.command.Command;
 import by.hospital.domain.*;
 import by.hospital.domain.enumeration.Post;
 import by.hospital.prop_managers.ConfigurationManager;
+import by.hospital.service.ConvertToMd5;
 import by.hospital.service.ServiceLocator;
 import by.hospital.service.api.*;
 
@@ -26,10 +27,11 @@ public class LoginCommand implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = null;
 
-        //извлечение логина и пароля
+
         String login = request.getParameter(PARAM_NAME_LOGIN);
         String password = request.getParameter(PARAM_NAME_PASSWORD);
-        // извлечение из БД пользователя с таким логином и паролем
+        password = ConvertToMd5.md5Custom(password);
+
         Staff findStaff = new Staff();
         findStaff.setLogin(login);
         findStaff.setPassword(password);
@@ -38,7 +40,7 @@ public class LoginCommand implements Command {
         staff = ServiceLocator.getService(StaffService.class).findByLogPass(findStaff);
         if (staff.getPrimaryKey() != 0) {
             session.setAttribute("user", staff);
-            // в зависимости от роли определение странички пользователя
+
             if ((staff.getPost() == Post.DOCTOR) || (staff.getPost() == Post.NURSE)) {
                 List<SickList> sickLists = ServiceLocator.getService(SickListService.class).findAllActive();
                 List<Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).getAllNotDone();

@@ -5,12 +5,10 @@ pageEncoding="UTF-8"%>
 <%@taglib tagdir ="/WEB-INF/tags" prefix = "t"%>
 <fmt:requestEncoding value="UTF-8" />
 <c:set var="locale" value="${not empty language ? language : pageContext.request.locale}" scope="session"/>
-<fmt:requestEncoding value="UTF-8"/>
 <fmt:setLocale value="${locale}" />
 <fmt:setBundle basename="language"/>
 <t:html>
     <t:header/>
-
     <div class="easyui-panel" title="${diagnose.getDiagnoseName()}" style="width:100%;max-width:500px;padding:30px 60px;">
         <form id="ff" method="post" action = "controller?COMMAND=SaveDiagnose">
             <input type="hidden" name="id" value="${diagnose.getPrimaryKey()}">

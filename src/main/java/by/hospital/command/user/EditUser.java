@@ -30,11 +30,16 @@ public class EditUser implements Command {
         String page;
         HttpSession session = request.getSession(false);
         Staff staff = (Staff) session.getAttribute("user");
-        request.setAttribute("staff", staff);
-        request.setAttribute("posts", Post.values());
-        session.setAttribute("isUser", true);
-        page = ConfigurationManager.getProperty("PAGE_STAFF");
-        return page;
+        if (staff != null) {
+            request.setAttribute("staff", staff);
+            request.setAttribute("posts", Post.values());
+            session.setAttribute("isUser", true);
+            page = ConfigurationManager.getProperty("PAGE_STAFF");
+            return page;
+        } else {
+            page = ConfigurationManager.getProperty("PAGE_LOGIN");
+            return page;
+        }
     }
 
     @Override

@@ -11,6 +11,7 @@ import by.hospital.service.ServiceLocator;
 import by.hospital.service.api.DiagnoseService;
 import by.hospital.service.api.PrescriptionService;
 import by.hospital.service.api.SurveyHistoryService;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +32,6 @@ public class ExecutePrescriptionSurvey implements Command {
 
     static {
         roles.add(Post.DOCTOR);
-        roles.add(Post.NURSE);
     }
 
     @Override
@@ -44,6 +44,7 @@ public class ExecutePrescriptionSurvey implements Command {
         prescription.setPrimaryKey(prescriptionID);
         prescription = ServiceLocator.getService(PrescriptionService.class).getPrescription(prescription);
         ServiceLocator.getService(PrescriptionService.class).executePrescription(prescription, staff);
+
         SurveyHistory surveyHistory;
         surveyHistory = ServiceLocator.getService(SurveyHistoryService.class).
                 getSurveyHistory(prescription.getSurveyHistory());

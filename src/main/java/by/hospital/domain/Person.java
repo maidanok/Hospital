@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * Created by Admin on 16.04.2017.
  */
-public abstract class Person implements Entity<Integer>{
+public abstract class Person implements Entity<Integer> {
     private String firstName;
     private String lastName;
     private String middleName;
@@ -17,14 +17,14 @@ public abstract class Person implements Entity<Integer>{
     private String address;
     private String passportNumber;
 
-    public Person(){
-        firstName="";
-        lastName="";
-        middleName="";
-        address="";
-        passportNumber="";
-        sex=Gender.MALE;
-        birthday= java.sql.Date.valueOf(LocalDate.now());
+    public Person() {
+        firstName = "";
+        lastName = "";
+        middleName = "";
+        address = "";
+        passportNumber = "";
+        sex = Gender.MALE;
+        birthday = java.sql.Date.valueOf(LocalDate.now());
     }
 
     public String getFirstName() {
@@ -51,7 +51,7 @@ public abstract class Person implements Entity<Integer>{
         this.middleName = middleName;
     }
 
-    public String getFullName(){
+    public String getFullName() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(getFirstName()).append(" ").append(getLastName()).append(" ").append(getMiddleName());
         return stringBuilder.toString();

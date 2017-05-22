@@ -5,9 +5,10 @@ package by.hospital.dao.conditions;
  */
 public class PrescriptionID extends Condition {
 
-    public PrescriptionID(int value){
+    public PrescriptionID(int value) {
         super(value);
     }
+
     @Override
     public String getValue() {
         return " WHERE prescription_id = " + value + ";";

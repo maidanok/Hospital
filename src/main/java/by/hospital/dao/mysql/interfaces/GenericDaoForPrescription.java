@@ -6,6 +6,6 @@ import by.hospital.domain.Prescription;
 /**
  * Created by Pasha on 19.04.2017.
  */
-public interface GenericDaoForPrescription extends GenericDAO <Prescription, Integer> {
+public interface GenericDaoForPrescription extends GenericDAO<Prescription, Integer> {
 
 }

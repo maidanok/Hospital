@@ -6,19 +6,20 @@ import by.hospital.domain.enumeration.PrescriptionType;
  * Created by Pasha on 12.04.2017.
  */
 public class Prescription implements Entity<Integer> {
-    private int prescriptionID=0;
+    private int prescriptionID = 0;
     private PrescriptionType prescriptionType;
     private SurveyHistory surveyHistory;
     private String description;
     private int quantity;
     private int completed;
 
-    public Prescription(){
-        surveyHistory=new SurveyHistory();
-        quantity=1;
-        completed=0;
-        description="";
+    public Prescription() {
+        surveyHistory = new SurveyHistory();
+        quantity = 1;
+        completed = 0;
+        description = "";
     }
+
     public int getCompleted() {
         return completed;
     }

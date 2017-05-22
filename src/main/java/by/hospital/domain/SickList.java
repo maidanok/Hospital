@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by Pasha on 10.04.2017.
  */
 public class SickList implements Entity<Integer> {
-    private int sickListID=0;
+    private int sickListID = 0;
     private Patient patient;
     private Date dateIN;
     private Date dateOUT;
@@ -85,7 +85,7 @@ public class SickList implements Entity<Integer> {
         stringBuilder.append("Date out ").append(getDateOUT()).append("\n");
         stringBuilder.append("Room ").append(getRoom()).append("\n");
         stringBuilder.append("Symptoms ").append(getSymptoms()).append("\n");
-        stringBuilder.append("Discharge ").append(getDateOUT()==null ? "не выписан" : "выписан").append("\n");
+        stringBuilder.append("Discharge ").append(getDateOUT() == null ? "не выписан" : "выписан").append("\n");
         stringBuilder.append("DiagnoseService ").append(getFinalDiagnose()).append("\n");
         return stringBuilder.toString();
     }

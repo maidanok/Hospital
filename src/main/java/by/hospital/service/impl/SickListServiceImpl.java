@@ -6,6 +6,7 @@ import by.hospital.domain.Diagnose;
 import by.hospital.domain.Patient;
 import by.hospital.domain.SickList;
 import by.hospital.domain.SurveyHistory;
+import by.hospital.domain.comparator.SortSickListByRoom;
 import by.hospital.exception.PersistentException;
 import by.hospital.service.api.SickListService;
 import org.apache.log4j.Logger;
@@ -19,12 +20,12 @@ import java.util.List;
  */
 public class SickListServiceImpl implements SickListService {
     private Logger logger = Logger.getLogger(SickListService.class);
-    private GenericDAO<SurveyHistory,Integer> surveyHistoryDao;
-    private GenericDAO<SickList,Integer> sickListDao;
+    private GenericDAO<SurveyHistory, Integer> surveyHistoryDao;
+    private GenericDAO<SickList, Integer> sickListDao;
 
-    public SickListServiceImpl(GenericDAO<SickList,Integer> sickListDao,GenericDAO<SurveyHistory,Integer> surveyHistoryDao) throws PersistentException {
-        this.sickListDao=sickListDao;
-        this.surveyHistoryDao=surveyHistoryDao;
+    public SickListServiceImpl(GenericDAO<SickList, Integer> sickListDao, GenericDAO<SurveyHistory, Integer> surveyHistoryDao) throws PersistentException {
+        this.sickListDao = sickListDao;
+        this.surveyHistoryDao = surveyHistoryDao;
     }
 
     @Override
@@ -32,8 +33,9 @@ public class SickListServiceImpl implements SickListService {
         List<SickList> result = null;
         try {
             result = sickListDao.FindByCondition(new DateOutNotNull());
+            result.sort(new SortSickListByRoom());
         } catch (PersistentException e) {
-           logger.error("findAllActive()"+e.getLocalizedMessage());
+            logger.error("findAllActive()" + e.getLocalizedMessage());
         }
         return result;
     }
@@ -41,9 +43,9 @@ public class SickListServiceImpl implements SickListService {
     @Override
     public SickList getSickList(SickList sickList) {
         try {
-            sickList=sickListDao.getByPrimaryKey(sickList.getPrimaryKey());
+            sickList = sickListDao.getByPrimaryKey(sickList.getPrimaryKey());
         } catch (PersistentException e) {
-            logger.error("getSickList()"+e.getLocalizedMessage());
+            logger.error("getSickList()" + e.getLocalizedMessage());
         }
         return sickList;
     }
@@ -54,7 +56,7 @@ public class SickListServiceImpl implements SickListService {
         try {
             result = sickListDao.FindByCondition(new PersonPersonID(patient.getPrimaryKey()));
         } catch (PersistentException e) {
-            logger.error("findByPatient()"+e.getLocalizedMessage());
+            logger.error("findByPatient()" + e.getLocalizedMessage());
         }
         return result;
     }
@@ -63,39 +65,39 @@ public class SickListServiceImpl implements SickListService {
     public List<SickList> findByPatientAndDAte(String patientFirstName, Date dateIn) {
         List<SickList> result = null;
         try {
-            if (patientFirstName!=null&&dateIn!=null){
-                result=sickListDao.FindByCondition(new FirstNameAndDateIN(patientFirstName,dateIn));
+            if (patientFirstName != null && dateIn != null) {
+                result = sickListDao.FindByCondition(new FirstNameAndDateIN(patientFirstName, dateIn));
                 return result;
-            }else {
-                if (patientFirstName==null&&dateIn!=null){
-                    result=sickListDao.FindByCondition(new DateIN(dateIn));
+            } else {
+                if (patientFirstName == null && dateIn != null) {
+                    result = sickListDao.FindByCondition(new DateIN(dateIn));
                     return result;
-                }else {
-                    if (patientFirstName!=null&&dateIn==null){
-                        result=sickListDao.FindByCondition(new FirstNameLike(patientFirstName));
+                } else {
+                    if (patientFirstName != null && dateIn == null) {
+                        result = sickListDao.FindByCondition(new FirstNameLike(patientFirstName));
                         return result;
                     } else {
-                        result=findAllActive();
+                        result = findAllActive();
                         return result;
                     }
                 }
             }
         } catch (PersistentException e) {
-            logger.error("findByPatientAndDAte()()"+e.getLocalizedMessage());
+            logger.error("findByPatientAndDAte()()" + e.getLocalizedMessage());
         }
         return result;
     }
 
     @Override
-    public SickList createNewSickIst(SickList sickList){
+    public SickList createNewSickIst(SickList sickList) {
         SickList newSickList = new SickList();
-        if (sickList.getDateIN().after(new Date())){
+        if (sickList.getDateIN().after(new Date())) {
             return newSickList;
         }
         try {
-            newSickList=sickListDao.persist(sickList);
+            newSickList = sickListDao.persist(sickList);
         } catch (PersistentException e) {
-            logger.error("createNewSickIst()"+e.getLocalizedMessage());
+            logger.error("createNewSickIst()" + e.getLocalizedMessage());
         }
         return newSickList;
     }
@@ -108,33 +110,32 @@ public class SickListServiceImpl implements SickListService {
                 sickListDao.delete(sickListDao.getByPrimaryKey(sickList.getPrimaryKey()));
                 return true;
             }
-        }catch (PersistentException e){
-            logger.error("deleteSickList()"+e.getLocalizedMessage());
+        } catch (PersistentException e) {
+            logger.error("deleteSickList()" + e.getLocalizedMessage());
         }
         return false;
     }
 
     @Override
     public List<SickList> findByDiagnoseID(Diagnose diagnose) {
-        List<SickList> list=new ArrayList<>();
+        List<SickList> list = new ArrayList<>();
         try {
-            list= sickListDao.FindByCondition(new FindFinalDiagnoseID(diagnose.getPrimaryKey()));
+            list = sickListDao.FindByCondition(new FindFinalDiagnoseID(diagnose.getPrimaryKey()));
         } catch (PersistentException e) {
-            logger.error("findByDiagnoseID()"+e.getLocalizedMessage());
+            logger.error("findByDiagnoseID()" + e.getLocalizedMessage());
         }
         return list;
     }
 
     @Override
     public void saveSickList(SickList sickList) {
-        if (sickList.getPrimaryKey()!=0&&sickList.getDateIN().before(new Date())){
+        if (sickList.getPrimaryKey() != 0 && sickList.getDateIN().before(new Date())) {
             try {
                 sickListDao.update(sickList);
             } catch (PersistentException e) {
-                logger.error("saveSickList()"+e.getLocalizedMessage());
+                logger.error("saveSickList()" + e.getLocalizedMessage());
             }
-        }
-        else {
+        } else {
             createNewSickIst(sickList);
         }
     }

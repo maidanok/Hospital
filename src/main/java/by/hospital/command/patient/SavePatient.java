@@ -60,9 +60,13 @@ public class SavePatient implements Command {
         String getDate = request.getParameter(PARAM_PATIENT_BIRTDAY);
         Date birthday = null;
         try {
-            birthday = formatter.parse(getDate);
+            if (getDate!="") {
+                birthday = formatter.parse(getDate);
+            }else {
+                birthday=new Date();
+            }
         } catch (ParseException e) {
-            logger.error("Parse error " + e.getLocalizedMessage());
+            logger.error("SavePatient parse date error " + e.getLocalizedMessage());
         }
 
         Patient patient = new Patient();

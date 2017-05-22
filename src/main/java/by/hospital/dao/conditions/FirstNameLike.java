@@ -5,7 +5,7 @@ package by.hospital.dao.conditions;
  */
 public class FirstNameLike extends Condition {
 
-    public FirstNameLike (String value){
+    public FirstNameLike(String value) {
         super(value);
     }
 

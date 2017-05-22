@@ -8,6 +8,7 @@ import by.hospital.service.ServiceLocator;
 import by.hospital.service.api.DiagnoseService;
 import by.hospital.service.api.PrescriptionService;
 import by.hospital.service.api.SurveyHistoryService;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,14 +23,12 @@ import java.util.Set;
  * Created by Pasha on 15.05.2017.
  */
 public class ExecutePrescriptionList implements Command {
-
     private static final String PARAM_PRESCRIPTION_ID = "id";
 
     private static Set<Post> roles = new HashSet<>();
 
     static {
         roles.add(Post.DOCTOR);
-        roles.add(Post.NURSE);
     }
 
     @Override
@@ -41,10 +40,12 @@ public class ExecutePrescriptionList implements Command {
         Prescription prescription = new Prescription();
         prescription.setPrimaryKey(prescriptionID);
         prescription = ServiceLocator.getService(PrescriptionService.class).getPrescription(prescription);
-        ServiceLocator.getService(PrescriptionService.class).executePrescription(prescription, staff);
-        List<SurveyHistory> surveyHistoryList = ServiceLocator.getService(SurveyHistoryService.class).getAllbySickList(prescription.getSurveyHistory().getSickList());
-        List<Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).findBySickList(prescription.getSurveyHistory().getSickList());
 
+        ServiceLocator.getService(PrescriptionService.class).executePrescription(prescription, staff);
+        prescription = ServiceLocator.getService(PrescriptionService.class).getPrescription(prescription);
+
+        List<SurveyHistory> surveyHistoryList = ServiceLocator.getService(SurveyHistoryService.class).getAllBySickList(prescription.getSurveyHistory().getSickList());
+        List<Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).findBySickList(prescription.getSurveyHistory().getSickList());
         List<Diagnose> alldiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();
 
         request.setAttribute("sickList", prescription.getSurveyHistory().getSickList());

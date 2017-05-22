@@ -43,7 +43,7 @@ public class EditSickList implements Command {
         sickList.setPrimaryKey(sicklistID);
         sickList = ServiceLocator.getService(SickListService.class).getSickList(sickList);
 
-        List<SurveyHistory> surveyHistoryList = ServiceLocator.getService(SurveyHistoryService.class).getAllbySickList(sickList);
+        List<SurveyHistory> surveyHistoryList = ServiceLocator.getService(SurveyHistoryService.class).getAllBySickList(sickList);
         List<Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).findBySickList(sickList);
 
         List<Diagnose> alldiagnose = ServiceLocator.getService(DiagnoseService.class).getAll();

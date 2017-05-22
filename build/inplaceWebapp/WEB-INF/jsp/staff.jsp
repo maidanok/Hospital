@@ -4,7 +4,6 @@
 <%@taglib tagdir ="/WEB-INF/tags" prefix = "t"%>
 <fmt:requestEncoding value="UTF-8"/>
 <c:set var="locale" value="${not empty language ? language : pageContext.request.locale}" scope="session"/>
-<fmt:requestEncoding value="UTF-8"/>
 <fmt:setLocale value="${locale}" />
 <fmt:setBundle basename="language"/>
 <t:html>
@@ -79,8 +78,9 @@
                        data-options="label:'<fmt:message key='password'/>:',required:true" value="${staff.getPassword()}">
             </div>
             <div style="margin-bottom:20px">
-                <input type="checkbox" name="fired"
-                <c:if test="{$staff.isFired()}">
+                <c:set var="fired" value="${staff.isFired()}"/>
+                <input type="checkbox" name="fired" value="true"
+                <c:if test="${fired eq 'true'}">
                     <c:out value='checked="checked"'/>
                 </c:if>
                 ><fmt:message key='dismissed'/><br>

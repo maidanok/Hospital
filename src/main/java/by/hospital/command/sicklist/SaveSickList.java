@@ -31,6 +31,7 @@ public class SaveSickList implements Command {
     private static final String PARAM_SICK_LIST_ID = "id";
     private static final String PARAM_SICK_LIST_PATIENTID = "patientid";
     private static final String PARAM_SICK_LIST_DATEIN = "datein";
+    private static final String PARAM_SICK_LIST_DATEOUT = "dateout1";
     private static final String PARAM_SICK_LIST_ROOM = "room";
     private static final String PARAM_SICK_LIST_SYMPTOMS = "symptoms";
     private static final String PARAM_SICK_LIST_F_DIAGNOSE_ID = "diagnose";
@@ -52,9 +53,21 @@ public class SaveSickList implements Command {
         Date dateIn = null;
         String getDateIN = request.getParameter(PARAM_SICK_LIST_DATEIN);
         try {
-            dateIn = formatter.parse(getDateIN);
+            if (getDateIN != "") {
+                dateIn = formatter.parse(getDateIN);
+            } else dateIn = new Date();
         } catch (ParseException e) {
-            logger.error("Error date " + e.getLocalizedMessage());
+            logger.error("Error dateIn " + e.getLocalizedMessage());
+        }
+
+        Date dateOut = null;
+        String getDateOUT = request.getParameter(PARAM_SICK_LIST_DATEOUT);
+        if ((getDateOUT != null) && (getDateOUT != "")) {
+            try {
+                dateOut = formatter.parse(getDateOUT);
+            } catch (ParseException e) {
+                logger.error("Error dateOut " + e.getLocalizedMessage());
+            }
         }
         String room = request.getParameter(PARAM_SICK_LIST_ROOM);
         String symptoms = request.getParameter(PARAM_SICK_LIST_SYMPTOMS);
@@ -68,6 +81,7 @@ public class SaveSickList implements Command {
         sickList.setPrimaryKey(sickListID);
         sickList.setPatient(patient);
         sickList.setDateIN(dateIn);
+        sickList.setDateOUT(dateOut);
         sickList.setRoom(room);
         sickList.setSymptoms(symptoms);
         sickList.setFinalDiagnose(diagnose);

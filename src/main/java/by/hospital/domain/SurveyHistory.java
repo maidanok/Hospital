@@ -5,19 +5,20 @@ import java.util.Date;
 /**
  * Created by Pasha on 12.04.2017.
  */
-public class SurveyHistory implements Entity <Integer>{
-    private int surveyHistoryID=0;
+public class SurveyHistory implements Entity<Integer> {
+    private int surveyHistoryID = 0;
     private SickList sickList;
     private Diagnose diagnose;
     private Staff staff;
     private Date surveyDate;
     private String description;
 
-    public SurveyHistory(){
+    public SurveyHistory() {
         sickList = new SickList();
         diagnose = new Diagnose();
-        staff=new Staff();
+        staff = new Staff();
     }
+
     @Override
     public Integer getPrimaryKey() {
         return surveyHistoryID;
@@ -25,7 +26,7 @@ public class SurveyHistory implements Entity <Integer>{
 
     @Override
     public void setPrimaryKey(int primaryKey) {
-        surveyHistoryID=primaryKey;
+        surveyHistoryID = primaryKey;
     }
 
     public SickList getSickList() {
@@ -68,7 +69,7 @@ public class SurveyHistory implements Entity <Integer>{
         this.description = description;
     }
 
-    public String toString(){
+    public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("SurveyHistory №").append(getPrimaryKey()).append("\n");
         stringBuilder.append("Date ").append(getSurveyDate()).append("\n");

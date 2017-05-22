@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -21,6 +20,7 @@ import java.util.Set;
  */
 public class SecurityFilter implements Filter {
     private static Logger logger = Logger.getLogger(SecurityFilter.class);
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -39,24 +39,24 @@ public class SecurityFilter implements Filter {
 
             Staff user = new Staff();
             String userName = "unauthorized user";
-            if(session!=null){
+            if (session != null) {
                 user = (Staff) session.getAttribute("user");
             }
             boolean access = false;
-            if (user!=null && allowPost != null) {
+            if (user != null && allowPost != null) {
                 access = allowPost.contains(user.getPost());
                 userName = user.getLogin();
             }
             if (allowPost == null) {
                 access = true;
             }
-            if(access){
-                chain.doFilter(request,response);
-            }else {
+            if (access) {
+                chain.doFilter(request, response);
+            } else {
                 String message = "Accessdenied";
-                request.setAttribute("message",message);
-                logger.info(String.format("Trying of %s access to forbidden resource \"%s\"", userName, command));
-                httpServletRequest.getServletContext().getRequestDispatcher("/"+ConfigurationManager.getProperty("PAGE_LOGIN")).forward(request,response);
+                request.setAttribute("message", message);
+                logger.info(String.format("Trying of access to forbidden resource \"%s\"", userName, command));
+                httpServletRequest.getServletContext().getRequestDispatcher("/" + ConfigurationManager.getProperty("PAGE_ERROR")).forward(request, response);
             }
         } else {
             logger.error("It is impossible to use HTTP filter");

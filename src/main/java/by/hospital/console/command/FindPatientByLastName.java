@@ -21,6 +21,6 @@ public class FindPatientByLastName extends AbstractCommandFactory {
         String lastName = scanner.nextLine();
         Patient patient = new Patient();
         patient.setLastName(lastName);
-        out.println(ServiceLocator.getService(PatientService.class).FindLastName(patient));
+        out.println(ServiceLocator.getService(PatientService.class).findLastName(patient));
     }
 }

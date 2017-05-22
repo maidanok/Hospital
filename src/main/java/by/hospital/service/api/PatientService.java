@@ -14,13 +14,11 @@ public interface PatientService {
 
     Patient getPatient(Patient patient);
 
-    Patient returnPatientShort(Patient patient);
+    List<Patient> getALLPatients();
 
-    List <Patient> getALLPatients();
+    List<Patient> findLastName(Patient patient);
 
-    List <Patient> FindLastName(Patient patient);
-
-    boolean deletePatient (Patient patient);
+    boolean deletePatient(Patient patient);
 
     void savePatient(Patient patient);
 }

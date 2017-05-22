@@ -3,8 +3,8 @@ package by.hospital.domain;
 /**
  * Created by Pasha on 12.04.2017.
  */
-public class Diagnose implements Entity <Integer> {
-    private int diagnoseID=0;
+public class Diagnose implements Entity<Integer> {
+    private int diagnoseID = 0;
     private String diagnoseName;
     private String therapy;
 
@@ -32,11 +32,11 @@ public class Diagnose implements Entity <Integer> {
 
     @Override
     public void setPrimaryKey(int primaryKey) {
-        diagnoseID=primaryKey;
+        diagnoseID = primaryKey;
 
     }
 
-    public String toString(){
+    public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("DiagnoseService [№").append(getPrimaryKey()).append(" ").append(getDiagnoseName()).append("]\n");
         stringBuilder.append("Therapy: ").append(getTherapy()).append("\n");

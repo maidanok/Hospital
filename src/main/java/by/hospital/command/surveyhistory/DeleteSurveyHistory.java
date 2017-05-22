@@ -25,7 +25,6 @@ public class DeleteSurveyHistory implements Command {
     private static Set<Post> roles = new HashSet<>();
 
     static {
-        roles.add(Post.ADMINISTRATOR);
         roles.add(Post.DOCTOR);
     }
 
@@ -37,7 +36,7 @@ public class DeleteSurveyHistory implements Command {
         surveyHistory.setPrimaryKey(surveyID);
         surveyHistory = ServiceLocator.getService(SurveyHistoryService.class).getSurveyHistory(surveyHistory);
         ServiceLocator.getService(SurveyHistoryService.class).deleteSurveyHistory(surveyHistory);
-        List<SurveyHistory> surveyHistoryList = ServiceLocator.getService(SurveyHistoryService.class).getAllbySickList(surveyHistory.getSickList());
+        List<SurveyHistory> surveyHistoryList = ServiceLocator.getService(SurveyHistoryService.class).getAllBySickList(surveyHistory.getSickList());
         List<Prescription> prescriptionList = ServiceLocator.getService(PrescriptionService.class).
                 findBySickList(surveyHistory.getSickList());
 
